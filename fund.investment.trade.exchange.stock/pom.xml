@@ -9,9 +9,9 @@
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
-	<version>0.0.1-SNAPSHOT</version>
-	<groupId>fund.investment.trade.exchange.stock</groupId>
-	<artifactId>trade.exchange.stock</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<groupId>fund.investment</groupId>
+	<artifactId>exchange.stock.trade</artifactId>
 	<packaging>jar</packaging>
 
 	<properties>
@@ -90,15 +90,15 @@
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
-			<groupId>fund.investment.infrastructure.book</groupId>
+			<groupId>fund.investment</groupId>
 			<artifactId>infrastructure.book</artifactId>
 			<version>1.0-SNAPSHOT</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
-			<groupId>fund.investment.trade</groupId>
-			<artifactId>investment.trade</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<groupId>fund.investment</groupId>
+			<artifactId>trade</artifactId>
+			<version>1.0-SNAPSHOT</version>
 		</dependency>
         <dependency>
             <groupId>fund.investment</groupId>
@@ -107,15 +107,15 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>fund.investment.instruction.exchange.stock</groupId>
-            <artifactId>exchange-stock-infrastructure-instruction</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <groupId>fund.investment</groupId>
+            <artifactId>exchange.stock.infrastructure.instruction</artifactId>
+            <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
 		<dependency>
-			<groupId>fund.investment.infrastructure.instruction</groupId>
-			<artifactId>infrastructure-instruction</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<groupId>fund.investment</groupId>
+			<artifactId>infrastructure.instruction</artifactId>
+			<version>1.0-SNAPSHOT</version>
 		</dependency>
     </dependencies>
 

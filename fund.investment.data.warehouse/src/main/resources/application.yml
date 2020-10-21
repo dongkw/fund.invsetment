@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: data-warehouse-app-${server.port}
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.221.195:3306/datacenter?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false
+    username: root
+    password: root123
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+    generate-ddl: true
+    
+server:
+  port: 9082
+
+axon:
+  axonserver:
+    servers: 192.168.221.195
+
+  distributed:
+    enabled: true
+  serializer:
+    general: jackson
+    messages: jackson
+    events: jackson
+
+generator:
+  workerId: 12
+
+logging:
+  level:
+    root: info
+

@@ -7,9 +7,10 @@
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
-	<version>0.0.1-SNAPSHOT</version>
-	<groupId>fund.investment.instruction.exchange.stock</groupId>
-	<artifactId>exchange-stock-infrastructure-instruction</artifactId>
+
+	<groupId>fund.investment</groupId>
+	<artifactId>exchange.stock.infrastructure.instruction</artifactId>
+	<version>1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<properties>
@@ -64,15 +65,15 @@
 		
 		<!-- injected projects -->
 		<dependency>
-			<groupId>fund.investment.infrastructure</groupId>
-			<artifactId>infrastructure-common</artifactId>
+			<groupId>fund.investment</groupId>
+			<artifactId>infrastructure</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
-		
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<scope>runtime</scope>
+			<groupId>fund.investment</groupId>
+			<artifactId>infrastructure.instruction</artifactId>
+			<version>1.0-SNAPSHOT</version>
+			<scope>compile</scope>
 		</dependency>
         
         <!-- utils -->
@@ -87,10 +88,9 @@
 			<optional>true</optional>
 		</dependency>
 		<dependency>
-			<groupId>fund.investment.infrastructure.instruction</groupId>
-			<artifactId>infrastructure-instruction</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-			<scope>compile</scope>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
 
