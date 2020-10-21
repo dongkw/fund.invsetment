@@ -1,4 +1,4 @@
-package fund.investment.exchange.stock.model.aggregate;
+package fund.investment.exchange.stock.domain.model.aggregate;
 
 import fund.investment.infrastructure.instruction.domain.model.command.CreateIstrOrderCmd;
 import fund.investment.instruction.domain.model.aggregate.InstructionAggregate;
@@ -28,6 +28,8 @@ public class ExchangeStockIstrAggr extends InstructionAggregate {
         ESIstrCreatedEvt esIstrCreatedEvt = new ESIstrCreatedEvt();
         esIstrCreatedEvt.setId(cmd.getId());
         esIstrCreatedEvt.setAccountId(cmd.getAccountId());
+        esIstrCreatedEvt.setQuantity(cmd.getQuantity());
+        esIstrCreatedEvt.setSecurityCode(cmd.getSecurityCode());
 //        esIstrCreatedEvt.setIstrTradeElement(cmd.getIstrTradeElement());
         esIstrCreatedEvt.setTradeType(cmd.getTradeType());
         esIstrCreatedEvt.setUnitId(cmd.getUnitId());
@@ -56,7 +58,7 @@ public class ExchangeStockIstrAggr extends InstructionAggregate {
 
     @EventSourcingHandler
     public void on(ESIstrCreatedEvt evt) {
-        log.info("[ExchangeStockIstrAggr] [ExchangeStockIstrAggr] Receive event: {}", evt);
+        log.info("[ExchangeStockIstrAggr] Receive event: {}", evt);
         setId(evt.getId());
         setInstructionState(new CreatedInstructionState());
         setAccountId(evt.getAccountId());

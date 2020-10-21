@@ -27,7 +27,7 @@ public class CreateIstrCmd extends InstructionCommand{
 	private String securityCode;
 
 	@ApiModelProperty(value = "数量")
-	private Long quantity;
+	private Long quantity = 0L;
 
 	@Override
 	public String toString() {

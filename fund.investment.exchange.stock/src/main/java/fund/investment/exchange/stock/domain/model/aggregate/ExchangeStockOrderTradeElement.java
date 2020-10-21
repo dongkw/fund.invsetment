@@ -1,4 +1,4 @@
-package fund.investment.exchange.stock.model.aggregate;
+package fund.investment.exchange.stock.domain.model.aggregate;
 
 import fund.investment.infrastructure.instruction.domain.model.enumeration.TradeSide;
 import fund.investment.infrastructure.instruction.domain.model.vo.OrderTradeElement;
