@@ -22,7 +22,7 @@ import org.springframework.stereotype.Component;
 import lombok.var;
 
 @Component
-@ComponentScan({"fund.investment.infrastructure.util","fund.investment.instruction.domain.model.eventhandler.saga"})
+@ComponentScan({"fund.investment.infrastructure.util","fund.investment.instruction.domain.model"})
 public class InstructionConfig {
 	
 	@Value("${snapshot.event.count.threshold}")

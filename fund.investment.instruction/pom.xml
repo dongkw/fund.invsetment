@@ -108,16 +108,15 @@
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
-			<groupId>fund.investment.infrastructure.book</groupId>
-			<artifactId>infrastructure.book</artifactId>
-			<version>1.0-SNAPSHOT</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
 			<groupId>fund.investment.infrastructure.instruction</groupId>
 			<artifactId>infrastructure-instruction</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>fund.investment</groupId>
+			<artifactId>infrastructure.approval</artifactId>
+			<version>1.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>fund.investment</groupId>
