@@ -9,9 +9,9 @@ import org.axonframework.eventhandling.EventHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import bank.investment.infrastructure.distribution.event.DistIstrInitilazationEvt;
-import bank.investment.infrastructure.distribution.event.DistIstrRejectedEvt;
-import bank.investment.infrastructure.distribution.event.DistributedIstrEvt;
+import fund.investment.infrastructure.distribution.domain.event.DistIstrInitilazationEvt;
+import fund.investment.infrastructure.distribution.domain.event.DistIstrRejectedEvt;
+import fund.investment.infrastructure.distribution.domain.event.DistributedIstrEvt;
 import fund.investment.infrastructure.repository.db.dao.distribution.CustomDistEventEntryRepository;
 import fund.investment.infrastructure.repository.db.dao.distribution.DistEventEntry;
 import fund.investment.util.Constant;

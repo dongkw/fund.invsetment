@@ -64,13 +64,6 @@
 			<version>4.4.2</version>
 		</dependency>
 		
-		<!-- injected projects -->
-		<dependency>
-			<groupId>bank.investment</groupId>
-			<artifactId>infrastructure</artifactId>
-			<version>1.0-SNAPSHOT</version>
-		</dependency>
-		
 		<!-- db implements -->
 		<dependency>
             <groupId>com.h2database</groupId>
@@ -100,7 +93,22 @@
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
-    </dependencies>
+        <dependency>
+        	<groupId>fund.investment</groupId>
+        	<artifactId>infrastructure.distribute</artifactId>
+        	<version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+        	<groupId>fund.investment</groupId>
+        	<artifactId>infrastructure.approval</artifactId>
+        	<version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+        	<groupId>fund.investment</groupId>
+        	<artifactId>infrastructure.trade.exchange.stock</artifactId>
+        	<version>1.0-SNAPSHOT</version>
+        </dependency>
+	</dependencies>
 
 	<build>
 		<plugins>
