@@ -8,7 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Data
 @Slf4j
-public class ExchangeStockOrderTradeElement extends OrderTradeElement {
+public class ExchangeStockIstrOrderTradeElement extends OrderTradeElement {
 
 	@ApiModelProperty(value = "指令价格")
 	private String price;

@@ -1,10 +1,8 @@
 package fund.investment.instruction.exchange.stock.domain.model.command;
 
 import fund.investment.infrastructure.instruction.domain.model.command.CreateIstrOrderCmd;
-import fund.investment.infrastructure.instruction.domain.model.enumeration.TradeSide;
 import fund.investment.infrastructure.util.LoggerTemplate;
-import fund.investment.instruction.exchange.stock.domain.model.vo.ExchangeStockOrderTradeElement;
-import io.swagger.annotations.ApiModelProperty;
+import fund.investment.instruction.exchange.stock.domain.model.vo.ExchangeStockIstrOrderTradeElement;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ESCreateIstrOrderCmd extends CreateIstrOrderCmd {
 
-    private ExchangeStockOrderTradeElement exchangeStockOrderTradeElement;
+    private ExchangeStockIstrOrderTradeElement exchangeStockIstrOrderTradeElement;
 
     @Override
     public String toString() {
