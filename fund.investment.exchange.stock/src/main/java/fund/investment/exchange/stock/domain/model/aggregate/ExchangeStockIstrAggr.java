@@ -1,20 +1,19 @@
 package fund.investment.exchange.stock.domain.model.aggregate;
 
-import fund.investment.infrastructure.instruction.domain.model.command.CreateIstrOrderCmd;
 import fund.investment.instruction.domain.model.aggregate.InstructionAggregate;
 import fund.investment.instruction.domain.model.aggregate.status.CreatedInstructionState;
 import fund.investment.instruction.exchange.stock.domain.model.command.ESCancelIstrCmd;
 import fund.investment.instruction.exchange.stock.domain.model.command.ESCancelIstrOrderCmd;
 import fund.investment.instruction.exchange.stock.domain.model.command.ESCreateIstrCmd;
+import fund.investment.instruction.exchange.stock.domain.model.command.ESCreateIstrOrderCmd;
 import fund.investment.instruction.exchange.stock.domain.model.event.ESIstrCreatedEvt;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.modelling.command.AggregateLifecycle;
 import org.axonframework.spring.stereotype.Aggregate;
-
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @Data
 @Slf4j
@@ -45,7 +44,7 @@ public class ExchangeStockIstrAggr extends InstructionAggregate {
     }
 
     @CommandHandler
-    public void handle(CreateIstrOrderCmd cmd) {
+    public void handle(ESCreateIstrOrderCmd cmd) {
         log.info("[ExchangeStockIstrAggr] Receive command: {}", cmd);
         getInstructionState().createOrder(this, cmd);
     }
