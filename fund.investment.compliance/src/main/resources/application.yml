@@ -1,0 +1,33 @@
+
+spring:
+  application:
+    name: compliance-server
+  datasource:
+    url: jdbc:h2:./data/compliance/database;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1;AUTO_SERVER=TRUE
+#    username: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+    generate-ddl: true
+server:
+  port: 8092
+logging:
+  level:
+    root: info
+    fund:
+      investment: debug
+axon:
+  axonserver:
+    servers: 192.168.221.195
+
+  distributed:
+    enabled: true
+  serializer:
+    general: jackson
+    messages: jackson
+    events: jackson
+
+

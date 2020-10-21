@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+fund.investment.approval.domain.aggregate.ApprovalIstrAggregate,\
+fund.investment.infrastructure.util.uid.UIDGenerator
