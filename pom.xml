@@ -25,16 +25,16 @@
 		<module>fund.investment.infrastructure.approval</module>
 		<module>fund.investment.infrastructure.distribution</module>
 		<module>fund.investment.compliance</module>
-		<module>fund.investment.data-warehouse</module>
+		<module>fund.investment.data.warehouse</module>
 		<module>fund.investment.trade.exchange.stock</module>
 		<module>fund.investment.trade</module>
-		<module>fund.infrastructure.trade.exchange.stock</module>
-		<module>fund.infrastructure.trade</module>
+		<module>fund.investment.exchange.stock.infrastructure.trade</module>
+		<module>fund.investment.infrastructure.trade</module>
 		<!-- 指令服务 -->
 		<module>fund.investment.instruction</module>
 		<module>fund.investment.infrastructure.instruction</module>
 		<module>fund.investment.exchange.stock.infrastructure.instruction</module>
-		<module>fund.investment.exchange.stock</module>
+		<module>fund.investment.exchange.stock.instruction</module>
 
 	</modules>
 

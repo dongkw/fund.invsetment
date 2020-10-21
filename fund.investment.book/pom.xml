@@ -18,7 +18,7 @@
 
         <!--        引用其他包-->
         <dependency>
-            <groupId>fund.investment.infrastructure.book</groupId>
+            <groupId>fund.investment</groupId>
             <artifactId>infrastructure.book</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>

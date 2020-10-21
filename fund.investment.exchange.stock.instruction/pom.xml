@@ -9,8 +9,8 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<version>0.0.1-SNAPSHOT</version>
-	<groupId>fund.investment.instruction</groupId>
-	<artifactId>exchange-stock</artifactId>
+	<groupId>fund.investment</groupId>
+	<artifactId>exchange.stock.instruction</artifactId>
 	<packaging>jar</packaging>
 
 	<properties>
@@ -88,15 +88,15 @@
 			<optional>true</optional>
 		</dependency>
 		<dependency>
-			<groupId>fund.investment.instruction.exchange.stock</groupId>
-			<artifactId>exchange-stock-infrastructure-instruction</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<groupId>fund.investment</groupId>
+			<artifactId>exchange.stock.infrastructure.instruction</artifactId>
+			<version>1.0-SNAPSHOT</version>
 			<scope>compile</scope>
 		</dependency>
         <dependency>
-            <groupId>fund.investment.instruction</groupId>
-            <artifactId>instruction-exchange</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <groupId>fund.investment</groupId>
+            <artifactId>instruction</artifactId>
+            <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
 	</dependencies>

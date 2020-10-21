@@ -7,8 +7,8 @@
 		<artifactId>fund.investment</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
+	<groupId>fund.investment</groupId>
 	<artifactId>infrastructure.book</artifactId>
-	<groupId>fund.investment.infrastructure.book</groupId>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

@@ -86,7 +86,7 @@
 		</dependency>
 		<dependency>
 			<groupId>fund.investment</groupId>
-			<artifactId>infrastructure.trade.exchange.stock</artifactId>
+			<artifactId>exchange.stock.infrastructure.trade</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
