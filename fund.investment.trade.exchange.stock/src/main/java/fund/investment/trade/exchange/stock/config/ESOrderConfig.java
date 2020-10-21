@@ -27,9 +27,10 @@ public class ESOrderConfig {
 	private int snapshotThreshold;
 	
 	@Bean
-    public EventSourcingRepository<ExchangeStockOrderAggregate> orderAggregateRepository(EventStore eventStore, Cache cache) {
+    public EventSourcingRepository<ExchangeStockOrderAggregate> orderAggregateRepository(EventStore eventStore, SnapshotTriggerDefinition orderSnapshotTrigger, Cache cache) {
         return EventSourcingRepository.builder(ExchangeStockOrderAggregate.class)
                 .cache(cache)
+                .snapshotTriggerDefinition(orderSnapshotTrigger)
                 .eventStore(eventStore)
                 .build();
     }
@@ -39,8 +40,8 @@ public class ESOrderConfig {
         return new WeakReferenceCache();
     }
 	
-	@Bean("orderSnapshotTrigger")
-	public SnapshotTriggerDefinition instructionSnapshotTrigger(Snapshotter snapshotter) {
+	@Bean
+	public SnapshotTriggerDefinition orderSnapshotTrigger(Snapshotter snapshotter) {
 	    return new EventCountSnapshotTriggerDefinition(snapshotter, snapshotThreshold);
 	}
 	

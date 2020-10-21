@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-fund.investment.exchange.stock.model.aggregate.ExchangeStockIstrAggr
+fund.investment.exchange.stock.domain.model.aggregate.ExchangeStockIstrAggr

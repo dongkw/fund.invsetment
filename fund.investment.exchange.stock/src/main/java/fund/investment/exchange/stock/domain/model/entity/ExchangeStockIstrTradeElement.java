@@ -1,4 +1,4 @@
-package fund.investment.exchange.stock.model.entity;
+package fund.investment.exchange.stock.domain.model.entity;
 
 import fund.investment.infrastructure.instruction.domain.model.enumeration.TradeSide;
 import fund.investment.instruction.domain.model.entity.IstrTradeElement;
