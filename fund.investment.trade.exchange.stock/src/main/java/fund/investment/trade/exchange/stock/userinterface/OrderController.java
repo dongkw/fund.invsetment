@@ -1,18 +1,22 @@
 package fund.investment.trade.exchange.stock.userinterface;
 
 import java.math.BigDecimal;
+import java.util.concurrent.TimeUnit;
 
-import fund.investment.infrastructure.util.SwaggerTag;
-import fund.investment.infrastructure.util.uid.UIDGenerator;
+import org.axonframework.commandhandling.CommandExecutionException;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import fund.investment.infrastructure.util.SwaggerTag;
+import fund.investment.infrastructure.util.uid.UIDGenerator;
 import infrastructure.trade.domain.model.command.CancelOrderCmd;
 import infrastructure.trade.domain.model.command.ConfirmOrderCmd;
 import infrastructure.trade.domain.model.command.CreateOrderCmd;
@@ -28,13 +32,13 @@ import io.swagger.annotations.ApiOperation;
 public class OrderController {
 	
 	@Autowired
-	private fund.investment.infrastructure.util.uid.UIDGenerator UIDGenerator ;
+	private UIDGenerator UIDGenerator ;
 	
 	@Autowired
     private CommandGateway commandGateway;
 	
 	@RequestMapping(value = "/creation", method = RequestMethod.POST)
-	@ApiOperation(value = "创建委托", tags = SwaggerTag.INSTRUCTION_ORDER)
+	@ApiOperation(value = "创建委托", tags = SwaggerTag.TRADE)
 	public ResponseEntity<CreateOrderCmd> create(
 			@RequestParam String instructionId, 
 			@RequestParam String unitId, 
@@ -56,17 +60,27 @@ public class OrderController {
 					BigDecimal.ZERO, 
 					0l, 
 					BigDecimal.ZERO); 
-			commandGateway.sendAndWait(cmd);
+			Object result = commandGateway.sendAndWait(cmd, 500, TimeUnit.MILLISECONDS);
+			Assert.notNull(result, "command dispatching timeout");
 			return new ResponseEntity<>(cmd, HttpStatus.OK);
-		} catch (Exception e) {
+		} catch (IllegalArgumentException illE) {
+			illE.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.REQUEST_TIMEOUT);
+			
+		} catch (CommandExecutionException cmdE) {
+			cmdE.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.BAD_GATEWAY);
+			
+		}catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+			
 		}
 		
 	}
 	
 	@RequestMapping(value = "/confirmation", method = RequestMethod.POST)
-	@ApiOperation(value = "确认委托", tags = SwaggerTag.INSTRUCTION_ORDER)
+	@ApiOperation(value = "确认委托", tags = SwaggerTag.TRADE)
 	public ResponseEntity<ConfirmOrderCmd> confirm(
 			@RequestParam String id, 
 			@RequestParam String instructionId,
@@ -74,9 +88,18 @@ public class OrderController {
 			) {
 		try {
 			ConfirmOrderCmd cmd = new ConfirmOrderCmd(id, instructionId, tradeType);
-			commandGateway.sendAndWait(cmd);
+			Object result = commandGateway.sendAndWait(cmd, 500, TimeUnit.MILLISECONDS);
+			Assert.notNull(result, "command dispatching timeout");
 			return new ResponseEntity<>(cmd, HttpStatus.OK);
-		} catch (Exception e) {
+		} catch (IllegalArgumentException illE) {
+			illE.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.REQUEST_TIMEOUT);
+			
+		} catch (CommandExecutionException cmdE) {
+			cmdE.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.BAD_GATEWAY);
+			
+		}catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -84,7 +107,7 @@ public class OrderController {
 	}
 	
 	@RequestMapping(value = "/cancellation", method = RequestMethod.POST)
-	@ApiOperation(value = "撤销报单", tags = SwaggerTag.INSTRUCTION_ORDER)
+	@ApiOperation(value = "撤销报单", tags = SwaggerTag.TRADE)
 	public ResponseEntity<CancelOrderCmd> cancel(
 			@RequestParam String id, 
 			@RequestParam String instructionId,
@@ -96,13 +119,21 @@ public class OrderController {
 		try {
 			
 			ESCancelOrderCmd cmd = new ESCancelOrderCmd(id, instructionId, tradeType, unitId, cancelQuantity);
-			commandGateway.sendAndWait(cmd);
+			Object result = commandGateway.sendAndWait(cmd, 500, TimeUnit.MILLISECONDS);
+			Assert.notNull(result, "command dispatching timeout");
 			return new ResponseEntity<>(cmd, HttpStatus.OK);
-		} catch (Exception e) {
+		} catch (IllegalArgumentException illE) {
+			illE.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.REQUEST_TIMEOUT);
+			
+		} catch (CommandExecutionException cmdE) {
+			cmdE.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.BAD_GATEWAY);
+			
+		}catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
 	}
-	
 }
