@@ -16,13 +16,6 @@
 
 	<dependencies>
 
-		<!--        引用其他包-->
-		<dependency>
-			<groupId>bank.investment</groupId>
-			<artifactId>infrastructure</artifactId>
-			<version>1.0-SNAPSHOT</version>
-			<scope>compile</scope>
-		</dependency>
 		<dependency>
 			<groupId>fund.investment</groupId>
 			<artifactId>infrastructure.approval</artifactId>
