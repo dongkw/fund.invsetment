@@ -9,6 +9,9 @@
 	</parent>
 	<groupId>fund.investment</groupId>
 	<artifactId>infrastructure.book</artifactId>
+	<name>infrastructure.book</name>
+	<description>记账服务公用</description>
+	<version>1.0-SNAPSHOT</version>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
