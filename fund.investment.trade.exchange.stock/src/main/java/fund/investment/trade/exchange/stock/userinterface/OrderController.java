@@ -60,8 +60,9 @@ public class OrderController {
 					BigDecimal.ZERO, 
 					0l, 
 					BigDecimal.ZERO); 
-			Object result = commandGateway.sendAndWait(cmd, 500, TimeUnit.MILLISECONDS);
+			Object result = commandGateway.sendAndWait(cmd, 500, TimeUnit.SECONDS);
 			Assert.notNull(result, "command dispatching timeout");
+			
 			return new ResponseEntity<>(cmd, HttpStatus.OK);
 		} catch (IllegalArgumentException illE) {
 			illE.printStackTrace();
@@ -88,13 +89,8 @@ public class OrderController {
 			) {
 		try {
 			ConfirmOrderCmd cmd = new ConfirmOrderCmd(id, instructionId, tradeType);
-			Object result = commandGateway.sendAndWait(cmd, 500, TimeUnit.MILLISECONDS);
-			Assert.notNull(result, "command dispatching timeout");
+			commandGateway.sendAndWait(cmd);
 			return new ResponseEntity<>(cmd, HttpStatus.OK);
-		} catch (IllegalArgumentException illE) {
-			illE.printStackTrace();
-			return new ResponseEntity<>(HttpStatus.REQUEST_TIMEOUT);
-			
 		} catch (CommandExecutionException cmdE) {
 			cmdE.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.BAD_GATEWAY);
@@ -117,15 +113,10 @@ public class OrderController {
 			
 			) {
 		try {
-			
 			ESCancelOrderCmd cmd = new ESCancelOrderCmd(id, instructionId, tradeType, unitId, cancelQuantity);
-			Object result = commandGateway.sendAndWait(cmd, 500, TimeUnit.MILLISECONDS);
-			Assert.notNull(result, "command dispatching timeout");
-			return new ResponseEntity<>(cmd, HttpStatus.OK);
-		} catch (IllegalArgumentException illE) {
-			illE.printStackTrace();
-			return new ResponseEntity<>(HttpStatus.REQUEST_TIMEOUT);
+			commandGateway.send(cmd);
 			
+			return new ResponseEntity<>(cmd, HttpStatus.OK);
 		} catch (CommandExecutionException cmdE) {
 			cmdE.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.BAD_GATEWAY);
