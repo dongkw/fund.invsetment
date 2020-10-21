@@ -20,7 +20,8 @@ server:
 
 axon:
   axonserver:
-    servers: 192.168.221.195
+#    servers: 192.168.221.195
+    servers: 192.168.43.135
 
   distributed:
     enabled: true
