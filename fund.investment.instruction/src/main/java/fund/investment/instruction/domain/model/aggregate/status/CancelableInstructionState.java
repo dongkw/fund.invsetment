@@ -4,6 +4,7 @@ import fund.investment.infrastructure.instruction.domain.model.command.CancelIst
 import fund.investment.infrastructure.instruction.domain.model.enumeration.InstructionStatus;
 import fund.investment.infrastructure.instruction.domain.model.event.IstrCancellingEvt;
 import fund.investment.instruction.domain.model.aggregate.InstructionAggregate;
+import fund.investment.instruction.exchange.stock.domain.model.event.ESIstrCancellingEvt;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.modelling.command.AggregateLifecycle;
 
@@ -17,7 +18,7 @@ public class CancelableInstructionState extends InstructionState {
     @Override
     public void cancel(InstructionAggregate aggregate, CancelIstrCmd cancelIstrCmd) {
         log.info("[CancelableInstructionState] Receive command: {}", cancelIstrCmd);
-        IstrCancellingEvt istrCancellingEvt = new IstrCancellingEvt();
+        ESIstrCancellingEvt istrCancellingEvt = new ESIstrCancellingEvt();
 //		istrCancellingEvt.setOrders(cancelIstrCmd.getOrders());
         istrCancellingEvt.setId(cancelIstrCmd.getId());
         istrCancellingEvt.setUnitId(aggregate.getUnitId());

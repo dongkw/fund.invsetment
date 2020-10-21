@@ -69,6 +69,7 @@ public class ExcutingInstructionState extends CancelableInstructionState {
         istrFillReceivedEvt.setId(cmd.getId());
         istrFillReceivedEvt.setTradeType(cmd.getTradeType());
         orderDetail.receiveFill(istrFillReceivedEvt);
+        instructionAggregate.setOrderDetail(orderDetail);
         IstrTradeElement istrTradeElement = instructionAggregate.getIstrTradeElement();
         //如果成交数量等于指令数量，则发布 指令成交接收事件 修改状态
         if(istrTradeElement.getQuantity().compareTo(orderDetail.getFillQuantity()) == 0){

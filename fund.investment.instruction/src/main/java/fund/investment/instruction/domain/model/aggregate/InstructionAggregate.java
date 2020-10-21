@@ -24,6 +24,8 @@ import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.modelling.command.AggregateIdentifier;
 import org.axonframework.modelling.command.AggregateMember;
 
+import java.util.Objects;
+
 @Data
 @Slf4j
 //@Aggregate
@@ -221,6 +223,8 @@ public class InstructionAggregate extends DomainAggregate {
 	public void handle(IstrOrderCreatedEvt evt) {
 		log.info("[InstructionAggregate] Recieved Event: {}", evt);
 //		this.id = evt.getId();
+		//TODO 添加委托赋值操作
+		this.orderDetail = new OrderDetail();
 		this.instructionState = new ExcutingInstructionState();
 	}
 
@@ -232,6 +236,9 @@ public class InstructionAggregate extends DomainAggregate {
 	public void handle(IstrOrderCancelledEvt evt) {
 		log.info("[InstructionAggregate] Recieved Event: {}", evt);
 //		this.id = evt.getId();
+		if(Objects.isNull(this.orderDetail)){
+			this.orderDetail = new OrderDetail();
+		}
 		boolean flag = this.orderDetail.cancelOrder(evt);
 		if(flag){
 			this.instructionState = new PendingInstructionState();

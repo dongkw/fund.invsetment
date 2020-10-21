@@ -15,7 +15,7 @@ public class CancelIstrOrderCmd extends InstructionCommand{
 
 	private String orderId;
 
-	private Long cancelQuantity;
+	private Long cancelQuantity = 0L;
 
 	@Override
 	public String toString() {
