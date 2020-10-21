@@ -2,6 +2,7 @@ package fund.investment.exchange.stock.domain.model.aggregate;
 
 import fund.investment.instruction.domain.model.aggregate.InstructionAggregate;
 import fund.investment.instruction.domain.model.aggregate.status.CreatedInstructionState;
+import fund.investment.instruction.domain.model.entity.IstrTradeElement;
 import fund.investment.instruction.exchange.stock.domain.model.command.ESCancelIstrCmd;
 import fund.investment.instruction.exchange.stock.domain.model.command.ESCancelIstrOrderCmd;
 import fund.investment.instruction.exchange.stock.domain.model.command.ESCreateIstrCmd;
@@ -29,7 +30,6 @@ public class ExchangeStockIstrAggr extends InstructionAggregate {
         esIstrCreatedEvt.setAccountId(cmd.getAccountId());
         esIstrCreatedEvt.setQuantity(cmd.getQuantity());
         esIstrCreatedEvt.setSecurityCode(cmd.getSecurityCode());
-//        esIstrCreatedEvt.setIstrTradeElement(cmd.getIstrTradeElement());
         esIstrCreatedEvt.setTradeType(cmd.getTradeType());
         esIstrCreatedEvt.setUnitId(cmd.getUnitId());
         esIstrCreatedEvt.setUserId(cmd.getUserId());
@@ -62,7 +62,12 @@ public class ExchangeStockIstrAggr extends InstructionAggregate {
         setInstructionState(new CreatedInstructionState());
         setAccountId(evt.getAccountId());
         setUnitId(evt.getUnitId());
-//        setIstrTradeElement(evt.getIstrTradeElement());
+        //设置聚合根交易要素相关参数
+        IstrTradeElement istrTradeElement = new IstrTradeElement();
+        istrTradeElement.setQuantity(evt.getQuantity());
+        istrTradeElement.setSecurityCode(evt.getSecurityCode());
+        istrTradeElement.setTradeType(evt.getTradeType());
+        setIstrTradeElement(istrTradeElement);
         setUserId(evt.getUserId());
     }
 

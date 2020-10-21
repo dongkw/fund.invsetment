@@ -6,7 +6,7 @@ package fund.investment.infrastructure.instruction.domain.model.enumeration;
  *
  */
 public enum DistributeStatus {
-	UNDIFINED("-1", "空"),
+	UNDEFINED("-1", "空"),
 	WAIT("0", "待分发"),
 	PASS("1", "已分发"),
 	REJECT("2", "拒绝分发")

@@ -6,7 +6,7 @@ package fund.investment.infrastructure.instruction.domain.model.enumeration;
  *
  */
 public enum OrderStatus {
-	UNDIFINED("0", "未委托"),
+	UNDEFINED("0", "未委托"),
 	PART_ENTRUSTED("1", "部分委托"),
 	ALL_ENTRUSTED("2", "全部委托");
 	OrderStatus(String id, String note) {

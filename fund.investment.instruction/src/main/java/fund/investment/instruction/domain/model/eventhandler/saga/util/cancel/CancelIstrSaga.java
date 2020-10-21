@@ -58,7 +58,7 @@ public class CancelIstrSaga extends InstructionSaga {
         log.debug("Cancel saga start receive:{}", evt);
         if (hasUnFinishOrder(evt)) {
             List<Order> orders = evt.getOrders();
-            orders.stream().filter(t -> Objects.equals(t.getStatus(), OrderStatus.UNDIFINED)
+            orders.stream().filter(t -> Objects.equals(t.getStatus(), OrderStatus.UNDEFINED)
                     || Objects.equals(t.getStatus(), OrderStatus.PART_ENTRUSTED))
                     .forEach(t -> {
                         CancelOrderCmd cancelOrderCmd = new CancelOrderCmd(evt.getId(), evt.getId(), "场内", evt.getTradeType().name(), 11L);
@@ -150,7 +150,7 @@ public class CancelIstrSaga extends InstructionSaga {
         if (CollectionUtils.isEmpty(evt.getOrders())) {
             return false;
         }
-        if (evt.getOrders().stream().anyMatch(t -> Objects.equals(t.getStatus(), OrderStatus.UNDIFINED)
+        if (evt.getOrders().stream().anyMatch(t -> Objects.equals(t.getStatus(), OrderStatus.UNDEFINED)
                 || Objects.equals(t.getStatus(), OrderStatus.PART_ENTRUSTED))) {
             return false;
         }

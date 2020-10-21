@@ -6,7 +6,7 @@ package fund.investment.infrastructure.instruction.domain.model.enumeration;
  *
  */
 public enum FillStatus {
-	UNDIFINED("0", "未成交"),
+	UNDEFINED("0", "未成交"),
 	PART_ENTRUSTED("1", "部分成交"),
 	ALL_ENTRUSTED("2", "全部成交");
 	FillStatus(String id, String note) {

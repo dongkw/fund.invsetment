@@ -6,7 +6,7 @@ package fund.investment.infrastructure.instruction.domain.model.enumeration;
  *
  */
 public enum ApprovalStatus {
-	UNDIFINED("-1", "空"),
+	UNDEFINED("-1", "空"),
 	WAIT("0", "待审批"),
 	PASS("1", "审批通过"),
 	REJECT("2", "拒绝审批")

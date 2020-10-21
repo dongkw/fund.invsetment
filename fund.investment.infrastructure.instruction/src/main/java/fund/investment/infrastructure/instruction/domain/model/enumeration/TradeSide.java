@@ -6,7 +6,7 @@ package fund.investment.infrastructure.instruction.domain.model.enumeration;
  *
  */
 public enum TradeSide {
-	UNDIFINED("0", "未定义"),
+	UNDEFINED("0", "未定义"),
 	BUY("1", "买入"),
 	SELL("2", "卖出"),
 	INVERSE_REPO("21", "现货 逆回购"),

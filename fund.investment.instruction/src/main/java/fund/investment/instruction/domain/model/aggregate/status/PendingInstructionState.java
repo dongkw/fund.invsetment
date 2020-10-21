@@ -2,6 +2,7 @@ package fund.investment.instruction.domain.model.aggregate.status;
 
 import fund.investment.infrastructure.instruction.domain.model.command.CreateIstrOrderCmd;
 import fund.investment.infrastructure.instruction.domain.model.enumeration.InstructionStatus;
+import fund.investment.infrastructure.instruction.domain.model.enumeration.TradeType;
 import fund.investment.infrastructure.instruction.domain.model.event.IstrOrderCreatedEvt;
 import fund.investment.infrastructure.instruction.domain.model.event.IstrOrderFailedEvt;
 import fund.investment.instruction.domain.model.aggregate.InstructionAggregate;
@@ -23,7 +24,7 @@ public class PendingInstructionState extends CancelableInstructionState {
         log.info("[PendingInstructionState] Receive command: {}", cmd);
 	    //下委托
         IstrTradeElement istrTradeElement = instructionAggregate.getIstrTradeElement();
-        if(!Objects.isNull(istrTradeElement) && istrTradeElement.checkOrder(cmd)){
+        if(!cmd.getTradeType().name().equals(TradeType.UNDEFINED.name())){
             IstrOrderCreatedEvt istrOrderCreatedEvt = new IstrOrderCreatedEvt();
             istrOrderCreatedEvt.setOrderId(cmd.getOrderId());
             istrOrderCreatedEvt.setId(cmd.getId());

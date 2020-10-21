@@ -21,7 +21,7 @@ import java.util.List;
 public class OrderDetail {
 
 	@ApiModelProperty(value = "委托状态 ")
-    private OrderStatus status = OrderStatus.UNDIFINED;
+    private OrderStatus status = OrderStatus.UNDEFINED;
 	
 	@ApiModelProperty(value = "委托数量")
 	private Long orderQuantity = 0l;
