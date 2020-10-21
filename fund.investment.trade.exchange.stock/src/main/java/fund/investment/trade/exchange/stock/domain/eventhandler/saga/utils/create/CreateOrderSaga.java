@@ -10,11 +10,14 @@ import fund.investment.infrastructure.compliance.domain.model.event.order.OrderC
 import fund.investment.infrastructure.compliance.domain.model.event.order.OrderCmplRollbackedEvt;
 import fund.investment.infrastructure.compliance.domain.model.event.order.OrderCmplSucceedEvt;
 import fund.investment.infrastructure.instruction.domain.model.command.CreateIstrOrderCmd;
+import fund.investment.infrastructure.instruction.domain.model.enumeration.TradeSide;
 import fund.investment.infrastructure.instruction.domain.model.enumeration.TradeType;
 import fund.investment.infrastructure.instruction.domain.model.event.IstrOrderCancelledEvt;
 import fund.investment.infrastructure.instruction.domain.model.event.IstrOrderCreatedEvt;
 import fund.investment.infrastructure.instruction.domain.model.event.IstrOrderFailedEvt;
 import fund.investment.infrastructure.instruction.domain.model.vo.OrderTradeElement;
+import fund.investment.instruction.exchange.stock.domain.model.command.ESCreateIstrOrderCmd;
+import fund.investment.instruction.exchange.stock.domain.model.vo.ExchangeStockIstrOrderTradeElement;
 import fund.investment.trade.exchange.stock.domain.eventhandler.saga.utils.OrderSaga;
 import fund.investment.trade.exchange.stock.domain.eventhandler.saga.utils.create.vo.OrderSagaStatus;
 import fund.investment.trade.exchange.stock.domain.eventhandler.saga.utils.create.vo.OrderVo;
@@ -52,17 +55,17 @@ public class CreateOrderSaga extends OrderSaga {
         VerfOrderCmd verfOrderCmd = new VerfOrderCmd(orderVo.getUnitId(), orderVo.getOrderId());
         commandGateway.send(verfOrderCmd);
 
-        CreateIstrOrderCmd createIstrOrderCmd = new CreateIstrOrderCmd();
+        ESCreateIstrOrderCmd createIstrOrderCmd = new ESCreateIstrOrderCmd();
         createIstrOrderCmd.setId(orderVo.getIstrId());
         createIstrOrderCmd.setOrderId(orderVo.getOrderId());
         createIstrOrderCmd.setTradeType(TradeType.EXCHANGE_STOCKE);
         
         ExchangeStockOrderTradeElement tradeElement = evt.getOrderTradeElement();
 
-        OrderTradeElement exchangeStockOrderTradeElement=new OrderTradeElement();
-//        exchangeStockOrderTradeElement.setPrice(tradeElement.getPrice());
-//        exchangeStockOrderTradeElement.setAmount(tradeElement.getAmount());
-//        exchangeStockOrderTradeElement.setSide(TradeSide.BUY.name());
+        ExchangeStockIstrOrderTradeElement exchangeStockOrderTradeElement=new ExchangeStockIstrOrderTradeElement();
+        exchangeStockOrderTradeElement.setPrice(tradeElement.getPrice().toString());
+        exchangeStockOrderTradeElement.setAmount(tradeElement.getAmount().longValue());
+        exchangeStockOrderTradeElement.setSide(TradeSide.BUY);
         exchangeStockOrderTradeElement.setSecurityCode(tradeElement.getSecurityCode());
         exchangeStockOrderTradeElement.setTradeType(tradeElement.getTradeType());
 
