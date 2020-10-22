@@ -1,4 +1,4 @@
-package fund.investment.trade.exchange.stock.domain.eventhandler.saga.utils;
+package fund.investment.trade.domain.model.eventhandler.saga;
 
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.beans.factory.annotation.Autowired;

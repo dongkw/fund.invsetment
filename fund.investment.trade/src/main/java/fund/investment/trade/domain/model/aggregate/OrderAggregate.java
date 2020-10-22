@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
 
+import infrastructure.trade.domain.model.command.*;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.modelling.command.AggregateIdentifier;
@@ -16,11 +17,6 @@ import fund.investment.trade.domain.model.aggregate.state.OrderState;
 import fund.investment.trade.domain.model.aggregate.state.PFCancellingOrderState;
 import fund.investment.trade.domain.model.aggregate.state.PlacedOrderState;
 import fund.investment.trade.domain.model.aggregate.state.PlacingOrderState;
-import infrastructure.trade.domain.model.command.CancelConfirmOrderCmd;
-import infrastructure.trade.domain.model.command.ConfirmOrderCmd;
-import infrastructure.trade.domain.model.command.PlaceCancelOrderCmd;
-import infrastructure.trade.domain.model.command.PlaceConfirmOrderCmd;
-import infrastructure.trade.domain.model.command.PlaceOrderCmd;
 import infrastructure.trade.domain.model.event.OrderCancellingEvt;
 import infrastructure.trade.domain.model.event.OrderCompletedEvt;
 import infrastructure.trade.domain.model.event.OrderConfirmedEvt;
@@ -91,6 +87,12 @@ public class OrderAggregate extends DomainAggregate{
 	public void handle(CancelConfirmOrderCmd cmd) {
 		orderState.cancelConfirm(cmd);
 		
+	}
+
+	@CommandHandler
+	public void handle(FailOrderCmd cmd) {
+		orderState.fail(cmd);
+
 	}
 
 	@EventSourcingHandler
