@@ -2,6 +2,8 @@ package fund.investment.trade.exchange.stock.domain.eventhandler.saga;
 
 import java.util.HashSet;
 
+import fund.investment.trade.domain.model.eventhandler.saga.create.HandlerFactory;
+import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.modelling.saga.SagaEventHandler;
 import org.axonframework.modelling.saga.StartSaga;
 import org.axonframework.spring.stereotype.Saga;
@@ -21,37 +23,41 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ESCreateOrderSaga extends CreateOrderSaga {
 
+    public ESCreateOrderSaga(CommandGateway commandGateway, HandlerFactory factory) {
+        super(commandGateway, factory);
+    }
+
     @StartSaga
     @SagaEventHandler(associationProperty = "id")
     public void handler(ESOrderCreatedEvt evt) {
-            log.debug("create saga start,receive:{}", evt);
-            orderVo.setOrderId(evt.getId());
-            orderVo.setUnitId(evt.getUnitId());
-            orderVo.setIstrId(evt.getInstructionId());
-            orderVo.setStatuses(new HashSet<>());
+        log.debug("create saga start,receive:{}", evt);
+        getOrderValueObject().setOrderId(evt.getId());
+        getOrderValueObject().setUnitId(evt.getUnitId());
+        getOrderValueObject().setIstrId(evt.getInstructionId());
+        getOrderValueObject().setStatuses(new HashSet<>());
 
-            VerfOrderCmd verfOrderCmd = new VerfOrderCmd(null, orderVo.getUnitId(), orderVo.getOrderId());
-            commandGateway.send(verfOrderCmd);
+        VerfOrderCmd verfOrderCmd = new VerfOrderCmd(null, getOrderValueObject().getUnitId(), getOrderValueObject().getOrderId());
+        commandGateway.send(verfOrderCmd);
 
-            ESCreateIstrOrderCmd createIstrOrderCmd = new ESCreateIstrOrderCmd();
-            createIstrOrderCmd.setId(orderVo.getIstrId());
-            createIstrOrderCmd.setOrderId(orderVo.getOrderId());
-            createIstrOrderCmd.setTradeType(TradeType.EXCHANGE_STOCKE);
+        ESCreateIstrOrderCmd createIstrOrderCmd = new ESCreateIstrOrderCmd();
+        createIstrOrderCmd.setId(getOrderValueObject().getIstrId());
+        createIstrOrderCmd.setOrderId(getOrderValueObject().getOrderId());
+        createIstrOrderCmd.setTradeType(TradeType.EXCHANGE_STOCKE);
 
-            ExchangeStockOrderTradeElement tradeElement = evt.getOrderTradeElement();
-            ExchangeStockIstrOrderTradeElement exchangeStockOrderTradeElement=new ExchangeStockIstrOrderTradeElement(tradeElement.getTradeType(), tradeElement.getSecurityCode(), 0, tradeElement.getPrice().toString(), TradeSide.BUY, tradeElement.getAmount().longValue());
+        ExchangeStockOrderTradeElement tradeElement = evt.getOrderTradeElement();
+        ExchangeStockIstrOrderTradeElement exchangeStockOrderTradeElement = new ExchangeStockIstrOrderTradeElement(tradeElement.getTradeType(), tradeElement.getSecurityCode(), 0, tradeElement.getPrice().toString(), TradeSide.BUY, tradeElement.getAmount().longValue());
 
-            createIstrOrderCmd.setExchangeStockIstrOrderTradeElement(exchangeStockOrderTradeElement);
-            orderVo.setSecurityCode(tradeElement.getSecurityCode());
+        createIstrOrderCmd.setExchangeStockIstrOrderTradeElement(exchangeStockOrderTradeElement);
+        getOrderValueObject().setSecurityCode(tradeElement.getSecurityCode());
 
-            commandGateway.send(createIstrOrderCmd);
+        commandGateway.send(createIstrOrderCmd);
 
-            CmplOrderCmd cmplOrderCmd = new CmplOrderCmd(tradeElement.getSecurityCode(), orderVo.getOrderId());
-            commandGateway.send(cmplOrderCmd);
-            log.debug("saga send:{}", cmplOrderCmd);
-            log.debug("saga send:{}", verfOrderCmd);
-            log.debug("saga send:{}", createIstrOrderCmd);
-        }
+        CmplOrderCmd cmplOrderCmd = new CmplOrderCmd(tradeElement.getSecurityCode(), getOrderValueObject().getOrderId());
+        commandGateway.send(cmplOrderCmd);
+        log.debug("saga send:{}", cmplOrderCmd);
+        log.debug("saga send:{}", verfOrderCmd);
+        log.debug("saga send:{}", createIstrOrderCmd);
+    }
 
 
 }

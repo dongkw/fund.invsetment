@@ -13,6 +13,7 @@ import fund.investment.infrastructure.instruction.domain.model.event.IstrOrderFa
 import fund.investment.trade.domain.model.eventhandler.saga.OrderSaga;
 import fund.investment.trade.domain.model.eventhandler.saga.create.valueobject.OrderSagaStatus;
 import fund.investment.trade.domain.model.eventhandler.saga.create.valueobject.OrderValueObject;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.modelling.saga.SagaEventHandler;
@@ -25,8 +26,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Slf4j
 public class CreateOrderSaga extends OrderSaga {
 
+    @Getter
     @JsonProperty
-    public OrderValueObject orderValueObject;
+    private OrderValueObject orderValueObject;
 
     final transient HandlerFactory factory;
 
