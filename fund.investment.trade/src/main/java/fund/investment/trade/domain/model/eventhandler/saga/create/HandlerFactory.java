@@ -1,10 +1,9 @@
 package fund.investment.trade.domain.model.eventhandler.saga.create;
 
+import fund.investment.trade.domain.model.eventhandler.saga.create.valueobject.OrderSagaStatus;
+import fund.investment.trade.domain.model.eventhandler.saga.create.valueobject.OrderValueObject;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-
-import fund.investment.trade.domain.model.eventhandler.saga.create.vo.OrderSagaStatus;
-import fund.investment.trade.domain.model.eventhandler.saga.create.vo.OrderVo;
 
 import java.util.*;
 
@@ -20,7 +19,7 @@ public class HandlerFactory {
         handlerMap.put(list2str(statuses), set);
     }
 
-    public void handler(OrderVo vo) {
+    public void handler(OrderValueObject vo) {
         log.debug("now orderId,{} status:{},", vo.getOrderId(), vo.getStatuses());
         handlerMap.getOrDefault(set2str(vo.getStatuses()), new HashSet<>()).forEach(t -> t.handler(vo));
     }

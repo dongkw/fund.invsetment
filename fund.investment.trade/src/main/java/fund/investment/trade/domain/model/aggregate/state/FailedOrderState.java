@@ -1,9 +1,10 @@
 package fund.investment.trade.domain.model.aggregate.state;
 
-public class FailedOrderState extends OrderState{
-	
-	public FailedOrderState() {
-		super(OrderStatus.FAILED);
-	}
+import infrastructure.trade.domain.model.enumeration.OrderStatus;
 
+public class FailedOrderState extends OrderState {
+
+    public FailedOrderState() {
+        super(OrderStatus.FAILED);
+    }
 }
