@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 public class OrderTradeElement {
 
     private String tradeType;
+
     private String securityCode;
-    private long   quantity;
+
+    private long quantity;
 }

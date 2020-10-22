@@ -16,10 +16,10 @@ public class AprvIstrPassCmd extends DomainCommand {
 
     private String operatorId;
 
-	public AprvIstrPassCmd(String id, String instructionId, String userId, String operatorId) {
-		super(id);
-		this.instructionId = instructionId;
-		this.userId = userId;
-		this.operatorId = operatorId;
-	}
+    public AprvIstrPassCmd(String id, String instructionId, String userId, String operatorId) {
+        super(id);
+        this.instructionId = instructionId;
+        this.userId = userId;
+        this.operatorId = operatorId;
+    }
 }
