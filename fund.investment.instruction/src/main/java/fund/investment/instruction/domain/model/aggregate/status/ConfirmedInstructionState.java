@@ -15,11 +15,11 @@ public class ConfirmedInstructionState extends CancelableInstructionState  {
 
     @Override
     public void aprvPass(AprvPassIstrCmd aprvPassIstrCmd) {
-        log.info("[ConfirmedInstructionState] Receive command: {}", aprvPassIstrCmd);
+        log.info("Receive command: {}", aprvPassIstrCmd);
         IstrPassedEvt istrPassedEvt = IstrPassedEvt.builder().build();
         istrPassedEvt.setId(aprvPassIstrCmd.getId());
         AggregateLifecycle.apply(istrPassedEvt);
-        log.info("[ConfirmedInstructionState] Dispached Event: {}", istrPassedEvt);
+        log.info("Dispached Event: {}", istrPassedEvt);
     }
 
 }

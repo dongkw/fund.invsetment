@@ -1,4 +1,4 @@
-package fund.investment.trade.exchange.stock.domain.eventhandler.saga.utils.create.vo;
+package fund.investment.trade.domain.model.eventhandler.saga.create.vo;
 
 import lombok.Data;
 

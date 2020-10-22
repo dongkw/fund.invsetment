@@ -18,22 +18,22 @@ public class ApprovalHandler {
 
     @EventHandler
     public void on(AprvIstrPassEvt evt) {
-        log.info("[ApprovalHandler] Recieved Event: {}", evt);
+        log.info("Recieved Event: {}", evt);
         AprvPassIstrCmd aprvPassIstrCmd = new AprvPassIstrCmd();
         aprvPassIstrCmd.setId(evt.getInstructionId());
 //        aprvPassIstrCmd.setApproveStatus(ApprovalStatus.PASS);
         commandGateway.send(aprvPassIstrCmd);
-        log.info("[ApprovalHandler] Send command: {}", aprvPassIstrCmd);
+        log.info("Send command: {}", aprvPassIstrCmd);
     }
 
     @EventHandler
     public void on(AprvIstrRejectedEvt evt) {
-        log.info("[ApprovalHandler] Recieved Event: {}", evt);
+        log.info("Recieved Event: {}", evt);
         CancelIstrCmd cancelIstrCmd = new CancelIstrCmd();
         cancelIstrCmd.setId(evt.getInstructionId());
         cancelIstrCmd.setCancelMsg("审批拒绝");
         commandGateway.send(cancelIstrCmd);
-        log.info("[ApprovalHandler] Send command: {}", cancelIstrCmd);
+        log.info("Send command: {}", cancelIstrCmd);
     }
 
 }

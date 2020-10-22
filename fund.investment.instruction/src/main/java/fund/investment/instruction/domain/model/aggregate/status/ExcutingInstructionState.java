@@ -22,7 +22,7 @@ public class ExcutingInstructionState extends CancelableInstructionState {
 
     @Override
     public void createOrder(InstructionAggregate instructionAggregate, CreateIstrOrderCmd cmd) {
-        log.info("[ExcutingInstructionState] Receive command: {}", cmd);
+        log.info("Receive command: {}", cmd);
 	    //下委托
         IstrTradeElement istrTradeElement = instructionAggregate.getIstrTradeElement();
         if(!Objects.isNull(istrTradeElement) && istrTradeElement.checkOrder(cmd)){
@@ -31,32 +31,32 @@ public class ExcutingInstructionState extends CancelableInstructionState {
             istrOrderCreatedEvt.setId(cmd.getId());
 //            istrOrderCreatedEvt.setOrderQuantity(cmd.getOrderTradeElement().getQuantity());
             AggregateLifecycle.apply(istrOrderCreatedEvt);
-            log.info("[ExcutingInstructionState] Dispached Event: {}", istrOrderCreatedEvt);
+            log.info("Dispached Event: {}", istrOrderCreatedEvt);
         }else{
             IstrOrderFailedEvt istrOrderFailedEvt = new IstrOrderFailedEvt();
             istrOrderFailedEvt.setId(cmd.getId());
             istrOrderFailedEvt.setOrderId(cmd.getOrderId());
             istrOrderFailedEvt.setFailMsg("交易参数不正确，创建委托失败");
             AggregateLifecycle.apply(istrOrderFailedEvt);
-            log.info("[ExcutingInstructionState] Dispached Event: {}", istrOrderFailedEvt);
+            log.info("Dispached Event: {}", istrOrderFailedEvt);
         }
     }
 
     @Override
     public void cancelOrder(CancelIstrOrderCmd cancelIstrOrderCmd) {
-        log.info("[ExcutingInstructionState] Receive command: {}", cancelIstrOrderCmd);
+        log.info("Receive command: {}", cancelIstrOrderCmd);
 	    //取消指令事件
         IstrOrderCancelledEvt istrOrderCancelledEvt = new IstrOrderCancelledEvt();
         istrOrderCancelledEvt.setId(cancelIstrOrderCmd.getId());
         istrOrderCancelledEvt.setOrderId(cancelIstrOrderCmd.getOrderId());
         istrOrderCancelledEvt.setCancelQuantity(cancelIstrOrderCmd.getCancelQuantity());
         AggregateLifecycle.apply(istrOrderCancelledEvt);
-        log.info("[ExcutingInstructionState] Dispached Event: {}", istrOrderCancelledEvt);
+        log.info("Dispached Event: {}", istrOrderCancelledEvt);
     }
 
     @Override
     public void receiveFill(InstructionAggregate instructionAggregate, ReceiveIstrFillCmd cmd) {
-        log.info("[ExcutingInstructionState] Receive command: {}", cmd);
+        log.info("Receive command: {}", cmd);
         //成交
         OrderDetail orderDetail = instructionAggregate.getOrderDetail();
         if(Objects.isNull(orderDetail)){
@@ -77,10 +77,10 @@ public class ExcutingInstructionState extends CancelableInstructionState {
             istrCompletedEvt.setId(cmd.getId());
             istrCompletedEvt.setTradeType(cmd.getTradeType());
             AggregateLifecycle.apply(istrCompletedEvt);
-            log.info("[ExcutingInstructionState] Dispached Event: {}", istrCompletedEvt);
+            log.info("Dispached Event: {}", istrCompletedEvt);
         }else{
             AggregateLifecycle.apply(istrFillReceivedEvt);
-            log.info("[ExcutingInstructionState] Dispached Event: {}", istrFillReceivedEvt);
+            log.info("Dispached Event: {}", istrFillReceivedEvt);
         }
     }
 

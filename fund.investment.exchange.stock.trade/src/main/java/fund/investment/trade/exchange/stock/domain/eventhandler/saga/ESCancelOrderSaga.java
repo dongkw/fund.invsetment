@@ -4,7 +4,7 @@ import org.axonframework.modelling.saga.SagaEventHandler;
 import org.axonframework.modelling.saga.StartSaga;
 import org.axonframework.spring.stereotype.Saga;
 
-import fund.investment.trade.exchange.stock.domain.eventhandler.saga.utils.cancel.CancelOrderSaga;
+import fund.investment.trade.domain.model.eventhandler.saga.cancel.CancelOrderSaga;
 import infrastructure.trade.domain.model.event.OrderCancelledEvt;
 import infrastructure.trade.domain.model.event.OrderFailedEvt;
 import infrastructure.trade.exchange.stock.domain.model.event.ESOrderPartialFilledCancelledEvt;
@@ -20,12 +20,8 @@ public class ESCancelOrderSaga extends CancelOrderSaga {
     public void handler(OrderCancelledEvt evt) {
         startSaga(evt.getId(), evt.getInstructionId(), evt.getUnitId());
     }
-	@StartSaga
-    @SagaEventHandler(associationProperty = "id")
-    public void handler(OrderFailedEvt evt){
-        startSaga(evt.getId(), evt.getInstructionId(), evt.getUnitId());
-    }
-	@StartSaga
+
+    @StartSaga
     @SagaEventHandler(associationProperty = "id")
     public void handler(ESOrderPartialFilledCancelledEvt evt){
         startSaga(evt.getId(), evt.getInstructionId(), evt.getUnitId());

@@ -18,21 +18,21 @@ public class DistributeHandler {
 
     @EventHandler
     public void on(DistributedIstrEvt evt) {
-        log.info("[DistributeHandler] Recieved Event: {}", evt);
+        log.info("Recieved Event: {}", evt);
         DistributeIstrCmd distributeIstrCmd = new DistributeIstrCmd();
         distributeIstrCmd.setId(evt.getInstructionId());
         commandGateway.send(distributeIstrCmd);
-        log.info("[ApprovalHandler] Send command: {}", distributeIstrCmd);
+        log.info("Send command: {}", distributeIstrCmd);
     }
 
     @EventHandler
     public void on(DistIstrRejectedEvt evt) {
-        log.info("[DistributeHandler] Recieved Event: {}", evt);
+        log.info("Recieved Event: {}", evt);
         CancelIstrCmd cancelIstrCmd = new CancelIstrCmd();
         cancelIstrCmd.setId(evt.getInstructionId());
         cancelIstrCmd.setCancelMsg("分发拒绝");
         commandGateway.send(cancelIstrCmd);
-        log.info("[ApprovalHandler] Send command: {}", cancelIstrCmd);
+        log.info("Send command: {}", cancelIstrCmd);
     }
 
 }
