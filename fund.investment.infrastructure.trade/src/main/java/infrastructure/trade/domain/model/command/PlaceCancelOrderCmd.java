@@ -1,6 +1,5 @@
 package infrastructure.trade.domain.model.command;
 
-import fund.investment.infrastructure.util.LoggerTemplate;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,13 +17,4 @@ public class PlaceCancelOrderCmd extends OrderCommand {
 		
 	}
 
-	@Override
-	public String toString() {
-		return LoggerTemplate.builder()
-				.CONTENT(this)
-				.NAME(this.getClass().getSimpleName())
-				.build()
-				.toJson();
-	}
-	
 }

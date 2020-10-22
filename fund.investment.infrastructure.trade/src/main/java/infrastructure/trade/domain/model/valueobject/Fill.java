@@ -13,4 +13,6 @@ public class Fill {
 	private String tradeType;
 	private String securityCode;
 	private LocalDateTime fillTime;
+	
+	
 }

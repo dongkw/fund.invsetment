@@ -16,7 +16,7 @@ public class FillHandler {
 
     @EventHandler
     public void on(OrderFilledEvt evt) {
-        log.info("[FillHandler] Recieved Event: {}", evt);
+        log.info("Recieved Event: {}", evt);
         ReceiveIstrFillCmd receiveIstrFillCmd = new ReceiveIstrFillCmd();
         receiveIstrFillCmd.setId(evt.getInstructionId());
         receiveIstrFillCmd.setOrderId(evt.getFill().getOrderOriginalId());
@@ -26,7 +26,7 @@ public class FillHandler {
         //TODO tradeType统一
 //        receiveIstrFillCmd.setTradeType(evt.getTradeType());
         commandGateway.send(receiveIstrFillCmd);
-        log.info("[FillHandler] Send command: {}", receiveIstrFillCmd);
+        log.info("Send command: {}", receiveIstrFillCmd);
     }
 
 }

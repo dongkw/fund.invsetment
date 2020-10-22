@@ -1,6 +1,5 @@
 package infrastructure.trade.domain.model.command;
 
-import fund.investment.infrastructure.util.LoggerTemplate;
 import infrastructure.trade.domain.model.valueobject.Fill;
 import infrastructure.trade.domain.model.valueobject.OrderTradeElement;
 import lombok.Getter;
@@ -22,13 +21,4 @@ public class FillOrderCmd extends OrderCommand {
 		
 	}
 
-	@Override
-	public String toString() {
-		return LoggerTemplate.builder()
-				.CONTENT(this)
-				.NAME(this.getClass().getSimpleName())
-				.build()
-				.toJson();
-	}
-	
 }

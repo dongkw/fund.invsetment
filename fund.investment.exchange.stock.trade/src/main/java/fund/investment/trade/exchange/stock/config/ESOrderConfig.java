@@ -1,7 +1,13 @@
 package fund.investment.trade.exchange.stock.config;
 
 import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 
+import org.axonframework.commandhandling.CommandBus;
+import org.axonframework.commandhandling.gateway.CommandGateway;
+import org.axonframework.commandhandling.gateway.DefaultCommandGateway;
+import org.axonframework.commandhandling.gateway.IntervalRetryScheduler;
+import org.axonframework.commandhandling.gateway.RetryScheduler;
 import org.axonframework.common.caching.Cache;
 import org.axonframework.common.caching.WeakReferenceCache;
 import org.axonframework.config.EventProcessingConfigurer;
@@ -15,20 +21,35 @@ import org.axonframework.spring.eventsourcing.SpringAggregateSnapshotterFactoryB
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 
 import fund.investment.trade.exchange.stock.domain.model.aggregate.ExchangeStockOrderAggregate;
-import lombok.var;
 
-@Component
+@Configuration
 public class ESOrderConfig {
 	
-	@Value("${snapshot.event.count.threshold}")
+	@Autowired
+	private CommandBus commandBus;
+	
+	@Value("${axon.snapshot.event.count.threshold}")
 	private int snapshotThreshold;
+	
+	@Value("${axon.command.retry.max-count}")
+	private int maxRetryCount;
+	
+	@Value("${axon.command.retry.interval}")
+	private int retryInterval;
+	
+	@Value("${axon.command.retry.executor.count}")
+	private int retryExecutorCount;
+	
+	@Value("${axon.event.parallel}")
+	private int eventParallel;
 	
 	@Bean
     public EventSourcingRepository<ExchangeStockOrderAggregate> orderAggregateRepository(EventStore eventStore, SnapshotTriggerDefinition orderSnapshotTrigger, Cache cache) {
-        return EventSourcingRepository.builder(ExchangeStockOrderAggregate.class)
+        return EventSourcingRepository
+        		.builder(ExchangeStockOrderAggregate.class)
                 .cache(cache)
                 .snapshotTriggerDefinition(orderSnapshotTrigger)
                 .eventStore(eventStore)
@@ -47,8 +68,7 @@ public class ESOrderConfig {
 	
 	@Bean
 	public SpringAggregateSnapshotterFactoryBean snapshotter() {
-	    var springAggregateSnapshotterFactoryBean = new SpringAggregateSnapshotterFactoryBean();
-	    //Setting async executors
+		SpringAggregateSnapshotterFactoryBean springAggregateSnapshotterFactoryBean = new SpringAggregateSnapshotterFactoryBean();
 	    springAggregateSnapshotterFactoryBean.setExecutor(Executors.newSingleThreadExecutor());
 	    return springAggregateSnapshotterFactoryBean;
 	}
@@ -56,8 +76,25 @@ public class ESOrderConfig {
 	@Autowired
 	public void config(EventProcessingConfigurer configurer) {
 		configurer.registerTrackingEventProcessorConfiguration(
-				c -> TrackingEventProcessorConfiguration.forParallelProcessing(2)
+				c -> TrackingEventProcessorConfiguration.forParallelProcessing(eventParallel)
 		);
 	}
+	
+	@Bean
+    public CommandGateway commandGatewayWithRetry(){
+        ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(retryExecutorCount);
+        RetryScheduler rs = IntervalRetryScheduler
+        		.builder()
+        		.retryExecutor(scheduledExecutorService)
+        		.maxRetryCount(maxRetryCount)
+        		.retryInterval(retryInterval)
+        		.build();
+        CommandGateway commandGateway = DefaultCommandGateway
+        		.builder()
+        		.commandBus(commandBus)
+        		.retryScheduler(rs)
+        		.build();
+        return commandGateway;
+    }
 		
 }

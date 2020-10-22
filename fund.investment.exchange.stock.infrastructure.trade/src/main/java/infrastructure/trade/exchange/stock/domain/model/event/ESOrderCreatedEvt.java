@@ -2,7 +2,6 @@ package infrastructure.trade.exchange.stock.domain.model.event;
 
 import java.math.BigDecimal;
 
-import fund.investment.infrastructure.util.LoggerTemplate;
 import infrastructure.trade.domain.model.event.OrderCreatedEvt;
 import infrastructure.trade.exchange.stock.domain.model.valueobject.ExchangeStockOrderTradeElement;
 import lombok.EqualsAndHashCode;
@@ -32,15 +31,6 @@ public class ESOrderCreatedEvt extends OrderCreatedEvt{
 		this.totalFillAmount = totalFillAmount;
 		this.clearAmount = clearAmount;
 		this.totalFillQuantity = totalFillQuantity;
-	}
-
-	@Override
-	public String toString() {
-		return LoggerTemplate.builder()
-				.CONTENT(this)
-				.NAME(this.getClass().getSimpleName())
-				.build()
-				.toJson();
 	}
 
 }

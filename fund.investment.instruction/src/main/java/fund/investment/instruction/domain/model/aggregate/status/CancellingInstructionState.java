@@ -27,22 +27,22 @@ public class CancellingInstructionState extends InstructionState {
 
 	@Override
 	public void cancelConfirm(CancelConfIstrCmd cmd) {
-		log.info("[CancellingInstructionState] Receive command: {}", cmd);
+		log.info("Receive command: {}", cmd);
 		IstrCancelledEvt istrCancelledEvt = new IstrCancelledEvt();
 		istrCancelledEvt.setId(cmd.getId());
 		AggregateLifecycle.apply(istrCancelledEvt);
-		log.info("[CancellingInstructionState] Dispached Event: {}", istrCancelledEvt);
+		log.info("Dispached Event: {}", istrCancelledEvt);
 	}
 
 	@Override
 	public void createOrder(InstructionAggregate instructionAggregate, CreateIstrOrderCmd esCreateIstrOrderCmd) {
-		log.info("[CancellingInstructionState] Receive command: {}", esCreateIstrOrderCmd);
+		log.info("Receive command: {}", esCreateIstrOrderCmd);
 		IstrOrderFailedEvt istrOrderFailedEvt = new IstrOrderFailedEvt();
 		istrOrderFailedEvt.setId(esCreateIstrOrderCmd.getId());
 		istrOrderFailedEvt.setOrderId(esCreateIstrOrderCmd.getOrderId());
 		istrOrderFailedEvt.setFailMsg("指令撤销中，创建委托失败");
 		AggregateLifecycle.apply(istrOrderFailedEvt);
-		log.info("[CancellingInstructionState] Dispached Event: {}", istrOrderFailedEvt);
+		log.info("Dispached Event: {}", istrOrderFailedEvt);
 	}
 
 	@Override
@@ -51,7 +51,7 @@ public class CancellingInstructionState extends InstructionState {
 
 	@Override
 	public void receiveFill(InstructionAggregate instructionAggregate, ReceiveIstrFillCmd cmd) {
-		log.info("[CancellingInstructionState] Receive command: {}", cmd);
+		log.info("Receive command: {}", cmd);
 		//成交
 		OrderDetail orderDetail = instructionAggregate.getOrderDetail();
 		if(Objects.isNull(orderDetail)){
@@ -71,10 +71,10 @@ public class CancellingInstructionState extends InstructionState {
 			istrCompletedEvt.setId(cmd.getId());
 			istrCompletedEvt.setTradeType(cmd.getTradeType());
 			AggregateLifecycle.apply(istrCompletedEvt);
-			log.info("[CancellingInstructionState] Dispached Event: {}", istrCompletedEvt);
+			log.info("Dispached Event: {}", istrCompletedEvt);
 		}else{
 			AggregateLifecycle.apply(istrFillReceivedEvt);
-			log.info("[CancellingInstructionState] Dispached Event: {}", istrFillReceivedEvt);
+			log.info("Dispached Event: {}", istrFillReceivedEvt);
 		}
 	}
 
