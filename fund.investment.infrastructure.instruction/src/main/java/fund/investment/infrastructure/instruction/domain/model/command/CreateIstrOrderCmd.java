@@ -1,5 +1,6 @@
 package fund.investment.infrastructure.instruction.domain.model.command;
 
+import fund.investment.infrastructure.instruction.domain.model.enumeration.TradeType;
 import fund.investment.infrastructure.instruction.domain.model.vo.OrderTradeElement;
 import fund.investment.infrastructure.util.LoggerTemplate;
 import lombok.*;
@@ -14,13 +15,9 @@ public class CreateIstrOrderCmd extends InstructionCommand{
 
 	private OrderTradeElement orderTradeElement;
 
-	@Override
-	public String toString() {
-		return LoggerTemplate.builder()
-				.content(this)
-				.name(this.getClass().getSimpleName())
-				.build()
-				.toJson();
+	public CreateIstrOrderCmd(String id, TradeType tradeType, String orderId, OrderTradeElement orderTradeElement) {
+		super(id, tradeType);
+		this.orderId = orderId;
+		this.orderTradeElement = orderTradeElement;
 	}
-
 }

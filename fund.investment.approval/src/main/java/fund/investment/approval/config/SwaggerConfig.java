@@ -15,7 +15,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @EnableSwagger2
 @Configuration
-@ComponentScan(basePackages = {"fund.investment.distribution.userinterface.controller"})
+@ComponentScan(basePackages = {"fund.investment.approval.userinterface.controller"})
 public class SwaggerConfig {
 
 	@Bean

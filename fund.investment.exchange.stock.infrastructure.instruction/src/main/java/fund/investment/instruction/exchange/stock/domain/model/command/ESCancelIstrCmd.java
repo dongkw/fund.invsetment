@@ -1,21 +1,18 @@
 package fund.investment.instruction.exchange.stock.domain.model.command;
 
-import fund.investment.infrastructure.util.LoggerTemplate;import fund.investment.infrastructure.instruction.domain.model.command.CancelIstrCmd;
-import lombok.Data;
+import fund.investment.infrastructure.instruction.domain.model.command.CancelIstrCmd;
+import fund.investment.infrastructure.instruction.domain.model.enumeration.TradeType;
+import fund.investment.infrastructure.instruction.domain.model.vo.Order;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import lombok.Setter;
 
-@Data
+import java.util.List;
+
 @NoArgsConstructor
-@Slf4j
 public class ESCancelIstrCmd extends CancelIstrCmd {
 
-    @Override
-    public String toString() {
-        return LoggerTemplate.builder()
-                .content(this)
-                .name(this.getClass().getSimpleName())
-                .build()
-                .toJson();
+    public ESCancelIstrCmd(String id, TradeType tradeType, String cancelMsg, String cancelType, List<Order> orders) {
+        super(id, tradeType, cancelMsg, cancelType, orders);
     }
 }
