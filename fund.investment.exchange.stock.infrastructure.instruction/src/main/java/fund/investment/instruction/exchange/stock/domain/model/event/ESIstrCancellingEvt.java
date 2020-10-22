@@ -2,11 +2,8 @@ package fund.investment.instruction.exchange.stock.domain.model.event;
 
 import fund.investment.infrastructure.instruction.domain.model.enumeration.TradeType;
 import fund.investment.infrastructure.instruction.domain.model.event.IstrCancellingEvt;
-import fund.investment.infrastructure.instruction.domain.model.vo.Order;
-import lombok.Data;
-import lombok.Getter;
+import fund.investment.infrastructure.instruction.domain.model.valueobject.Order;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.util.List;
 

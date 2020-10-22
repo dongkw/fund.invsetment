@@ -7,11 +7,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class OrderCancellingEvt extends OrderEvent{
-	
-	public OrderCancellingEvt(String id, String instructionId, String tradeType) {
-		super(instructionId, tradeType, instructionId);
-		
-	}
-	
+public class OrderCancellingEvt extends OrderEvent {
+
+    public OrderCancellingEvt(String id, String instructionId, String tradeType) {
+        super(instructionId, tradeType, instructionId);
+    }
 }

@@ -9,11 +9,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class ESOrderFilledEvt extends OrderFilledEvt{
-	
-	public ESOrderFilledEvt(String id, String instructionId, String tradeType, Fill fill) {
-		super(id, instructionId, tradeType, fill);
-		
-	}
+public class ESOrderFilledEvt extends OrderFilledEvt {
 
+    public ESOrderFilledEvt(String id, String instructionId, String tradeType, Fill fill) {
+        super(id, instructionId, tradeType, fill);
+    }
 }

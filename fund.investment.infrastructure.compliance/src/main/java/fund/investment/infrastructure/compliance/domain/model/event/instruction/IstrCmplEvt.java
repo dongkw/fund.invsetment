@@ -1,8 +1,9 @@
 package fund.investment.infrastructure.compliance.domain.model.event.instruction;
 
 import fund.investment.infrastructure.compliance.domain.model.event.ComplianceEvent;
-import lombok.*;
-import org.axonframework.modelling.command.TargetAggregateIdentifier;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * @Author dongkw

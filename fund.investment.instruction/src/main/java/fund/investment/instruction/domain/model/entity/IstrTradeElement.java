@@ -2,7 +2,7 @@ package fund.investment.instruction.domain.model.entity;
 
 import fund.investment.infrastructure.instruction.domain.model.command.CreateIstrOrderCmd;
 import fund.investment.infrastructure.instruction.domain.model.enumeration.TradeType;
-import fund.investment.infrastructure.instruction.domain.model.vo.OrderTradeElement;
+import fund.investment.infrastructure.instruction.domain.model.valueobject.OrderTradeElement;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;

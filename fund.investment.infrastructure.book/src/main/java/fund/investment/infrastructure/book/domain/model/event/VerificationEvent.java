@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
  **/
 @NoArgsConstructor
 public class VerificationEvent extends DomainEvent {
+
     public VerificationEvent(String id) {
         super(id);
     }

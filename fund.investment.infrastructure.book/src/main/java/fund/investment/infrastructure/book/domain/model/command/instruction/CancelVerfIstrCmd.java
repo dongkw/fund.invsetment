@@ -1,7 +1,9 @@
 package fund.investment.infrastructure.book.domain.model.command.instruction;
 
 import fund.investment.infrastructure.book.domain.model.command.VerificationCommand;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * @Author dongkw

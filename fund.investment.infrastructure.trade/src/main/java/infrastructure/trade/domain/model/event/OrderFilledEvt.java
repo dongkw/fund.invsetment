@@ -8,14 +8,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class OrderFilledEvt extends OrderEvent{
-	private Fill fill;
-	
-	public OrderFilledEvt(String id, String instructionId, String tradeType, Fill fill) {
-		super(id, tradeType, instructionId);
-		
-		this.fill = fill;
-		
-	}
-	
+public class OrderFilledEvt extends OrderEvent {
+
+    private Fill fill;
+
+    public OrderFilledEvt(String id, String instructionId, String tradeType, Fill fill) {
+        super(id, tradeType, instructionId);
+        this.fill = fill;
+    }
 }

@@ -1,9 +1,11 @@
 package fund.investment.infrastructure.book.domain.model.command.instruction;
 
-import java.math.BigDecimal;
-
 import fund.investment.infrastructure.book.domain.model.command.VerificationCommand;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.math.BigDecimal;
 
 /**
  * @Author dongkw
@@ -15,6 +17,7 @@ import lombok.*;
 public class RollbackVerfIstrCmd extends VerificationCommand {
 
     private BigDecimal amount;
+
     private String istrId;
 
     public RollbackVerfIstrCmd(String id, String unitId, BigDecimal amount, String istrId) {

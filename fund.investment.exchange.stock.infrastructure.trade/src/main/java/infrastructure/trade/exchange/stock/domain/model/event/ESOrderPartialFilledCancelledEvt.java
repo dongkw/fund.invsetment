@@ -8,11 +8,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class ESOrderPartialFilledCancelledEvt extends OrderPartialFilledCancelledEvt{
-	
-	public ESOrderPartialFilledCancelledEvt(String id, String instructionId, String tradeType, String unitId, Long cancelQuantity) {
-		super(id, instructionId, tradeType, unitId, cancelQuantity);
-		
-	}
+public class ESOrderPartialFilledCancelledEvt extends OrderPartialFilledCancelledEvt {
 
+    public ESOrderPartialFilledCancelledEvt(String id, String instructionId, String tradeType, String unitId, Long cancelQuantity) {
+        super(id, instructionId, tradeType, unitId, cancelQuantity);
+    }
 }

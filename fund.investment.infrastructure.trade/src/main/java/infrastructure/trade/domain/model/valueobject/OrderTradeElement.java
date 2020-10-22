@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class OrderTradeElement {
 
-	private String tradeType;
+    private String tradeType;
+
     private String securityCode;
-    
 }

@@ -1,8 +1,9 @@
 package fund.investment.infrastructure.compliance.domain.model.command.instruction;
 
 import fund.investment.infrastructure.compliance.domain.model.command.ComplianceCommand;
-import lombok.*;
-import org.axonframework.modelling.command.TargetAggregateIdentifier;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * @Author dongkw
@@ -11,7 +12,7 @@ import org.axonframework.modelling.command.TargetAggregateIdentifier;
 @Getter
 @Setter
 @NoArgsConstructor
-public class ComplianceSaveCmd  extends ComplianceCommand {
+public class ComplianceSaveCmd extends ComplianceCommand {
 
     private String istrId;
 

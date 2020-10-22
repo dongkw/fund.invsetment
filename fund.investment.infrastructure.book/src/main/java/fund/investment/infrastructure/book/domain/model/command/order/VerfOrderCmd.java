@@ -1,9 +1,9 @@
 package fund.investment.infrastructure.book.domain.model.command.order;
 
 import fund.investment.infrastructure.book.domain.model.command.VerificationCommand;
-import fund.investment.infrastructure.common.DomainCommand;
-import lombok.*;
-import org.axonframework.modelling.command.TargetAggregateIdentifier;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * @Author dongkw

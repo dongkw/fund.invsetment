@@ -1,4 +1,4 @@
-package fund.investment.infrastructure.instruction.domain.model.vo;
+package fund.investment.infrastructure.instruction.domain.model.valueobject;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

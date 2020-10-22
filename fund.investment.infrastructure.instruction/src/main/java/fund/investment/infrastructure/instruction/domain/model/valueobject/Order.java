@@ -1,4 +1,4 @@
-package fund.investment.infrastructure.instruction.domain.model.vo;
+package fund.investment.infrastructure.instruction.domain.model.valueobject;
 
 import fund.investment.infrastructure.instruction.domain.model.enumeration.OrderStatus;
 import lombok.AllArgsConstructor;

@@ -13,7 +13,7 @@ import fund.investment.infrastructure.instruction.domain.model.enumeration.Order
 import fund.investment.infrastructure.instruction.domain.model.event.IstrCancelledEvt;
 import fund.investment.infrastructure.instruction.domain.model.event.IstrCancellingEvt;
 import fund.investment.infrastructure.instruction.domain.model.event.IstrCompletedEvt;
-import fund.investment.infrastructure.instruction.domain.model.vo.Order;
+import fund.investment.infrastructure.instruction.domain.model.valueobject.Order;
 import fund.investment.instruction.domain.model.eventhandler.saga.util.InstructionSaga;
 import infrastructure.trade.domain.model.command.CancelOrderCmd;
 import infrastructure.trade.domain.model.event.OrderCancelledEvt;

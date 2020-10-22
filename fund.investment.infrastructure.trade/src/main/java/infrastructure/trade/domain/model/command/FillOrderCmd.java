@@ -9,16 +9,14 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class FillOrderCmd extends OrderCommand {
+public abstract class FillOrderCmd extends OrderCommand {
 
-	private Fill fill;
-	private OrderTradeElement orderTradeElement;
-	
-	public FillOrderCmd(String id, String instructionId, String tradeType, Fill fill) {
-		super(id, instructionId, tradeType);
-		
-		this.fill = fill;
-		
-	}
+    private Fill fill;
 
+    public FillOrderCmd(String id, String instructionId, String tradeType, Fill fill) {
+        super(id, instructionId, tradeType);
+        this.fill = fill;
+    }
+
+    public abstract OrderTradeElement getOrderTradeElement();
 }

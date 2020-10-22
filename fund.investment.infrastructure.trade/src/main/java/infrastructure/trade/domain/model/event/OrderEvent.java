@@ -10,15 +10,13 @@ import lombok.Setter;
 @NoArgsConstructor
 public class OrderEvent extends DomainEvent {
 
-	private String instructionId;
-	private String tradeType;
-	
-	public OrderEvent(String id, String tradeType, String instructionId) {
-		super(id);
-		
-		this.instructionId = instructionId;
-		this.tradeType = tradeType;
-		
-	}
-	
+    private String instructionId;
+
+    private String tradeType;
+
+    public OrderEvent(String id, String tradeType, String instructionId) {
+        super(id);
+        this.instructionId = instructionId;
+        this.tradeType = tradeType;
+    }
 }

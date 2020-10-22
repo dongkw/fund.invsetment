@@ -1,7 +1,9 @@
 package fund.investment.infrastructure.compliance.domain.model.event.order;
 
 import fund.investment.infrastructure.compliance.domain.model.event.ComplianceEvent;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * @Author dongkw
@@ -11,6 +13,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 public class OrderCmplSucceedEvt extends ComplianceEvent {
+
     private String orderId;
 
     public OrderCmplSucceedEvt(String id, String orderId) {

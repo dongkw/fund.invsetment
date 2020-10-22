@@ -5,7 +5,7 @@ import fund.investment.infrastructure.compliance.domain.model.command.order.Cmpl
 import fund.investment.infrastructure.instruction.domain.model.enumeration.TradeSide;
 import fund.investment.infrastructure.instruction.domain.model.enumeration.TradeType;
 import fund.investment.instruction.exchange.stock.domain.model.command.ESCreateIstrOrderCmd;
-import fund.investment.instruction.exchange.stock.domain.model.vo.ExchangeStockIstrOrderTradeElement;
+import fund.investment.instruction.exchange.stock.domain.model.valueobject.ExchangeStockIstrOrderTradeElement;
 import infrastructure.trade.exchange.stock.domain.model.valueobject.ExchangeStockOrderTradeElement;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.modelling.saga.SagaEventHandler;

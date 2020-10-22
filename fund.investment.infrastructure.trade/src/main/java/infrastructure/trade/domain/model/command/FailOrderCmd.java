@@ -8,17 +8,17 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class FailOrderCmd extends OrderCommand {
-	private String unitId;
-	private String failCode;
-	private String failMsg;
-	
-	public FailOrderCmd(String id, String instructionId, String tradeType, String unitId, String failCode, String failMsg) {
-		super(id, instructionId, tradeType);
-		
-		this.unitId = unitId;
-		this.failCode = failCode;
-		this.failMsg = failCode;
-		
-	}
-	
+
+    private String unitId;
+
+    private String failCode;
+
+    private String failMsg;
+
+    public FailOrderCmd(String id, String instructionId, String tradeType, String unitId, String failCode, String failMsg) {
+        super(id, instructionId, tradeType);
+        this.unitId = unitId;
+        this.failCode = failCode;
+        this.failMsg = failCode;
+    }
 }

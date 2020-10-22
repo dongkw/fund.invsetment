@@ -8,11 +8,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class ESOrderFailedEvt extends OrderFailedEvt{
-	
-	public ESOrderFailedEvt(String id, String instructionId, String tradeType, String unitId, String failCode, String failMsg) {
-		super(id, instructionId, tradeType, unitId, failCode, failMsg);
-		
-	}
+public class ESOrderFailedEvt extends OrderFailedEvt {
 
+    public ESOrderFailedEvt(String id, String instructionId, String tradeType, String unitId, String failCode, String failMsg) {
+        super(id, instructionId, tradeType, unitId, failCode, failMsg);
+    }
 }

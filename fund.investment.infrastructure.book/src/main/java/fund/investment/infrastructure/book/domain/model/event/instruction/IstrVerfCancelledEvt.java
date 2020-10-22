@@ -1,7 +1,9 @@
 package fund.investment.infrastructure.book.domain.model.event.instruction;
 
 import fund.investment.infrastructure.book.domain.model.event.VerificationEvent;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * @Author dongkw
@@ -11,6 +13,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 public class IstrVerfCancelledEvt extends VerificationEvent {
+
     private String istrId;
 
     public IstrVerfCancelledEvt(String id, String istrId) {

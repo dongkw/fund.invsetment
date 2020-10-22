@@ -7,11 +7,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class OrderCompletedEvt extends OrderEvent{
+public class OrderCompletedEvt extends OrderEvent {
 
-	public OrderCompletedEvt(String id, String instructionId, String tradeType) {
-		super(instructionId, tradeType, instructionId);
-		
-	}
-
+    public OrderCompletedEvt(String id, String instructionId, String tradeType) {
+        super(instructionId, tradeType, instructionId);
+    }
 }

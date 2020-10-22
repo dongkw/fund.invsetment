@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
  **/
 @NoArgsConstructor
 public class ComplianceCommand extends DomainCommand {
+
     public ComplianceCommand(String id) {
         super(id);
     }

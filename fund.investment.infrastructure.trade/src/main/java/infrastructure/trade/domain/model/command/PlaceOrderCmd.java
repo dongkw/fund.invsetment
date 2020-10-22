@@ -8,12 +8,11 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class PlaceOrderCmd extends OrderCommand {
-	private String exchangeId;
 
-	public PlaceOrderCmd(String id, String instructionId, String tradeType, String exchangeId) {
-		super(id, instructionId, tradeType);
-		
-		this.exchangeId = exchangeId;
-	}
-	
+    private String exchangeId;
+
+    public PlaceOrderCmd(String id, String instructionId, String tradeType, String exchangeId) {
+        super(id, instructionId, tradeType);
+        this.exchangeId = exchangeId;
+    }
 }

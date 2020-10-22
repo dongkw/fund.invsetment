@@ -15,7 +15,6 @@ public class PlaceConfirmOrderCmd extends OrderCommand {
 	
 	public PlaceConfirmOrderCmd(String id, String instructionId, String tradeType) {
 		super(id, instructionId, tradeType);
-		
 		this.orderTime = LocalDateTime.now();
 	}
 

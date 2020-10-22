@@ -1,7 +1,9 @@
 package fund.investment.infrastructure.book.domain.model.event.instruction;
 
 import fund.investment.infrastructure.book.domain.model.event.VerificationEvent;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 

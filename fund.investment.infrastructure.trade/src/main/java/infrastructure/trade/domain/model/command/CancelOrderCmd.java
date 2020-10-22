@@ -8,14 +8,14 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class CancelOrderCmd extends OrderCommand {
-	private String unitId;
-	private Long cancelQuantity;
-	
-	public CancelOrderCmd(String id, String instructionId, String tradeType, String unitId, Long cancelQuantity) {
-		super(id, instructionId, tradeType);
-		this.unitId = unitId;
-		this.cancelQuantity = cancelQuantity;
-		
-	}
-	
+
+    private String unitId;
+
+    private long cancelQuantity;
+
+    public CancelOrderCmd(String id, String instructionId, String tradeType, String unitId, long cancelQuantity) {
+        super(id, instructionId, tradeType);
+        this.unitId = unitId;
+        this.cancelQuantity = cancelQuantity;
+    }
 }

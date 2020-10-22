@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
  **/
 @NoArgsConstructor
 public class ComplianceEvent extends DomainEvent {
+
     public ComplianceEvent(String id) {
         super(id);
     }

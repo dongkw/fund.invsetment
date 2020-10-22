@@ -1,7 +1,7 @@
 package fund.investment.infrastructure.instruction.domain.model.command;
 
 import fund.investment.infrastructure.instruction.domain.model.enumeration.TradeType;
-import fund.investment.infrastructure.instruction.domain.model.vo.OrderTradeElement;
+import fund.investment.infrastructure.instruction.domain.model.valueobject.OrderTradeElement;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

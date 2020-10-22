@@ -4,7 +4,7 @@ import fund.investment.infrastructure.instruction.domain.model.enumeration.Order
 import fund.investment.infrastructure.instruction.domain.model.event.IstrFillReceivedEvt;
 import fund.investment.infrastructure.instruction.domain.model.event.IstrOrderCancelledEvt;
 import fund.investment.infrastructure.instruction.domain.model.event.IstrOrderCreatedEvt;
-import fund.investment.infrastructure.instruction.domain.model.vo.Order;
+import fund.investment.infrastructure.instruction.domain.model.valueobject.Order;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
