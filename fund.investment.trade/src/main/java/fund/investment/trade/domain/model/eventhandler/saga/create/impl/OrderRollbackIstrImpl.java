@@ -1,6 +1,5 @@
 package fund.investment.trade.domain.model.eventhandler.saga.create.impl;
 
-import fund.investment.infrastructure.instruction.domain.model.command.CancelIstrOrderCmd;
 import fund.investment.trade.domain.model.eventhandler.saga.create.HandlerFactory;
 import fund.investment.trade.domain.model.eventhandler.saga.create.IStatusHandler;
 import fund.investment.trade.domain.model.eventhandler.saga.create.valueobject.OrderSagaStatus;
@@ -21,6 +20,7 @@ import java.util.Arrays;
 public class OrderRollbackIstrImpl implements IStatusHandler {
 
     private final CommandGateway commandGateway;
+
     private final IRollbackIstrHandler rollbackIstrHandler;
 
     @Autowired

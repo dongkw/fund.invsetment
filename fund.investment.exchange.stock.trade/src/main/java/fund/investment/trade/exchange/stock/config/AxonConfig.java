@@ -26,7 +26,7 @@ import org.springframework.context.annotation.Configuration;
 import fund.investment.trade.exchange.stock.domain.model.aggregate.ExchangeStockOrderAggregate;
 
 @Configuration
-public class ESOrderConfig {
+public class AxonConfig {
 	
 	@Autowired
 	private CommandBus commandBus;
