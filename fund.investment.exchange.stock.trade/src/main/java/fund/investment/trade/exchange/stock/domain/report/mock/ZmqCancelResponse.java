@@ -1,14 +1,20 @@
 package fund.investment.trade.exchange.stock.domain.report.mock;
 
 import infrastructure.trade.userinterface.dto.report.CancelResponse;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-@Data
-@EqualsAndHashCode(callSuper = true)
+@Getter
+@NoArgsConstructor
 public class ZmqCancelResponse extends CancelResponse {
 	
 	private String id;
 	private String instructionId;
+	
+	public ZmqCancelResponse(String id, String instructionId) {
+		super();
+		this.id = id;
+		this.instructionId = instructionId;
+	}
 
 }

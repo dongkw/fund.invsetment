@@ -3,22 +3,19 @@ package fund.investment.trade.exchange.stock.domain.report.mock;
 import fund.investment.trade.exchange.stock.domain.model.entity.ExchangeStockFill;
 import infrastructure.trade.userinterface.dto.report.FillReport;
 import lombok.Getter;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
 
-/**
- * @author 芳军
- *
- */
 @Getter
-@Setter
+@NoArgsConstructor
 public class ZmqFillReport extends FillReport {
 	
 	private String id;
 	private ExchangeStockFill fill;
-
-	@Override
-	public String toString() {
-		return "ZmqFillReport [id=" + id + ", fill=" + fill + "]";
+	
+	public ZmqFillReport(String id, ExchangeStockFill fill) {
+		super();
+		this.id = id;
+		this.fill = fill;
 	}
 	
 }
