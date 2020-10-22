@@ -1,14 +1,20 @@
 package fund.investment.trade.exchange.stock.domain.report.mock;
 
 import infrastructure.trade.userinterface.dto.report.PlacedReport;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-@Data
-@EqualsAndHashCode(callSuper = true)	
+@Getter
+@NoArgsConstructor	
 public class ZmqPlacedReport extends PlacedReport {
 	
 	private String id;
 	private String instructionId;
+	
+	public ZmqPlacedReport(String id, String instructionId) {
+		super();
+		this.id = id;
+		this.instructionId = instructionId;
+	}
 
 }
