@@ -7,14 +7,12 @@ import fund.investment.infrastructure.compliance.domain.model.event.instruction.
 import fund.investment.infrastructure.compliance.domain.model.event.instruction.IstrCmplFailedEvt;
 import fund.investment.infrastructure.compliance.domain.model.event.instruction.IstrCmplRollbackedEvt;
 import fund.investment.infrastructure.compliance.domain.model.event.instruction.IstrCmplSucceedEvt;
+import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.eventhandling.gateway.EventGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * @Author dongkw
@@ -32,20 +30,21 @@ public class ComplianceIstrHandler {
     @CommandHandler
     public void handler(CmplIstrCmd cmd) {
         log.debug("receive {}", cmd);
-        if (cmd.getSecurityCode().startsWith("A")) {
-            IstrCmplSucceedEvt evt = new IstrCmplSucceedEvt(cmd.getSecurityCode(), cmd.getIstrId());
+        if (cmd.getId().startsWith("A")) {
+            IstrCmplSucceedEvt evt = new IstrCmplSucceedEvt(cmd.getId(), cmd.getIstrId());
             eventGateway.publish(evt);
             log.debug("send {}", evt);
         } else {
-            IstrCmplFailedEvt evt = new IstrCmplFailedEvt(cmd.getSecurityCode(), cmd.getIstrId());
+            IstrCmplFailedEvt evt = new IstrCmplFailedEvt(cmd.getId(), cmd.getIstrId());
             eventGateway.publish(evt);
             log.debug("send {}", evt);
         }
     }
+
     @CommandHandler
     public void on(CancelComplIstrCmd cmd) {
         log.info("receive {}", cmd);
-        IstrCmplCancelledEvt evt = new IstrCmplCancelledEvt(cmd.getSecurityCode(), cmd.getIstrId());
+        IstrCmplCancelledEvt evt = new IstrCmplCancelledEvt(cmd.getId(), cmd.getIstrId());
         eventGateway.publish(evt);
         log.debug("send {}", evt);
     }
@@ -53,7 +52,7 @@ public class ComplianceIstrHandler {
     @CommandHandler
     public void handler(RollbackCmplIstrCmd cmd) {
         log.info("receive {}", cmd);
-        IstrCmplRollbackedEvt evt = new IstrCmplRollbackedEvt(cmd.getSecurityCode(), cmd.getIstrId());
+        IstrCmplRollbackedEvt evt = new IstrCmplRollbackedEvt(cmd.getId(), cmd.getIstrId());
         eventGateway.publish(evt);
         log.debug("send {}", evt);
 

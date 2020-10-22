@@ -31,14 +31,14 @@ public class ValidOrderHandler {
     @CommandHandler
     public void handler(VerfOrderCmd cmd) {
         log.debug("receive {}", cmd);
-        if (cmd.getUnitId().startsWith("A")) {
+        if (cmd.getId().startsWith("A")) {
             int a = 1 / 0;
-            OrderVerfSucceedEvt evt = new OrderVerfSucceedEvt(cmd.getUnitId(), cmd.getOrderId());
+            OrderVerfSucceedEvt evt = new OrderVerfSucceedEvt(cmd.getId(), cmd.getOrderId());
             eventGateway.publish(evt);
             log.debug("send,{}", evt);
 
         } else {
-            OrderVerfFailedEvt evt = new OrderVerfFailedEvt(cmd.getUnitId(), cmd.getOrderId());
+            OrderVerfFailedEvt evt = new OrderVerfFailedEvt(cmd.getId(), cmd.getOrderId());
             eventGateway.publish(evt);
             log.debug("send,{}", evt);
 
@@ -48,7 +48,7 @@ public class ValidOrderHandler {
     @CommandHandler
     public void handler(RollbackVerfOrderCmd cmd) {
         log.debug("receive,{}", cmd);
-        OrderVerfRollbackedEvt event = new OrderVerfRollbackedEvt(cmd.getUnitId(), cmd.getOrderId());
+        OrderVerfRollbackedEvt event = new OrderVerfRollbackedEvt(cmd.getId(), cmd.getOrderId());
         eventGateway.publish(event);
         log.debug("send,{}", event);
     }
@@ -56,7 +56,7 @@ public class ValidOrderHandler {
     @CommandHandler
     public void handler(CancelVerfOrderCmd cmd) {
         log.debug("receive,{}", cmd);
-        OrderVerfCancelledEvt event = new OrderVerfCancelledEvt(cmd.getUnitId(), cmd.getOrderId());
+        OrderVerfCancelledEvt event = new OrderVerfCancelledEvt(cmd.getId(), cmd.getOrderId());
         eventGateway.publish(event);
         log.debug("send,{}", event);
     }

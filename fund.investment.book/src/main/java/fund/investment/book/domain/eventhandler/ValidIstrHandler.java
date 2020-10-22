@@ -5,7 +5,10 @@ import fund.investment.infrastructure.book.domain.model.command.instruction.Canc
 import fund.investment.infrastructure.book.domain.model.command.instruction.RollbackVerfIstrCmd;
 import fund.investment.infrastructure.book.domain.model.command.instruction.VerfIstrCmd;
 import fund.investment.infrastructure.book.domain.model.event.VerificationEvent;
-import fund.investment.infrastructure.book.domain.model.event.instruction.*;
+import fund.investment.infrastructure.book.domain.model.event.instruction.IstrVerfCancelledEvt;
+import fund.investment.infrastructure.book.domain.model.event.instruction.IstrVerfFailedEvt;
+import fund.investment.infrastructure.book.domain.model.event.instruction.IstrVerfRollBackedEvt;
+import fund.investment.infrastructure.book.domain.model.event.instruction.IstrVerfSucceedEvt;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventhandling.gateway.EventGateway;
@@ -27,12 +30,12 @@ public class ValidIstrHandler {
     @CommandHandler
     public void handler(VerfIstrCmd cmd) {
         log.debug("receive,{}", cmd);
-        if (cmd.getUnitId().startsWith("A")) {
-            IstrVerfSucceedEvt evt = new IstrVerfSucceedEvt(cmd.getUnitId(), cmd.getIstrId());
+        if (cmd.getId().startsWith("A")) {
+            IstrVerfSucceedEvt evt = new IstrVerfSucceedEvt(cmd.getId(), cmd.getIstrId());
             eventGateway.publish(evt);
             log.debug("send,{}", evt);
         } else {
-            IstrVerfFailedEvt evt = new IstrVerfFailedEvt(cmd.getUnitId(), cmd.getIstrId());
+            IstrVerfFailedEvt evt = new IstrVerfFailedEvt(cmd.getId(), cmd.getIstrId());
             eventGateway.publish(evt);
             log.debug("send,{}", evt);
         }
@@ -41,7 +44,7 @@ public class ValidIstrHandler {
     @CommandHandler
     public void handler(CancelVerfIstrCmd cmd) {
         log.debug("receive,{}", cmd);
-        VerificationEvent event = new IstrVerfCancelledEvt(cmd.getUnitId(), cmd.getIstrId());
+        VerificationEvent event = new IstrVerfCancelledEvt(cmd.getId(), cmd.getIstrId());
         eventGateway.publish(event);
         log.debug("send,{}", event);
     }
@@ -49,7 +52,7 @@ public class ValidIstrHandler {
     @CommandHandler
     public void handler(RollbackVerfIstrCmd cmd) {
         log.debug("receive,{}", cmd);
-        IstrVerfRollBackedEvt event = new IstrVerfRollBackedEvt(cmd.getUnitId(), cmd.getAmount(), cmd.getIstrId());
+        IstrVerfRollBackedEvt event = new IstrVerfRollBackedEvt(cmd.getId(), cmd.getAmount(), cmd.getIstrId());
         eventGateway.publish(event);
         log.debug("send,{}", event);
 

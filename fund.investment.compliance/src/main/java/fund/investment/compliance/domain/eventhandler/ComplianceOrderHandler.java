@@ -28,12 +28,12 @@ public class ComplianceOrderHandler {
     @CommandHandler
     public void handler(CmplOrderCmd cmd) {
         log.debug("receive :{}", cmd);
-        if (cmd.getSecurityCode().startsWith("A")) {
-            OrderCmplSucceedEvt evt = new OrderCmplSucceedEvt(cmd.getSecurityCode(), cmd.getOrderId());
+        if (cmd.getId().startsWith("A")) {
+            OrderCmplSucceedEvt evt = new OrderCmplSucceedEvt(cmd.getId(), cmd.getOrderId());
             eventGateway.publish(evt);
             log.info("send:{}", evt);
         } else {
-            OrderCmplFailedEvt evt = new OrderCmplFailedEvt(cmd.getSecurityCode(), cmd.getOrderId());
+            OrderCmplFailedEvt evt = new OrderCmplFailedEvt(cmd.getId(), cmd.getOrderId());
             eventGateway.publish(evt);
             log.info("send:{}", evt);
 
@@ -43,7 +43,7 @@ public class ComplianceOrderHandler {
     @CommandHandler
     public void handler(RollBackCmplOrderCmd cmd) {
         log.debug("receive :{}", cmd);
-        OrderCmplRollbackedEvt evt = new OrderCmplRollbackedEvt(cmd.getSecurityCode(), cmd.getOrderId());
+        OrderCmplRollbackedEvt evt = new OrderCmplRollbackedEvt(cmd.getId(), cmd.getOrderId());
         eventGateway.publish(evt);
         log.debug("send :{}", evt);
 
@@ -52,7 +52,7 @@ public class ComplianceOrderHandler {
     @CommandHandler
     public void handler(CancelCmplOrderCmd cmd) {
         log.debug("receive :{}", cmd);
-        OrderCmplCancelledEvt evt = new OrderCmplCancelledEvt(cmd.getSecurityCode(), cmd.getOrderId());
+        OrderCmplCancelledEvt evt = new OrderCmplCancelledEvt(cmd.getId(), cmd.getOrderId());
         eventGateway.publish(evt);
         log.debug("send :{}", evt);
 
