@@ -1,27 +1,21 @@
 package fund.investment.infrastructure.instruction.domain.model.command;
 
+import fund.investment.infrastructure.common.DomainCommand;
 import fund.investment.infrastructure.instruction.domain.model.enumeration.TradeType;
-import fund.investment.infrastructure.util.LoggerTemplate;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class InstructionCommand extends DomainCommand {
 
-    @ApiModelProperty(value = "交易类型 ")
     private TradeType tradeType;
 
-    @Override
-	public String toString() {
-		return LoggerTemplate.builder()
-				.CONTENT(this)
-				.NAME(this.getClass().getSimpleName())
-				.build()
-				.toJson();
-	}
-
+    public InstructionCommand(String id, TradeType tradeType) {
+        super(id);
+        this.tradeType = tradeType;
+    }
 }

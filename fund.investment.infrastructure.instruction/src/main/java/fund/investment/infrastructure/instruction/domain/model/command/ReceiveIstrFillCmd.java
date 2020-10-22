@@ -1,31 +1,25 @@
 package fund.investment.infrastructure.instruction.domain.model.command;
 
-import fund.investment.infrastructure.util.LoggerTemplate;import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import fund.investment.infrastructure.instruction.domain.model.enumeration.TradeType;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.context.annotation.Profile;
+import lombok.Setter;
 
-@Data
-@Profile("command")
-@Builder
-@AllArgsConstructor
+@Getter
+@Setter
 @NoArgsConstructor
-public class ReceiveIstrFillCmd extends InstructionCommand{
+public class ReceiveIstrFillCmd extends InstructionCommand {
 
-	private String orderId;
+    private String orderId;
 
-	private String fillId;
+    private String fillId;
 
-	private Long fillQuantity = 0L;
+    private long fillQuantity;
 
-	@Override
-	public String toString() {
-		return LoggerTemplate.builder()
-				.CONTENT(this)
-				.NAME(this.getClass().getSimpleName())
-				.build()
-				.toJson();
-	}
-
+    public ReceiveIstrFillCmd(String id, TradeType tradeType, String orderId, String fillId, long fillQuantity) {
+        super(id, tradeType);
+        this.orderId = orderId;
+        this.fillId = fillId;
+        this.fillQuantity = fillQuantity;
+    }
 }

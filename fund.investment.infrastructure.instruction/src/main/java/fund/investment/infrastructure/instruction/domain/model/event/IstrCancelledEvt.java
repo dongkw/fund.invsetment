@@ -1,52 +1,39 @@
 package fund.investment.infrastructure.instruction.domain.model.event;
 
-import fund.investment.infrastructure.util.LoggerTemplate;import fund.investment.infrastructure.instruction.domain.model.enumeration.ApprovalStatus;
+import fund.investment.infrastructure.instruction.domain.model.enumeration.ApprovalStatus;
 import fund.investment.infrastructure.instruction.domain.model.enumeration.DistributeStatus;
 import fund.investment.infrastructure.instruction.domain.model.enumeration.TradeType;
-import org.springframework.context.annotation.Profile;
-
-import io.swagger.annotations.ApiModelProperty;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.experimental.Accessors;
+import lombok.Setter;
 
-@Data
-@Builder
-@Profile(value = "event")
+@Getter
+@Setter
 @NoArgsConstructor
-@AllArgsConstructor
-@Accessors(chain = true)
 public class IstrCancelledEvt extends InstructionEvent {
-	
-	@ApiModelProperty(value = "成交单元id")
-	private String unitId;
 
-	private String description;
+    private String unitId;
 
-	@ApiModelProperty(value = "审批状态")
-	private ApprovalStatus approvalStatus;
+    private String description;
 
-	@ApiModelProperty(value = "分发状态 ")
-	private DistributeStatus distributeStatus;
+    private ApprovalStatus approvalStatus;
 
-	@ApiModelProperty(value = "证券内码")
-	private String securityCode;
+    private DistributeStatus distributeStatus;
 
-	@ApiModelProperty(value = "数量")
-	private Long quantity;
+    private String securityCode;
 
-	private Long cancelQuantity;
+    private long quantity;
 
+    private long cancelQuantity;
 
-	@Override
-	public String toString() {
-		return LoggerTemplate.builder()
-				.CONTENT(this)
-				.NAME(this.getClass().getSimpleName())
-				.build()
-				.toJson();
-	}
-
+    public IstrCancelledEvt(TradeType tradeType, String id, String unitId, String description, ApprovalStatus approvalStatus, DistributeStatus distributeStatus, String securityCode, long quantity, long cancelQuantity) {
+        super(tradeType, id);
+        this.unitId = unitId;
+        this.description = description;
+        this.approvalStatus = approvalStatus;
+        this.distributeStatus = distributeStatus;
+        this.securityCode = securityCode;
+        this.quantity = quantity;
+        this.cancelQuantity = cancelQuantity;
+    }
 }

@@ -1,31 +1,22 @@
 package fund.investment.infrastructure.instruction.domain.model.event;
 
-import fund.investment.infrastructure.util.LoggerTemplate;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import fund.investment.infrastructure.instruction.domain.model.enumeration.TradeType;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.context.annotation.Profile;
+import lombok.Setter;
 
-import lombok.Data;
-
-@Data
-@Builder
+@Getter
+@Setter
 @NoArgsConstructor
-@AllArgsConstructor
-@Profile(value = "event")
 public class IstrOrderCancelledEvt extends InstructionEvent {
 
     private String orderId;
 
-    private Long cancelQuantity;
+    private long cancelQuantity;
 
-    @Override
-    public String toString() {
-        return LoggerTemplate.builder()
-                .CONTENT(this)
-                .NAME(this.getClass().getSimpleName())
-                .build()
-                .toJson();
+    public IstrOrderCancelledEvt(TradeType tradeType, String id, String orderId, long cancelQuantity) {
+        super(tradeType, id);
+        this.orderId = orderId;
+        this.cancelQuantity = cancelQuantity;
     }
-
 }

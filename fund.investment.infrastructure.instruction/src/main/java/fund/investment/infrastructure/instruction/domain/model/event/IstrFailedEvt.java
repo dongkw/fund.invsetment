@@ -1,28 +1,22 @@
 package fund.investment.infrastructure.instruction.domain.model.event;
 
-import fund.investment.infrastructure.util.LoggerTemplate;import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import fund.investment.infrastructure.instruction.domain.model.enumeration.TradeType;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.context.annotation.Profile;
+import lombok.Setter;
 
-@Data
-@Builder
-@Profile(value = "event")
-@AllArgsConstructor
+@Getter
+@Setter
 @NoArgsConstructor
-public class IstrFailedEvt extends InstructionEvent{
+public class IstrFailedEvt extends InstructionEvent {
 
     private String failCode;
+
     private String failMsg;
 
-    @Override
-    public String toString() {
-        return LoggerTemplate.builder()
-                .CONTENT(this)
-                .NAME(this.getClass().getSimpleName())
-                .build()
-                .toJson();
+    public IstrFailedEvt(TradeType tradeType, String id, String failCode, String failMsg) {
+        super(tradeType, id);
+        this.failCode = failCode;
+        this.failMsg = failMsg;
     }
-
 }

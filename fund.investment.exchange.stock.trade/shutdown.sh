@@ -1,1 +1,0 @@
-kill -s 9 `lsof -i:10122 -Ts| grep LISTEN | awk '{printf "%s\n", $2}'`

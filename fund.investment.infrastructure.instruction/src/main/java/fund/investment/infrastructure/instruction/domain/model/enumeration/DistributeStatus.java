@@ -2,20 +2,21 @@ package fund.investment.infrastructure.instruction.domain.model.enumeration;
 
 /**
  * 审核状态
- * @author 芳军
  *
+ * @author 芳军
  */
 public enum DistributeStatus {
-	UNDEFINED("-1", "空"),
-	WAIT("0", "待分发"),
-	PASS("1", "已分发"),
-	REJECT("2", "拒绝分发")
-	;
-	DistributeStatus(String id, String note) {
-		this.id = id;
-		this.note = note;
-	}
-	
-	private String id;
-	private String note;
+
+    UNDEFINED(0, "空"),
+    WAIT(1, "待分发"),
+    PASS(2, "已分发"),
+    REJECT(3, "拒绝分发");
+
+    DistributeStatus(int id, String note) {
+        this.id = id;
+        this.note = note;
+    }
+
+    private int    id;
+    private String note;
 }

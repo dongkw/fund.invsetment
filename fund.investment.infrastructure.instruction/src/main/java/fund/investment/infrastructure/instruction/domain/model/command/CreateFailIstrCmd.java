@@ -1,29 +1,22 @@
 package fund.investment.infrastructure.instruction.domain.model.command;
 
-import fund.investment.infrastructure.util.LoggerTemplate;import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import fund.investment.infrastructure.instruction.domain.model.enumeration.TradeType;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.context.annotation.Profile;
+import lombok.Setter;
 
-@Data
-@Profile("command")
-@Builder
-@AllArgsConstructor
+@Getter
+@Setter
 @NoArgsConstructor
-public class CreateFailIstrCmd extends InstructionCommand{
+public class CreateFailIstrCmd extends InstructionCommand {
 
-	private String failCode;
+    private String failCode;
 
-	private String failMsg;
+    private String failMsg;
 
-	@Override
-	public String toString() {
-		return LoggerTemplate.builder()
-				.CONTENT(this)
-				.NAME(this.getClass().getSimpleName())
-				.build()
-				.toJson();
-	}
-
+    public CreateFailIstrCmd(String id, TradeType tradeType, String failCode, String failMsg) {
+        super(id, tradeType);
+        this.failCode = failCode;
+        this.failMsg = failMsg;
+    }
 }

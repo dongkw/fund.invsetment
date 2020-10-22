@@ -1,34 +1,22 @@
 package fund.investment.infrastructure.instruction.domain.model.event;
 
-import fund.investment.infrastructure.util.LoggerTemplate;
-import org.springframework.context.annotation.Profile;
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import fund.investment.infrastructure.instruction.domain.model.enumeration.TradeType;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.context.annotation.Profile;
+import lombok.Setter;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-@Data
-@Builder
+@Getter
+@Setter
 @NoArgsConstructor
-@AllArgsConstructor
-@Profile(value = "event")
 public class IstrOrderCreatedEvt extends InstructionEvent {
 
     private String orderId;
-    
-    private Long orderQuantity;
-    
-    @Override
-	public String toString() {
-		return LoggerTemplate.builder()
-				.CONTENT(this)
-				.NAME(this.getClass().getSimpleName())
-				.build()
-				.toJson();
-	}
 
+    private long orderQuantity;
+
+    public IstrOrderCreatedEvt(TradeType tradeType, String id, String orderId, long orderQuantity) {
+        super(tradeType, id);
+        this.orderId = orderId;
+        this.orderQuantity = orderQuantity;
+    }
 }

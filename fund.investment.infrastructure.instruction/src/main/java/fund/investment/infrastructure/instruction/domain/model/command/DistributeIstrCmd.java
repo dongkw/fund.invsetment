@@ -1,26 +1,16 @@
 package fund.investment.infrastructure.instruction.domain.model.command;
 
 import fund.investment.infrastructure.instruction.domain.model.enumeration.TradeType;
-import fund.investment.infrastructure.util.LoggerTemplate;
-import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.context.annotation.Profile;
+import lombok.Setter;
 
-@Data
-@Profile("command")
-@Builder
+@Getter
+@Setter
+@NoArgsConstructor
 public class DistributeIstrCmd extends InstructionCommand {
 
-    public DistributeIstrCmd() {
-    }
-
-    @Override
-    public String toString() {
-        return LoggerTemplate.builder()
-                .CONTENT(this)
-                .NAME(this.getClass().getSimpleName())
-                .build()
-                .toJson();
+    public DistributeIstrCmd(String id, TradeType tradeType) {
+        super(id, tradeType);
     }
 }
