@@ -13,7 +13,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @EnableSwagger2
 @Configuration
-@ComponentScan(basePackages = { "com.ysstech.trade.controller" })
+@ComponentScan(basePackages = { "fund.investment.book.userinterface.controller" })
 public class SwaggerConfig {
 
 	@Bean

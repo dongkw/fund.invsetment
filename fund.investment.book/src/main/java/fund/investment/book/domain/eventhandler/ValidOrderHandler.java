@@ -32,6 +32,7 @@ public class ValidOrderHandler {
     public void handler(VerfOrderCmd cmd) {
         log.debug("receive {}", cmd);
         if (cmd.getUnitId().startsWith("A")) {
+            int a = 1 / 0;
             OrderVerfSucceedEvt evt = new OrderVerfSucceedEvt(cmd.getUnitId(), cmd.getOrderId());
             eventGateway.publish(evt);
             log.debug("send,{}", evt);
