@@ -17,14 +17,14 @@ public class CancelableInstructionState extends InstructionState {
 
     @Override
     public void cancel(InstructionAggregate aggregate, CancelIstrCmd cancelIstrCmd) {
-        log.info("[CancelableInstructionState] Receive command: {}", cancelIstrCmd);
+        log.info("Receive command: {}", cancelIstrCmd);
         ESIstrCancellingEvt istrCancellingEvt = new ESIstrCancellingEvt();
 //		istrCancellingEvt.setOrders(cancelIstrCmd.getOrders());
         istrCancellingEvt.setId(cancelIstrCmd.getId());
         istrCancellingEvt.setUnitId(aggregate.getUnitId());
         istrCancellingEvt.setSecurityCode(aggregate.getIstrTradeElement().getSecurityCode());
         AggregateLifecycle.apply(istrCancellingEvt);
-        log.info("[CancellingInstructionState] Dispached Event: {}", istrCancellingEvt);
+        log.info("Dispached Event: {}", istrCancellingEvt);
     }
 
 }

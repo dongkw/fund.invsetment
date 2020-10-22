@@ -21,7 +21,7 @@ public class PendingInstructionState extends CancelableInstructionState {
 
     @Override
     public void createOrder(InstructionAggregate instructionAggregate, CreateIstrOrderCmd cmd) {
-        log.info("[PendingInstructionState] Receive command: {}", cmd);
+        log.info("Receive command: {}", cmd);
 	    //下委托
         IstrTradeElement istrTradeElement = instructionAggregate.getIstrTradeElement();
         if(!cmd.getTradeType().name().equals(TradeType.UNDEFINED.name())){
@@ -30,14 +30,14 @@ public class PendingInstructionState extends CancelableInstructionState {
             istrOrderCreatedEvt.setId(cmd.getId());
 //            istrOrderCreatedEvt.setOrderQuantity(cmd.getOrderTradeElement().getQuantity());
             AggregateLifecycle.apply(istrOrderCreatedEvt);
-            log.info("[PassedInstructionState] Dispached Event: {}", istrOrderCreatedEvt);
+            log.info("Dispached Event: {}", istrOrderCreatedEvt);
         }else{
             IstrOrderFailedEvt istrOrderFailedEvt = new IstrOrderFailedEvt();
             istrOrderFailedEvt.setId(cmd.getId());
             istrOrderFailedEvt.setOrderId(cmd.getOrderId());
             istrOrderFailedEvt.setFailMsg("交易参数不正确，创建委托失败");
             AggregateLifecycle.apply(istrOrderFailedEvt);
-            log.info("[PassedInstructionState] Dispached Event: {}", istrOrderFailedEvt);
+            log.info("Dispached Event: {}", istrOrderFailedEvt);
         }
     }
 }

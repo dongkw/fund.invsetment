@@ -15,10 +15,10 @@ public class PassedInstructionState extends CancelableInstructionState {
 
     @Override
     public void distribute(DistributeIstrCmd distributeIstrCmd) {
-        log.info("[PassedInstructionState] Receive command: {}", distributeIstrCmd);
+        log.info("Receive command: {}", distributeIstrCmd);
 	    IstrPendingEvt istrPendingEvt = new IstrPendingEvt();
         istrPendingEvt.setId(distributeIstrCmd.getId());
         AggregateLifecycle.apply(istrPendingEvt);
-        log.info("[PassedInstructionState] Dispached Event: {}", istrPendingEvt);
+        log.info("Dispached Event: {}", istrPendingEvt);
     }
 }

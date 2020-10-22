@@ -17,22 +17,22 @@ public class CreatedInstructionState extends InstructionState {
 	
     @Override
     public void createConfirm(CreateConfirmIstrCmd createConfirmIstrCmd) {
-        log.info("[CreatedInstructionState] Receive command: {}", createConfirmIstrCmd);
+        log.info("Receive command: {}", createConfirmIstrCmd);
 	    IstrConfirmedEvt istrConfirmedEvt = new IstrConfirmedEvt();
 	    istrConfirmedEvt.setId(createConfirmIstrCmd.getId());
 	    istrConfirmedEvt.setTradeType(createConfirmIstrCmd.getTradeType());
         AggregateLifecycle.apply(istrConfirmedEvt);
-        log.info("[CreatedInstructionState] Dispached Event: {}", istrConfirmedEvt);
+        log.info("Dispached Event: {}", istrConfirmedEvt);
     }
 
     @Override
     public void createFail(CreateFailIstrCmd createFailIstrCmd) {
-        log.info("[CreatedInstructionState] Receive command: {}", createFailIstrCmd);
+        log.info("Receive command: {}", createFailIstrCmd);
         IstrFailedEvt istrFailedEvt = new IstrFailedEvt();
         istrFailedEvt.setId(createFailIstrCmd.getId());
         istrFailedEvt.setFailCode(createFailIstrCmd.getFailCode());
 	    istrFailedEvt.setFailMsg(createFailIstrCmd.getFailMsg());
         AggregateLifecycle.apply(istrFailedEvt);
-        log.info("[CreatedInstructionState] Dispached Event: {}", istrFailedEvt);
+        log.info("Dispached Event: {}", istrFailedEvt);
     }
 }

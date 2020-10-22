@@ -85,7 +85,7 @@ public class InstructionAggregate extends DomainAggregate {
 	 */
 	@CommandHandler
 	public void handle(CreateConfirmIstrCmd cmd) {
-		log.info("[InstructionAggregate] Receive command: {}", cmd);
+		log.info("Receive command: {}", cmd);
 		//获取指令状态执行创建确认命令
 		getInstructionState().createConfirm(cmd);
 	}
@@ -96,7 +96,7 @@ public class InstructionAggregate extends DomainAggregate {
 	 */
     @CommandHandler
     public void handle(CreateFailIstrCmd cmd) {
-		log.info("[InstructionAggregate] Receive command: {}", cmd);
+		log.info("Receive command: {}", cmd);
 		getInstructionState().createFail(cmd);
     }
 
@@ -106,7 +106,7 @@ public class InstructionAggregate extends DomainAggregate {
 	 */
 	@CommandHandler
     public void handle(CancelConfIstrCmd cmd) {
-		log.info("[InstructionAggregate] Receive command: {}", cmd);
+		log.info("Receive command: {}", cmd);
 		getInstructionState().cancelConfirm(cmd);
 
     }
@@ -117,7 +117,7 @@ public class InstructionAggregate extends DomainAggregate {
 	 */
 	@CommandHandler
 	public void handle(AprvPassIstrCmd cmd) {
-		log.info("[InstructionAggregate] Receive command: {}", cmd);
+		log.info("Receive command: {}", cmd);
 		getInstructionState().aprvPass(cmd);
 	}
 
@@ -127,14 +127,14 @@ public class InstructionAggregate extends DomainAggregate {
 	 */
 	@CommandHandler
 	public void handle(DistributeIstrCmd cmd) {
-		log.info("[InstructionAggregate] Receive command: {}", cmd);
+		log.info("Receive command: {}", cmd);
 		getInstructionState().distribute(cmd);
 	}
     
     
     @CommandHandler
     public void handle(ReceiveIstrFillCmd cmd) {
-		log.info("[InstructionAggregate] Receive command: {}", cmd);
+		log.info("Receive command: {}", cmd);
 		getInstructionState().receiveFill(this, cmd);
     }
 
@@ -149,7 +149,7 @@ public class InstructionAggregate extends DomainAggregate {
     
     @EventSourcingHandler
     public void handle(IstrConfirmedEvt evt) {
-		log.info("[InstructionAggregate] Recieved Event: {}", evt);
+		log.info("Recieved Event: {}", evt);
 //    	this.id = evt.getId();
     	this.instructionState = new ConfirmedInstructionState();
     }
@@ -160,7 +160,7 @@ public class InstructionAggregate extends DomainAggregate {
 	 */
 	@EventSourcingHandler
     public void handle(IstrPassedEvt evt) {
-		log.info("[InstructionAggregate] Recieved Event: {}", evt);
+		log.info("Recieved Event: {}", evt);
 //    	this.id = evt.getId();
     	this.instructionState = new PassedInstructionState();
     }
@@ -171,14 +171,14 @@ public class InstructionAggregate extends DomainAggregate {
 	 */
 	@EventSourcingHandler
     public void handle(IstrPendingEvt evt) {
-		log.info("[InstructionAggregate] Recieved Event: {}", evt);
+		log.info("Recieved Event: {}", evt);
 //    	this.id = evt.getId();
     	this.instructionState = new PendingInstructionState();
     }
     
     @EventSourcingHandler
     public void handle(IstrExecutingEvt evt) {
-		log.info("[InstructionAggregate] Recieved Event: {}", evt);
+		log.info("Recieved Event: {}", evt);
 //    	this.id = evt.getId();
     }
 
@@ -188,7 +188,7 @@ public class InstructionAggregate extends DomainAggregate {
 	 */
 	@EventSourcingHandler
     public void handle(IstrFailedEvt evt) {
-		log.info("[InstructionAggregate] Recieved Event: {}", evt);
+		log.info("Recieved Event: {}", evt);
 //    	this.id = evt.getId();
     	this.instructionState = new FailedInstructionState();
     }
@@ -199,7 +199,7 @@ public class InstructionAggregate extends DomainAggregate {
 	 */
 	@EventSourcingHandler
 	public void handle(IstrCompletedEvt evt) {
-		log.info("[InstructionAggregate] Recieved Event: {}", evt);
+		log.info("Recieved Event: {}", evt);
 //		this.id = evt.getId();
 		this.instructionState = new CompletedInstructionState();
 	}
@@ -210,7 +210,7 @@ public class InstructionAggregate extends DomainAggregate {
 	 */
 	@EventSourcingHandler
 	public void handle(IstrCancelledEvt evt) {
-		log.info("[InstructionAggregate] Recieved Event: {}", evt);
+		log.info("Recieved Event: {}", evt);
 //		this.id = evt.getId();
 		this.instructionState = new CancelledInstructionState();
 	}
@@ -221,7 +221,7 @@ public class InstructionAggregate extends DomainAggregate {
 	 */
 	@EventHandler
 	public void handle(IstrOrderCreatedEvt evt) {
-		log.info("[InstructionAggregate] Recieved Event: {}", evt);
+		log.info("Recieved Event: {}", evt);
 //		this.id = evt.getId();
 		//TODO 添加委托赋值操作
 		this.orderDetail = new OrderDetail();
@@ -234,7 +234,7 @@ public class InstructionAggregate extends DomainAggregate {
 	 */
 	@EventSourcingHandler
 	public void handle(IstrOrderCancelledEvt evt) {
-		log.info("[InstructionAggregate] Recieved Event: {}", evt);
+		log.info("Recieved Event: {}", evt);
 //		this.id = evt.getId();
 		if(Objects.isNull(this.orderDetail)){
 			this.orderDetail = new OrderDetail();
@@ -252,7 +252,7 @@ public class InstructionAggregate extends DomainAggregate {
 	 */
 	@EventSourcingHandler
 	public void handle(IstrFillReceivedEvt evt) {
-		log.info("[InstructionAggregate] Recieved Event: {}", evt);
+		log.info("Recieved Event: {}", evt);
 //		this.id = evt.getId();
 		this.instructionState = new ExcutingInstructionState();
 	}

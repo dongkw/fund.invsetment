@@ -24,7 +24,7 @@ public class ExchangeStockIstrAggr extends InstructionAggregate {
 
     @CommandHandler
     public ExchangeStockIstrAggr(ESCreateIstrCmd cmd) {
-        log.info("[ExchangeStockIstrAggr] Receive command: {}", cmd);
+        log.info("Receive command: {}", cmd);
         ESIstrCreatedEvt esIstrCreatedEvt = new ESIstrCreatedEvt();
         esIstrCreatedEvt.setId(cmd.getId());
         esIstrCreatedEvt.setAccountId(cmd.getAccountId());
@@ -34,30 +34,30 @@ public class ExchangeStockIstrAggr extends InstructionAggregate {
         esIstrCreatedEvt.setUnitId(cmd.getUnitId());
         esIstrCreatedEvt.setUserId(cmd.getUserId());
         AggregateLifecycle.apply(esIstrCreatedEvt);
-        log.info("[ExchangeStockIstrAggr] Dispached event: {}", esIstrCreatedEvt);
+        log.info("Dispached event: {}", esIstrCreatedEvt);
     }
 
     @CommandHandler
     public void handle(ESCancelIstrCmd cmd) {
-        log.info("[ExchangeStockIstrAggr] Receive command: {}", cmd);
+        log.info("Receive command: {}", cmd);
         getInstructionState().cancel(this,cmd);
     }
 
     @CommandHandler
     public void handle(ESCreateIstrOrderCmd cmd) {
-        log.info("[ExchangeStockIstrAggr] Receive command: {}", cmd);
+        log.info("Receive command: {}", cmd);
         getInstructionState().createOrder(this, cmd);
     }
 
     @CommandHandler
     public void handle(ESCancelIstrOrderCmd cmd) {
-        log.info("[ExchangeStockIstrAggr] Receive command: {}", cmd);
+        log.info("Receive command: {}", cmd);
         getInstructionState().cancelOrder(cmd);
     }
 
     @EventSourcingHandler
     public void on(ESIstrCreatedEvt evt) {
-        log.info("[ExchangeStockIstrAggr] Receive event: {}", evt);
+        log.info("Receive event: {}", evt);
         setId(evt.getId());
         setInstructionState(new CreatedInstructionState());
         setAccountId(evt.getAccountId());
