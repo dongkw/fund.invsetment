@@ -1,5 +1,6 @@
 package fund.investment.book.userinterface.controller;
 
+import fund.investment.book.config.ContractCommandGateway;
 import fund.investment.infrastructure.book.domain.model.command.order.VerfOrderCmd;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class Test {
 
     @Autowired
-    private CommandGateway commandGateway;
+    private ContractCommandGateway commandGateway;
 
     @PostMapping("/verf")
-    public ResponseEntity handler(@RequestBody VerfOrderCmd cmd){
+    public ResponseEntity handler(@RequestBody VerfOrderCmd cmd) {
         commandGateway.send(cmd);
         return ResponseEntity.ok().build();
     }
