@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 public class DefaultImpl implements IStatusHandler {
 
     @Override
-    public void handler(IstrVo istrVo){
+    public void handler(IstrVo istrVo) {
     }
 
 }

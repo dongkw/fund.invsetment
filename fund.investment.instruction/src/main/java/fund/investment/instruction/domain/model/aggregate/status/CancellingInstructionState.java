@@ -20,63 +20,65 @@ import java.util.Objects;
 @Slf4j
 public class CancellingInstructionState extends InstructionState {
 
-	public CancellingInstructionState() {
-		super(InstructionStatus.CANCELLED);
-	}
+    public CancellingInstructionState() {
+        super(InstructionStatus.CANCELLED);
+    }
 
 
-	@Override
-	public void cancelConfirm(CancelConfIstrCmd cmd) {
-		log.info("Receive command: {}", cmd);
-		IstrCancelledEvt istrCancelledEvt = new IstrCancelledEvt();
-		istrCancelledEvt.setId(cmd.getId());
-		AggregateLifecycle.apply(istrCancelledEvt);
-		log.info("Dispached Event: {}", istrCancelledEvt);
-	}
+    @Override
+    public void cancelConfirm(CancelConfIstrCmd cmd) {
+        log.info("Receive command: {}", cmd);
+        IstrCancelledEvt istrCancelledEvt = new IstrCancelledEvt();
+        istrCancelledEvt.setId(cmd.getId());
+        istrCancelledEvt.setTradeType(cmd.getTradeType());
+        AggregateLifecycle.apply(istrCancelledEvt);
+        log.info("Dispached Event: {}", istrCancelledEvt);
+    }
 
-	@Override
-	public void createOrder(InstructionAggregate instructionAggregate, CreateIstrOrderCmd esCreateIstrOrderCmd) {
-		log.info("Receive command: {}", esCreateIstrOrderCmd);
-		IstrOrderFailedEvt istrOrderFailedEvt = new IstrOrderFailedEvt();
-		istrOrderFailedEvt.setId(esCreateIstrOrderCmd.getId());
-		istrOrderFailedEvt.setOrderId(esCreateIstrOrderCmd.getOrderId());
-		istrOrderFailedEvt.setFailMsg("指令撤销中，创建委托失败");
-		AggregateLifecycle.apply(istrOrderFailedEvt);
-		log.info("Dispached Event: {}", istrOrderFailedEvt);
-	}
+    @Override
+    public void createOrder(InstructionAggregate instructionAggregate, CreateIstrOrderCmd esCreateIstrOrderCmd) {
+        log.info("Receive command: {}", esCreateIstrOrderCmd);
+        IstrOrderFailedEvt istrOrderFailedEvt = new IstrOrderFailedEvt(
+                esCreateIstrOrderCmd.getTradeType(),
+                esCreateIstrOrderCmd.getId(),
+                esCreateIstrOrderCmd.getOrderId(),
+                "指令撤销中，创建委托失败");
+        AggregateLifecycle.apply(istrOrderFailedEvt);
+        log.info("Dispached Event: {}", istrOrderFailedEvt);
+    }
 
-	@Override
-	public void cancelOrder(CancelIstrOrderCmd cancelIstrOrderCmd) {
-	}
+    @Override
+    public void cancelOrder(CancelIstrOrderCmd cancelIstrOrderCmd) {
+    }
 
-	@Override
-	public void receiveFill(InstructionAggregate instructionAggregate, ReceiveIstrFillCmd cmd) {
-		log.info("Receive command: {}", cmd);
-		//成交
-		OrderDetail orderDetail = instructionAggregate.getOrderDetail();
-		if(Objects.isNull(orderDetail)){
-			orderDetail = new OrderDetail();
-		}
-		IstrFillReceivedEvt istrFillReceivedEvt = new IstrFillReceivedEvt();
-		istrFillReceivedEvt.setFillId(cmd.getFillId());
-		istrFillReceivedEvt.setFillQuantity(cmd.getFillQuantity());
-		istrFillReceivedEvt.setOrderId(cmd.getOrderId());
-		istrFillReceivedEvt.setId(cmd.getId());
-		istrFillReceivedEvt.setTradeType(cmd.getTradeType());
-		orderDetail.receiveFill(istrFillReceivedEvt);
-		IstrTradeElement istrTradeElement = instructionAggregate.getIstrTradeElement();
-		//如果成交数量等于指令数量，则发布 指令成交接收事件 修改状态
-		if(istrTradeElement.getQuantity().compareTo(orderDetail.getFillQuantity()) == 0){
-			IstrCompletedEvt istrCompletedEvt = new IstrCompletedEvt();
-			istrCompletedEvt.setId(cmd.getId());
-			istrCompletedEvt.setTradeType(cmd.getTradeType());
-			AggregateLifecycle.apply(istrCompletedEvt);
-			log.info("Dispached Event: {}", istrCompletedEvt);
-		}else{
-			AggregateLifecycle.apply(istrFillReceivedEvt);
-			log.info("Dispached Event: {}", istrFillReceivedEvt);
-		}
-	}
+    @Override
+    public void receiveFill(InstructionAggregate instructionAggregate, ReceiveIstrFillCmd cmd) {
+        log.info("Receive command: {}", cmd);
+        //成交
+        OrderDetail orderDetail = instructionAggregate.getOrderDetail();
+        if (Objects.isNull(orderDetail)) {
+            orderDetail = new OrderDetail();
+        }
+        IstrFillReceivedEvt istrFillReceivedEvt = new IstrFillReceivedEvt();
+        istrFillReceivedEvt.setFillId(cmd.getFillId());
+        istrFillReceivedEvt.setFillQuantity(cmd.getFillQuantity());
+        istrFillReceivedEvt.setOrderId(cmd.getOrderId());
+        istrFillReceivedEvt.setId(cmd.getId());
+        istrFillReceivedEvt.setTradeType(cmd.getTradeType());
+        orderDetail.receiveFill(istrFillReceivedEvt);
+        IstrTradeElement istrTradeElement = instructionAggregate.getIstrTradeElement();
+        //如果成交数量等于指令数量，则发布 指令成交接收事件 修改状态
+        if (istrTradeElement.getQuantity() - orderDetail.getFillQuantity() == 0) {
+            IstrCompletedEvt istrCompletedEvt = new IstrCompletedEvt();
+            istrCompletedEvt.setId(cmd.getId());
+            istrCompletedEvt.setTradeType(cmd.getTradeType());
+            AggregateLifecycle.apply(istrCompletedEvt);
+            log.info("Dispached Event: {}", istrCompletedEvt);
+        } else {
+            AggregateLifecycle.apply(istrFillReceivedEvt);
+            log.info("Dispached Event: {}", istrFillReceivedEvt);
+        }
+    }
 
 
 }

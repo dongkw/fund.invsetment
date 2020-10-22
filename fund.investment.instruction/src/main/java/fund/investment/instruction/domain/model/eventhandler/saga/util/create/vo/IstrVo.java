@@ -14,9 +14,13 @@ import java.util.Set;
 public class IstrVo {
 
     private String istrId;
+
     private InstructionState state;
+
     private String securityCode;
+
     private String unitId;
+
     private BigDecimal amount;
 
     Set<IstrSagaStatus> statuses;

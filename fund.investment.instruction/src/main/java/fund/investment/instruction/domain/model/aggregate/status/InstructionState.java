@@ -39,12 +39,5 @@ public class InstructionState {
 	public void cancelOrder(CancelIstrOrderCmd cancelIstrOrderCmd){}
 	//成交回收
 	public void receiveFill(InstructionAggregate instructionAggregate, ReceiveIstrFillCmd receiveIstrFillCmd){}
-//	//成交
-//	public void eventHandler(InstructionAggregate instructionAggregate, IstrFillReceivedEvt istrFillReceivedEvt){}
-//	//成交完成
-//	public void eventHandler(InstructionAggregate instructionAggregate, IstrCompletedEvt istrCompletedEvt){}
-//
-//
-//	public void commandHandler(InstructionAggregate instructionAggregate, CreateIstrCmd createIstrCmd){};
 
 }

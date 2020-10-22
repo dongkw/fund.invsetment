@@ -20,7 +20,7 @@ public class VerfIstrCmd extends VerificationCommand {
 
     private BigDecimal amount;
 
-    public VerfIstrCmd(String id, String unitId, String istrId, BigDecimal amount) {
+    public VerfIstrCmd(String id, String istrId, BigDecimal amount) {
         super(id);
         this.istrId = istrId;
         this.amount = amount;

@@ -34,8 +34,7 @@ public class SagaRollBackIstrImpl implements IStatusHandler {
 
     @Override
     public void handler(IstrVo istrVo) {
-        CreateFailIstrCmd cmd = CreateFailIstrCmd.builder().build();
-        cmd.setId(istrVo.getIstrId());
+        CreateFailIstrCmd cmd = new CreateFailIstrCmd(istrVo.getIstrId(),null,null,null);
         commandGateway.send(cmd);
         log.debug("saga send {}", cmd);
         SagaLifecycle.end();

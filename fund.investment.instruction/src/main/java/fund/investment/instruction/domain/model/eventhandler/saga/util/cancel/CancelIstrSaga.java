@@ -2,11 +2,11 @@ package fund.investment.instruction.domain.model.eventhandler.saga.util.cancel;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import fund.investment.infrastructure.book.domain.model.command.instruction.CancelVerfIstrCmd;
 import fund.investment.infrastructure.book.domain.model.command.VerificationCommand;
+import fund.investment.infrastructure.book.domain.model.command.instruction.CancelVerfIstrCmd;
 import fund.investment.infrastructure.book.domain.model.event.instruction.IstrVerfCancelledEvt;
-import fund.investment.infrastructure.compliance.domain.model.command.instruction.CancelComplIstrCmd;
 import fund.investment.infrastructure.compliance.domain.model.command.ComplianceCommand;
+import fund.investment.infrastructure.compliance.domain.model.command.instruction.CancelComplIstrCmd;
 import fund.investment.infrastructure.compliance.domain.model.event.instruction.IstrCmplCancelledEvt;
 import fund.investment.infrastructure.instruction.domain.model.command.CancelConfIstrCmd;
 import fund.investment.infrastructure.instruction.domain.model.enumeration.OrderStatus;
@@ -36,17 +36,21 @@ import java.util.Set;
 @Slf4j
 public class CancelIstrSaga extends InstructionSaga {
 
-
     @JsonProperty
     private boolean cancelVerf;
+
     @JsonProperty
     private boolean cancelCmpl;
+
     @JsonProperty
     private Set<String> orderIds;
+
     @JsonProperty
     private String istrId;
+
     @JsonProperty
     private String unitId;
+
     @JsonProperty
     private String securityCode;
 
@@ -71,8 +75,7 @@ public class CancelIstrSaga extends InstructionSaga {
             istrId = evt.getId();
             unitId = evt.getUnitId();
             securityCode = evt.getSecurityCode();
-            CancelConfIstrCmd cancelConfIstrCmd = CancelConfIstrCmd.builder().build();
-            cancelConfIstrCmd.setId(istrId);
+            CancelConfIstrCmd cancelConfIstrCmd = new CancelConfIstrCmd(istrId, evt.getTradeType());
             commandGateway.send(cancelConfIstrCmd);
         }
 
@@ -83,8 +86,7 @@ public class CancelIstrSaga extends InstructionSaga {
         orderIds.remove(evt.getId());
         log.debug("saga receive:{},orders:{}", evt, orderIds);
         if (orderIds.isEmpty()) {
-            CancelConfIstrCmd cancelConfIstrCmd = CancelConfIstrCmd.builder().build();
-            cancelConfIstrCmd.setId(istrId);
+            CancelConfIstrCmd cancelConfIstrCmd = new CancelConfIstrCmd(istrId, null);
             commandGateway.send(cancelConfIstrCmd);
             log.debug("saga send:{}", cancelConfIstrCmd);
         }
@@ -95,8 +97,7 @@ public class CancelIstrSaga extends InstructionSaga {
         orderIds.remove(evt.getId());
         log.debug("saga receive:{},orders:{}", evt, orderIds);
         if (orderIds.isEmpty()) {
-            CancelConfIstrCmd cancelConfIstrCmd = CancelConfIstrCmd.builder().build();
-            cancelConfIstrCmd.setId(istrId);
+            CancelConfIstrCmd cancelConfIstrCmd = new CancelConfIstrCmd(istrId, null);
             commandGateway.send(cancelConfIstrCmd);
             log.debug("saga send:{}", cancelConfIstrCmd);
         }
