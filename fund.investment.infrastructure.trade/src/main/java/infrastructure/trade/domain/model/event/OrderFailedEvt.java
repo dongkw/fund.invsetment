@@ -1,6 +1,5 @@
 package infrastructure.trade.domain.model.event;
 
-import fund.investment.infrastructure.util.LoggerTemplate;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,6 +21,7 @@ public class OrderFailedEvt extends OrderEvent{
 		
 	}
 
+<<<<<<< HEAD
 	@Override
 	public String toString() {
 		return LoggerTemplate.builder()
@@ -31,4 +31,6 @@ public class OrderFailedEvt extends OrderEvent{
 				.toJson();
 	}
 
+=======
+>>>>>>> 3a0a2561e0fa4da06e959b868de6b818fed652af
 }

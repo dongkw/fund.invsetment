@@ -1,6 +1,5 @@
 package infrastructure.trade.domain.model.event;
 
-import fund.investment.infrastructure.util.LoggerTemplate;
 import infrastructure.trade.domain.model.valueobject.Fill;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -20,6 +19,7 @@ public class OrderFilledEvt extends OrderEvent{
 		this.fill = fill;
 		
 	}
+<<<<<<< HEAD
 
 	@Override
 	public String toString() {
@@ -29,5 +29,7 @@ public class OrderFilledEvt extends OrderEvent{
 				.build()
 				.toJson();
 	}
+=======
+>>>>>>> 3a0a2561e0fa4da06e959b868de6b818fed652af
 	
 }

@@ -1,6 +1,5 @@
 package infrastructure.trade.domain.model.command;
 
-import fund.investment.infrastructure.util.LoggerTemplate;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,6 +8,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class CreateOrderCmd extends OrderCommand{
+	
 	private String unitId;
 	private String accountId;
 	private String userId;
@@ -20,6 +20,7 @@ public class CreateOrderCmd extends OrderCommand{
 		this.accountId = accountId;
 		this.userId = userId;
 	}
+<<<<<<< HEAD
 
 	@Override
 	public String toString() {
@@ -29,5 +30,7 @@ public class CreateOrderCmd extends OrderCommand{
 				.build()
 				.toJson();
 	}
+=======
+>>>>>>> 3a0a2561e0fa4da06e959b868de6b818fed652af
 	
 }

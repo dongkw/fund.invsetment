@@ -1,6 +1,5 @@
 package infrastructure.trade.domain.model.event;
 
-import fund.investment.infrastructure.util.LoggerTemplate;
 import io.swagger.annotations.ApiModel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +20,7 @@ public class OrderPartialFilledCancelledEvt extends OrderEvent{
 		this.cancelQuantity = cancelQuantity;
 		
 	}
+<<<<<<< HEAD
 
 	@Override
 	public String toString() {
@@ -30,6 +30,8 @@ public class OrderPartialFilledCancelledEvt extends OrderEvent{
 				.build()
 				.toJson();
 	}
+=======
+>>>>>>> 3a0a2561e0fa4da06e959b868de6b818fed652af
 	
 }
  

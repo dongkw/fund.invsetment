@@ -1,6 +1,5 @@
 package infrastructure.trade.domain.model.command;
 
-import fund.investment.infrastructure.util.LoggerTemplate;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,6 +18,7 @@ public class CancelConfirmOrderCmd extends OrderCommand{
 		this.cancelQuantity = cancelQuantity;
 	}
 
+<<<<<<< HEAD
 	@Override
 	public String toString() {
 		return LoggerTemplate.builder()
@@ -27,4 +27,6 @@ public class CancelConfirmOrderCmd extends OrderCommand{
 				.build()
 				.toJson();
 	}
+=======
+>>>>>>> 3a0a2561e0fa4da06e959b868de6b818fed652af
 }

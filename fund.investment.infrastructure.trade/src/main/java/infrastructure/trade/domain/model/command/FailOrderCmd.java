@@ -1,6 +1,5 @@
 package infrastructure.trade.domain.model.command;
 
-import fund.investment.infrastructure.util.LoggerTemplate;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -21,6 +20,7 @@ public class FailOrderCmd extends OrderCommand {
 		this.failMsg = failCode;
 		
 	}
+<<<<<<< HEAD
 
 	@Override
 	public String toString() {
@@ -30,5 +30,7 @@ public class FailOrderCmd extends OrderCommand {
 				.build()
 				.toJson();
 	}
+=======
+>>>>>>> 3a0a2561e0fa4da06e959b868de6b818fed652af
 	
 }

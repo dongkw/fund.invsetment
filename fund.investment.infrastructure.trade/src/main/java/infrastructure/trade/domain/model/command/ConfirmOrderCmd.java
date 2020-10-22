@@ -1,6 +1,5 @@
 package infrastructure.trade.domain.model.command;
 
-import fund.investment.infrastructure.util.LoggerTemplate;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
@@ -10,6 +9,7 @@ public class ConfirmOrderCmd extends OrderCommand{
 		
 	}
 
+<<<<<<< HEAD
 	@Override
 	public String toString() {
 		return LoggerTemplate.builder()
@@ -19,4 +19,6 @@ public class ConfirmOrderCmd extends OrderCommand{
 				.toJson();
 	}
 	
+=======
+>>>>>>> 3a0a2561e0fa4da06e959b868de6b818fed652af
 }

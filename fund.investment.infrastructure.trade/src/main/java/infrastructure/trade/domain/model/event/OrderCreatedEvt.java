@@ -1,6 +1,5 @@
 package infrastructure.trade.domain.model.event;
 
-import fund.investment.infrastructure.util.LoggerTemplate;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,6 +22,7 @@ public class OrderCreatedEvt extends OrderEvent{
 		this.accountId = accountId;
 		this.userId = userId;
 	}
+<<<<<<< HEAD
 
 	@Override
 	public String toString() {
@@ -32,5 +32,7 @@ public class OrderCreatedEvt extends OrderEvent{
 				.build()
 				.toJson();
 	}
+=======
+>>>>>>> 3a0a2561e0fa4da06e959b868de6b818fed652af
 	
 }

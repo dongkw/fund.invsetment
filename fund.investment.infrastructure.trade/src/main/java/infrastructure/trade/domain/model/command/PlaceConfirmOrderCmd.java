@@ -2,7 +2,6 @@ package infrastructure.trade.domain.model.command;
 
 import java.time.LocalDateTime;
 
-import fund.investment.infrastructure.util.LoggerTemplate;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,6 +19,7 @@ public class PlaceConfirmOrderCmd extends OrderCommand {
 		this.orderTime = LocalDateTime.now();
 	}
 
+<<<<<<< HEAD
 	@Override
 	public String toString() {
 		return LoggerTemplate.builder()
@@ -29,4 +29,6 @@ public class PlaceConfirmOrderCmd extends OrderCommand {
 				.toJson();
 	}
 	
+=======
+>>>>>>> 3a0a2561e0fa4da06e959b868de6b818fed652af
 }

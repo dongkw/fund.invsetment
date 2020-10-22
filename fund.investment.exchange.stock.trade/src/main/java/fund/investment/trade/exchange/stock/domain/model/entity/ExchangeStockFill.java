@@ -2,7 +2,6 @@ package fund.investment.trade.exchange.stock.domain.model.entity;
 
 import java.math.BigDecimal;
 
-import fund.investment.infrastructure.util.LoggerTemplate;
 import infrastructure.trade.domain.model.valueobject.Fill;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -18,9 +17,10 @@ import lombok.Setter;
 public class ExchangeStockFill extends Fill {
 	private String side;
 	private BigDecimal fillPrice;
-	private Long FillQuantity;
+	private Long fillQuantity;
 	private BigDecimal fillAmount;
 	private BigDecimal clearAmount;
+<<<<<<< HEAD
 	
 	@Override
 	public String toString() {
@@ -31,4 +31,7 @@ public class ExchangeStockFill extends Fill {
 				.toJson();
 	}
 
+=======
+		
+>>>>>>> 3a0a2561e0fa4da06e959b868de6b818fed652af
 }

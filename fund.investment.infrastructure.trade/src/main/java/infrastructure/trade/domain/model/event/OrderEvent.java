@@ -1,7 +1,6 @@
 package infrastructure.trade.domain.model.event;
 
 import fund.investment.infrastructure.common.DomainEvent;
-import fund.investment.infrastructure.util.LoggerTemplate;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,6 +11,10 @@ import lombok.Setter;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class OrderEvent extends DomainEvent {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4834896732401579174L;
 	private String instructionId;
 	private String tradeType;
 	
@@ -22,6 +25,7 @@ public class OrderEvent extends DomainEvent {
 		this.tradeType = tradeType;
 		
 	}
+<<<<<<< HEAD
 
 	@Override
 	public String toString() {
@@ -31,5 +35,7 @@ public class OrderEvent extends DomainEvent {
 				.build()
 				.toJson();
 	}
+=======
+>>>>>>> 3a0a2561e0fa4da06e959b868de6b818fed652af
 	
 }
