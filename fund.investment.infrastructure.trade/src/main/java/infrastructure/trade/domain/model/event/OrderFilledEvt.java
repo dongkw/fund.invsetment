@@ -1,7 +1,6 @@
 package infrastructure.trade.domain.model.event;
 
 import infrastructure.trade.domain.model.valueobject.Fill;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,7 +8,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = true)
 public class OrderFilledEvt extends OrderEvent{
 	private Fill fill;
 	
@@ -19,5 +17,5 @@ public class OrderFilledEvt extends OrderEvent{
 		this.fill = fill;
 		
 	}
-
+	
 }

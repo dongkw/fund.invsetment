@@ -18,5 +18,4 @@ public class OrderPlacedEvt extends OrderEvent{
 		this.orderTime = LocalDateTime.now();
 	}
 
-
 }

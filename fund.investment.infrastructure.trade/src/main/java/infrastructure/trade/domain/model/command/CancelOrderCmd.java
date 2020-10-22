@@ -19,5 +19,5 @@ public class CancelOrderCmd extends OrderCommand {
 		this.cancelQuantity = cancelQuantity;
 		
 	}
-
+	
 }

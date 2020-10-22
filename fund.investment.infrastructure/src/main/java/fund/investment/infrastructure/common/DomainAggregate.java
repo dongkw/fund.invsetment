@@ -1,11 +1,12 @@
 package fund.investment.infrastructure.common;
 
+import org.axonframework.modelling.command.AggregateIdentifier;
+
 import fund.investment.infrastructure.util.LoggerTemplate;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.axonframework.modelling.command.AggregateIdentifier;
 
 @Getter
 @Setter

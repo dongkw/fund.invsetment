@@ -13,5 +13,5 @@ public class OrderCancellingEvt extends OrderEvent{
 		super(instructionId, tradeType, instructionId);
 		
 	}
-
+	
 }

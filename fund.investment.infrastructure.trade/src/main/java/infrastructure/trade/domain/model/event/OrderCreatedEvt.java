@@ -22,5 +22,5 @@ public class OrderCreatedEvt extends OrderEvent{
 		this.accountId = accountId;
 		this.userId = userId;
 	}
-
+	
 }

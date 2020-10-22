@@ -20,6 +20,5 @@ public class CreateOrderCmd extends OrderCommand{
 		this.accountId = accountId;
 		this.userId = userId;
 	}
-
 	
 }

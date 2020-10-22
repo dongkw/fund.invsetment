@@ -15,5 +15,5 @@ public class OrderPlacingEvt extends OrderEvent{
 		
 		this.exchangId = exchangId;
 	}
-
+	
 }

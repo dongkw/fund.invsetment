@@ -1,13 +1,11 @@
 package infrastructure.trade.domain.model.event;
 
-import io.swagger.annotations.ApiModel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@ApiModel("部分成交Event")
 @NoArgsConstructor
 public class OrderPartialFilledCancelledEvt extends OrderEvent{
 	private String unitId;
@@ -20,7 +18,6 @@ public class OrderPartialFilledCancelledEvt extends OrderEvent{
 		this.cancelQuantity = cancelQuantity;
 		
 	}
-
 	
 }
  

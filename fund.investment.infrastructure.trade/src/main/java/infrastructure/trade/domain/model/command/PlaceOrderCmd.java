@@ -12,8 +12,8 @@ public class PlaceOrderCmd extends OrderCommand {
 
 	public PlaceOrderCmd(String id, String instructionId, String tradeType, String exchangeId) {
 		super(id, instructionId, tradeType);
-
+		
 		this.exchangeId = exchangeId;
 	}
-
+	
 }

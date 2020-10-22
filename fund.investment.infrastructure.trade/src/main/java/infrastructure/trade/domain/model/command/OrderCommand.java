@@ -3,7 +3,6 @@ package infrastructure.trade.domain.model.command;
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
 import fund.investment.infrastructure.common.DomainCommand;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -11,7 +10,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 public class OrderCommand extends DomainCommand {
 
@@ -26,6 +24,5 @@ public class OrderCommand extends DomainCommand {
 		this.instructionId = instructionId;
 		this.tradeType = tradeType;
 	}
-
 	
 }
