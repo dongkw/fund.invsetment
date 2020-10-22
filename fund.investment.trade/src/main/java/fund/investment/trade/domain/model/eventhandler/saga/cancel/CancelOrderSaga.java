@@ -5,6 +5,7 @@ import fund.investment.infrastructure.book.domain.model.event.order.OrderVerfCan
 import fund.investment.infrastructure.compliance.domain.model.event.order.OrderCmplCancelledEvt;
 import fund.investment.infrastructure.instruction.domain.model.command.CancelIstrOrderCmd;
 import fund.investment.trade.domain.model.eventhandler.saga.OrderSaga;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.modelling.saga.SagaEventHandler;
@@ -14,12 +15,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Slf4j
 public class CancelOrderSaga extends OrderSaga {
 
+    @Setter
     @JsonProperty
     private String orderId;
 
+    @Setter
     @JsonProperty
     private String istrId;
 
+    @Setter
     @JsonProperty
     private String unitId;
 
