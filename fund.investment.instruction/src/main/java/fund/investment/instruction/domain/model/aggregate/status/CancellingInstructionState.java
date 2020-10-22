@@ -24,7 +24,6 @@ public class CancellingInstructionState extends InstructionState {
         super(InstructionStatus.CANCELLED);
     }
 
-
     @Override
     public void cancelConfirm(CancelConfIstrCmd cmd) {
         log.info("Receive command: {}", cmd);
@@ -79,6 +78,4 @@ public class CancellingInstructionState extends InstructionState {
             log.info("Dispached Event: {}", istrFillReceivedEvt);
         }
     }
-
-
 }

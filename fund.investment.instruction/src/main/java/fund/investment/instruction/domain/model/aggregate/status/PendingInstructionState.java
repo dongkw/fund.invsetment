@@ -20,7 +20,6 @@ public class PendingInstructionState extends CancelableInstructionState {
     @Override
     public void createOrder(InstructionAggregate instructionAggregate, CreateIstrOrderCmd cmd) {
         log.info("Receive command: {}", cmd);
-        //下委托
         IstrTradeElement istrTradeElement = instructionAggregate.getIstrTradeElement();
         if (!cmd.getTradeType().name().equals(TradeType.UNDEFINED.name())) {
             IstrOrderCreatedEvt istrOrderCreatedEvt = new IstrOrderCreatedEvt();

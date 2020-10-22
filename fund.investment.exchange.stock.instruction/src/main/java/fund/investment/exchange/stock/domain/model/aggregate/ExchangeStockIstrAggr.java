@@ -42,7 +42,7 @@ public class ExchangeStockIstrAggr extends InstructionAggregate {
     @CommandHandler
     public void handle(ESCancelIstrCmd cmd) {
         log.info("Receive command: {}", cmd);
-        getInstructionState().cancel(this,cmd);
+        getInstructionState().cancel(this, cmd);
     }
 
     @CommandHandler
@@ -64,7 +64,6 @@ public class ExchangeStockIstrAggr extends InstructionAggregate {
         setInstructionState(new CreatedInstructionState());
         setAccountId(evt.getAccountId());
         setUnitId(evt.getUnitId());
-        //设置聚合根交易要素相关参数
         IstrTradeElement istrTradeElement = new IstrTradeElement();
         istrTradeElement.setQuantity(evt.getQuantity());
         istrTradeElement.setSecurityCode(evt.getSecurityCode());
@@ -74,11 +73,9 @@ public class ExchangeStockIstrAggr extends InstructionAggregate {
     }
 
     @EventSourcingHandler
-    public void on(IstrCancellingEvt evt){
+    public void on(IstrCancellingEvt evt) {
         ESIstrCancellingEvt esIstrCancellingEvt = new ESIstrCancellingEvt(evt.getTradeType(), evt.getId(),
-                evt.getUnitId(),evt.getSecurityCode(),evt.getOrders());
-        //转发事件，转换为子类事件
+                                                                          evt.getUnitId(), evt.getSecurityCode(), evt.getOrders());
         AggregateLifecycle.apply(esIstrCancellingEvt);
     }
-
 }

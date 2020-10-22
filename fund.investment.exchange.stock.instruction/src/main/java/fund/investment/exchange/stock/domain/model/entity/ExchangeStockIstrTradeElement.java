@@ -5,7 +5,10 @@ import fund.investment.instruction.domain.model.entity.IstrTradeElement;
 import fund.investment.instruction.exchange.stock.domain.model.command.ESCreateIstrCmd;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @Setter
@@ -23,10 +26,7 @@ public class ExchangeStockIstrTradeElement extends IstrTradeElement {
     @ApiModelProperty(value = "指令金额")
     private Long amount = 0L;
 
-
     public void checkOrder(ESCreateIstrCmd esCreateIstrCmd) {
 
     }
-
-
 }

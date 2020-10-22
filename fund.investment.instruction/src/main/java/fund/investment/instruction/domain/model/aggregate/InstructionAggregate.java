@@ -23,7 +23,6 @@ import java.util.Objects;
 
 @Data
 @Slf4j
-//@Aggregate
 @NoArgsConstructor
 @AllArgsConstructor
 public class InstructionAggregate extends DomainAggregate {
@@ -52,63 +51,35 @@ public class InstructionAggregate extends DomainAggregate {
     @AggregateMember
     private OrderDetail orderDetail;
 
-    /**
-     * 接收指令创建确认命令
-     *
-     * @param cmd
-     */
     @CommandHandler
     public void handle(CreateConfirmIstrCmd cmd) {
         log.info("Receive command: {}", cmd);
-        //获取指令状态执行创建确认命令
         getInstructionState().createConfirm(cmd);
     }
 
-    /**
-     * 接收指令创建失败命令
-     *
-     * @param cmd
-     */
     @CommandHandler
     public void handle(CreateFailIstrCmd cmd) {
         log.info("Receive command: {}", cmd);
         getInstructionState().createFail(cmd);
     }
 
-    /**
-     * 取消确认指令命令
-     *
-     * @param cmd
-     */
     @CommandHandler
     public void handle(CancelConfIstrCmd cmd) {
         log.info("Receive command: {}", cmd);
         getInstructionState().cancelConfirm(cmd);
-
     }
 
-    /**
-     * 【审核通过命令】
-     *
-     * @param cmd
-     */
     @CommandHandler
     public void handle(AprvPassIstrCmd cmd) {
         log.info("Receive command: {}", cmd);
         getInstructionState().aprvPass(cmd);
     }
 
-    /**
-     * 【分发通过命令】
-     *
-     * @param cmd
-     */
     @CommandHandler
     public void handle(DistributeIstrCmd cmd) {
         log.info("Receive command: {}", cmd);
         getInstructionState().distribute(cmd);
     }
-
 
     @CommandHandler
     public void handle(ReceiveIstrFillCmd cmd) {
@@ -116,8 +87,6 @@ public class InstructionAggregate extends DomainAggregate {
         getInstructionState().receiveFill(this, cmd);
     }
 
-
-    //event sourcing
     @EventSourcingHandler
     public void handle(IstrCancellingEvt evt) {
         this.instructionState = new CancellingInstructionState();
@@ -130,22 +99,12 @@ public class InstructionAggregate extends DomainAggregate {
         this.instructionState = new ConfirmedInstructionState();
     }
 
-    /**
-     * 处理指令审核通过事件
-     *
-     * @param evt
-     */
     @EventSourcingHandler
     public void handle(IstrPassedEvt evt) {
         log.info("Recieved Event: {}", evt);
         this.instructionState = new PassedInstructionState();
     }
 
-    /**
-     * 处理指令分发成功命令
-     *
-     * @param evt
-     */
     @EventSourcingHandler
     public void handle(IstrPendingEvt evt) {
         log.info("Recieved Event: {}", evt);
@@ -157,44 +116,24 @@ public class InstructionAggregate extends DomainAggregate {
         log.info("Recieved Event: {}", evt);
     }
 
-    /**
-     * 【指令审核通过】事件处理
-     *
-     * @param evt
-     */
     @EventSourcingHandler
     public void handle(IstrFailedEvt evt) {
         log.info("Recieved Event: {}", evt);
         this.instructionState = new FailedInstructionState();
     }
 
-    /**
-     * 【分发通过】事件处理
-     *
-     * @param evt
-     */
     @EventSourcingHandler
     public void handle(IstrCompletedEvt evt) {
         log.info("Recieved Event: {}", evt);
         this.instructionState = new CompletedInstructionState();
     }
 
-    /**
-     * 处理指令取消事件
-     *
-     * @param evt
-     */
     @EventSourcingHandler
     public void handle(IstrCancelledEvt evt) {
         log.info("Recieved Event: {}", evt);
         this.instructionState = new CancelledInstructionState();
     }
 
-    /**
-     * 【委托创建】事件处理
-     *
-     * @param evt
-     */
     @EventHandler
     public void handle(IstrOrderCreatedEvt evt) {
         log.info("Recieved Event: {}", evt);
@@ -203,11 +142,6 @@ public class InstructionAggregate extends DomainAggregate {
         this.instructionState = new ExcutingInstructionState();
     }
 
-    /**
-     * 处理 委托取消事件
-     *
-     * @param evt
-     */
     @EventSourcingHandler
     public void handle(IstrOrderCancelledEvt evt) {
         log.info("Recieved Event: {}", evt);
@@ -221,15 +155,9 @@ public class InstructionAggregate extends DomainAggregate {
         }
     }
 
-    /**
-     * 【委托创建】事件处理
-     *
-     * @param evt
-     */
     @EventSourcingHandler
     public void handle(IstrFillReceivedEvt evt) {
         log.info("Recieved Event: {}", evt);
         this.instructionState = new ExcutingInstructionState();
     }
-
 }

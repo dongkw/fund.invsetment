@@ -20,5 +20,4 @@ public class ConfirmedInstructionState extends CancelableInstructionState {
         AggregateLifecycle.apply(istrPassedEvt);
         log.info("Dispached Event: {}", istrPassedEvt);
     }
-
 }

@@ -14,12 +14,12 @@ import org.springframework.stereotype.Component;
  **/
 @Slf4j
 @Component
-public class OrderRollbackIstrImpl implements IRollbackIstrHandler {
+public class ESRollbackIstrHandler implements IRollbackIstrHandler {
 
     private final CommandGateway commandGateway;
 
     @Autowired
-    public OrderRollbackIstrImpl(CommandGateway commandGateway) {
+    public ESRollbackIstrHandler(CommandGateway commandGateway) {
         this.commandGateway = commandGateway;
     }
 

@@ -8,15 +8,15 @@ import org.axonframework.modelling.command.AggregateLifecycle;
 
 @Slf4j
 public class PassedInstructionState extends CancelableInstructionState {
-	
-	public PassedInstructionState() {
-		super(InstructionStatus.APRV_PASS);
-	}
+
+    public PassedInstructionState() {
+        super(InstructionStatus.APRV_PASS);
+    }
 
     @Override
     public void distribute(DistributeIstrCmd distributeIstrCmd) {
         log.info("Receive command: {}", distributeIstrCmd);
-	    IstrPendingEvt istrPendingEvt = new IstrPendingEvt();
+        IstrPendingEvt istrPendingEvt = new IstrPendingEvt();
         istrPendingEvt.setId(distributeIstrCmd.getId());
         AggregateLifecycle.apply(istrPendingEvt);
         log.info("Dispached Event: {}", istrPendingEvt);

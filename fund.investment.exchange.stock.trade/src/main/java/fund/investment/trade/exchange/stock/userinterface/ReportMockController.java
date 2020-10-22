@@ -1,9 +1,7 @@
 package fund.investment.trade.exchange.stock.userinterface;
 
 import fund.investment.trade.exchange.stock.domain.eventhandler.ESReportHandler;
-import fund.investment.trade.exchange.stock.domain.report.mock.*;
 import fund.investment.trade.exchange.stock.mock.report.*;
-import fund.investment.trade.exchange.stock.mock.report.mock.*;
 import infrastructure.trade.domain.model.command.CancelConfirmOrderCmd;
 import infrastructure.trade.domain.model.command.FillOrderCmd;
 import infrastructure.trade.domain.model.command.PlaceCancelOrderCmd;

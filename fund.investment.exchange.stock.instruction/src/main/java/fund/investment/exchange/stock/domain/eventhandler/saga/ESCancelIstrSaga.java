@@ -21,5 +21,4 @@ public class ESCancelIstrSaga extends CancelIstrSaga {
     public void handler(ESIstrCancellingEvt evt) {
         startSaga(evt);
     }
-
 }

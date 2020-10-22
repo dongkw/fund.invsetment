@@ -37,6 +37,16 @@
             <scope>runtime</scope>
         </dependency>
 
+        <!-- swagger -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+        </dependency>
+
         <!-- db implements -->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>

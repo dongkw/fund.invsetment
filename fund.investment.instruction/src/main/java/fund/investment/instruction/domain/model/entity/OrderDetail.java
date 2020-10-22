@@ -45,5 +45,4 @@ public class OrderDetail {
     public void receiveFill(IstrFillReceivedEvt istrFillReceivedEvt) {
         this.fillQuantity += istrFillReceivedEvt.getFillQuantity();
     }
-
 }
