@@ -2,9 +2,11 @@ package infrastructure.trade.domain.model.valueobject;
 
 import java.time.LocalDateTime;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
-@Data
+@Getter
+@AllArgsConstructor
 public class Fill {
 	private String id;
 	private String orderOriginalId;

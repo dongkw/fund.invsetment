@@ -2,22 +2,25 @@ package fund.investment.infrastructure.compliance.domain.model.command.instructi
 
 import java.math.BigDecimal;
 
+import fund.investment.infrastructure.compliance.domain.model.command.ComplianceCommand;
+import lombok.*;
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 /**
  * @Author dongkw
  * @Date 2020/9/17、14:59
  **/
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class CmplIstrCmd extends ComplianceCommand {
-    @TargetAggregateIdentifier
-    private String securityCode;
+
     private String istrId;
     private BigDecimal amount;
+
+    public CmplIstrCmd(String id, String istrId, BigDecimal amount) {
+        super(id);
+        this.istrId = istrId;
+        this.amount = amount;
+    }
 }

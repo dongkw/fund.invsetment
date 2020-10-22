@@ -1,15 +1,15 @@
 package infrastructure.trade.domain.model.valueobject;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Data
-@AllArgsConstructor
+@Getter
 @NoArgsConstructor
+@AllArgsConstructor
 public class OrderTradeElement {
 
 	private String tradeType;
     private String securityCode;
-
+    
 }

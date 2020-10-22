@@ -1,9 +1,7 @@
 package fund.investment.infrastructure.book.domain.model.command.instruction;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.axonframework.modelling.command.TargetAggregateIdentifier;
+import fund.investment.infrastructure.book.domain.model.command.VerificationCommand;
+import lombok.*;
 
 import java.math.BigDecimal;
 
@@ -11,12 +9,15 @@ import java.math.BigDecimal;
  * @Author dongkw
  * @Date 2020/9/4、17:41
  **/
-@Data
-@AllArgsConstructor
+@Getter
+@Setter
 @NoArgsConstructor
-public class CapitalCreatCmd {
-    @TargetAggregateIdentifier
-    private String id;
+public class CapitalCreatCmd extends VerificationCommand {
+
     private BigDecimal amount;
 
+    public CapitalCreatCmd(String id, BigDecimal amount) {
+        super(id);
+        this.amount = amount;
+    }
 }

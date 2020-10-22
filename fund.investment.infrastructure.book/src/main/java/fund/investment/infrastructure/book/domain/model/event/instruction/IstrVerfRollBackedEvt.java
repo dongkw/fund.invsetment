@@ -2,21 +2,24 @@ package fund.investment.infrastructure.book.domain.model.event.instruction;
 
 import java.math.BigDecimal;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import fund.investment.infrastructure.book.domain.model.event.VerificationEvent;
+import lombok.*;
 
 /**
  * @Author dongkw
  * @Date 2020/9/17、14:06
  **/
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
-@AllArgsConstructor
-public class IstrVerfRollBackedEvt {
+public class IstrVerfRollBackedEvt extends VerificationEvent {
 
-    private String unitId;
     private BigDecimal amount;
     private String istrId;
 
+    public IstrVerfRollBackedEvt(String id, BigDecimal amount, String istrId) {
+        super(id);
+        this.amount = amount;
+        this.istrId = istrId;
+    }
 }

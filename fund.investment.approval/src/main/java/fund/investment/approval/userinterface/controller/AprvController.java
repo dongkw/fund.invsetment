@@ -14,6 +14,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+<<<<<<< HEAD
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
+
+=======
+>>>>>>> 560393773742299ef174412d3b3e6c02d3d34800
 @Api
 @Slf4j
 @RestController
@@ -23,6 +30,43 @@ public class AprvController {
     @Autowired
     private CommandGateway commandGateway;
 
+<<<<<<< HEAD
+	@RequestMapping(value = "/pass", method = RequestMethod.GET)
+	public ResponseEntity<AprvIstrPassCmd> pass(
+									@RequestParam String id,
+									@RequestParam String instructionId,
+			                        @RequestParam String userId,
+			                        @RequestParam String operatorId) {
+		try {
+			AprvIstrPassCmd instruction = AprvIstrPassCmd.builder().id(id).instructionId(instructionId).userId(userId).operatorId(operatorId).build();
+			commandGateway.sendAndWait(instruction);
+			return new ResponseEntity<>(instruction, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+	}
+	
+	
+	@RequestMapping(value = "/refuse", method = RequestMethod.GET)
+	public ResponseEntity<AprvIstrRejectedCmd> refuse(
+									@RequestParam String id,
+									@RequestParam String instructionId,
+                                    @RequestParam String userId,
+                                    @RequestParam String operatorId) {
+		try {
+			AprvIstrRejectedCmd instruction = AprvIstrRejectedCmd.builder().id(id).instructionId(instructionId).userId(userId).operatorId(operatorId).build();
+			commandGateway.sendAndWait(instruction);
+			return new ResponseEntity<>(instruction, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+	}
+	
+=======
     @RequestMapping(value = "/pass", method = RequestMethod.GET)
     @ApiOperation(value = "审批通过", tags = "instruction_approval")
     public ResponseEntity<AprvIstrPassCmd> pass(
@@ -60,4 +104,5 @@ public class AprvController {
 
     }
 
+>>>>>>> 560393773742299ef174412d3b3e6c02d3d34800
 }

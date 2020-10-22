@@ -1,19 +1,22 @@
 package fund.investment.infrastructure.compliance.domain.model.command.instruction;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import fund.investment.infrastructure.compliance.domain.model.command.ComplianceCommand;
+import lombok.*;
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
 /**
  * @Author dongkw
  * @Date 2020/9/17、15:15
  **/
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class CancelComplIstrCmd extends ComplianceCommand {
-    @TargetAggregateIdentifier
-    private String securityCode;
+
     private String istrId;
+
+    public CancelComplIstrCmd(String id, String istrId) {
+        super(id);
+        this.istrId = istrId;
+    }
 }

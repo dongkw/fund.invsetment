@@ -1,5 +1,6 @@
 package fund.investment.infrastructure.book.domain.model.command.order;
 
+import fund.investment.infrastructure.book.domain.model.command.VerificationCommand;
 import fund.investment.infrastructure.common.DomainCommand;
 import lombok.*;
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
@@ -11,9 +12,12 @@ import org.axonframework.modelling.command.TargetAggregateIdentifier;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
-public class VerfOrderCmd extends DomainCommand {
-    @TargetAggregateIdentifier
-    private String unitId;
+public class VerfOrderCmd extends VerificationCommand {
+
     private String orderId;
+
+    public VerfOrderCmd(String id, String unitId, String orderId) {
+        super(id);
+        this.orderId = orderId;
+    }
 }
