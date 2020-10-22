@@ -7,9 +7,8 @@
 
     <parent>
         <groupId>fund.investment</groupId>
-        <artifactId>fund-investment-parent</artifactId>
+        <artifactId>fund.investment.parent</artifactId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath/>
     </parent>
 
     <artifactId>trade</artifactId>

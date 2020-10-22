@@ -11,10 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class ExchangeStockOrderTradeElement extends OrderTradeElement {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 5076170226178351115L;
+	
 	private String side;
 	private BigDecimal price;
 	private Long quantity;

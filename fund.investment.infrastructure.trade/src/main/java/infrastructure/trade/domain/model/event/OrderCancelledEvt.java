@@ -1,6 +1,5 @@
 package infrastructure.trade.domain.model.event;
 
-import fund.investment.infrastructure.util.LoggerTemplate;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,13 +18,4 @@ public class OrderCancelledEvt extends OrderEvent{
 		this.cancelQuantity = cancelQuantity;
 	}
 
-	@Override
-	public String toString() {
-		return LoggerTemplate.builder()
-				.content(this)
-				.name(this.getClass().getSimpleName())
-				.build()
-				.toJson();
-	}
-	
 }

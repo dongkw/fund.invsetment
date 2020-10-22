@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 
 import infrastructure.trade.domain.model.event.OrderCreatedEvt;
 import infrastructure.trade.exchange.stock.domain.model.valueobject.ExchangeStockOrderTradeElement;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,7 +11,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = true)
 public class ESOrderCreatedEvt extends OrderCreatedEvt{
 	private ExchangeStockOrderTradeElement orderTradeElement;
 	private BigDecimal averageFillPrice;
