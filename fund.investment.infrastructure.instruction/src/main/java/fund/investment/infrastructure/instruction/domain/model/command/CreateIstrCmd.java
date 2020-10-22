@@ -1,40 +1,31 @@
 package fund.investment.infrastructure.instruction.domain.model.command;
 
-import fund.investment.infrastructure.util.LoggerTemplate;import io.swagger.annotations.ApiModelProperty;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import fund.investment.infrastructure.instruction.domain.model.enumeration.TradeType;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.context.annotation.Profile;
+import lombok.Setter;
 
-@Data
-@Builder
-@AllArgsConstructor
+@Getter
+@Setter
 @NoArgsConstructor
-@Profile(value = "command")
-public class CreateIstrCmd extends InstructionCommand{
-	
-	@ApiModelProperty(value = "单元id")
-	private String unitId;
+public class CreateIstrCmd extends InstructionCommand {
 
-	@ApiModelProperty(value = "账户id")
-	private String accountId;
+    private String unitId;
 
-	@ApiModelProperty(value = "用户id")
-	private String userId;
+    private String accountId;
 
-	@ApiModelProperty(value = "证券内码")
-	private String securityCode;
+    private String userId;
 
-	@ApiModelProperty(value = "数量")
-	private Long quantity = 0L;
+    private String securityCode;
 
-	@Override
-	public String toString() {
-		return LoggerTemplate.builder()
-				.CONTENT(this)
-				.NAME(this.getClass().getSimpleName())
-				.build()
-				.toJson();
-	}
+    private long quantity;
+
+    public CreateIstrCmd(String id, TradeType tradeType, String unitId, String accountId, String userId, String securityCode, long quantity) {
+        super(id, tradeType);
+        this.unitId = unitId;
+        this.accountId = accountId;
+        this.userId = userId;
+        this.securityCode = securityCode;
+        this.quantity = quantity;
+    }
 }

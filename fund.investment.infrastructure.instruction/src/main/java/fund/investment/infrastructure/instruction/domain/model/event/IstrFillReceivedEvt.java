@@ -1,32 +1,25 @@
 package fund.investment.infrastructure.instruction.domain.model.event;
 
-import fund.investment.infrastructure.util.LoggerTemplate;import lombok.NoArgsConstructor;
-import org.springframework.context.annotation.Profile;
+import fund.investment.infrastructure.instruction.domain.model.enumeration.TradeType;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-
-@Data
-@Builder
+@Getter
+@Setter
 @NoArgsConstructor
-@AllArgsConstructor
-@Profile(value = "event")
 public class IstrFillReceivedEvt extends InstructionEvent {
-	
+
     private String orderId;
 
     private String fillId;
 
-    private Long fillQuantity;
+    private long fillQuantity;
 
-    @Override
-    public String toString() {
-        return LoggerTemplate.builder()
-                .CONTENT(this)
-                .NAME(this.getClass().getSimpleName())
-                .build()
-                .toJson();
+    public IstrFillReceivedEvt(TradeType tradeType, String id, String orderId, String fillId, long fillQuantity) {
+        super(tradeType, id);
+        this.orderId = orderId;
+        this.fillId = fillId;
+        this.fillQuantity = fillQuantity;
     }
- 
 }

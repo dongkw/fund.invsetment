@@ -1,42 +1,31 @@
 package fund.investment.infrastructure.instruction.domain.model.event;
 
-import fund.investment.infrastructure.util.LoggerTemplate;import fund.investment.infrastructure.instruction.domain.model.enumeration.TradeType;
-import io.swagger.annotations.ApiModelProperty;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import fund.investment.infrastructure.instruction.domain.model.enumeration.TradeType;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.context.annotation.Profile;
+import lombok.Setter;
 
-@Data
-@Builder
-@Profile(value = "event")
-@AllArgsConstructor
+@Getter
+@Setter
 @NoArgsConstructor
 public class IstrCreatedEvt extends InstructionEvent {
-	
-	@ApiModelProperty(value = "成交单元id")
-	private String unitId;
 
-	@ApiModelProperty(value = "账号id")
-	private String accountId;
+    private String unitId;
 
-	@ApiModelProperty(value = "用户id")
-	private String userId;
+    private String accountId;
 
-	@ApiModelProperty(value = "证券内码")
-	private String securityCode;
+    private String userId;
 
-	@ApiModelProperty(value = "数量")
-	private Long quantity;
+    private String securityCode;
 
-	@Override
-	public String toString() {
-		return LoggerTemplate.builder()
-				.CONTENT(this)
-				.NAME(this.getClass().getSimpleName())
-				.build()
-				.toJson();
-	}
-	
+    private long quantity;
+
+    public IstrCreatedEvt(TradeType tradeType, String id, String unitId, String accountId, String userId, String securityCode, long quantity) {
+        super(tradeType, id);
+        this.unitId = unitId;
+        this.accountId = accountId;
+        this.userId = userId;
+        this.securityCode = securityCode;
+        this.quantity = quantity;
+    }
 }

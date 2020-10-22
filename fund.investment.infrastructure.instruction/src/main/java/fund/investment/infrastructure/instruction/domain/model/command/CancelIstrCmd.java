@@ -1,35 +1,28 @@
 package fund.investment.infrastructure.instruction.domain.model.command;
 
-import fund.investment.infrastructure.util.LoggerTemplate;import fund.investment.infrastructure.instruction.domain.model.vo.Order;
-import org.springframework.context.annotation.Profile;
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import fund.investment.infrastructure.instruction.domain.model.enumeration.TradeType;
+import fund.investment.infrastructure.instruction.domain.model.vo.Order;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
-@Data
-@Builder
-@AllArgsConstructor
+@Getter
+@Setter
 @NoArgsConstructor
-@Profile(value = "command")
 public class CancelIstrCmd extends InstructionCommand {
 
-	private String cancelMsg;
+    private String cancelMsg;
 
-	private String CancelType;
+    private String cancelType;
 
-	private List<Order> orders;
+    private List<Order> orders;
 
-	@Override
-	public String toString() {
-		return LoggerTemplate.builder()
-				.CONTENT(this)
-				.NAME(this.getClass().getSimpleName())
-				.build()
-				.toJson();
-	}
-
+    public CancelIstrCmd(String id, TradeType tradeType, String cancelMsg, String cancelType, List<Order> orders) {
+        super(id, tradeType);
+        this.cancelMsg = cancelMsg;
+        this.cancelType = cancelType;
+        this.orders = orders;
+    }
 }

@@ -1,6 +1,5 @@
-HELP.md
-/target/
-!.mvn/wrapper/maven-wrapper.jar
+target/
+data/
 
 ### STS ###
 .apt_generated
@@ -24,8 +23,3 @@ HELP.md
 /nbdist/
 /.nb-gradle/
 /build/
-/fund.investment.exchange.stock/target/
-/fund.investment.exchange.stock.infrastructure.instruction/target/
-/fund.investment.infrastructure.instruction/target/
-/data/
-./root@192.168.221.195

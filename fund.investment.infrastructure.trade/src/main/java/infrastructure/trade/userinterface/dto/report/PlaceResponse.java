@@ -9,8 +9,8 @@ public class PlaceResponse {
 	@Override
 	public String toString() {
 		return LoggerTemplate.builder()
-				.CONTENT(this)
-				.NAME(this.getClass().getSimpleName())
+				.content(this)
+				.name(this.getClass().getSimpleName())
 				.build()
 				.toJson();
 	}

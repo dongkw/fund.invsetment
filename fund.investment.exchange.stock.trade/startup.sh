@@ -1,1 +1,0 @@
-nohup java -Xms256m -Xmx3g -Xdebug -Xrunjdwp:transport=dt_socket,address=19231,server=y,suspend=n  -jar  investment-order-0.0.1-SNAPSHOT.jar &

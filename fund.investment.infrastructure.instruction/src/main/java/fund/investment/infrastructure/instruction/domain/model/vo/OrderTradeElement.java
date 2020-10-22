@@ -1,11 +1,15 @@
 package fund.investment.infrastructure.instruction.domain.model.vo;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-@Data
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class OrderTradeElement {
-	private String tradeType;
-	private String securityCode;
-	private Long quantity = 0L;
 
+    private String tradeType;
+    private String securityCode;
+    private long   quantity;
 }

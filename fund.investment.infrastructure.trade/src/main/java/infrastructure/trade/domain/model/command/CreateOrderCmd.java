@@ -20,5 +20,17 @@ public class CreateOrderCmd extends OrderCommand{
 		this.accountId = accountId;
 		this.userId = userId;
 	}
+<<<<<<< HEAD
+
+	@Override
+	public String toString() {
+		return LoggerTemplate.builder()
+				.content(this)
+				.name(this.getClass().getSimpleName())
+				.build()
+				.toJson();
+	}
+=======
+>>>>>>> 3a0a2561e0fa4da06e959b868de6b818fed652af
 	
 }

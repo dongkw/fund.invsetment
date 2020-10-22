@@ -2,17 +2,12 @@ package fund.investment.infrastructure.instruction.domain.model.command;
 
 import fund.investment.infrastructure.instruction.domain.model.vo.OrderTradeElement;
 import fund.investment.infrastructure.util.LoggerTemplate;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.context.annotation.Profile;
 
-@Data
-@Builder
-@AllArgsConstructor
+@Getter
+@Setter
 @NoArgsConstructor
-@Profile(value = "command")
 public class CreateIstrOrderCmd extends InstructionCommand{
 
 	private String orderId;
@@ -22,8 +17,8 @@ public class CreateIstrOrderCmd extends InstructionCommand{
 	@Override
 	public String toString() {
 		return LoggerTemplate.builder()
-				.CONTENT(this)
-				.NAME(this.getClass().getSimpleName())
+				.content(this)
+				.name(this.getClass().getSimpleName())
 				.build()
 				.toJson();
 	}
