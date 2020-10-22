@@ -1,26 +1,28 @@
 package fund.investment.infrastructure.approve.domain.event;
 
-import org.springframework.context.annotation.Profile;
-
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import fund.investment.infrastructure.common.DomainEvent;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
-@Builder
-@AllArgsConstructor
+@Getter
+@Setter
 @NoArgsConstructor
-@Profile("command")
-@ApiModel(value = "待审批")
-public class AprvIstrInitializationEvt {
-	@ApiModelProperty(value = "审批id")
-	private String id;
-	@ApiModelProperty(value = "指令id")
-	private String instructionId;
-	private Integer status;
-	private String userId;
-	private String operatorId;
+public class AprvIstrInitializationEvt extends DomainEvent {
+
+    private String instructionId;
+
+    private Integer status;
+
+    private String userId;
+
+    private String operatorId;
+
+    public AprvIstrInitializationEvt(String id, String instructionId, Integer status, String userId, String operatorId) {
+        super(id);
+        this.instructionId = instructionId;
+        this.status = status;
+        this.userId = userId;
+        this.operatorId = operatorId;
+    }
 }

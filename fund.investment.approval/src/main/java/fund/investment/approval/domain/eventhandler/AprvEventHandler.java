@@ -29,9 +29,7 @@ public class AprvEventHandler {
 	public void on(IstrConfirmedEvt evt) {
 		log.info(evt.toString());
 		AprvIstrInitializationCmd cmd = AprvIstrInitializationCmd.builder().id(UIDGenerator.getId()).instructionId(evt.getId()).build();
-//		commandGateway.send(cmd);
-		commandBus.dispatch(new GenericCommandMessage<>(cmd));
-		
+		commandGateway.send(cmd);
 	}
 	
 }
