@@ -16,6 +16,7 @@ public enum OrderStatus {
         this.note = note;
     }
 
-    private int    id;
+    private int id;
+
     private String note;
 }

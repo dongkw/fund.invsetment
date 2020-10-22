@@ -24,8 +24,8 @@ public class SwaggerConfig {
                 .paths(Predicates.not(PathSelectors.regex("/error.*")))
                 .build()
                 .apiInfo(new ApiInfoBuilder()
-                        .title("bank")
-                        .description("记账服务")
-                        .version("1.0").build());
+                                 .title("bank")
+                                 .description("记账服务")
+                                 .version("1.0").build());
     }
 }

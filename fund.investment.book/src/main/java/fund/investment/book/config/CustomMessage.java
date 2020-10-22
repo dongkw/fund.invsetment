@@ -1,17 +1,14 @@
 package fund.investment.book.config;
 
 import lombok.extern.slf4j.Slf4j;
-import org.axonframework.commandhandling.CommandMessage;
 import org.axonframework.eventhandling.EventMessage;
 import org.axonframework.messaging.ExecutionException;
 import org.axonframework.messaging.Message;
 import org.axonframework.messaging.MessageDispatchInterceptor;
-import org.axonframework.messaging.MetaData;
 import org.axonframework.messaging.unitofwork.CurrentUnitOfWork;
 import org.axonframework.messaging.unitofwork.ExecutionResult;
 
 import java.util.List;
-import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 
@@ -49,7 +46,6 @@ public class CustomMessage implements MessageDispatchInterceptor<EventMessage<?>
                     sb.append(String.format(" which yielded a [%s] return value", executionResult.getResult().getClass().getSimpleName()));
                 }
             }
-
         });
         log.info(sb.toString());
         return (i, m) -> {

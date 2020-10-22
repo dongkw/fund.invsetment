@@ -1,6 +1,5 @@
 package fund.investment.book.domain.eventhandler;
 
-
 import fund.investment.infrastructure.book.domain.model.command.instruction.CancelVerfIstrCmd;
 import fund.investment.infrastructure.book.domain.model.command.instruction.RollbackVerfIstrCmd;
 import fund.investment.infrastructure.book.domain.model.command.instruction.VerfIstrCmd;
@@ -23,9 +22,12 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class ValidIstrHandler {
 
+    private final EventGateway eventGateway;
 
     @Autowired
-    private EventGateway eventGateway;
+    public ValidIstrHandler(EventGateway eventGateway) {
+        this.eventGateway = eventGateway;
+    }
 
     @CommandHandler
     public void handler(VerfIstrCmd cmd) {
@@ -55,6 +57,5 @@ public class ValidIstrHandler {
         IstrVerfRollBackedEvt event = new IstrVerfRollBackedEvt(cmd.getId(), cmd.getAmount(), cmd.getIstrId());
         eventGateway.publish(event);
         log.debug("send,{}", event);
-
     }
 }

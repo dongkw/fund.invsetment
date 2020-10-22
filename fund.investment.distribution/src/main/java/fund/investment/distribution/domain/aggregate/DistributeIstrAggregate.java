@@ -7,16 +7,14 @@ import fund.investment.infrastructure.distribution.domain.event.DistIstrInitilaz
 import fund.investment.infrastructure.distribution.domain.event.DistIstrRejectedEvt;
 import fund.investment.infrastructure.distribution.domain.event.DistributedIstrEvt;
 import fund.investment.infrastructure.instruction.domain.model.enumeration.DistributeStatus;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.modelling.command.AggregateIdentifier;
 import org.axonframework.modelling.command.AggregateLifecycle;
 import org.axonframework.spring.stereotype.Aggregate;
-
-import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @Data
 @Slf4j
@@ -52,7 +50,6 @@ public class DistributeIstrAggregate {
         log.info(cmd.toString());
         AggregateLifecycle.apply(
                 new DistributedIstrEvt(cmd.getId(), cmd.getInstructionId(), DistributeStatus.REJECT.getId(), cmd.getUserId(), cmd.getOperatorId()));
-
     }
 
     @EventSourcingHandler
@@ -61,7 +58,6 @@ public class DistributeIstrAggregate {
         this.instructionId = evt.getInstructionId();
         this.userId = evt.getUserId();
         this.operatorId = evt.getOperatorId();
-
     }
 
     @EventSourcingHandler
@@ -70,7 +66,6 @@ public class DistributeIstrAggregate {
         this.instructionId = evt.getInstructionId();
         this.userId = evt.getUserId();
         this.operatorId = evt.getOperatorId();
-
     }
 
     @EventSourcingHandler
@@ -79,6 +74,5 @@ public class DistributeIstrAggregate {
         this.instructionId = evt.getInstructionId();
         this.userId = evt.getUserId();
         this.operatorId = evt.getOperatorId();
-
     }
 }

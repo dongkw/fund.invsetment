@@ -3,7 +3,6 @@ package fund.investment.book.config;
 import fund.investment.infrastructure.common.DomainCommand;
 import fund.investment.infrastructure.util.uid.UIDGenerator;
 import lombok.extern.slf4j.Slf4j;
-import org.aspectj.weaver.tools.cache.AsynchronousFileCacheBacking;
 import org.axonframework.commandhandling.GenericCommandMessage;
 import org.axonframework.messaging.MessageDispatchInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +15,12 @@ import java.util.function.BiFunction;
 @Component
 public class CommandInterceptor implements MessageDispatchInterceptor {
 
+    private final UIDGenerator uidGenerator;
+
     @Autowired
-    private UIDGenerator uidGenerator;
+    public CommandInterceptor(UIDGenerator uidGenerator) {
+        this.uidGenerator = uidGenerator;
+    }
 
     @Override
     public BiFunction<Integer, GenericCommandMessage<DomainCommand>, GenericCommandMessage<DomainCommand>> handle(List messages) {

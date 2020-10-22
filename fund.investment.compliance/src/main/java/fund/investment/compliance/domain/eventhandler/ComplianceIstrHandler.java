@@ -22,10 +22,14 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class ComplianceIstrHandler {
 
+    private final CommandGateway commandGateway;
+    private final EventGateway   eventGateway;
+
     @Autowired
-    private CommandGateway commandGateway;
-    @Autowired
-    private EventGateway eventGateway;
+    public ComplianceIstrHandler(CommandGateway commandGateway, EventGateway eventGateway) {
+        this.commandGateway = commandGateway;
+        this.eventGateway = eventGateway;
+    }
 
     @CommandHandler
     public void handler(CmplIstrCmd cmd) {
@@ -55,8 +59,5 @@ public class ComplianceIstrHandler {
         IstrCmplRollbackedEvt evt = new IstrCmplRollbackedEvt(cmd.getId(), cmd.getIstrId());
         eventGateway.publish(evt);
         log.debug("send {}", evt);
-
     }
-
-
 }

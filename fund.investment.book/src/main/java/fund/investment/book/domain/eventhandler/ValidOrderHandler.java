@@ -1,6 +1,5 @@
 package fund.investment.book.domain.eventhandler;
 
-
 import fund.investment.infrastructure.book.domain.model.command.order.CancelVerfOrderCmd;
 import fund.investment.infrastructure.book.domain.model.command.order.RollbackVerfOrderCmd;
 import fund.investment.infrastructure.book.domain.model.command.order.VerfOrderCmd;
@@ -23,25 +22,26 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class ValidOrderHandler {
 
+    private final CommandGateway commandGateway;
+    private final EventGateway   eventGateway;
+
     @Autowired
-    private CommandGateway commandGateway;
-    @Autowired
-    private EventGateway eventGateway;
+    public ValidOrderHandler(CommandGateway commandGateway, EventGateway eventGateway) {
+        this.commandGateway = commandGateway;
+        this.eventGateway = eventGateway;
+    }
 
     @CommandHandler
     public void handler(VerfOrderCmd cmd) {
         log.debug("receive {}", cmd);
         if (cmd.getId().startsWith("A")) {
-            int a = 1 / 0;
             OrderVerfSucceedEvt evt = new OrderVerfSucceedEvt(cmd.getId(), cmd.getOrderId());
             eventGateway.publish(evt);
             log.debug("send,{}", evt);
-
         } else {
             OrderVerfFailedEvt evt = new OrderVerfFailedEvt(cmd.getId(), cmd.getOrderId());
             eventGateway.publish(evt);
             log.debug("send,{}", evt);
-
         }
     }
 
@@ -60,5 +60,4 @@ public class ValidOrderHandler {
         eventGateway.publish(event);
         log.debug("send,{}", event);
     }
-
 }

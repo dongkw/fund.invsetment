@@ -8,22 +8,19 @@ import org.axonframework.eventsourcing.eventstore.EventStore;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
-
 @Component
 public class ApprovalConfig {
-	
-	@Bean
+
+    @Bean
     public EventSourcingRepository<ApprovalIstrAggregate> aprvAggregateRepository(EventStore eventStore, Cache cache) {
         return EventSourcingRepository.builder(ApprovalIstrAggregate.class)
-                .cache(cache)
-                .eventStore(eventStore)
-                .build();
+                                      .cache(cache)
+                                      .eventStore(eventStore)
+                                      .build();
     }
-	
-	@Bean
+
+    @Bean
     public Cache distCache() {
         return new WeakReferenceCache();
     }
-		
-		
 }
