@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 public class ZmpPlaceResponse extends PlaceResponse {
 	
 	private String id;
+	
 	private String instructionId;
 	
 	public ZmpPlaceResponse(String id, String instructionId) {

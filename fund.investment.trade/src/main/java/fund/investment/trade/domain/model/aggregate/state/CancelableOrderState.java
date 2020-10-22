@@ -19,25 +19,25 @@ public class CancelableOrderState extends OrderState {
 	@Override
 	public void cancel(CancelOrderCmd cmd) {
 		log.info("Recieved Command: {}", cmd);
+		
 		OrderCancellingEvt evt = new OrderCancellingEvt(
 				cmd.getId(), 
 				cmd.getInstructionId(), 
 				cmd.getTradeType());
 		AggregateLifecycle.apply(evt);
 		log.info("Dispached Event: {}", evt);
-
 	}
 	
 	@Override
 	public void cancelling(PlaceCancelOrderCmd cmd) {
 		log.info("Recieved Command: {}", cmd);
+		
 		OrderCancellingEvt evt = new OrderCancellingEvt(
 				cmd.getId(), 
 				cmd.getInstructionId(), 
 				cmd.getTradeType());
 		AggregateLifecycle.apply(evt);
 		log.info("Dispached Event: {}", evt);
-
 	}
 
 }

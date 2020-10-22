@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 public class ZmqPlacedReport extends PlacedReport {
 	
 	private String id;
+	
 	private String instructionId;
 	
 	public ZmqPlacedReport(String id, String instructionId) {

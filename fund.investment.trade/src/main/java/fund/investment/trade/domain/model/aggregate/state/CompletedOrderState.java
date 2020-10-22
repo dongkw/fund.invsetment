@@ -4,7 +4,6 @@ public class CompletedOrderState extends OrderState{
 	
 	public CompletedOrderState() {
 		super(OrderStatus.COMPLETED);
-		
 	}
 
 }

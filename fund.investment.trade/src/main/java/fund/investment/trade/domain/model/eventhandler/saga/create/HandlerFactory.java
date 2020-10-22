@@ -8,10 +8,6 @@ import fund.investment.trade.domain.model.eventhandler.saga.create.vo.OrderVo;
 
 import java.util.*;
 
-/**
- * @Author dongkw
- * @Date 2020/9/18、5:42 下午
- **/
 @Component
 @Slf4j
 public class HandlerFactory {

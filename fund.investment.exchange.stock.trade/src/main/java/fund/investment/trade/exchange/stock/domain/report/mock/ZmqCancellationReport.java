@@ -9,10 +9,12 @@ import lombok.NoArgsConstructor;
 public class ZmqCancellationReport extends CancellationReport {
 
 	private String id;
+	
 	private String instructionId;
-	private Long cancelQuantity;
+	
+	private long cancelQuantity;
 
-	public ZmqCancellationReport(String id, String instructionId, Long cancelQuantity) {
+	public ZmqCancellationReport(String id, String instructionId, long cancelQuantity) {
 		super();
 		this.id = id;
 		this.instructionId = instructionId;

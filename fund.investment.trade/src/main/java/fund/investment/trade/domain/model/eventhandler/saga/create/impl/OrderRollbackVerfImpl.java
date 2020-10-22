@@ -1,16 +1,17 @@
 package fund.investment.trade.domain.model.eventhandler.saga.create.impl;
 
+import java.util.Arrays;
+
+import org.axonframework.commandhandling.gateway.CommandGateway;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import fund.investment.infrastructure.book.domain.model.command.order.RollbackVerfOrderCmd;
 import fund.investment.trade.domain.model.eventhandler.saga.create.HandlerFactory;
 import fund.investment.trade.domain.model.eventhandler.saga.create.IStatusHandler;
 import fund.investment.trade.domain.model.eventhandler.saga.create.vo.OrderSagaStatus;
 import fund.investment.trade.domain.model.eventhandler.saga.create.vo.OrderVo;
 import lombok.extern.slf4j.Slf4j;
-import org.axonframework.commandhandling.gateway.CommandGateway;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-import java.util.Arrays;
 
 /**
  * @Author dongkw
@@ -19,7 +20,8 @@ import java.util.Arrays;
 @Slf4j
 @Component
 public class OrderRollbackVerfImpl implements IStatusHandler {
-    @Autowired
+    
+	@Autowired
     private CommandGateway commandGateway;
 
     public OrderRollbackVerfImpl() {
@@ -30,10 +32,8 @@ public class OrderRollbackVerfImpl implements IStatusHandler {
 
     @Override
     public void handler(OrderVo vo) {
-
         RollbackVerfOrderCmd cmd = new RollbackVerfOrderCmd(vo.getUnitId(), vo.getOrderId());
         commandGateway.send(cmd);
         log.debug("saga send:{}", cmd);
-
     }
 }

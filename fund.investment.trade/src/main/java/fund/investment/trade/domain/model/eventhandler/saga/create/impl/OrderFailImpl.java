@@ -2,7 +2,6 @@ package fund.investment.trade.domain.model.eventhandler.saga.create.impl;
 
 import java.util.Arrays;
 
-import infrastructure.trade.domain.model.command.FailOrderCmd;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.modelling.saga.SagaLifecycle;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,15 +11,13 @@ import fund.investment.trade.domain.model.eventhandler.saga.create.HandlerFactor
 import fund.investment.trade.domain.model.eventhandler.saga.create.IStatusHandler;
 import fund.investment.trade.domain.model.eventhandler.saga.create.vo.OrderSagaStatus;
 import fund.investment.trade.domain.model.eventhandler.saga.create.vo.OrderVo;
+import infrastructure.trade.domain.model.command.FailOrderCmd;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * @Author dongkw
- * @Date 2020/10/10、4:31 下午
- **/
 @Slf4j
 @Component
 public class OrderFailImpl implements IStatusHandler {
+	
     @Autowired
     private CommandGateway commandGateway;
 
@@ -36,7 +33,6 @@ public class OrderFailImpl implements IStatusHandler {
 
     @Override
     public void handler(OrderVo vo) {
-
         FailOrderCmd cmd = new FailOrderCmd(vo.getOrderId(), vo.getIstrId(), null, vo.getUnitId(), null, null);
         commandGateway.send(cmd);
         log.debug("saga send:{}", cmd);

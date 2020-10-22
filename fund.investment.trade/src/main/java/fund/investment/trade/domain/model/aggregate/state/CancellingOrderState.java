@@ -13,12 +13,12 @@ public class CancellingOrderState extends OrderState {
 	
 	public CancellingOrderState() {
 		super(OrderStatus.CANCELLING);
-		
 	}
 	
 	@Override
 	public void cancelConfirm(CancelConfirmOrderCmd cmd) {
 		log.info("Recieved Command: {}", cmd);
+		
 		OrderCancelledEvt evt = new OrderCancelledEvt(
 				cmd.getId(), 
 				cmd.getInstructionId(), 
@@ -27,12 +27,12 @@ public class CancellingOrderState extends OrderState {
 				cmd.getCancelQuantity());
 		AggregateLifecycle.apply(evt);
 		log.info("Dispached Event: {}", evt);
-
 	};
 	
 	@Override
 	public void fill(FillOrderCmd cmd) {
 		log.info("Recieved Command: {}", cmd);
+		
 		OrderFilledEvt evt = new OrderFilledEvt(
 				cmd.getId(), 
 				cmd.getInstructionId(), 

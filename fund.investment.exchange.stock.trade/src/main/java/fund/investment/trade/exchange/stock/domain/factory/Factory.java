@@ -1,5 +1,7 @@
 package fund.investment.trade.exchange.stock.domain.factory;
 
+import java.math.BigDecimal;
+
 import fund.investment.trade.exchange.stock.domain.model.entity.ExchangeStockFill;
 import fund.investment.trade.exchange.stock.domain.report.mock.ZmpPlaceResponse;
 import fund.investment.trade.exchange.stock.domain.report.mock.ZmqCancelResponse;
@@ -12,6 +14,7 @@ import infrastructure.trade.domain.model.command.PlaceCancelOrderCmd;
 import infrastructure.trade.domain.model.command.PlaceConfirmOrderCmd;
 import infrastructure.trade.domain.model.command.PlaceOrderCmd;
 import infrastructure.trade.exchange.stock.domain.model.command.ESFillOrderCmd;
+import infrastructure.trade.exchange.stock.domain.model.valueobject.ExchangeStockOrderTradeElement;
 
 public class Factory {
 
@@ -54,7 +57,8 @@ public class Factory {
 				source.getId(), 
 				fill.getInstructionId(), 
 				fill.getTradeType(), 
-				fill);
+				fill, 
+				new ExchangeStockOrderTradeElement(fill.getTradeType(), null, null, null, 0l, BigDecimal.ZERO));
 	}
 
 }
