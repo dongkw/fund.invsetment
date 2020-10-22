@@ -1,6 +1,5 @@
 package infrastructure.trade.exchange.stock.domain.model.event;
 
-import fund.investment.infrastructure.util.LoggerTemplate;
 import infrastructure.trade.domain.model.event.OrderFilledEvt;
 import infrastructure.trade.domain.model.valueobject.Fill;
 import lombok.Getter;
@@ -16,13 +15,4 @@ public class ESOrderFilledEvt extends OrderFilledEvt{
 		
 	}
 
-	@Override
-	public String toString() {
-		return LoggerTemplate.builder()
-				.CONTENT(this)
-				.NAME(this.getClass().getSimpleName())
-				.build()
-				.toJson();
-	}
-	
 }

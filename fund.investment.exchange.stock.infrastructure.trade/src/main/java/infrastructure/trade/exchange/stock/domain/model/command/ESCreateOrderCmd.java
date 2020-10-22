@@ -2,7 +2,6 @@ package infrastructure.trade.exchange.stock.domain.model.command;
 
 import java.math.BigDecimal;
 
-import fund.investment.infrastructure.util.LoggerTemplate;
 import infrastructure.trade.domain.model.command.CreateOrderCmd;
 import infrastructure.trade.exchange.stock.domain.model.valueobject.ExchangeStockOrderTradeElement;
 import lombok.EqualsAndHashCode;
@@ -35,15 +34,6 @@ public class ESCreateOrderCmd extends CreateOrderCmd{
 		this.clearAmount = this.clearAmount.add(clearAmount);
 		this.totalFillQuantity += totalFillQuantity;
 		
-	}
-
-	@Override
-	public String toString() {
-		return LoggerTemplate.builder()
-				.CONTENT(this)
-				.NAME(this.getClass().getSimpleName())
-				.build()
-				.toJson();
 	}
 
 }

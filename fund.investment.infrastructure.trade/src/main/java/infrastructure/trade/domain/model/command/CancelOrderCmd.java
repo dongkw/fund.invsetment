@@ -1,6 +1,5 @@
 package infrastructure.trade.domain.model.command;
 
-import fund.investment.infrastructure.util.LoggerTemplate;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,15 +18,6 @@ public class CancelOrderCmd extends OrderCommand {
 		this.unitId = unitId;
 		this.cancelQuantity = cancelQuantity;
 		
-	}
-
-	@Override
-	public String toString() {
-		return LoggerTemplate.builder()
-				.CONTENT(this)
-				.NAME(this.getClass().getSimpleName())
-				.build()
-				.toJson();
 	}
 	
 }

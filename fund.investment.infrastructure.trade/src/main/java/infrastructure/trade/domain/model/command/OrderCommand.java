@@ -3,7 +3,6 @@ package infrastructure.trade.domain.model.command;
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
 import fund.investment.infrastructure.common.DomainCommand;
-import fund.investment.infrastructure.util.LoggerTemplate;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,15 +25,6 @@ public class OrderCommand extends DomainCommand {
 		this.id = id;
 		this.instructionId = instructionId;
 		this.tradeType = tradeType;
-	}
-
-	@Override
-	public String toString() {
-		return LoggerTemplate.builder()
-				.CONTENT(this)
-				.NAME(this.getClass().getSimpleName())
-				.build()
-				.toJson();
 	}
 	
 }

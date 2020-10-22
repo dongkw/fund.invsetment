@@ -2,16 +2,15 @@ package fund.investment.trade.exchange.stock.domain.model.aggregate;
 
 import java.math.BigDecimal;
 
-import fund.investment.trade.domain.model.aggregate.OrderAggregate;
-import fund.investment.trade.domain.model.aggregate.state.CompletedOrderState;
-import fund.investment.trade.domain.model.aggregate.state.CreatedOrderState;
-import fund.investment.trade.domain.model.aggregate.state.PartialFilledOrderState;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.modelling.command.AggregateLifecycle;
 import org.axonframework.spring.stereotype.Aggregate;
 
-
+import fund.investment.trade.domain.model.aggregate.OrderAggregate;
+import fund.investment.trade.domain.model.aggregate.state.CompletedOrderState;
+import fund.investment.trade.domain.model.aggregate.state.CreatedOrderState;
+import fund.investment.trade.domain.model.aggregate.state.PartialFilledOrderState;
 import fund.investment.trade.exchange.stock.domain.model.entity.ExchangeStockFill;
 import infrastructure.trade.exchange.stock.domain.model.command.ESCancelOrderCmd;
 import infrastructure.trade.exchange.stock.domain.model.command.ESCreateOrderCmd;
@@ -64,7 +63,7 @@ public class ExchangeStockOrderAggregate extends OrderAggregate {
 				cmd.getClearAmount());
 		AggregateLifecycle.apply(evt); 
 		
-		log.info("Dispach Event: {}", evt);
+		log.info("Dispached Event: {}", evt);
 		
 	}
 	
@@ -136,11 +135,12 @@ public class ExchangeStockOrderAggregate extends OrderAggregate {
 	}
 	
 	private boolean checkSatisfy(ESOrderFilledEvt evt) {
-		Long filledQuantity = getFills().stream().mapToLong(it -> {
-			ExchangeStockFill fillItem = (ExchangeStockFill)it;
-			return fillItem.getFillQuantity();
-			
-		}).sum();
+		Long filledQuantity = getFills()
+				.stream()
+				.mapToLong(it -> {
+					ExchangeStockFill fillItem = (ExchangeStockFill)it;
+					return fillItem.getFillQuantity();})
+				.sum();
 		ExchangeStockOrderTradeElement tradeElement = (ExchangeStockOrderTradeElement) getTradeElement();
 		return filledQuantity >= tradeElement.getQuantity();
 		
