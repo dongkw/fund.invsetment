@@ -1,6 +1,6 @@
 package fund.investment.trade.domain.model.eventhandler.saga.create.impl;
 
-import fund.investment.instruction.exchange.stock.domain.model.command.ESCancelIstrOrderCmd;
+import fund.investment.infrastructure.instruction.domain.model.command.CancelIstrOrderCmd;
 import fund.investment.trade.domain.model.eventhandler.saga.create.HandlerFactory;
 import fund.investment.trade.domain.model.eventhandler.saga.create.IStatusHandler;
 import fund.investment.trade.domain.model.eventhandler.saga.create.valueobject.OrderSagaStatus;
@@ -21,21 +21,19 @@ import java.util.Arrays;
 public class OrderRollbackIstrImpl implements IStatusHandler {
 
     private final CommandGateway commandGateway;
+    private final IRollbackIstrHandler rollbackIstrHandler;
 
     @Autowired
-    public OrderRollbackIstrImpl(CommandGateway commandGateway) {
+    public OrderRollbackIstrImpl(CommandGateway commandGateway, IRollbackIstrHandler rollbackIstrHandler) {
         HandlerFactory.register(Arrays.asList(OrderSagaStatus.CMPL_FAIL, OrderSagaStatus.VERF_FAIL, OrderSagaStatus.ISTR_SUCC), this);
         HandlerFactory.register(Arrays.asList(OrderSagaStatus.CMPL_SUCC, OrderSagaStatus.VERF_FAIL, OrderSagaStatus.ISTR_SUCC), this);
         HandlerFactory.register(Arrays.asList(OrderSagaStatus.CMPL_FAIL, OrderSagaStatus.VERF_SUCC, OrderSagaStatus.ISTR_SUCC), this);
         this.commandGateway = commandGateway;
+        this.rollbackIstrHandler = rollbackIstrHandler;
     }
 
     @Override
     public void handler(OrderValueObject vo) {
-        ESCancelIstrOrderCmd cmd = new ESCancelIstrOrderCmd();
-        cmd.setId(vo.getIstrId());
-        cmd.setOrderId(vo.getOrderId());
-        commandGateway.send(cmd);
-        log.debug("saga send:{}", cmd);
+        rollbackIstrHandler.send(vo);
     }
 }
