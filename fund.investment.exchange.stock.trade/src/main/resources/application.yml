@@ -20,7 +20,7 @@ logging:
       investment: debug
 axon:
   axonserver:
-    servers: 192.168.43.135
+    servers: localhost
 
   distributed:
     enabled: true
