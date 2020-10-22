@@ -1,19 +1,19 @@
-package fund.investment.trade.domain.model.eventhandler.saga.create.vo;
-
-import java.util.Set;
+package fund.investment.trade.domain.model.eventhandler.saga.create.valueobject;
 
 import lombok.Data;
 
+import java.util.Set;
+
 @Data
-public class OrderVo {
+public class OrderValueObject {
 
     private String orderId;
-    
+
     private String istrId;
-    
+
     private String unitId;
-    
+
     private String securityCode;
-    
+
     private Set<OrderSagaStatus> statuses;
 }

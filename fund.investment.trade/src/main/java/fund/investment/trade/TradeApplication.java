@@ -3,11 +3,10 @@ package fund.investment.trade;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-
 @SpringBootApplication
-public class OrderApp {
-	public static void main(String[] args) {
-		SpringApplication.run(OrderApp.class, args);
-	}
+public class TradeApplication {
 
+    public static void main(String[] args) {
+        SpringApplication.run(TradeApplication.class, args);
+    }
 }

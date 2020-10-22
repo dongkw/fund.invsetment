@@ -1,4 +1,4 @@
-package infrastructure.trade.domain.model.valueobject;
+package infrastructure.trade.domain.model.enumeration;
 
 public enum OrderStatus {
 

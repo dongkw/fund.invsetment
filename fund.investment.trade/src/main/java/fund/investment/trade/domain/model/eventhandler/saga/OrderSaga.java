@@ -9,6 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
  **/
 public class OrderSaga {
 
+    public final transient CommandGateway commandGateway;
+
     @Autowired
-    public transient CommandGateway commandGateway;
+    public OrderSaga(CommandGateway commandGateway) {
+        this.commandGateway = commandGateway;
+    }
 }

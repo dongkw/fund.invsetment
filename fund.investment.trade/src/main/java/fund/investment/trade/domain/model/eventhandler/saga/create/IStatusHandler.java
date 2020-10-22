@@ -1,6 +1,6 @@
 package fund.investment.trade.domain.model.eventhandler.saga.create;
 
-import fund.investment.trade.domain.model.eventhandler.saga.create.vo.OrderVo;
+import fund.investment.trade.domain.model.eventhandler.saga.create.valueobject.OrderValueObject;
 
 /**
  * @Author dongkw
@@ -8,6 +8,5 @@ import fund.investment.trade.domain.model.eventhandler.saga.create.vo.OrderVo;
  **/
 public interface IStatusHandler {
 
-    void handler(OrderVo orderVo);
-
+    void handler(OrderValueObject orderValueObject);
 }
