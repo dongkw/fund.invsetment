@@ -1,4 +1,4 @@
-package fund.investment.domain.queryhandler.trade.command;
+package fund.investment.domain.queryhandler.instruction.command;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderEventByIdQuerier {
+public class InstructionEventByIdQuerier {
 	
 	private String id;
-
 }

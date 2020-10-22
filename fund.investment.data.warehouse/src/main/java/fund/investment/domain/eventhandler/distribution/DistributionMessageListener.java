@@ -12,22 +12,22 @@ import org.springframework.stereotype.Component;
 import fund.investment.infrastructure.distribution.domain.event.DistIstrInitilazationEvt;
 import fund.investment.infrastructure.distribution.domain.event.DistIstrRejectedEvt;
 import fund.investment.infrastructure.distribution.domain.event.DistributedIstrEvt;
-import fund.investment.infrastructure.repository.db.dao.distribution.CustomDistEventEntryRepository;
-import fund.investment.infrastructure.repository.db.dao.distribution.DistEventEntry;
+import fund.investment.infrastructure.repository.db.dao.distribution.CustomDistributionEventEntryRepository;
+import fund.investment.infrastructure.repository.db.dao.distribution.DistributionEventEntry;
 import fund.investment.util.Constant;
 import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
-public class DistMessageListener {
+public class DistributionMessageListener {
 	
 	@Autowired
-	private CustomDistEventEntryRepository datastore;
+	private CustomDistributionEventEntryRepository datastore;
 	
 	@EventHandler
 	@Transactional(rollbackOn = Exception.class)
 	public void ofType(DistIstrInitilazationEvt evt) {
-		DistEventEntry item = DistEventEntry.builder()
+		DistributionEventEntry item = DistributionEventEntry.builder()
 				.id(evt.getId())
 				.instructionId(evt.getInstructionId())
 				.status(evt.getStatus())
@@ -37,15 +37,14 @@ public class DistMessageListener {
 		datastore.saveAndFlush(item);
 		
 		log.info(Constant.MESSAGE_BASE + evt.toString());
-
 	}
 	
 	@EventHandler
 	@Transactional(rollbackOn = Exception.class)
 	public void ofType(DistIstrRejectedEvt evt) {
-		Optional<DistEventEntry> optionalItem =datastore.findById(evt.getId());
+		Optional<DistributionEventEntry> optionalItem =datastore.findById(evt.getId());
 		if(optionalItem.isPresent()) {
-			DistEventEntry item = optionalItem.get();
+			DistributionEventEntry item = optionalItem.get();
 			
 			item.setOperatorId(evt.getOperatorId());
 			item.setUserId(evt.getUserId());
@@ -54,17 +53,15 @@ public class DistMessageListener {
 			datastore.saveAndFlush(item);
 			
 			log.info(Constant.MESSAGE_BASE + evt.toString());
-			
 		}
-		
 	}
 	
 	@EventHandler
 	@Transactional(rollbackOn = Exception.class)
 	public void ofType(DistributedIstrEvt evt) {
-		Optional<DistEventEntry> optionalItem =datastore.findById(evt.getId());
+		Optional<DistributionEventEntry> optionalItem =datastore.findById(evt.getId());
 		if(optionalItem.isPresent()) {
-			DistEventEntry item = optionalItem.get();
+			DistributionEventEntry item = optionalItem.get();
 			
 			item.setOperatorId(evt.getOperatorId());
 			item.setUserId(evt.getUserId());
@@ -73,9 +70,6 @@ public class DistMessageListener {
 			datastore.saveAndFlush(item);
 			
 			log.info(Constant.MESSAGE_BASE + evt.toString());
-			
 		}
-		
 	}
-
 }

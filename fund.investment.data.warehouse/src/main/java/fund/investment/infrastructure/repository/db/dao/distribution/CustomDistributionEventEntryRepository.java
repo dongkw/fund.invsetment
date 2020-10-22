@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CustomDistEventEntryRepository extends JpaRepository<DistEventEntry, String>{
+public interface CustomDistributionEventEntryRepository extends JpaRepository<DistributionEventEntry, String>{
 
 }

@@ -24,7 +24,6 @@
 	</properties>
 
 	<dependencies>
-	
 		<!-- spring relation -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -144,7 +143,6 @@
 				</executions>
 			</plugin>
 			<!-- git commit end -->
-
 		</plugins>
 	</build>
 

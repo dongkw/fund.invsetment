@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderAllEventQuerier {
+public class TradeAllEventQuerier {
+	
 	private LocalDateTime time;
-
 }

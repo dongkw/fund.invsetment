@@ -13,47 +13,42 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import fund.investment.infrastructure.util.SwaggerTag;
-import fund.investment.domain.queryhandler.distribution.command.DistAllEventQuerier;
-import fund.investment.domain.queryhandler.distribution.command.DistEventByIdQuerier;
-import fund.investment.infrastructure.repository.db.dao.distribution.DistEventEntry;
+import fund.investment.domain.queryhandler.distribution.command.DistributionAllEventQuerier;
+import fund.investment.domain.queryhandler.distribution.command.DistributionEventByIdQuerier;
+import fund.investment.infrastructure.repository.db.dao.distribution.DistributionEventEntry;
+import fund.investment.util.SwaggerTag;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @Api
 @RestController
 @RequestMapping("/investment/distributions")
-public class DistController {
+public class DistributionController {
 	
 	@Autowired
     private QueryGateway queryGateway;
 	
 	@RequestMapping(value = "/{distId}", method = RequestMethod.GET)
-	@ApiOperation(value = "findById", tags = SwaggerTag.INSTRUCTION_DISTRIBUTION)
-	public ResponseEntity<DistEventEntry> findById(@PathVariable("distId") String distId) {
+	@ApiOperation(value = "findById", tags = SwaggerTag.DISTRIBUTION)
+	public ResponseEntity<DistributionEventEntry> findById(@PathVariable("distId") String distId) {
 		try {
-			DistEventEntry result = queryGateway.query(DistEventByIdQuerier.builder().id(distId).build(), ResponseTypes.instanceOf(DistEventEntry.class)).join();
+			DistributionEventEntry result = queryGateway.query(DistributionEventByIdQuerier.builder().id(distId).build(), ResponseTypes.instanceOf(DistributionEventEntry.class)).join();
 			return new ResponseEntity<>(result, HttpStatus.OK);
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		
 	}
 	
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	@ApiOperation(value = "findAll", tags = SwaggerTag.INSTRUCTION_DISTRIBUTION)
-	public ResponseEntity<List<DistEventEntry>> findAll() {
+	@ApiOperation(value = "findAll", tags = SwaggerTag.DISTRIBUTION)
+	public ResponseEntity<List<DistributionEventEntry>> findAll() {
 		try {
-			List<DistEventEntry> result = queryGateway.subscriptionQuery(DistAllEventQuerier.builder().time(LocalDateTime.now()).build(), ResponseTypes.multipleInstancesOf(DistEventEntry.class), ResponseTypes.instanceOf(DistEventEntry.class)).initialResult().block();
+			List<DistributionEventEntry> result = queryGateway.subscriptionQuery(DistributionAllEventQuerier.builder().time(LocalDateTime.now()).build(), ResponseTypes.multipleInstancesOf(DistributionEventEntry.class), ResponseTypes.instanceOf(DistributionEventEntry.class)).initialResult().block();
 			return new ResponseEntity<>(result, HttpStatus.OK);
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		
 	}
-	
 }

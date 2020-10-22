@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import fund.investment.infrastructure.repository.db.dao.trade.CustomOrderEventEntryRepository;
-import fund.investment.infrastructure.repository.db.dao.trade.OrderEventEntry;
+import fund.investment.infrastructure.repository.db.dao.trade.CustomTradeEventEntryRepository;
+import fund.investment.infrastructure.repository.db.dao.trade.TradeEventEntry;
 import fund.investment.util.Constant;
 import infrastructure.trade.domain.model.event.OrderCancelledEvt;
 import infrastructure.trade.domain.model.event.OrderCreatedEvt;
@@ -18,16 +18,15 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
-public class OrderMessageListener {
+public class TradeMessageListener {
 	
 	@Autowired
-	private CustomOrderEventEntryRepository datastore;
+	private CustomTradeEventEntryRepository datastore;
 	
 	@EventHandler
 	@Transactional(rollbackFor = Exception.class)
 	public void ofType(OrderCreatedEvt evt) {
-		
-		OrderEventEntry item = OrderEventEntry.builder()
+		TradeEventEntry item = TradeEventEntry.builder()
 				.id(evt.getId())
 				.instructionId(evt.getInstructionId())
 				.creatTime(LocalDateTime.now())
@@ -36,18 +35,15 @@ public class OrderMessageListener {
 		
 			datastore.saveAndFlush(item);
 			log.info(Constant.MESSAGE_BASE.concat(evt.toString()));
-			
 	}
 	
 	@EventHandler
 	@Transactional(rollbackFor = Exception.class)
 	public void ofType(OrderCancelledEvt evt) {
-		Optional<OrderEventEntry> history = datastore.findById(evt.getId());
+		Optional<TradeEventEntry> history = datastore.findById(evt.getId());
 		if(history.isPresent()) {
-			OrderEventEntry freshItem = history.get();
-			
+			TradeEventEntry freshItem = history.get();
 			freshItem.setUpdateTime(LocalDateTime.now());
-			
 			datastore.saveAndFlush(freshItem);
 			log.info(Constant.MESSAGE_BASE.concat(evt.toString()));
 		}
@@ -56,15 +52,12 @@ public class OrderMessageListener {
 	@EventHandler
 	@Transactional(rollbackFor = Exception.class)
 	public void ofType(OrderFilledEvt evt) {
-		Optional<OrderEventEntry> history = datastore.findById(evt.getId());
+		Optional<TradeEventEntry> history = datastore.findById(evt.getId());
 		if(history.isPresent()) {
-			OrderEventEntry freshItem = history.get();
-			
+			TradeEventEntry freshItem = history.get();
 			freshItem.setUpdateTime(LocalDateTime.now());
-			
 			datastore.saveAndFlush(freshItem);
 			log.info(Constant.MESSAGE_BASE.concat(evt.toString()));
 		}
 	}
-	
 }

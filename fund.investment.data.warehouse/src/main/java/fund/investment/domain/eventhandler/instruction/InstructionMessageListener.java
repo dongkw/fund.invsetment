@@ -19,22 +19,22 @@ import fund.investment.infrastructure.instruction.domain.model.event.IstrCreated
 import fund.investment.infrastructure.instruction.domain.model.event.IstrFillReceivedEvt;
 import fund.investment.infrastructure.instruction.domain.model.event.IstrOrderCancelledEvt;
 import fund.investment.infrastructure.instruction.domain.model.event.IstrOrderCreatedEvt;
-import fund.investment.infrastructure.repository.db.dao.instruction.CustomIstrEventEntryRepository;
-import fund.investment.infrastructure.repository.db.dao.instruction.IstrEventEntry;
+import fund.investment.infrastructure.repository.db.dao.instruction.CustomInstructionEventEntryRepository;
+import fund.investment.infrastructure.repository.db.dao.instruction.InstructionEventEntry;
 import fund.investment.util.Constant;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
-public class IstrMessageListener {
+public class InstructionMessageListener {
 	
 	@Autowired
-	private CustomIstrEventEntryRepository datastore;
+	private CustomInstructionEventEntryRepository datastore;
 	
 	@EventHandler
 	@Transactional(rollbackFor = Exception.class)
 	public void ofType(IstrCreatedEvt evt) {
-		IstrEventEntry item = IstrEventEntry.builder()
+		InstructionEventEntry item = InstructionEventEntry.builder()
 				.id(evt.getId())
 				.creatTime(LocalDateTime.now())
 				.updateTime(LocalDateTime.now())
@@ -47,22 +47,21 @@ public class IstrMessageListener {
 	@EventHandler
 	@Transactional(rollbackFor = Exception.class)
 	public void ofType(IstrFillReceivedEvt evt) {
-		Optional<IstrEventEntry> history = datastore.findById(evt.getId());
+		Optional<InstructionEventEntry> history = datastore.findById(evt.getId());
 		if(history.isPresent()) {
-			IstrEventEntry freshItem = history.get();
+			InstructionEventEntry freshItem = history.get();
 			freshItem.setUpdateTime(LocalDateTime.now());
 			datastore.saveAndFlush(freshItem);
 			log.info(Constant.MESSAGE_BASE.concat(evt.toString()));
-			
 		}
 	}
 	
 	@EventHandler
 	@Transactional(rollbackFor = Exception.class)
 	public void ofType(AprvIstrPassEvt evt) {
-		Optional<IstrEventEntry> history = datastore.findById(evt.getId());
+		Optional<InstructionEventEntry> history = datastore.findById(evt.getId());
 		if(history.isPresent()) {
-			IstrEventEntry freshItem = history.get();
+			InstructionEventEntry freshItem = history.get();
 			freshItem.setUpdateTime(LocalDateTime.now());
 			datastore.saveAndFlush(freshItem);
 			log.info(Constant.MESSAGE_BASE.concat(evt.toString()));
@@ -72,12 +71,10 @@ public class IstrMessageListener {
 	@EventHandler
 	@Transactional(rollbackFor = Exception.class)
 	public void ofType(AprvIstrRejectedEvt evt) {
-		Optional<IstrEventEntry> history = datastore.findById(evt.getId());
+		Optional<InstructionEventEntry> history = datastore.findById(evt.getId());
 		if(history.isPresent()) {
-			IstrEventEntry freshItem = history.get();
-			
+			InstructionEventEntry freshItem = history.get();
 			freshItem.setUpdateTime(LocalDateTime.now());
-
 			datastore.saveAndFlush(freshItem);
 			log.info(Constant.MESSAGE_BASE.concat(evt.toString()));
 		}
@@ -86,12 +83,10 @@ public class IstrMessageListener {
 	@EventHandler
 	@Transactional(rollbackFor = Exception.class)
 	public void ofType(IstrCancelledEvt evt) {
-		Optional<IstrEventEntry> history = datastore.findById(evt.getId());
+		Optional<InstructionEventEntry> history = datastore.findById(evt.getId());
 		if(history.isPresent()) {
-			IstrEventEntry freshItem = history.get();
-			
+			InstructionEventEntry freshItem = history.get();
 			freshItem.setUpdateTime(LocalDateTime.now());
-
 			datastore.saveAndFlush(freshItem);
 			log.info(Constant.MESSAGE_BASE.concat(evt.toString()));
 		}
@@ -100,25 +95,21 @@ public class IstrMessageListener {
 	@EventHandler
 	@Transactional(rollbackFor = Exception.class)
 	public void ofType(IstrCompletedEvt evt) {
-		Optional<IstrEventEntry> history = datastore.findById(evt.getId());
+		Optional<InstructionEventEntry> history = datastore.findById(evt.getId());
 		if(history.isPresent()) {
-			IstrEventEntry freshItem = history.get();
-			
+			InstructionEventEntry freshItem = history.get();
 			freshItem.setUpdateTime(LocalDateTime.now());
-			
 			datastore.saveAndFlush(freshItem);
 			log.info(Constant.MESSAGE_BASE.concat(evt.toString()));
-			
 		}
 	}
 	
 	@EventHandler
 	@Transactional(rollbackFor = Exception.class)
 	public void ofType(IstrConfirmedEvt evt) {
-		Optional<IstrEventEntry> history = datastore.findById(evt.getId());
+		Optional<InstructionEventEntry> history = datastore.findById(evt.getId());
 		if(history.isPresent()) {
-			IstrEventEntry freshItem = history.get();
-			
+			InstructionEventEntry freshItem = history.get();
 			freshItem.setUpdateTime(LocalDateTime.now());
 			datastore.saveAndFlush(freshItem);
 			log.info(Constant.MESSAGE_BASE.concat(evt.toString()));
@@ -128,12 +119,10 @@ public class IstrMessageListener {
 	@EventHandler
 	@Transactional(rollbackFor = Exception.class)
 	public void ofType(DistIstrRejectedEvt evt) {
-		Optional<IstrEventEntry> history = datastore.findById(evt.getId());
+		Optional<InstructionEventEntry> history = datastore.findById(evt.getId());
 		if(history.isPresent()) {
-			IstrEventEntry freshItem = history.get();
-			
+			InstructionEventEntry freshItem = history.get();
 			freshItem.setUpdateTime(LocalDateTime.now());
-
 			datastore.saveAndFlush(freshItem);
 			log.info(Constant.MESSAGE_BASE.concat(evt.toString()));
 		}
@@ -142,12 +131,10 @@ public class IstrMessageListener {
 	@EventHandler
 	@Transactional(rollbackFor = Exception.class)
 	public void ofType(DistributedIstrEvt evt) {
-		Optional<IstrEventEntry> history = datastore.findById(evt.getId());
+		Optional<InstructionEventEntry> history = datastore.findById(evt.getId());
 		if(history.isPresent()) {
-			IstrEventEntry freshItem = history.get();
-			
+			InstructionEventEntry freshItem = history.get();
 			freshItem.setUpdateTime(LocalDateTime.now());
-
 			datastore.saveAndFlush(freshItem);
 			log.info(Constant.MESSAGE_BASE.concat(evt.toString()));
 		}
@@ -156,10 +143,9 @@ public class IstrMessageListener {
 	@EventHandler
 	@Transactional(rollbackFor = Exception.class)
 	public void ofType(IstrOrderCancelledEvt evt) {
-		Optional<IstrEventEntry> history = datastore.findById(evt.getId());
+		Optional<InstructionEventEntry> history = datastore.findById(evt.getId());
 		if(history.isPresent()) {
-			IstrEventEntry freshItem = history.get();
-			
+			InstructionEventEntry freshItem = history.get();
 			freshItem.setUpdateTime(LocalDateTime.now());
 			datastore.saveAndFlush(freshItem);
 			log.info(Constant.MESSAGE_BASE.concat(evt.toString()));
@@ -169,16 +155,12 @@ public class IstrMessageListener {
 	@EventHandler
 	@Transactional(rollbackFor = Exception.class)
 	public void ofType(IstrOrderCreatedEvt evt) {
-		Optional<IstrEventEntry> history = datastore.findById(evt.getId());
+		Optional<InstructionEventEntry> history = datastore.findById(evt.getId());
 		if(history.isPresent()) {
-			IstrEventEntry freshItem = history.get();
-			
+			InstructionEventEntry freshItem = history.get();
 			freshItem.setUpdateTime(LocalDateTime.now());
-//			freshItem.setStatus(evt.getInstructionState().getInstructionStatus().statusId());
-			
 			datastore.saveAndFlush(freshItem);
 			log.info(Constant.MESSAGE_BASE.concat(evt.toString()));
 		}
 	}
-	
 }

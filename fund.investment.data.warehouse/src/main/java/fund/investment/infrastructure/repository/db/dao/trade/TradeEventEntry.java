@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "order_event")
-public class OrderEventEntry {
+public class TradeEventEntry {
 
 	@Id
 	@Column(name = "id", nullable = false, unique = true, length = 100)
@@ -35,5 +35,4 @@ public class OrderEventEntry {
 	
 	@Column(name = "update_time", nullable = true, length = 50)
 	private LocalDateTime updateTime;
-	
 }

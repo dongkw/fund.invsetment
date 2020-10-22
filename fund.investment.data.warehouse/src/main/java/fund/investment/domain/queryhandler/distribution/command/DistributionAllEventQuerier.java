@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class DistAllEventQuerier {
+public class DistributionAllEventQuerier {
+	
 	private LocalDateTime time;
-
 }

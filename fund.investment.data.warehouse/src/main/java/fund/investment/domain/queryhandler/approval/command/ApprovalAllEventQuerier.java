@@ -1,4 +1,4 @@
-package fund.investment.domain.queryhandler.instruction.command;
+package fund.investment.domain.queryhandler.approval.command;
 
 import java.time.LocalDateTime;
 
@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class IstrAllEventQuerier {
+public class ApprovalAllEventQuerier {
+	
 	private LocalDateTime time;
-
 }
