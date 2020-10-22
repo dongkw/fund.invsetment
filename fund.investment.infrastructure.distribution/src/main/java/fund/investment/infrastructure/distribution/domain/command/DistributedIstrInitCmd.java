@@ -1,28 +1,24 @@
 package fund.investment.infrastructure.distribution.domain.command;
 
-import org.axonframework.modelling.command.TargetAggregateIdentifier;
-import org.springframework.context.annotation.Profile;
-
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import fund.investment.infrastructure.common.DomainCommand;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
-@Builder
-@AllArgsConstructor
+@Getter
+@Setter
 @NoArgsConstructor
-@Profile("command")
-@ApiModel(value = "分发初始化")
-public class DistributedIstrInitCmd {
-	@ApiModelProperty(value = "分发id")
-	@TargetAggregateIdentifier
-	private String id;
-	@ApiModelProperty(value = "指令id")
-	private String instructionId;
-	private String userId;
-	private String operatorId;
+public class DistributedIstrInitCmd extends DomainCommand {
+    private String instructionId;
 
+    private String userId;
+
+    private String operatorId;
+
+    public DistributedIstrInitCmd(String id, String instructionId, String userId, String operatorId) {
+        super(id);
+        this.instructionId = instructionId;
+        this.userId = userId;
+        this.operatorId = operatorId;
+    }
 }

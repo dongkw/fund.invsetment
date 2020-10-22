@@ -1,8 +1,7 @@
 package fund.investment.infrastructure.book.domain.model.event.instruction;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import fund.investment.infrastructure.book.domain.model.event.VerificationEvent;
+import lombok.*;
 
 import java.math.BigDecimal;
 
@@ -10,12 +9,15 @@ import java.math.BigDecimal;
  * @Author dongkw
  * @Date 2020/9/17、14:06
  **/
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
-@AllArgsConstructor
-public class IstrVerfEvt {
+public class IstrVerfEvt extends VerificationEvent {
 
-    private String unitId;
     private BigDecimal amount;
 
+    public IstrVerfEvt(String id, BigDecimal amount) {
+        super(id);
+        this.amount = amount;
+    }
 }

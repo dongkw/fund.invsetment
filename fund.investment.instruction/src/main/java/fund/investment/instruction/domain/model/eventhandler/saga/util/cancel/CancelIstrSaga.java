@@ -3,10 +3,10 @@ package fund.investment.instruction.domain.model.eventhandler.saga.util.cancel;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import fund.investment.infrastructure.book.domain.model.command.instruction.CancelVerfIstrCmd;
-import fund.investment.infrastructure.book.domain.model.command.instruction.VerificationCommand;
+import fund.investment.infrastructure.book.domain.model.command.VerificationCommand;
 import fund.investment.infrastructure.book.domain.model.event.instruction.IstrVerfCancelledEvt;
 import fund.investment.infrastructure.compliance.domain.model.command.instruction.CancelComplIstrCmd;
-import fund.investment.infrastructure.compliance.domain.model.command.instruction.ComplianceCommand;
+import fund.investment.infrastructure.compliance.domain.model.command.ComplianceCommand;
 import fund.investment.infrastructure.compliance.domain.model.event.instruction.IstrCmplCancelledEvt;
 import fund.investment.infrastructure.instruction.domain.model.command.CancelConfIstrCmd;
 import fund.investment.infrastructure.instruction.domain.model.enumeration.OrderStatus;

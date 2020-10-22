@@ -1,17 +1,20 @@
 package fund.investment.infrastructure.compliance.domain.model.event.order;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import fund.investment.infrastructure.compliance.domain.model.event.ComplianceEvent;
+import lombok.*;
 
 /**
  * @Author dongkw
  * @Date 2020/10/10、2:22 下午
  **/
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
-@AllArgsConstructor
-public class OrderCmplSucceedEvt {
-    private String securityCode;
+public class OrderCmplSucceedEvt extends ComplianceEvent {
     private String orderId;
+
+    public OrderCmplSucceedEvt(String id, String orderId) {
+        super(id);
+        this.orderId = orderId;
+    }
 }

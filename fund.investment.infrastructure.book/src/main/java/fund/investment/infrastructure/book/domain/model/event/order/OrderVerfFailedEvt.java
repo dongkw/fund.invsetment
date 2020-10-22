@@ -1,17 +1,20 @@
 package fund.investment.infrastructure.book.domain.model.event.order;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import fund.investment.infrastructure.book.domain.model.event.VerificationEvent;
+import lombok.*;
 
 /**
  * @Author dongkw
  * @Date 2020/10/10、3:14 下午
  **/
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
-@AllArgsConstructor
-public class OrderVerfFailedEvt {
-    private String unitId;
+public class OrderVerfFailedEvt extends VerificationEvent {
     private String orderId;
+
+    public OrderVerfFailedEvt(String id, String orderId) {
+        super(id);
+        this.orderId = orderId;
+    }
 }
