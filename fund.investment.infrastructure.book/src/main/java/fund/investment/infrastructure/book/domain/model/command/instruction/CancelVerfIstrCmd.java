@@ -1,20 +1,21 @@
 package fund.investment.infrastructure.book.domain.model.command.instruction;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.axonframework.modelling.command.TargetAggregateIdentifier;
+import fund.investment.infrastructure.book.domain.model.command.VerificationCommand;
+import lombok.*;
 
 /**
  * @Author dongkw
  * @Date 2020/9/17、14:06
  **/
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class CancelVerfIstrCmd extends VerificationCommand {
-    @TargetAggregateIdentifier
-    private String unitId;
+
     private String istrId;
 
+    public CancelVerfIstrCmd(String id, String istrId) {
+        super(id);
+        this.istrId = istrId;
+    }
 }

@@ -1,19 +1,20 @@
 package fund.investment.infrastructure.compliance.domain.model.event.instruction;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import fund.investment.infrastructure.compliance.domain.model.event.ComplianceEvent;
+import lombok.*;
 
 /**
  * @Author dongkw
  * @Date 2020/9/17、15:02
  **/
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class IstrCmplCancelledEvt extends ComplianceEvent {
-    private String securityCode;
     private String istrId;
 
-
+    public IstrCmplCancelledEvt(String id, String istrId) {
+        super(id);
+        this.istrId = istrId;
+    }
 }

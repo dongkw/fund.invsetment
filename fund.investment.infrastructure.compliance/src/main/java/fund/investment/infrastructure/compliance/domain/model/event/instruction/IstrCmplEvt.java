@@ -1,20 +1,22 @@
 package fund.investment.infrastructure.compliance.domain.model.event.instruction;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import fund.investment.infrastructure.compliance.domain.model.event.ComplianceEvent;
+import lombok.*;
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
 /**
  * @Author dongkw
  * @Date 2020/9/17、14:59
  **/
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
-@AllArgsConstructor
-public class IstrCmplEvt {
-    @TargetAggregateIdentifier
-    private String securityCode;
+public class IstrCmplEvt extends ComplianceEvent {
+
     private long total;
 
+    public IstrCmplEvt(String id, long total) {
+        super(id);
+        this.total = total;
+    }
 }

@@ -1,17 +1,20 @@
 package fund.investment.infrastructure.book.domain.model.event.instruction;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import fund.investment.infrastructure.book.domain.model.event.VerificationEvent;
+import lombok.*;
 
 /**
  * @Author dongkw
  * @Date 2020/9/17、14:30
  **/
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class IstrVerfFailedEvt extends VerificationEvent {
-    private String unitId;
     private String istrId;
+
+    public IstrVerfFailedEvt(String id, String istrId) {
+        super(id);
+        this.istrId = istrId;
+    }
 }

@@ -4,6 +4,7 @@ package fund.investment.book.domain.eventhandler;
 import fund.investment.infrastructure.book.domain.model.command.instruction.CancelVerfIstrCmd;
 import fund.investment.infrastructure.book.domain.model.command.instruction.RollbackVerfIstrCmd;
 import fund.investment.infrastructure.book.domain.model.command.instruction.VerfIstrCmd;
+import fund.investment.infrastructure.book.domain.model.event.VerificationEvent;
 import fund.investment.infrastructure.book.domain.model.event.instruction.*;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.CommandHandler;

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import fund.investment.infrastructure.util.SwaggerTag;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +25,6 @@ public class AprvController {
     private CommandGateway commandGateway;
 
 	@RequestMapping(value = "/pass", method = RequestMethod.GET)
-	@ApiOperation(value = "审批通过", tags = SwaggerTag.INSTRUCTION_APPROVAL)
 	public ResponseEntity<AprvIstrPassCmd> pass(
 									@RequestParam String id,
 									@RequestParam String instructionId,
@@ -45,7 +43,6 @@ public class AprvController {
 	
 	
 	@RequestMapping(value = "/refuse", method = RequestMethod.GET)
-	@ApiOperation(value = "审批拒绝", tags = SwaggerTag.INSTRUCTION_APPROVAL)
 	public ResponseEntity<AprvIstrRejectedCmd> refuse(
 									@RequestParam String id,
 									@RequestParam String instructionId,
