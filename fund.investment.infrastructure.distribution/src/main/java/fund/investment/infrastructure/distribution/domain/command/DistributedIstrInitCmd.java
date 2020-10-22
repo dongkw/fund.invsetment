@@ -9,6 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class DistributedIstrInitCmd extends DomainCommand {
+
     private String instructionId;
 
     private String userId;

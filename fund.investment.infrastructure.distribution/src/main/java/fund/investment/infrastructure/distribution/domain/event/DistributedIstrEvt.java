@@ -9,15 +9,16 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class DistributedIstrEvt extends DomainEvent {
+
     private String instructionId;
 
-    private Integer status;
+    private int status;
 
     private String userId;
 
     private String operatorId;
 
-    public DistributedIstrEvt(String id, String instructionId, Integer status, String userId, String operatorId) {
+    public DistributedIstrEvt(String id, String instructionId, int status, String userId, String operatorId) {
         super(id);
         this.instructionId = instructionId;
         this.status = status;

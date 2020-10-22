@@ -15,8 +15,14 @@ public class ESCreateIstrOrderCmd extends CreateIstrOrderCmd {
 
     private ExchangeStockIstrOrderTradeElement exchangeStockIstrOrderTradeElement;
 
-    public ESCreateIstrOrderCmd(String id, TradeType tradeType, String orderId, OrderTradeElement orderTradeElement, ExchangeStockIstrOrderTradeElement exchangeStockIstrOrderTradeElement) {
-        super(id, tradeType, orderId, orderTradeElement);
+    public ESCreateIstrOrderCmd(String id, TradeType tradeType, String orderId, ExchangeStockIstrOrderTradeElement exchangeStockIstrOrderTradeElement) {
+        super(id, tradeType, orderId);
         this.exchangeStockIstrOrderTradeElement = exchangeStockIstrOrderTradeElement;
     }
+
+    @Override
+    public OrderTradeElement getOrderTradeElement() {
+        return exchangeStockIstrOrderTradeElement;
+    }
 }
+

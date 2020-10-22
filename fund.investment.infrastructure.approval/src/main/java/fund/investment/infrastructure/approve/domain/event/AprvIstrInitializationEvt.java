@@ -12,13 +12,13 @@ public class AprvIstrInitializationEvt extends DomainEvent {
 
     private String instructionId;
 
-    private Integer status;
+    private int status;
 
     private String userId;
 
     private String operatorId;
 
-    public AprvIstrInitializationEvt(String id, String instructionId, Integer status, String userId, String operatorId) {
+    public AprvIstrInitializationEvt(String id, String instructionId, int status, String userId, String operatorId) {
         super(id);
         this.instructionId = instructionId;
         this.status = status;
