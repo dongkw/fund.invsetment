@@ -13,7 +13,10 @@ import org.axonframework.queryhandling.QueryGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 @Api
 @RestController
@@ -61,8 +64,7 @@ public class InstructionController {
 	@ApiOperation(value = "确认指令", tags = InstructionTag.EXCHANGE_INSTRUCTION)
 	public ResponseEntity<Void> confirm(@RequestBody String id) {
 		try {
-			CreateConfirmIstrCmd instruction = CreateConfirmIstrCmd.builder().build();
-			instruction.setId(id);
+			CreateConfirmIstrCmd instruction = new CreateConfirmIstrCmd(id,null);
 			commandGateway.sendAndWait(instruction);
 			return new ResponseEntity<>(HttpStatus.OK);
 		} catch (Exception e) {

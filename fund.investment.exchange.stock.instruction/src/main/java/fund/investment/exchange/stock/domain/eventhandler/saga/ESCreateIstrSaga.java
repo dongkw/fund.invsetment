@@ -15,7 +15,6 @@ import org.axonframework.spring.stereotype.Saga;
 @Slf4j
 public class ESCreateIstrSaga extends CreateIstrSaga {
 
-//
     @StartSaga
     @SagaEventHandler(associationProperty = "id")
     public void handler(ESIstrCreatedEvt evt) {

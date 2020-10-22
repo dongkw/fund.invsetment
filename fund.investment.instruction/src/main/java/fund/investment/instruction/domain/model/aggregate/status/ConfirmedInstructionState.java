@@ -7,17 +7,16 @@ import lombok.extern.slf4j.Slf4j;
 import org.axonframework.modelling.command.AggregateLifecycle;
 
 @Slf4j
-public class ConfirmedInstructionState extends CancelableInstructionState  {
-	
-	public ConfirmedInstructionState() {
-		super(InstructionStatus.CONFIRMED);
-	}
+public class ConfirmedInstructionState extends CancelableInstructionState {
+
+    public ConfirmedInstructionState() {
+        super(InstructionStatus.CONFIRMED);
+    }
 
     @Override
     public void aprvPass(AprvPassIstrCmd aprvPassIstrCmd) {
         log.info("Receive command: {}", aprvPassIstrCmd);
-        IstrPassedEvt istrPassedEvt = IstrPassedEvt.builder().build();
-        istrPassedEvt.setId(aprvPassIstrCmd.getId());
+        IstrPassedEvt istrPassedEvt = new IstrPassedEvt(aprvPassIstrCmd.getTradeType(), aprvPassIstrCmd.getId());
         AggregateLifecycle.apply(istrPassedEvt);
         log.info("Dispached Event: {}", istrPassedEvt);
     }

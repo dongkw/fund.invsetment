@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @Author dongkw
  * @Date 2020/10/9、5:25 下午
  **/
-public class InstructionSaga{
+public class InstructionSaga {
 
     @Autowired
     public transient CommandGateway commandGateway;

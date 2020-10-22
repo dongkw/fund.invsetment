@@ -10,17 +10,8 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>fund.investment</groupId>
     <artifactId>exchange.stock.instruction</artifactId>
-    <name>exchange.stock.instruction</name>
-    <description>交易指令服务</description>
     <version>1.0-SNAPSHOT</version>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
-    </properties>
 
     <dependencies>
         <!-- spring boot relation -->
@@ -50,13 +41,6 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- AxonFramework -->
-        <dependency>
-            <groupId>org.axonframework</groupId>
-            <artifactId>axon-spring-boot-starter</artifactId>
-            <version>4.4.2</version>
-        </dependency>
-
         <!-- db implements -->
         <dependency>
             <groupId>com.h2database</groupId>
@@ -69,30 +53,16 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- utils -->
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>29.0-jre</version>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
-
         <!-- injected projects -->
         <dependency>
             <groupId>fund.investment</groupId>
             <artifactId>exchange.stock.infrastructure.instruction</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>fund.investment</groupId>
             <artifactId>instruction</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
 
@@ -109,21 +79,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- git commit -->
-            <plugin>
-                <groupId>pl.project13.maven</groupId>
-                <artifactId>git-commit-id-plugin</artifactId>
-                <version>2.1.15</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>revision</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <!-- git commit end -->
-
         </plugins>
     </build>
 

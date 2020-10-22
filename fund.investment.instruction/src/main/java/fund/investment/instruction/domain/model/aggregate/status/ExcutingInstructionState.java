@@ -15,24 +15,24 @@ import java.util.Objects;
 
 @Slf4j
 public class ExcutingInstructionState extends CancelableInstructionState {
-	
-	public ExcutingInstructionState() {
-		super(InstructionStatus.EXECUTING);
-	}
+
+    public ExcutingInstructionState() {
+        super(InstructionStatus.EXECUTING);
+    }
 
     @Override
     public void createOrder(InstructionAggregate instructionAggregate, CreateIstrOrderCmd cmd) {
         log.info("Receive command: {}", cmd);
-	    //下委托
+        //下委托
         IstrTradeElement istrTradeElement = instructionAggregate.getIstrTradeElement();
-        if(!Objects.isNull(istrTradeElement) && istrTradeElement.checkOrder(cmd)){
+        if (!Objects.isNull(istrTradeElement) && istrTradeElement.checkOrder(cmd)) {
             IstrOrderCreatedEvt istrOrderCreatedEvt = new IstrOrderCreatedEvt();
             istrOrderCreatedEvt.setOrderId(cmd.getOrderId());
             istrOrderCreatedEvt.setId(cmd.getId());
 //            istrOrderCreatedEvt.setOrderQuantity(cmd.getOrderTradeElement().getQuantity());
             AggregateLifecycle.apply(istrOrderCreatedEvt);
             log.info("Dispached Event: {}", istrOrderCreatedEvt);
-        }else{
+        } else {
             IstrOrderFailedEvt istrOrderFailedEvt = new IstrOrderFailedEvt();
             istrOrderFailedEvt.setId(cmd.getId());
             istrOrderFailedEvt.setOrderId(cmd.getOrderId());
@@ -45,7 +45,7 @@ public class ExcutingInstructionState extends CancelableInstructionState {
     @Override
     public void cancelOrder(CancelIstrOrderCmd cancelIstrOrderCmd) {
         log.info("Receive command: {}", cancelIstrOrderCmd);
-	    //取消指令事件
+        //取消指令事件
         IstrOrderCancelledEvt istrOrderCancelledEvt = new IstrOrderCancelledEvt();
         istrOrderCancelledEvt.setId(cancelIstrOrderCmd.getId());
         istrOrderCancelledEvt.setOrderId(cancelIstrOrderCmd.getOrderId());
@@ -59,7 +59,7 @@ public class ExcutingInstructionState extends CancelableInstructionState {
         log.info("Receive command: {}", cmd);
         //成交
         OrderDetail orderDetail = instructionAggregate.getOrderDetail();
-        if(Objects.isNull(orderDetail)){
+        if (Objects.isNull(orderDetail)) {
             orderDetail = new OrderDetail();
         }
         IstrFillReceivedEvt istrFillReceivedEvt = new IstrFillReceivedEvt();
@@ -72,13 +72,13 @@ public class ExcutingInstructionState extends CancelableInstructionState {
         instructionAggregate.setOrderDetail(orderDetail);
         IstrTradeElement istrTradeElement = instructionAggregate.getIstrTradeElement();
         //如果成交数量等于指令数量，则发布 指令成交接收事件 修改状态
-        if(istrTradeElement.getQuantity().compareTo(orderDetail.getFillQuantity()) == 0){
+        if (istrTradeElement.getQuantity() - orderDetail.getFillQuantity() == 0) {
             IstrCompletedEvt istrCompletedEvt = new IstrCompletedEvt();
             istrCompletedEvt.setId(cmd.getId());
             istrCompletedEvt.setTradeType(cmd.getTradeType());
             AggregateLifecycle.apply(istrCompletedEvt);
             log.info("Dispached Event: {}", istrCompletedEvt);
-        }else{
+        } else {
             AggregateLifecycle.apply(istrFillReceivedEvt);
             log.info("Dispached Event: {}", istrFillReceivedEvt);
         }

@@ -1,5 +1,6 @@
 package fund.investment.exchange.stock.domain.model.aggregate;
 
+import fund.investment.infrastructure.instruction.domain.model.event.IstrCancellingEvt;
 import fund.investment.instruction.domain.model.aggregate.InstructionAggregate;
 import fund.investment.instruction.domain.model.aggregate.status.CreatedInstructionState;
 import fund.investment.instruction.domain.model.entity.IstrTradeElement;
@@ -7,6 +8,7 @@ import fund.investment.instruction.exchange.stock.domain.model.command.ESCancelI
 import fund.investment.instruction.exchange.stock.domain.model.command.ESCancelIstrOrderCmd;
 import fund.investment.instruction.exchange.stock.domain.model.command.ESCreateIstrCmd;
 import fund.investment.instruction.exchange.stock.domain.model.command.ESCreateIstrOrderCmd;
+import fund.investment.instruction.exchange.stock.domain.model.event.ESIstrCancellingEvt;
 import fund.investment.instruction.exchange.stock.domain.model.event.ESIstrCreatedEvt;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -69,6 +71,14 @@ public class ExchangeStockIstrAggr extends InstructionAggregate {
         istrTradeElement.setTradeType(evt.getTradeType());
         setIstrTradeElement(istrTradeElement);
         setUserId(evt.getUserId());
+    }
+
+    @EventSourcingHandler
+    public void on(IstrCancellingEvt evt){
+        ESIstrCancellingEvt esIstrCancellingEvt = new ESIstrCancellingEvt(evt.getTradeType(), evt.getId(),
+                evt.getUnitId(),evt.getSecurityCode(),evt.getOrders());
+        //转发事件，转换为子类事件
+        AggregateLifecycle.apply(esIstrCancellingEvt);
     }
 
 }

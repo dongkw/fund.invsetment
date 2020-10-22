@@ -10,28 +10,26 @@ import fund.investment.instruction.domain.model.entity.IstrTradeElement;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.modelling.command.AggregateLifecycle;
 
-import java.util.Objects;
-
 @Slf4j
 public class PendingInstructionState extends CancelableInstructionState {
 
-	public PendingInstructionState() {
-		super(InstructionStatus.PENDING);
-	}
+    public PendingInstructionState() {
+        super(InstructionStatus.PENDING);
+    }
 
     @Override
     public void createOrder(InstructionAggregate instructionAggregate, CreateIstrOrderCmd cmd) {
         log.info("Receive command: {}", cmd);
-	    //下委托
+        //下委托
         IstrTradeElement istrTradeElement = instructionAggregate.getIstrTradeElement();
-        if(!cmd.getTradeType().name().equals(TradeType.UNDEFINED.name())){
+        if (!cmd.getTradeType().name().equals(TradeType.UNDEFINED.name())) {
             IstrOrderCreatedEvt istrOrderCreatedEvt = new IstrOrderCreatedEvt();
             istrOrderCreatedEvt.setOrderId(cmd.getOrderId());
             istrOrderCreatedEvt.setId(cmd.getId());
 //            istrOrderCreatedEvt.setOrderQuantity(cmd.getOrderTradeElement().getQuantity());
             AggregateLifecycle.apply(istrOrderCreatedEvt);
             log.info("Dispached Event: {}", istrOrderCreatedEvt);
-        }else{
+        } else {
             IstrOrderFailedEvt istrOrderFailedEvt = new IstrOrderFailedEvt();
             istrOrderFailedEvt.setId(cmd.getId());
             istrOrderFailedEvt.setOrderId(cmd.getOrderId());

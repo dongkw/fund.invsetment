@@ -10,17 +10,17 @@ import org.axonframework.modelling.command.AggregateLifecycle;
 
 @Slf4j
 public class CreatedInstructionState extends InstructionState {
-	
-	public CreatedInstructionState() {
-		super(InstructionStatus.CREATED);
-	}
-	
+
+    public CreatedInstructionState() {
+        super(InstructionStatus.CREATED);
+    }
+
     @Override
     public void createConfirm(CreateConfirmIstrCmd createConfirmIstrCmd) {
         log.info("Receive command: {}", createConfirmIstrCmd);
-	    IstrConfirmedEvt istrConfirmedEvt = new IstrConfirmedEvt();
-	    istrConfirmedEvt.setId(createConfirmIstrCmd.getId());
-	    istrConfirmedEvt.setTradeType(createConfirmIstrCmd.getTradeType());
+        IstrConfirmedEvt istrConfirmedEvt = new IstrConfirmedEvt();
+        istrConfirmedEvt.setId(createConfirmIstrCmd.getId());
+        istrConfirmedEvt.setTradeType(createConfirmIstrCmd.getTradeType());
         AggregateLifecycle.apply(istrConfirmedEvt);
         log.info("Dispached Event: {}", istrConfirmedEvt);
     }
@@ -31,7 +31,7 @@ public class CreatedInstructionState extends InstructionState {
         IstrFailedEvt istrFailedEvt = new IstrFailedEvt();
         istrFailedEvt.setId(createFailIstrCmd.getId());
         istrFailedEvt.setFailCode(createFailIstrCmd.getFailCode());
-	    istrFailedEvt.setFailMsg(createFailIstrCmd.getFailMsg());
+        istrFailedEvt.setFailMsg(createFailIstrCmd.getFailMsg());
         AggregateLifecycle.apply(istrFailedEvt);
         log.info("Dispached Event: {}", istrFailedEvt);
     }

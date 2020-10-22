@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 public class DistributeHandler {
+
     @Autowired
     private CommandGateway commandGateway;
 

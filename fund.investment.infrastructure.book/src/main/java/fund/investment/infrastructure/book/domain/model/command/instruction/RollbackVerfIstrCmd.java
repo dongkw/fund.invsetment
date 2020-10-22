@@ -20,7 +20,7 @@ public class RollbackVerfIstrCmd extends VerificationCommand {
 
     private String istrId;
 
-    public RollbackVerfIstrCmd(String id, String unitId, BigDecimal amount, String istrId) {
+    public RollbackVerfIstrCmd(String id, BigDecimal amount, String istrId) {
         super(id);
         this.amount = amount;
         this.istrId = istrId;
