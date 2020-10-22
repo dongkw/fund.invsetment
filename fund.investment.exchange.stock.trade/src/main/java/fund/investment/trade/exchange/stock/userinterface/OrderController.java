@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import fund.investment.infrastructure.util.SwaggerTag;
 import fund.investment.infrastructure.util.uid.UIDGenerator;
+import fund.investment.trade.exchange.stock.util.SwaggerTag;
 import infrastructure.trade.domain.model.command.CancelOrderCmd;
 import infrastructure.trade.domain.model.command.ConfirmOrderCmd;
 import infrastructure.trade.domain.model.command.CreateOrderCmd;
@@ -67,15 +67,12 @@ public class OrderController {
 		} catch (IllegalArgumentException illE) {
 			illE.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.REQUEST_TIMEOUT);
-			
 		} catch (CommandExecutionException cmdE) {
 			cmdE.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.BAD_GATEWAY);
-			
 		}catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-			
 		}
 		
 	}
@@ -94,7 +91,6 @@ public class OrderController {
 		} catch (CommandExecutionException cmdE) {
 			cmdE.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.BAD_GATEWAY);
-			
 		}catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -110,7 +106,6 @@ public class OrderController {
 			@RequestParam String tradeType,
 			@RequestParam String unitId,
 			@RequestParam Long cancelQuantity
-			
 			) {
 		try {
 			ESCancelOrderCmd cmd = new ESCancelOrderCmd(id, instructionId, tradeType, unitId, cancelQuantity);
@@ -120,11 +115,9 @@ public class OrderController {
 		} catch (CommandExecutionException cmdE) {
 			cmdE.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.BAD_GATEWAY);
-			
 		}catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		
 	}
 }

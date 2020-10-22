@@ -4,7 +4,6 @@ public class CancelledOrderState extends OrderState{
 	
 	public CancelledOrderState() {
 		super(OrderStatus.CANCELLED);
-		
 	}
 
 }

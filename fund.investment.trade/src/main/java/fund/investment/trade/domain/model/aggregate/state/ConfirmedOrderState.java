@@ -16,6 +16,7 @@ public class ConfirmedOrderState extends CanFailOrderState{
 	@Override
 	public void placing(PlaceOrderCmd cmd) {
 		log.info("Recieved Command: {}", cmd);
+		
 		OrderPlacingEvt evt = new OrderPlacingEvt(
 				cmd.getId(), 
 				cmd.getInstructionId(), 
@@ -23,7 +24,5 @@ public class ConfirmedOrderState extends CanFailOrderState{
 				cmd.getExchangeId());
 		AggregateLifecycle.apply(evt);
 		log.info("Dispached Event: {}", evt);
-
 	}
-
 }

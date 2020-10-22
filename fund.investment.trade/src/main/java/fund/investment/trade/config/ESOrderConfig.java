@@ -68,7 +68,6 @@ public class ESOrderConfig {
 	@Bean
 	public SpringAggregateSnapshotterFactoryBean snapshotter() {
 	    var springAggregateSnapshotterFactoryBean = new SpringAggregateSnapshotterFactoryBean();
-	    //Setting async executors
 	    springAggregateSnapshotterFactoryBean.setExecutor(Executors.newSingleThreadExecutor());
 	    return springAggregateSnapshotterFactoryBean;
 	}

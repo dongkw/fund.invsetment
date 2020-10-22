@@ -1,6 +1,7 @@
 package fund.investment.trade.domain.model.aggregate.state;
 
 public enum OrderStatus {
+	
 	CREATED("1", "已创建"),
 	CONFIRMED("21", "已确认"),
 	FAILED("3", "废单"),

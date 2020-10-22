@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 public class ZmqCancelResponse extends CancelResponse {
 	
 	private String id;
+	
 	private String instructionId;
 	
 	public ZmqCancelResponse(String id, String instructionId) {

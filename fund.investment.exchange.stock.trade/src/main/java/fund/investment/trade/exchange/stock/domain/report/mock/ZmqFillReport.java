@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 public class ZmqFillReport extends FillReport {
 	
 	private String id;
+	
 	private ExchangeStockFill fill;
 	
 	public ZmqFillReport(String id, ExchangeStockFill fill) {

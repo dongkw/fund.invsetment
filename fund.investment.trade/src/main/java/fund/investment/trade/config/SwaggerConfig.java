@@ -15,7 +15,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @EnableSwagger2
 @Configuration
-@ComponentScan(basePackages = { "fund.investment.trade.exchange" })
+@ComponentScan(basePackages = { "fund.investment.trade" })
 public class SwaggerConfig {
 
 	@Bean
@@ -27,7 +27,7 @@ public class SwaggerConfig {
 					.build()
 					.apiInfo(new ApiInfoBuilder()
 					.title("Trade")
-					.description("Exchange-Trade")
+					.description("Trade")
 					.version("1.0.0").build());
 	}
 }

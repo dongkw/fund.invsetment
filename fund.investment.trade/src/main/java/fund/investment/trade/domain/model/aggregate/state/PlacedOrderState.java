@@ -16,6 +16,7 @@ public class PlacedOrderState extends CancelableOrderState {
 	@Override
 	public void fill(FillOrderCmd cmd) {
 		log.info("Recieved Command: {}", cmd);
+		
 		OrderFilledEvt evt = new OrderFilledEvt(
 				cmd.getId(), 
 				cmd.getInstructionId(), 
@@ -23,7 +24,5 @@ public class PlacedOrderState extends CancelableOrderState {
 				cmd.getFill());
 		AggregateLifecycle.apply(evt);
 		log.info("Dispached Event: {}", evt);
-		
 	}
-
 }

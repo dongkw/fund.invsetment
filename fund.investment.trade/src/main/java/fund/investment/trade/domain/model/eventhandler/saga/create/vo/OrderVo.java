@@ -1,19 +1,19 @@
 package fund.investment.trade.domain.model.eventhandler.saga.create.vo;
 
-import lombok.Data;
-
 import java.util.Set;
 
-/**
- * @Author dongkw
- * @Date 2020/10/10、3:46 下午
- **/
+import lombok.Data;
+
 @Data
 public class OrderVo {
 
     private String orderId;
+    
     private String istrId;
+    
     private String unitId;
+    
     private String securityCode;
+    
     private Set<OrderSagaStatus> statuses;
 }

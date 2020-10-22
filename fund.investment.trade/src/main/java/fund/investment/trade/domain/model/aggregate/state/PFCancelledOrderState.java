@@ -4,7 +4,6 @@ public class PFCancelledOrderState extends OrderState{
 	
 	public PFCancelledOrderState() {
 		super(OrderStatus.PARTIAL_FAILED_CANCELLED);
-		
 	}
 
 }

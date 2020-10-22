@@ -16,13 +16,12 @@ public class PlacingOrderState extends CanFailOrderState{
 	@Override
 	public void placed(PlaceConfirmOrderCmd cmd) {
 		log.info("Recieved Command: {}", cmd);
+		
 		OrderPlacedEvt evt = new OrderPlacedEvt(
 				cmd.getId(), 
 				cmd.getInstructionId(), 
 				cmd.getTradeType());
 		AggregateLifecycle.apply(evt);
 		log.info("Dispached Event: {}", evt);
-		
 	}
-
 }

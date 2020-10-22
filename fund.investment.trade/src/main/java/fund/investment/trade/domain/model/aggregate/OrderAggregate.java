@@ -33,7 +33,6 @@ import infrastructure.trade.domain.model.event.OrderPlacingEvt;
 import infrastructure.trade.domain.model.valueobject.Fill;
 import infrastructure.trade.domain.model.valueobject.OrderTradeElement;
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -44,86 +43,87 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = true)
 public class OrderAggregate extends DomainAggregate{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -911131721681328442L;
-	
 	
 	@AggregateIdentifier
 	private String id;
+	
 	private OrderState orderState;
+	
 	private LocalDateTime orderTime;
+	
 	private String errorCode;
+	
 	private String errorMsg;
+	
 	private String exchangeId;
+	
 	private String instructionId;
+	
 	private String unitId;
+	
 	private String accountId;
+	
 	private String userId;
+	
 	private String tradeType;
+	
 	private OrderTradeElement tradeElement;
+	
 	private List<Fill> fills = new LinkedList<Fill>();
 	
 	@CommandHandler
 	public void handle(ConfirmOrderCmd cmd) {
 		orderState.createConfirm(cmd);	
-		
 	}
 
 	@CommandHandler
 	public void handle(PlaceOrderCmd cmd) {
 		orderState.placing(cmd);
-		
 	}
 
 	@CommandHandler
 	public void handle(PlaceConfirmOrderCmd cmd) {
 		orderState.placed(cmd);
-		
 	}
 
 	@CommandHandler
 	public void handle(PlaceCancelOrderCmd cmd) {
 		orderState.cancelling(cmd);
-		
 	}
 
 	@CommandHandler
 	public void handle(CancelConfirmOrderCmd cmd) {
 		orderState.cancelConfirm(cmd);
-		
 	}
 
 	@CommandHandler
 	public void handle(FailOrderCmd cmd) {
 		orderState.fail(cmd);
-
 	}
 
 	@EventSourcingHandler
 	public void on(OrderFailedEvt evt) {
 		log.info("Recieved Event: {}", evt);
+		
 		this.orderState = new FailedOrderState();
 		this.instructionId = evt.getInstructionId();
 		this.tradeType = evt.getTradeType();
-		//todo: deal failMsg
 	}
 
 	@EventSourcingHandler
 	public void on(OrderConfirmedEvt evt) {
 		log.info("Recieved Event: {}", evt);
+		
 		this.orderState = new ConfirmedOrderState();
 		this.instructionId = evt.getInstructionId();
 		this.tradeType = evt.getTradeType();
-		
 	}
 
 	@EventSourcingHandler
 	public void on(OrderCancellingEvt evt) {
 		log.info("Recieved Event: {}", evt);
+		
 		this.orderState = new CancellingOrderState();
 		this.instructionId = evt.getInstructionId();
 		this.tradeType = evt.getTradeType();
@@ -132,6 +132,7 @@ public class OrderAggregate extends DomainAggregate{
 	@EventSourcingHandler
 	public void on(OrderPartialFilledCancellingEvt evt) {
 		log.info("Recieved Event: {}", evt);
+		
 		this.orderState = new PFCancellingOrderState();
 		this.instructionId = evt.getInstructionId();
 		this.tradeType = evt.getTradeType();
@@ -140,6 +141,7 @@ public class OrderAggregate extends DomainAggregate{
 	@EventSourcingHandler
 	public void on(OrderPlacingEvt evt) {
 		log.info("Recieved Event: {}", evt);
+		
 		this.orderState = new PlacingOrderState();
 		this.instructionId = evt.getInstructionId();
 		this.tradeType = evt.getTradeType();
@@ -149,19 +151,18 @@ public class OrderAggregate extends DomainAggregate{
 	@EventSourcingHandler
 	public void on(OrderPlacedEvt evt) {
 		log.info("Recieved Event: {}", evt);
+		
 		this.orderState = new PlacedOrderState();
 		this.instructionId = evt.getInstructionId();
 		this.tradeType = evt.getTradeType();
-		//todo: deal with orderTime
 	}
 
 	@EventSourcingHandler
 	public void on(OrderCompletedEvt evt) {
 		log.info("Recieved Event: {}", evt);
+		
 		this.orderState = new CompletedOrderState();
 		this.instructionId = evt.getInstructionId();
 		this.tradeType = evt.getTradeType();
 	}
-	
-		
 }

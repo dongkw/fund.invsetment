@@ -17,6 +17,7 @@ public class CanFailOrderState extends CancelableOrderState{
 	
 	public void fail(FailOrderCmd cmd) {
 		log.info("Recieved Command: {}", cmd);
+		
 		OrderFailedEvt evt = new OrderFailedEvt(
 				cmd.getId(), 
 				cmd.getInstructionId(), 

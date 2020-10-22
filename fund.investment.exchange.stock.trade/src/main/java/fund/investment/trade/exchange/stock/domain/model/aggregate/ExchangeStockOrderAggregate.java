@@ -20,32 +20,32 @@ import infrastructure.trade.exchange.stock.domain.model.event.ESOrderCreatedEvt;
 import infrastructure.trade.exchange.stock.domain.model.event.ESOrderFilledEvt;
 import infrastructure.trade.exchange.stock.domain.model.valueobject.ExchangeStockOrderTradeElement;
 import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
-@Data
+@Getter
+@Setter
 @Slf4j
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = true)
 @Aggregate
 public class ExchangeStockOrderAggregate extends OrderAggregate {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 5281304340312921648L;
 	
 	private BigDecimal averageFillPrice = BigDecimal.ZERO;
-	private Long totalFillQuantity = 0l;
-	private BigDecimal totalFillAmount = BigDecimal.ZERO;
-	private Long totalCancelledQuantity = 0l;
-	private BigDecimal clearAmount = BigDecimal.ZERO;
+	
+	private long totalFillQuantity;
+	
+	private BigDecimal totalFillAmount;
+	
+	private Long totalCancelledQuantity;
+	
+	private BigDecimal clearAmount;
 	
 	@CommandHandler
 	public ExchangeStockOrderAggregate(ESCreateOrderCmd cmd) {
+		
 		log.info("Recieved Command: {}", cmd);
 
 		ESOrderCreatedEvt evt = new ESOrderCreatedEvt(
@@ -64,25 +64,24 @@ public class ExchangeStockOrderAggregate extends OrderAggregate {
 		AggregateLifecycle.apply(evt); 
 		
 		log.info("Dispached Event: {}", evt);
-		
 	}
 	
 	@CommandHandler
 	public void on(ESFailOrderCmd cmd) {
-		getOrderState().fail(cmd);
 		
+		getOrderState().fail(cmd);
 	}
 
 	@CommandHandler
 	public void on(ESCancelOrderCmd cmd) {
-		getOrderState().cancel(cmd);
 		
+		getOrderState().cancel(cmd);
 	}
 	
 	@CommandHandler
 	public void on(ESFillOrderCmd cmd) {
-		getOrderState().fill(cmd);
 		
+		getOrderState().fill(cmd);
 	}
 	
 	@EventSourcingHandler
@@ -103,7 +102,6 @@ public class ExchangeStockOrderAggregate extends OrderAggregate {
 		this.totalFillAmount = evt.getTotalFillAmount();
 		this.clearAmount = evt.getClearAmount();
 		this.totalFillQuantity = evt.getTotalFillQuantity();
-		
 	}
 
 	@EventSourcingHandler
@@ -113,7 +111,6 @@ public class ExchangeStockOrderAggregate extends OrderAggregate {
 		setInstructionId(evt.getInstructionId());
 		setTradeType(evt.getTradeType());
 		getFills().add(evt.getFill());
-		
 		completedIfSatisfy(evt);
 		partialFilledIfSatisfy(evt);
 	}
@@ -121,17 +118,13 @@ public class ExchangeStockOrderAggregate extends OrderAggregate {
 	private void completedIfSatisfy(ESOrderFilledEvt evt) {
 		if(!checkSatisfy(evt)) 
 			return;
-		
 		setOrderState(new CompletedOrderState());
-		
 	}
 	
 	private void partialFilledIfSatisfy(ESOrderFilledEvt evt) {
 		if(checkSatisfy(evt)) 
 			return;
-		
 		setOrderState(new PartialFilledOrderState());
-		
 	}
 	
 	private boolean checkSatisfy(ESOrderFilledEvt evt) {
@@ -143,7 +136,6 @@ public class ExchangeStockOrderAggregate extends OrderAggregate {
 				.sum();
 		ExchangeStockOrderTradeElement tradeElement = (ExchangeStockOrderTradeElement) getTradeElement();
 		return filledQuantity >= tradeElement.getQuantity();
-		
 	}
 	
 }

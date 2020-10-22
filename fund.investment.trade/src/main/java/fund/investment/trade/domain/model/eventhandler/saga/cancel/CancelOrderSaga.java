@@ -1,37 +1,37 @@
 package fund.investment.trade.domain.model.eventhandler.saga.cancel;
 
+import org.axonframework.modelling.saga.SagaEventHandler;
+import org.axonframework.modelling.saga.SagaLifecycle;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import fund.investment.infrastructure.book.domain.model.command.order.CancelVerfOrderCmd;
 import fund.investment.infrastructure.book.domain.model.event.order.OrderVerfCancelledEvt;
 import fund.investment.infrastructure.compliance.domain.model.command.order.CancelCmplOrderCmd;
 import fund.investment.infrastructure.compliance.domain.model.event.order.OrderCmplCancelledEvt;
 import fund.investment.infrastructure.instruction.domain.model.command.CancelIstrOrderCmd;
 import fund.investment.instruction.exchange.stock.domain.model.command.ESCancelIstrOrderCmd;
-import org.axonframework.modelling.saga.SagaEventHandler;
-import org.axonframework.modelling.saga.SagaLifecycle;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import fund.investment.trade.domain.model.eventhandler.saga.OrderSaga;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * @Author dongkw
- * @Date 2020/10/12、10:24 上午
- **/
 @Slf4j
 public class CancelOrderSaga extends OrderSaga {
 
     @JsonProperty
     private String orderId;
+    
     @JsonProperty
     private String istrId;
+    
     @JsonProperty
     private String unitId;
 
     @JsonProperty
     private boolean cancelCmpl;
+    
     @JsonProperty
     private boolean cancelIstr;
+    
     @JsonProperty
     private boolean cancelVref;
 
@@ -45,7 +45,8 @@ public class CancelOrderSaga extends OrderSaga {
         ESCancelIstrOrderCmd esCancelIstrOrderCmd=new ESCancelIstrOrderCmd();
         esCancelIstrOrderCmd.setId(istrId);
         esCancelIstrOrderCmd.setOrderId(orderId);
-        CancelIstrOrderCmd cancelIstrOrderCmd = CancelIstrOrderCmd.builder().orderId(orderId).build();
+        CancelIstrOrderCmd cancelIstrOrderCmd = new CancelIstrOrderCmd();
+        cancelIstrOrderCmd.setOrderId(orderId);
         cancelIstrOrderCmd.setId(istrId);
         commandGateway.send(esCancelIstrOrderCmd);
         log.debug("saga send:{}", esCancelIstrOrderCmd);
@@ -59,7 +60,6 @@ public class CancelOrderSaga extends OrderSaga {
         log.debug("saga receive:{}", evt);
         cancelCmpl = true;
         endSaga();
-
     }
 
     @SagaEventHandler(associationProperty = "orderId", keyName = "id")
@@ -67,7 +67,6 @@ public class CancelOrderSaga extends OrderSaga {
         log.debug("saga receive:{}", evt);
         cancelIstr = true;
         endSaga();
-
     }
 
     @SagaEventHandler(associationProperty = "orderId", keyName = "id")
@@ -84,5 +83,4 @@ public class CancelOrderSaga extends OrderSaga {
             log.debug("---------------------");
         }
     }
-
 }

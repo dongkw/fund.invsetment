@@ -16,13 +16,13 @@ public class CreatedOrderState extends CanFailOrderState {
 	@Override
 	public void createConfirm(ConfirmOrderCmd cmd) {
 		log.info("Recieved Command: {}", cmd);
+		
 		OrderConfirmedEvt evt = new OrderConfirmedEvt(
 				cmd.getId(), 
 				cmd.getInstructionId(), 
 				cmd.getTradeType());
 		AggregateLifecycle.apply(evt);
 		log.info("Dispached Event: {}", evt);
-
 	};
 
 }

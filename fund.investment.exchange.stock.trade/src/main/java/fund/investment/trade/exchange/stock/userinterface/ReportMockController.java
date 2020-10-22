@@ -1,9 +1,5 @@
 package fund.investment.trade.exchange.stock.userinterface;
 
-import infrastructure.trade.domain.model.command.CancelConfirmOrderCmd;
-import infrastructure.trade.domain.model.command.FillOrderCmd;
-import infrastructure.trade.domain.model.command.PlaceCancelOrderCmd;
-import infrastructure.trade.domain.model.command.PlaceConfirmOrderCmd;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,13 +8,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import fund.investment.infrastructure.util.SwaggerTag;
 import fund.investment.trade.exchange.stock.domain.eventhandler.ESReportHandler;
 import fund.investment.trade.exchange.stock.domain.report.mock.ZmpPlaceResponse;
 import fund.investment.trade.exchange.stock.domain.report.mock.ZmqCancelResponse;
 import fund.investment.trade.exchange.stock.domain.report.mock.ZmqCancellationReport;
 import fund.investment.trade.exchange.stock.domain.report.mock.ZmqFillReport;
 import fund.investment.trade.exchange.stock.domain.report.mock.ZmqPlacedReport;
+import fund.investment.trade.exchange.stock.util.SwaggerTag;
+import infrastructure.trade.domain.model.command.CancelConfirmOrderCmd;
+import infrastructure.trade.domain.model.command.FillOrderCmd;
+import infrastructure.trade.domain.model.command.PlaceCancelOrderCmd;
+import infrastructure.trade.domain.model.command.PlaceConfirmOrderCmd;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
@@ -31,7 +31,7 @@ public class ReportMockController {
 	private ESReportHandler reportHandler;
 	
 	@RequestMapping(value = "/place", method = RequestMethod.POST)
-	@ApiOperation(value = "placeResponse", tags = SwaggerTag.INSTRUCTION_ORDER_REPORT_MOCK)
+	@ApiOperation(value = "placeResponse", tags = SwaggerTag.REPORT_MOCK)
 	public ResponseEntity<Void> placeResponse(@RequestBody ZmpPlaceResponse body) {
 		try {
 			reportHandler.receivePlaceResponse(body);
@@ -44,7 +44,7 @@ public class ReportMockController {
 	}
 	
 	@RequestMapping(value = "/placed", method = RequestMethod.POST)
-	@ApiOperation(value = "placedReport", tags = SwaggerTag.INSTRUCTION_ORDER_REPORT_MOCK)
+	@ApiOperation(value = "placedReport", tags = SwaggerTag.REPORT_MOCK)
 	public ResponseEntity<PlaceConfirmOrderCmd> placedReport(@RequestBody ZmqPlacedReport body) {
 		try {
 			reportHandler.receivedPlacedReport(body);;
@@ -57,7 +57,7 @@ public class ReportMockController {
 	}
 	
 	@RequestMapping(value = "/cancellation", method = RequestMethod.POST)
-	@ApiOperation(value = "cancell", tags = SwaggerTag.INSTRUCTION_ORDER_REPORT_MOCK)
+	@ApiOperation(value = "cancell", tags = SwaggerTag.REPORT_MOCK)
 	public ResponseEntity<PlaceCancelOrderCmd> cancell(@RequestBody ZmqCancelResponse body) {
 		try {
 			reportHandler.receiveCancelResponse(body);
@@ -70,7 +70,7 @@ public class ReportMockController {
 	}
 	
 	@RequestMapping(value = "/cancelled-confirm", method = RequestMethod.POST)
-	@ApiOperation(value = "cancelledConfirm", tags = SwaggerTag.INSTRUCTION_ORDER_REPORT_MOCK)
+	@ApiOperation(value = "cancelledConfirm", tags = SwaggerTag.REPORT_MOCK)
 	public ResponseEntity<CancelConfirmOrderCmd> cancelledConfirm(@RequestBody ZmqCancellationReport body) {
 		try {
 			reportHandler.ReceiveCancellationReport(body);
@@ -83,7 +83,7 @@ public class ReportMockController {
 	}
 	
 	@RequestMapping(value = "/fill", method = RequestMethod.POST)
-	@ApiOperation(value = "filled", tags = SwaggerTag.INSTRUCTION_ORDER_REPORT_MOCK)
+	@ApiOperation(value = "filled", tags = SwaggerTag.REPORT_MOCK)
 	public ResponseEntity<FillOrderCmd> fill(@RequestBody ZmqFillReport body) {
 		try {
 			reportHandler.receiveFillReport(body);
