@@ -13,22 +13,20 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @Slf4j
 public class DistEventHandler {
-	
-	@Autowired
-	private UIDGenerator UIDGenerator;
-	
-	@Autowired
+
+    @Autowired
+    private UIDGenerator UIDGenerator;
+
+    @Autowired
     private CommandGateway commandGateway;
 
-//	@Autowired
-//	private CommandBus commandBus;
-	
-	@EventHandler
-	public void on(IstrPassedEvt evt) {
-		log.info(evt.toString());
-		DistributedIstrInitCmd cmd = DistributedIstrInitCmd.builder().id(UIDGenerator.getId()).instructionId(evt.getId()).build();
-		commandGateway.send(cmd);
-//		commandBus.dispatch(new GenericCommandMessage<>(cmd));
-	}
-	
+    @EventHandler
+    public void on(IstrPassedEvt evt) {
+        log.info(evt.toString());
+        DistributedIstrInitCmd cmd = new DistributedIstrInitCmd();
+        cmd.setId(UIDGenerator.getId());
+        cmd.setInstructionId(evt.getId());
+        commandGateway.send(cmd);
+    }
+
 }

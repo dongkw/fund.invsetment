@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class DistributionConfig {
-	
-	@Bean
+
+    @Bean
     public EventSourcingRepository<DistributeIstrAggregate> distAggregateRepository(EventStore eventStore, Cache cache) {
         return EventSourcingRepository.builder(DistributeIstrAggregate.class)
                 .cache(cache)
@@ -20,9 +20,9 @@ public class DistributionConfig {
                 .build();
     }
 
-	@Bean
+    @Bean
     public Cache distCache() {
         return new WeakReferenceCache();
     }
-		
+
 }

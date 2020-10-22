@@ -1,10 +1,13 @@
 package fund.investment.infrastructure.instruction.domain.model.enumeration;
 
+import lombok.Getter;
+
 /**
  * 审核状态
  *
  * @author 芳军
  */
+@Getter
 public enum DistributeStatus {
 
     UNDEFINED(0, "空"),
