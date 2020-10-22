@@ -2,15 +2,10 @@ package fund.investment.book.config;
 
 import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.commandhandling.gateway.CommandGatewayFactory;
-import org.axonframework.commandhandling.gateway.IntervalRetryScheduler;
-import org.axonframework.commandhandling.gateway.RetryScheduler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
 
 /**
  * @Author dongkw
@@ -20,10 +15,15 @@ import java.util.concurrent.ScheduledExecutorService;
 @ComponentScan({"fund.investment.infrastructure.util"})
 public class AxonConfig {
 
-    @Autowired
-    private CommandBus commandBus;
+    private final CommandBus commandBus;
+
     @Autowired
     private CommandInterceptor commandInterceptor;
+
+    @Autowired
+    public AxonConfig(CommandBus commandBus) {
+        this.commandBus = commandBus;
+    }
 
     @Bean
     public ContractCommandGateway contractCommandGateway() {
@@ -34,12 +34,11 @@ public class AxonConfig {
 //                .retryInterval(1000)
 //                .build();
         ContractCommandGateway commandGateway = CommandGatewayFactory.builder()
-                .commandBus(commandBus)
-                .retryScheduler(new CommandRetryScheduler())
-                .dispatchInterceptors(commandInterceptor)
-                .build()
-                .createGateway(ContractCommandGateway.class);
+                                                                     .commandBus(commandBus)
+                                                                     .retryScheduler(new CommandRetryScheduler())
+                                                                     .dispatchInterceptors(commandInterceptor)
+                                                                     .build()
+                                                                     .createGateway(ContractCommandGateway.class);
         return commandGateway;
     }
-
 }

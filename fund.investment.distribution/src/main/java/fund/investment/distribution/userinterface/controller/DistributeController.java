@@ -18,8 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/investment/distribution")
 public class DistributeController {
 
+    private final CommandGateway commandGateway;
+
     @Autowired
-    private CommandGateway commandGateway;
+    public DistributeController(CommandGateway commandGateway) {
+        this.commandGateway = commandGateway;
+    }
 
     @RequestMapping(value = "/pass", method = RequestMethod.GET)
     @ApiOperation(value = "已分发", tags = "instruction_distribution")
@@ -36,7 +40,6 @@ public class DistributeController {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
     }
 
     @RequestMapping(value = "/refuse", method = RequestMethod.GET)
@@ -54,7 +57,5 @@ public class DistributeController {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
     }
-
 }

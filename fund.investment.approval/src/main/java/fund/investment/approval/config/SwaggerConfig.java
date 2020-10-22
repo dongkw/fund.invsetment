@@ -16,16 +16,16 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @ComponentScan(basePackages = {"fund.investment.approval.userinterface.controller"})
 public class SwaggerConfig {
 
-	@Bean
-	public Docket createRestApi() {
-		return new Docket(DocumentationType.SWAGGER_2)
-					.select()
-					.apis(RequestHandlerSelectors.any())
-					.paths(Predicates.not(PathSelectors.regex("/error.*")))
-					.build()
-					.apiInfo(new ApiInfoBuilder()
-					.title("INSTRUCTION APPROVA SYSTEM")
-					.description("INSTRUCTION APPROVA SYSTEM")
-					.version("1.0.0").build());
-	}
+    @Bean
+    public Docket createRestApi() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .select()
+                .apis(RequestHandlerSelectors.any())
+                .paths(Predicates.not(PathSelectors.regex("/error.*")))
+                .build()
+                .apiInfo(new ApiInfoBuilder()
+                                 .title("INSTRUCTION APPROVA SYSTEM")
+                                 .description("INSTRUCTION APPROVA SYSTEM")
+                                 .version("1.0.0").build());
+    }
 }

@@ -74,7 +74,5 @@ public class ApprovalIstrAggregate {
         this.instructionId = evt.getInstructionId();
         this.userId = evt.getUserId();
         this.operatorId = evt.getOperatorId();
-
     }
-
 }

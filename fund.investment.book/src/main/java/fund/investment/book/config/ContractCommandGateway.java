@@ -15,7 +15,6 @@ public interface ContractCommandGateway {
     @Timeout(value = 6, unit = TimeUnit.SECONDS)
     Long sendCommandAndWaitForAResult(DomainCommand command);
 
-
     // method that will wait for a result for 10 seconds
     @Timeout(value = 6, unit = TimeUnit.SECONDS)
     void sendCommandAndWait(DomainCommand command);

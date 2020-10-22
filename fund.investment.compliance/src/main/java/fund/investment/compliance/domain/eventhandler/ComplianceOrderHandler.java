@@ -21,9 +21,12 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class ComplianceOrderHandler {
 
+    private final EventGateway eventGateway;
 
     @Autowired
-    private EventGateway eventGateway;
+    public ComplianceOrderHandler(EventGateway eventGateway) {
+        this.eventGateway = eventGateway;
+    }
 
     @CommandHandler
     public void handler(CmplOrderCmd cmd) {
@@ -36,7 +39,6 @@ public class ComplianceOrderHandler {
             OrderCmplFailedEvt evt = new OrderCmplFailedEvt(cmd.getId(), cmd.getOrderId());
             eventGateway.publish(evt);
             log.info("send:{}", evt);
-
         }
     }
 
@@ -46,7 +48,6 @@ public class ComplianceOrderHandler {
         OrderCmplRollbackedEvt evt = new OrderCmplRollbackedEvt(cmd.getId(), cmd.getOrderId());
         eventGateway.publish(evt);
         log.debug("send :{}", evt);
-
     }
 
     @CommandHandler
@@ -55,7 +56,5 @@ public class ComplianceOrderHandler {
         OrderCmplCancelledEvt evt = new OrderCmplCancelledEvt(cmd.getId(), cmd.getOrderId());
         eventGateway.publish(evt);
         log.debug("send :{}", evt);
-
     }
-
 }
