@@ -1,6 +1,5 @@
 package infrastructure.trade.domain.model.command;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,7 +7,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = true)
 public class CancelOrderCmd extends OrderCommand {
 	private String unitId;
 	private Long cancelQuantity;

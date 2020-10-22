@@ -3,13 +3,11 @@ package infrastructure.trade.exchange.stock.domain.model.valueobject;
 import java.math.BigDecimal;
 
 import infrastructure.trade.domain.model.valueobject.OrderTradeElement;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Data
+@Getter
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = true)
 public class ExchangeStockOrderTradeElement extends OrderTradeElement {
 	
 	private String side;
