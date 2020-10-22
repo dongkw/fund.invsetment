@@ -9,6 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class CreateOrderCmd extends OrderCommand{
+	
 	private String unitId;
 	private String accountId;
 	private String userId;

@@ -1,8 +1,8 @@
 package infrastructure.trade.domain.model.command;
 
-import fund.investment.infrastructure.common.DomainCommand;
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
+import fund.investment.infrastructure.common.DomainCommand;
 import fund.investment.infrastructure.util.LoggerTemplate;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -15,6 +15,7 @@ import lombok.Setter;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 public class OrderCommand extends DomainCommand {
+
 	@NonNull
 	@TargetAggregateIdentifier
 	private String id;

@@ -15,7 +15,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class ESCreateOrderCmd extends CreateOrderCmd{
-	
+
 	private ExchangeStockOrderTradeElement orderTradeElement;
 	private BigDecimal averageFillPrice = BigDecimal.ZERO;
 	private Long totalFillQuantity = 0l;
