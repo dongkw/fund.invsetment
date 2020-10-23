@@ -26,8 +26,6 @@ import java.util.List;
 @AllArgsConstructor
 public class OrderAggregate extends DomainAggregate {
 
-    @AggregateIdentifier
-    private String id;
 
     private OrderState orderState;
 
