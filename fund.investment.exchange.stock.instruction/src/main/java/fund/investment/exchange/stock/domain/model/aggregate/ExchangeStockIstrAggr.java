@@ -74,8 +74,15 @@ public class ExchangeStockIstrAggr extends InstructionAggregate {
 
     @EventSourcingHandler
     public void on(IstrCancellingEvt evt) {
+        log.info("Receive event: {}", evt);
         ESIstrCancellingEvt esIstrCancellingEvt = new ESIstrCancellingEvt(evt.getTradeType(), evt.getId(),
                                                                           evt.getUnitId(), evt.getSecurityCode(), evt.getOrders());
         AggregateLifecycle.apply(esIstrCancellingEvt);
+        log.info("Dispatched event: {}", evt);
+    }
+
+    @EventSourcingHandler
+    public void on(ESIstrCancellingEvt evt) {
+        log.info("Receive event: {}", evt);
     }
 }
