@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 public class ZmqCancellationReport extends CancellationReport {
 
     private String id;
+    
+    private String unitId;
 
     private String instructionId;
 

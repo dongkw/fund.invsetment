@@ -1,12 +1,20 @@
 package fund.investment.trade.exchange.stock.mock;
 
+import java.math.BigDecimal;
+
 import fund.investment.trade.exchange.stock.domain.model.entity.ExchangeStockFill;
-import fund.investment.trade.exchange.stock.mock.report.*;
-import infrastructure.trade.domain.model.command.*;
+import fund.investment.trade.exchange.stock.mock.report.ZmpPlaceResponse;
+import fund.investment.trade.exchange.stock.mock.report.ZmqCancelResponse;
+import fund.investment.trade.exchange.stock.mock.report.ZmqCancellationReport;
+import fund.investment.trade.exchange.stock.mock.report.ZmqFillReport;
+import fund.investment.trade.exchange.stock.mock.report.ZmqPlacedReport;
+import infrastructure.trade.domain.model.command.CancelConfirmOrderCmd;
+import infrastructure.trade.domain.model.command.FillOrderCmd;
+import infrastructure.trade.domain.model.command.PlaceCancelOrderCmd;
+import infrastructure.trade.domain.model.command.PlaceConfirmOrderCmd;
+import infrastructure.trade.domain.model.command.PlaceOrderCmd;
 import infrastructure.trade.exchange.stock.domain.model.command.ESFillOrderCmd;
 import infrastructure.trade.exchange.stock.domain.model.valueobject.ExchangeStockOrderTradeElement;
-
-import java.math.BigDecimal;
 
 public class MockFactory {
 
@@ -37,7 +45,7 @@ public class MockFactory {
         return new CancelConfirmOrderCmd(
                 source.getId(),
                 source.getInstructionId(),
-                null,
+                source.getUnitId(),
                 null,
                 source.getCancelQuantity());
     }
