@@ -45,8 +45,8 @@ public class MockFactory {
         return new CancelConfirmOrderCmd(
                 source.getId(),
                 source.getInstructionId(),
-                source.getUnitId(),
                 null,
+                source.getUnitId(),
                 source.getCancelQuantity());
     }
 
