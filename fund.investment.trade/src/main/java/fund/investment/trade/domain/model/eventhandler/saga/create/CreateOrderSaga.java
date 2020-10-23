@@ -30,12 +30,10 @@ public class CreateOrderSaga extends OrderSaga {
     @JsonProperty
     private OrderValueObject orderValueObject;
 
-    final transient HandlerFactory factory;
-
     @Autowired
-    public CreateOrderSaga(CommandGateway commandGateway, HandlerFactory factory) {
-        super(commandGateway);
-        this.factory = factory;
+    transient HandlerFactory factory;
+
+    public CreateOrderSaga() {
         this.orderValueObject = new OrderValueObject();
     }
 

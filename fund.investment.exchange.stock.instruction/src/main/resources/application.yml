@@ -3,9 +3,11 @@ spring:
     name: instruction-exchange-app-${server.port}
   datasource:
     url: jdbc:h2:./data/instruction/es/database;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1;AUTO_SERVER=TRUE
+
   jpa:
     hibernate:
       ddl-auto: update
+
     generate-ddl: true
 server:
   port: 8080
@@ -22,7 +24,7 @@ snapshot:
 
 axon:
   axonserver:
-    #    servers: 192.168.221.195
+#    servers: 192.168.221.195
     servers: localhost
 
   distributed:

@@ -21,9 +21,6 @@ import org.axonframework.spring.stereotype.Saga;
 @Slf4j
 public class ESCancelOrderSaga extends CancelOrderSaga {
 
-    public ESCancelOrderSaga(CommandGateway commandGateway) {
-        super(commandGateway);
-    }
 
     @StartSaga
     @SagaEventHandler(associationProperty = "id")

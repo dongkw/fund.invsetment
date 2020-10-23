@@ -10,6 +10,6 @@ import lombok.Setter;
 public class OrderCancellingEvt extends OrderEvent {
 
     public OrderCancellingEvt(String id, String instructionId, String tradeType) {
-        super(instructionId, tradeType, instructionId);
+        super(id, tradeType, instructionId);
     }
 }
