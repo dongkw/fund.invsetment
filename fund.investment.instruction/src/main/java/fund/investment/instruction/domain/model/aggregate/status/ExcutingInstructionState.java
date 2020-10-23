@@ -4,6 +4,7 @@ import fund.investment.infrastructure.instruction.domain.model.command.CancelIst
 import fund.investment.infrastructure.instruction.domain.model.command.CreateIstrOrderCmd;
 import fund.investment.infrastructure.instruction.domain.model.command.ReceiveIstrFillCmd;
 import fund.investment.infrastructure.instruction.domain.model.enumeration.InstructionStatus;
+import fund.investment.infrastructure.instruction.domain.model.enumeration.TradeType;
 import fund.investment.infrastructure.instruction.domain.model.event.*;
 import fund.investment.instruction.domain.model.aggregate.InstructionAggregate;
 import fund.investment.instruction.domain.model.entity.IstrTradeElement;
@@ -24,7 +25,7 @@ public class ExcutingInstructionState extends CancelableInstructionState {
     public void createOrder(InstructionAggregate instructionAggregate, CreateIstrOrderCmd cmd) {
         log.info("Receive command: {}", cmd);
         IstrTradeElement istrTradeElement = instructionAggregate.getIstrTradeElement();
-        if (!Objects.isNull(istrTradeElement) && istrTradeElement.checkOrder(cmd)) {
+        if (!cmd.getTradeType().name().equals(TradeType.UNDEFINED.name())) {
             IstrOrderCreatedEvt istrOrderCreatedEvt = new IstrOrderCreatedEvt();
             istrOrderCreatedEvt.setOrderId(cmd.getOrderId());
             istrOrderCreatedEvt.setId(cmd.getId());
