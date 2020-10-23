@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import fund.investment.infrastructure.book.domain.model.event.order.OrderVerfCancelledEvt;
 import fund.investment.infrastructure.compliance.domain.model.event.order.OrderCmplCancelledEvt;
 import fund.investment.infrastructure.instruction.domain.model.command.CancelIstrOrderCmd;
+import fund.investment.infrastructure.instruction.domain.model.event.IstrOrderCancelledEvt;
 import fund.investment.trade.domain.model.eventhandler.saga.OrderSaga;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -45,7 +46,7 @@ public class CancelOrderSaga extends OrderSaga {
     }
 
     @SagaEventHandler(associationProperty = "orderId", keyName = "id")
-    public void handler(CancelIstrOrderCmd evt) {
+    public void handler(IstrOrderCancelledEvt evt) {
         log.debug("saga receive:{}", evt);
         cancelIstr = true;
         endSaga();
