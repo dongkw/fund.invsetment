@@ -36,10 +36,6 @@ public class CancelOrderSaga extends OrderSaga {
     @JsonProperty
     private boolean cancelVref;
 
-    @Autowired
-    public CancelOrderSaga(CommandGateway commandGateway) {
-        super(commandGateway);
-    }
 
     @SagaEventHandler(associationProperty = "orderId", keyName = "id")
     public void handler(OrderCmplCancelledEvt evt) {

@@ -22,10 +22,6 @@ import java.util.HashSet;
 @Slf4j
 public class ESCreateOrderSaga extends CreateOrderSaga {
 
-    public ESCreateOrderSaga(CommandGateway commandGateway, HandlerFactory factory) {
-        super(commandGateway, factory);
-    }
-
     @StartSaga
     @SagaEventHandler(associationProperty = "id")
     public void handler(ESOrderCreatedEvt evt) {
@@ -35,7 +31,7 @@ public class ESCreateOrderSaga extends CreateOrderSaga {
         getOrderValueObject().setIstrId(evt.getInstructionId());
         getOrderValueObject().setStatuses(new HashSet<>());
 
-        VerfOrderCmd verfOrderCmd = new VerfOrderCmd(null, getOrderValueObject().getUnitId(), getOrderValueObject().getOrderId());
+        VerfOrderCmd verfOrderCmd = new VerfOrderCmd(getOrderValueObject().getUnitId(), getOrderValueObject().getOrderId());
         commandGateway.send(verfOrderCmd);
 
         ESCreateIstrOrderCmd createIstrOrderCmd = new ESCreateIstrOrderCmd();
@@ -43,7 +39,7 @@ public class ESCreateOrderSaga extends CreateOrderSaga {
         createIstrOrderCmd.setOrderId(getOrderValueObject().getOrderId());
         createIstrOrderCmd.setTradeType(TradeType.EXCHANGE_STOCKE);
 
-        ExchangeStockOrderTradeElement     tradeElement                   = evt.getOrderTradeElement();
+        ExchangeStockOrderTradeElement tradeElement = evt.getOrderTradeElement();
         ExchangeStockIstrOrderTradeElement exchangeStockOrderTradeElement = new ExchangeStockIstrOrderTradeElement(tradeElement.getTradeType(), tradeElement.getSecurityCode(), 0, tradeElement.getPrice().toString(), TradeSide.BUY, tradeElement.getAmount().longValue());
 
         createIstrOrderCmd.setExchangeStockIstrOrderTradeElement(exchangeStockOrderTradeElement);
