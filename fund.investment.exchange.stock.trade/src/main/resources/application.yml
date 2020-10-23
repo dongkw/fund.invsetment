@@ -6,8 +6,6 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-    properties:
-      hibernate:
     generate-ddl: true
 
 server:
