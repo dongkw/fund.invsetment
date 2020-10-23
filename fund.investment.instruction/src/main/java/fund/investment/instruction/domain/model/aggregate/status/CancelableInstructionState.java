@@ -19,6 +19,7 @@ public class CancelableInstructionState extends InstructionState {
         log.info("Receive command: {}", cancelIstrCmd);
         IstrCancellingEvt istrCancellingEvt = new IstrCancellingEvt(cancelIstrCmd.getTradeType(), cancelIstrCmd.getId(),
                                                                     aggregate.getUnitId(), aggregate.getIstrTradeElement().getSecurityCode(), cancelIstrCmd.getOrders());
+
         AggregateLifecycle.apply(istrCancellingEvt);
         log.info("Dispached Event: {}", istrCancellingEvt);
     }
