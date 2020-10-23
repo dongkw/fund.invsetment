@@ -14,17 +14,13 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ApiModel(value = "场内股票交易要素")
 public class ExchangeStockIstrTradeElement extends IstrTradeElement {
 
-    @ApiModelProperty(value = "指令价格")
     private String price;
 
-    @ApiModelProperty(value = "交易方向 ")
     private TradeSide side;
 
-    @ApiModelProperty(value = "指令金额")
-    private Long amount = 0L;
+    private long amount;
 
     public void checkOrder(ESCreateIstrCmd esCreateIstrCmd) {
 

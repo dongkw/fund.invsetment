@@ -17,9 +17,9 @@ public class Order {
 
     private OrderStatus status;
 
-    private Long quantity;
+    private long quantity;
 
-    private Long fillQuantity;
+    private long fillQuantity;
 
     List<Fill> fills = new LinkedList<>();
 }

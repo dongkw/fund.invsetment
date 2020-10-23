@@ -53,7 +53,6 @@ public class CancellingInstructionState extends InstructionState {
     @Override
     public void receiveFill(InstructionAggregate instructionAggregate, ReceiveIstrFillCmd cmd) {
         log.info("Receive command: {}", cmd);
-        //成交
         OrderDetail orderDetail = instructionAggregate.getOrderDetail();
         if (Objects.isNull(orderDetail)) {
             orderDetail = new OrderDetail();
@@ -66,7 +65,6 @@ public class CancellingInstructionState extends InstructionState {
         istrFillReceivedEvt.setTradeType(cmd.getTradeType());
         orderDetail.receiveFill(istrFillReceivedEvt);
         IstrTradeElement istrTradeElement = instructionAggregate.getIstrTradeElement();
-        //如果成交数量等于指令数量，则发布 指令成交接收事件 修改状态
         if (istrTradeElement.getQuantity() - orderDetail.getFillQuantity() == 0) {
             IstrCompletedEvt istrCompletedEvt = new IstrCompletedEvt();
             istrCompletedEvt.setId(cmd.getId());
