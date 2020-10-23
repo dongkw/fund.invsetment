@@ -1,5 +1,12 @@
 package fund.investment.trade.exchange.stock.domain.model.aggregate;
 
+import java.math.BigDecimal;
+
+import org.axonframework.commandhandling.CommandHandler;
+import org.axonframework.eventsourcing.EventSourcingHandler;
+import org.axonframework.modelling.command.AggregateLifecycle;
+import org.axonframework.spring.stereotype.Aggregate;
+
 import fund.investment.trade.domain.model.aggregate.OrderAggregate;
 import fund.investment.trade.domain.model.aggregate.state.CompletedOrderState;
 import fund.investment.trade.domain.model.aggregate.state.CreatedOrderState;
@@ -17,12 +24,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import org.axonframework.commandhandling.CommandHandler;
-import org.axonframework.eventsourcing.EventSourcingHandler;
-import org.axonframework.modelling.command.AggregateLifecycle;
-import org.axonframework.spring.stereotype.Aggregate;
-
-import java.math.BigDecimal;
 
 @Getter
 @Setter
@@ -32,20 +33,29 @@ import java.math.BigDecimal;
 @Aggregate
 public class ExchangeStockOrderAggregate extends OrderAggregate {
 
-    private BigDecimal averageFillPrice = BigDecimal.ZERO;
+    private BigDecimal averageFillPrice;
 
     private long totalFillQuantity;
 
     private BigDecimal totalFillAmount;
 
-    private Long totalCancelledQuantity;
+    private long totalCancelledQuantity;
 
     private BigDecimal clearAmount;
 
+    private void initAggregate() {
+    	this.averageFillPrice = BigDecimal.ZERO;
+    	this.totalFillQuantity = 0;
+    	this.totalFillAmount = BigDecimal.ZERO;
+    	this.totalCancelledQuantity = 0;
+    	this.clearAmount = BigDecimal.ZERO;
+    	
+    }
+    
     @CommandHandler
     public ExchangeStockOrderAggregate(ESCreateOrderCmd cmd) {
         log.info("Recieved Command: {}", cmd);
-
+        initAggregate();
         ESOrderCreatedEvt evt = new ESOrderCreatedEvt(
                 cmd.getId(),
                 cmd.getInstructionId(),
