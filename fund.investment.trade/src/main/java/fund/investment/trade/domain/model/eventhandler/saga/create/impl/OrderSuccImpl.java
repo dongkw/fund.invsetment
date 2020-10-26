@@ -7,6 +7,7 @@ import fund.investment.trade.domain.model.eventhandler.saga.create.valueobject.O
 import fund.investment.trade.domain.model.eventhandler.saga.create.ICreateOrderSagaResult;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.gateway.CommandGateway;
+import org.axonframework.modelling.saga.SagaLifecycle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -30,6 +31,8 @@ public class OrderSuccImpl implements IStatusHandler {
     @Override
     public void handler(OrderValueObject vo) {
         creatSaga.success(vo);
-
+        SagaLifecycle.end();
+        log.debug("saga end：{}", vo.getOrderId());
+        log.debug("---------------------");
     }
 }

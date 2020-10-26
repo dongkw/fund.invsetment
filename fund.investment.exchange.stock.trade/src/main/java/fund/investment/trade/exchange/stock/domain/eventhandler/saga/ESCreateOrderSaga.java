@@ -66,9 +66,7 @@ public class ESCreateOrderSaga extends CreateOrderSaga implements ICreateOrderSa
         ConfirmOrderCmd cmd = new ConfirmOrderCmd(vo.getOrderId(), vo.getIstrId(), null);
         commandGateway.send(cmd);
         log.debug("saga send:{}", cmd);
-        SagaLifecycle.end();
-        log.debug("saga end：{}", vo.getOrderId());
-        log.debug("---------------------");
+
     }
 
     @Override
@@ -76,9 +74,7 @@ public class ESCreateOrderSaga extends CreateOrderSaga implements ICreateOrderSa
         FailOrderCmd cmd = new FailOrderCmd(vo.getOrderId(), vo.getIstrId(), null, vo.getUnitId(), null, null);
         commandGateway.send(cmd);
         log.debug("saga send:{}", cmd);
-        SagaLifecycle.end();
-        log.debug("saga end：{}", vo.getOrderId());
-        log.debug("---------------------");
+
     }
 
     @Override
