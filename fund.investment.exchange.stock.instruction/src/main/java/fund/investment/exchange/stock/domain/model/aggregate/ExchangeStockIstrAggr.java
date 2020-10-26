@@ -21,7 +21,7 @@ import org.axonframework.spring.stereotype.Aggregate;
 
 @Data
 @Slf4j
-@Aggregate
+@Aggregate(snapshotTriggerDefinition = "instructionSnapshotTrigger")
 @NoArgsConstructor
 public class ExchangeStockIstrAggr extends InstructionAggregate {
 

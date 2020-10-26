@@ -2,6 +2,7 @@ package fund.investment.exchange.stock.config;
 
 import java.util.concurrent.Executors;
 
+import fund.investment.exchange.stock.domain.model.aggregate.ExchangeStockIstrAggr;
 import org.axonframework.common.caching.Cache;
 import org.axonframework.common.caching.WeakReferenceCache;
 import org.axonframework.config.EventProcessingConfigurer;
@@ -29,8 +30,8 @@ public class AxonConfig {
     private int snapshotThreshold;
 
     @Bean
-    public EventSourcingRepository<InstructionAggregate> instructionAggregateRepository(EventStore eventStore, SnapshotTriggerDefinition snapshotTriggerDefinition, Cache cache) {
-        return EventSourcingRepository.builder(InstructionAggregate.class)
+    public EventSourcingRepository<ExchangeStockIstrAggr> instructionAggregateRepository(EventStore eventStore, SnapshotTriggerDefinition snapshotTriggerDefinition, Cache cache) {
+        return EventSourcingRepository.builder(ExchangeStockIstrAggr.class)
                                       .cache(cache)
                                       .snapshotTriggerDefinition(snapshotTriggerDefinition)
                                       .eventStore(eventStore)
