@@ -2,6 +2,7 @@ package fund.investment.exchange.stock.domain.model.aggregate;
 
 import fund.investment.infrastructure.instruction.domain.model.event.IstrCancellingEvt;
 import fund.investment.instruction.domain.model.aggregate.InstructionAggregate;
+import fund.investment.instruction.domain.model.aggregate.status.CancellingInstructionState;
 import fund.investment.instruction.domain.model.aggregate.status.CreatedInstructionState;
 import fund.investment.instruction.domain.model.entity.IstrTradeElement;
 import fund.investment.instruction.exchange.stock.domain.model.command.ESCancelIstrCmd;
@@ -77,6 +78,7 @@ public class ExchangeStockIstrAggr extends InstructionAggregate {
         log.info("Receive event: {}", evt);
         ESIstrCancellingEvt esIstrCancellingEvt = new ESIstrCancellingEvt(evt.getTradeType(), evt.getId(),
                                                                           evt.getUnitId(), evt.getSecurityCode(), evt.getOrders());
+        setInstructionState(new CancellingInstructionState());
         AggregateLifecycle.apply(esIstrCancellingEvt);
         log.info("Dispatched event: {}", evt);
     }

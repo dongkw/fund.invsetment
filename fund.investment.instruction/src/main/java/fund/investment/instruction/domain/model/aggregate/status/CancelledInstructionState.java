@@ -7,6 +7,6 @@ import lombok.extern.slf4j.Slf4j;
 public class CancelledInstructionState extends InstructionState {
 
     public CancelledInstructionState() {
-        super(InstructionStatus.CANCELLED);
+        super(InstructionStatus.CANCELLING);
     }
 }
