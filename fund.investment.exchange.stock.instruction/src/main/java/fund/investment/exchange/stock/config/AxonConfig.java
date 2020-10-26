@@ -1,7 +1,7 @@
 package fund.investment.exchange.stock.config;
 
-import fund.investment.instruction.domain.model.aggregate.InstructionAggregate;
-import lombok.var;
+import java.util.concurrent.Executors;
+
 import org.axonframework.common.caching.Cache;
 import org.axonframework.common.caching.WeakReferenceCache;
 import org.axonframework.config.EventProcessingConfigurer;
@@ -18,7 +18,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 
-import java.util.concurrent.Executors;
+import fund.investment.instruction.domain.model.aggregate.InstructionAggregate;
+import lombok.var;
 
 @Component
 @ComponentScan({"fund.investment.infrastructure.util", "fund.investment.instruction.domain.model"})
@@ -41,7 +42,7 @@ public class AxonConfig {
         return new WeakReferenceCache();
     }
 
-    @Bean("instructionSnapshotTrigger")
+    @Bean
     public SnapshotTriggerDefinition instructionSnapshotTrigger(Snapshotter snapshotter) {
         return new EventCountSnapshotTriggerDefinition(snapshotter, snapshotThreshold);
     }

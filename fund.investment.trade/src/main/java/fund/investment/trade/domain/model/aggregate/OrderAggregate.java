@@ -1,9 +1,34 @@
 package fund.investment.trade.domain.model.aggregate;
 
+import java.time.LocalDateTime;
+import java.util.LinkedList;
+import java.util.List;
+
+import org.axonframework.commandhandling.CommandHandler;
+import org.axonframework.eventsourcing.EventSourcingHandler;
+
 import fund.investment.infrastructure.common.DomainAggregate;
-import fund.investment.trade.domain.model.aggregate.state.*;
-import infrastructure.trade.domain.model.command.*;
-import infrastructure.trade.domain.model.event.*;
+import fund.investment.trade.domain.model.aggregate.state.CancellingOrderState;
+import fund.investment.trade.domain.model.aggregate.state.CompletedOrderState;
+import fund.investment.trade.domain.model.aggregate.state.ConfirmedOrderState;
+import fund.investment.trade.domain.model.aggregate.state.FailedOrderState;
+import fund.investment.trade.domain.model.aggregate.state.OrderState;
+import fund.investment.trade.domain.model.aggregate.state.PFCancellingOrderState;
+import fund.investment.trade.domain.model.aggregate.state.PlacedOrderState;
+import fund.investment.trade.domain.model.aggregate.state.PlacingOrderState;
+import infrastructure.trade.domain.model.command.CancelConfirmOrderCmd;
+import infrastructure.trade.domain.model.command.ConfirmOrderCmd;
+import infrastructure.trade.domain.model.command.FailOrderCmd;
+import infrastructure.trade.domain.model.command.PlaceCancelOrderCmd;
+import infrastructure.trade.domain.model.command.PlaceConfirmOrderCmd;
+import infrastructure.trade.domain.model.command.PlaceOrderCmd;
+import infrastructure.trade.domain.model.event.OrderCancellingEvt;
+import infrastructure.trade.domain.model.event.OrderCompletedEvt;
+import infrastructure.trade.domain.model.event.OrderConfirmedEvt;
+import infrastructure.trade.domain.model.event.OrderFailedEvt;
+import infrastructure.trade.domain.model.event.OrderPartialFilledCancellingEvt;
+import infrastructure.trade.domain.model.event.OrderPlacedEvt;
+import infrastructure.trade.domain.model.event.OrderPlacingEvt;
 import infrastructure.trade.domain.model.valueobject.Fill;
 import infrastructure.trade.domain.model.valueobject.OrderTradeElement;
 import lombok.AllArgsConstructor;
@@ -11,13 +36,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import org.axonframework.commandhandling.CommandHandler;
-import org.axonframework.eventsourcing.EventSourcingHandler;
-import org.axonframework.modelling.command.AggregateIdentifier;
-
-import java.time.LocalDateTime;
-import java.util.LinkedList;
-import java.util.List;
 
 @Getter
 @Setter

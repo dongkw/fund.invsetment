@@ -30,7 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @NoArgsConstructor
 @AllArgsConstructor
-@Aggregate
+@Aggregate(snapshotTriggerDefinition = "orderSnapshotTrigger")
 public class ExchangeStockOrderAggregate extends OrderAggregate {
 
     private BigDecimal averageFillPrice;
@@ -49,7 +49,6 @@ public class ExchangeStockOrderAggregate extends OrderAggregate {
     	this.totalFillAmount = BigDecimal.ZERO;
     	this.totalCancelledQuantity = 0;
     	this.clearAmount = BigDecimal.ZERO;
-    	
     }
     
     @CommandHandler
