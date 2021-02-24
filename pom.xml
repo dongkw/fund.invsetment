@@ -39,6 +39,9 @@
         <module>fund.investment.exchange.stock.infrastructure.trade</module>
         <module>fund.investment.exchange.stock.instruction</module>
         <module>fund.investment.exchange.stock.trade</module>
+        <module>fund.investment.gateway</module>
+        <module>fund.investment.basic</module>
+        <module>fund.investment.app</module>
 
     </modules>
 
