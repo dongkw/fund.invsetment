@@ -13,6 +13,8 @@ public class Fill {
 
     private String id;
 
+
+
     private String orderOriginalId;
 
     private String orderExchangeId;
