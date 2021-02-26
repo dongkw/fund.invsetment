@@ -1,11 +1,9 @@
 package fund.investment.basic.common.enums.dict;
 
-import fund.investment.common.bean.dict.TradeDictBaseEnums;
-
-public enum SkTradeTypeEnums implements TradeDictBaseEnums {
-    TRADE_TYPE_ZQPX("00060500000007","", "债券派息"),
-    TRADE_TYPE_TQHB("","", "提前还本"),
-    TRADE_TYPE_ZQDF("00060200000037","", "债券兑付"),
+public enum SkTradeTypeEnums {
+    TRADE_TYPE_ZQPX("00060500000007", "", "债券派息"),
+    TRADE_TYPE_TQHB("", "", "提前还本"),
+    TRADE_TYPE_ZQDF("00060200000037", "", "债券兑付"),
     TRADE_TYPE_FEE_PAY("00061300000001", "1300000001", " 费用支付"),
     TRADE_TYPE_FEE_GET("00061300000002", "1300000002", " 费用提取"),
     TRADE_TYPE_NHG("00060400000001", "0400000001", " 逆回购"),
@@ -33,7 +31,7 @@ public enum SkTradeTypeEnums implements TradeDictBaseEnums {
     TRADE_TYPE_ZQFXMR("00060200000007", "0200000007", "分销买入"),
     TRADE_TYPE_GPMR("00060100000001", "0100000001", "股票买入"),
     TRADE_TYPE_GPMC("00060100000002", "0100000002", "股票卖出"),
-    TRADE_TYPE_ZQFXMR_O32("","K", "债券分销买入"),
+    TRADE_TYPE_ZQFXMR_O32("", "K", "债券分销买入"),
     TRADE_TYPE_ZQHS("00060200000012", "0200000012", "债券回售"),
     TRADE_TYPE_XZZQ("00060200100003", "0200100003", "新债中签"),
     TRADE_TYPE_XZSG("00060200100001", "0200100001", "新债申购");
@@ -79,7 +77,6 @@ public enum SkTradeTypeEnums implements TradeDictBaseEnums {
         return this.name;
     }
 
-    @Override
     public String getDictSkId() {
         return this.skId;
     }

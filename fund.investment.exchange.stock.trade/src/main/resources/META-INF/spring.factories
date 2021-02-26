@@ -1,2 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-fund.investment.infrastructure.util.uid.UIDGenerator

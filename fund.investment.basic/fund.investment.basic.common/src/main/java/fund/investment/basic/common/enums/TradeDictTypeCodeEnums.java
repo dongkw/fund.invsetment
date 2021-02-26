@@ -1,11 +1,10 @@
 package fund.investment.basic.common.enums;
 
-import com.qunji.common.enums.BaseEnums;
 
 /**
  * 交易管理枚举代码类
  */
-public enum TradeDictTypeCodeEnums implements BaseEnums {
+public enum TradeDictTypeCodeEnums{
     TRADE_INS_FLOW("TRADE_INS_FLOW", "流程操作类型"),
     TRADE_INS_FLOW_STATUS("TRADE_INS_FLOW_STATUS", "流程操作状态"),
     TRADE_COMM_SEND_STATUS("TRADE_COMM_SEND_STATUS", "数据状态"),
@@ -72,12 +71,10 @@ public enum TradeDictTypeCodeEnums implements BaseEnums {
         return null;
     }
 
-    @Override
     public String getCode() {
         return this.code;
     }
 
-    @Override
     public String getName() {
         return this.name;
     }

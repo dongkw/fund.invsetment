@@ -1,13 +1,13 @@
 package fund.investment.basic.common.enums.dict.instruction;
 
-import fund.investment.common.bean.dict.TradeDictBaseEnums;
-import fund.investment.common.enums.TradeDictTypeCodeEnums;
+
+import fund.investment.basic.common.enums.TradeDictTypeCodeEnums;
 
 /**
  * @author yufengbao
  * @date 2020/9/17 15:16
  */
-public enum ForeignBusinessEnums implements TradeDictBaseEnums {
+public enum ForeignBusinessEnums {
     SELL("90140000000001", "001", "001-购汇"),
     SETTLE("90140000000002", "002", "002-结汇"),
     EXCHANGE("90140000000003", "003", "003-调汇"),
@@ -55,7 +55,6 @@ public enum ForeignBusinessEnums implements TradeDictBaseEnums {
         return this.name;
     }
 
-    @Override
     public String getDictSkId() {
         return this.skId;
     }

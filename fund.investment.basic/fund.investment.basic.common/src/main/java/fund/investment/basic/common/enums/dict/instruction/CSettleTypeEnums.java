@@ -1,12 +1,11 @@
 package fund.investment.basic.common.enums.dict.instruction;
 
-import fund.investment.common.bean.dict.TradeDictBaseEnums;
-import fund.investment.common.enums.TradeDictTypeCodeEnums;
+import fund.investment.basic.common.enums.TradeDictTypeCodeEnums;
 
 /**
  * 结算方式
  */
-public enum CSettleTypeEnums implements TradeDictBaseEnums {
+public enum CSettleTypeEnums {
     //skId=70500000000001
     DVP("70500000000001", "1", "券款对付"),
     //skId=70500000000002
@@ -63,7 +62,6 @@ public enum CSettleTypeEnums implements TradeDictBaseEnums {
         return this.name;
     }
 
-    @Override
     public String getDictSkId() {
         return this.skId;
     }

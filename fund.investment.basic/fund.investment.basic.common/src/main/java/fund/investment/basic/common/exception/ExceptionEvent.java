@@ -1,6 +1,6 @@
 package fund.investment.basic.common.exception;
 
-import fund.investment.common.DomainEvent;
+import fund.investment.basic.common.DomainEvent;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

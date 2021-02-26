@@ -1,13 +1,12 @@
 package fund.investment.basic.common.enums.dict.instruction;
 
 
-import fund.investment.common.bean.dict.TradeDictBaseEnums;
-import fund.investment.common.enums.TradeDictTypeCodeEnums;
+import fund.investment.basic.common.enums.TradeDictTypeCodeEnums;
 
 /**
  * 投资指令状态
  */
-public enum InsStatusEnums implements TradeDictBaseEnums {
+public enum InsStatusEnums {
     //skId=70410000000001
     NEW("70410000000001", "1", "有效"),
     //skId=70410000000002
@@ -84,7 +83,6 @@ public enum InsStatusEnums implements TradeDictBaseEnums {
         return this.name;
     }
 
-    @Override
     public String getDictSkId() {
         return this.skId;
     }

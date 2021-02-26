@@ -1,13 +1,12 @@
 package fund.investment.basic.common.enums.dict.instruction;
 
-import fund.investment.common.bean.dict.TradeDictBaseEnums;
-import fund.investment.common.enums.TradeDictTypeCodeEnums;
+import fund.investment.basic.common.enums.TradeDictTypeCodeEnums;
 
 /**
  * @author yufengbao
  * @date 2020/9/17 15:16
  */
-public enum ForeignTranStatusEnums implements TradeDictBaseEnums {
+public enum ForeignTranStatusEnums {
     SEND("90220000000001", "1", "已发送"),
     UNSEND("90220000000002", "0", "未发送"),
     SENDFAIL("90220000000003", "9", "发送失败"),
@@ -53,7 +52,6 @@ public enum ForeignTranStatusEnums implements TradeDictBaseEnums {
         return this.name;
     }
 
-    @Override
     public String getDictSkId() {
         return this.skId;
     }

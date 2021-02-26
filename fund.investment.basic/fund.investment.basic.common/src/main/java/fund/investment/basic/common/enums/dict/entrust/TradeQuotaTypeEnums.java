@@ -1,12 +1,10 @@
 package fund.investment.basic.common.enums.dict.entrust;
 
 
-import fund.investment.common.bean.dict.TradeDictBaseEnums;
-
 /**
  * 报价状态状态
  */
-public enum TradeQuotaTypeEnums implements TradeDictBaseEnums {
+public enum TradeQuotaTypeEnums {
     TALK("71900000000001", "1", "对话报价"),
     REQUEST("71900000000002", "2", "请求报价");
 
@@ -50,7 +48,6 @@ public enum TradeQuotaTypeEnums implements TradeDictBaseEnums {
         return this.name;
     }
 
-    @Override
     public String getDictSkId() {
         return this.skId;
     }

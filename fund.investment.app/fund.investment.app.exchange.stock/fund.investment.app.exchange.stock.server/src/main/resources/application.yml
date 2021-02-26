@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: exchange-app-${server.port}
+  datasource:
+    url: jdbc:h2:./data/es/database;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1;AUTO_SERVER=TRUE
+  jpa:
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true
+server:
+  port: 8080
+
+axon:
+  axonserver:
+    servers: localhost
+  distributed:
+    enabled: true
+  serializer:
+    general: xstream
+    messages: xstream
+    events: xstream
+
+  snapshot:
+    event:
+      count:
+        threshold: 1
+  event:
+    parallel: 2
+  command:
+    retry:
+      max-count: 5
+      interval: 1000
+      executor:
+        count: 2
+
+logging:
+  level:
+    root: info
+    fund:
+      investment: debug

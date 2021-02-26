@@ -1,10 +1,10 @@
 package fund.investment.basic.common.enums.dict.instruction;
 
-import fund.investment.common.bean.dict.TradeDictBaseEnums;
-import fund.investment.common.enums.TradeDictTypeCodeEnums;
+
+import fund.investment.basic.common.enums.TradeDictTypeCodeEnums;
 
 //指令来源1、系统指令，2、总行指令，3、O32指令，4、方达指令
-public enum InstrSourceEnums implements TradeDictBaseEnums {
+public enum InstrSourceEnums {
     SYS("70430000000001", "1", "系统指令"),
     BANK("70430000000002", "2", "总行指令"),
     O32("70430000000003", "3", "O32指令"),
@@ -50,7 +50,6 @@ public enum InstrSourceEnums implements TradeDictBaseEnums {
         return this.name;
     }
 
-    @Override
     public String getDictSkId() {
         return this.skId;
     }

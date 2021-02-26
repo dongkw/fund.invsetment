@@ -1,12 +1,11 @@
 package fund.investment.basic.common.enums.dict.entrust;
 
-import fund.investment.common.bean.dict.TradeDictBaseEnums;
-import fund.investment.common.enums.TradeDictTypeCodeEnums;
+import fund.investment.basic.common.enums.TradeDictTypeCodeEnums;
 
 /**
  * 报价方向
  */
-public enum CReportDirectionEnums implements TradeDictBaseEnums {
+public enum CReportDirectionEnums {
     //skId=71870000000001
     OUR("71870000000001", "1", "本方"),
     //skId=71870000000002
@@ -55,7 +54,6 @@ public enum CReportDirectionEnums implements TradeDictBaseEnums {
         return this.name;
     }
 
-    @Override
     public String getDictSkId() {
         return this.skId;
     }

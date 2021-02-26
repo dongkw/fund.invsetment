@@ -1,3 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-fund.investment.distribution.domain.aggregate.DistributeIstrAggregate,\
-fund.investment.infrastructure.util.uid.UIDGenerator

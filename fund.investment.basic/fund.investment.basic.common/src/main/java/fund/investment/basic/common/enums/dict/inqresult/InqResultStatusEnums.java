@@ -1,12 +1,12 @@
 package fund.investment.basic.common.enums.dict.inqresult;
 
-import fund.investment.common.bean.dict.TradeDictBaseEnums;
-import fund.investment.common.enums.TradeDictTypeCodeEnums;
+
+import fund.investment.basic.common.enums.TradeDictTypeCodeEnums;
 
 /**
  * 询价结果状态
  */
-public enum InqResultStatusEnums implements TradeDictBaseEnums {
+public enum InqResultStatusEnums {
     NEW("71860000000001", "1", "有效"),
     INVAILD("71860000000002", "2", "无效"),
     DRAFT("71860000000003", "3", "草稿"),
@@ -58,7 +58,6 @@ public enum InqResultStatusEnums implements TradeDictBaseEnums {
         return this.name;
     }
 
-    @Override
     public String getDictSkId() {
         return this.skId;
     }

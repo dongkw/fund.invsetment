@@ -1,13 +1,13 @@
 package fund.investment.basic.common.enums.dict.instruction;
 
-import fund.investment.common.bean.dict.TradeDictBaseEnums;
-import fund.investment.common.enums.TradeDictTypeCodeEnums;
+
+import fund.investment.basic.common.enums.TradeDictTypeCodeEnums;
 
 /**
  * @author yufengbao
  * @date 2020/9/17 15:16
  */
-public enum ForeignMarketEnums implements TradeDictBaseEnums {
+public enum ForeignMarketEnums {
     CN("90180000000001", "CN", "境内"),
     US("90180000000002", "US", "境外"),
     ;
@@ -52,7 +52,6 @@ public enum ForeignMarketEnums implements TradeDictBaseEnums {
         return this.name;
     }
 
-    @Override
     public String getDictSkId() {
         return this.skId;
     }

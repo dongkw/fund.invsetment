@@ -1,12 +1,12 @@
 package fund.investment.basic.common.enums.dict.entrust;
 
-import fund.investment.common.bean.dict.TradeDictBaseEnums;
-import fund.investment.common.enums.TradeDictTypeCodeEnums;
+import fund.investment.basic.common.enums.TradeDictTypeCodeEnums;
+import lombok.Getter;
 
 /**
  * 操作类别
  */
-public enum COperateTypeEnums implements TradeDictBaseEnums {
+public enum COperateTypeEnums {
     //skId=71880000000001
     NEW("71880000000001", "1", "新增"),
     //skId=71880000000002
@@ -19,6 +19,7 @@ public enum COperateTypeEnums implements TradeDictBaseEnums {
     CONVERSATION("71880000000005", "5", "交谈"),
     ;
 
+    @Getter
     private String skId;
     private String code;
     private String name;
@@ -59,7 +60,6 @@ public enum COperateTypeEnums implements TradeDictBaseEnums {
         return this.name;
     }
 
-    @Override
     public String getDictSkId() {
         return this.skId;
     }

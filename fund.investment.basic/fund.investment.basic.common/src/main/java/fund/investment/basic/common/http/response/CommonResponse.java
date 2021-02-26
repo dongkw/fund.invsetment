@@ -1,6 +1,6 @@
 package fund.investment.basic.common.http.response;
 
-import fund.investment.common.http.response.risk.RiskResultDtoResponse;
+import fund.investment.basic.common.http.response.risk.RiskResultDtoResponse;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 

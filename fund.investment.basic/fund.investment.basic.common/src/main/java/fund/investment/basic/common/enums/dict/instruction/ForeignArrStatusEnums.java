@@ -1,13 +1,12 @@
 package fund.investment.basic.common.enums.dict.instruction;
 
-import fund.investment.common.bean.dict.TradeDictBaseEnums;
-import fund.investment.common.enums.TradeDictTypeCodeEnums;
+import fund.investment.basic.common.enums.TradeDictTypeCodeEnums;
 
 /**
  * @author yufengbao
  * @date 2020/9/17 15:16
  */
-public enum ForeignArrStatusEnums implements TradeDictBaseEnums {
+public enum ForeignArrStatusEnums{
     YES("90170000000001", "1", "已到账"),
     NO("90170000000002", "0", "未到账"),
     ;
@@ -52,7 +51,6 @@ public enum ForeignArrStatusEnums implements TradeDictBaseEnums {
         return this.name;
     }
 
-    @Override
     public String getDictSkId() {
         return this.skId;
     }

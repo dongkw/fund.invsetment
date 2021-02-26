@@ -3,13 +3,41 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>pledge.repo.app</artifactId>
+        <artifactId>fund.investment.app.pledge.repo</artifactId>
         <groupId>fund.investment</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>pledge.repo.app.domain</artifactId>
+    <artifactId>fund.investment.app.pledge.repo.server</artifactId>
 
+    <dependencies>
+
+        <dependency>
+            <groupId>fund.investment</groupId>
+            <artifactId>fund.investment.app.pledge.repo.api</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>fund.investment</groupId>
+            <artifactId>fund.investment.basic.inqresult.server</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>fund.investment</groupId>
+            <artifactId>fund.investment.basic.inquiry.server</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>fund.investment</groupId>
+            <artifactId>fund.investment.basic.trade.server</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>fund.investment</groupId>
+            <artifactId>fund.investment.basic.instruction.server</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
 </project>

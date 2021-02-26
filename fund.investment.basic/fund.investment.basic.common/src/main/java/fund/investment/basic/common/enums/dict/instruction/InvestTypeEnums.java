@@ -1,10 +1,7 @@
 package fund.investment.basic.common.enums.dict.instruction;
 
-
-import fund.investment.common.bean.dict.TradeDictBaseEnums;
-
 //投资分类/会计准则
-public enum InvestTypeEnums implements TradeDictBaseEnums {
+public enum InvestTypeEnums {
     TRADED("00120010000000", "1", "交易性");
 
     private String skId;
@@ -48,7 +45,6 @@ public enum InvestTypeEnums implements TradeDictBaseEnums {
         return this.name;
     }
 
-    @Override
     public String getDictSkId() {
         return this.skId;
     }

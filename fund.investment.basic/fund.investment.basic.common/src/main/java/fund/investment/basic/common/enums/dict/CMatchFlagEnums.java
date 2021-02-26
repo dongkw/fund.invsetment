@@ -1,12 +1,13 @@
 package fund.investment.basic.common.enums.dict;
 
-import fund.investment.common.bean.dict.TradeDictBaseEnums;
-import fund.investment.common.enums.TradeDictTypeCodeEnums;
+
+import fund.investment.basic.common.enums.TradeDictTypeCodeEnums;
+import lombok.Getter;
 
 /**
  * 配对状态
  */
-public enum CMatchFlagEnums implements TradeDictBaseEnums {
+public enum CMatchFlagEnums {
     //skId=70460000000001
     MATCH_FLAG_ENUMS_DONOT("70460000000001", "0", "未配对"),
     //skId=70460000000002
@@ -23,6 +24,7 @@ public enum CMatchFlagEnums implements TradeDictBaseEnums {
     MATCH_FLAG_ENUMS_CANCEL("70460000000007", "6", "撤销匹配"),
     ;
 
+    @Getter
     private String skId;
     private String code;
     private String name;
@@ -63,7 +65,6 @@ public enum CMatchFlagEnums implements TradeDictBaseEnums {
         return this.name;
     }
 
-    @Override
     public String getDictSkId() {
         return this.skId;
     }

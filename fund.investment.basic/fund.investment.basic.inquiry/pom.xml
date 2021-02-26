@@ -10,6 +10,17 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>fund.investment.basic.inquiry</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>fund.investment.basic.inquiry.api</module>
+        <module>fund.investment.basic.inquiry.server</module>
+    </modules>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>fund.investment</groupId>
+            <artifactId>fund.investment.basic.common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 </project>

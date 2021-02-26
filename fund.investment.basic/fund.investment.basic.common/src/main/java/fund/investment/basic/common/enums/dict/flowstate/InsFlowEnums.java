@@ -1,12 +1,11 @@
 package fund.investment.basic.common.enums.dict.flowstate;
 
-import fund.investment.common.bean.dict.TradeDictBaseEnums;
-import fund.investment.common.enums.TradeDictTypeCodeEnums;
+import fund.investment.basic.common.enums.TradeDictTypeCodeEnums;
 
 /**
  * 流程操作类型
  */
-public enum InsFlowEnums implements TradeDictBaseEnums {
+public enum InsFlowEnums{
     //skId=70440000000001
     INPUT("70440000000001", "0", "指令下达"),
     //skId=70440000000002
@@ -93,7 +92,6 @@ public enum InsFlowEnums implements TradeDictBaseEnums {
         return this.name;
     }
 
-    @Override
     public String getDictSkId() {
         return this.skId;
     }

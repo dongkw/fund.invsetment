@@ -1,12 +1,11 @@
 package fund.investment.basic.common.enums.dict.instruction;
 
-import fund.investment.common.bean.dict.TradeDictBaseEnums;
-import fund.investment.common.enums.TradeDictTypeCodeEnums;
+import fund.investment.basic.common.enums.TradeDictTypeCodeEnums;
 
 /**
  * 清算速度
  */
-public enum CSettleDaysEnums implements TradeDictBaseEnums {
+public enum CSettleDaysEnums {
     T0("70420000000001", "0", "T+0"),
     T1("70420000000002", "1", "T+1"),
     ;
@@ -51,7 +50,6 @@ public enum CSettleDaysEnums implements TradeDictBaseEnums {
         return this.name;
     }
 
-    @Override
     public String getDictSkId() {
         return this.skId;
     }

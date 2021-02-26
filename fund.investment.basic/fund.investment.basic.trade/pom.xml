@@ -10,6 +10,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>fund.investment.basic.trade</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>fund.investment.basic.trade.api</module>
+        <module>fund.investment.basic.trade.server</module>
+    </modules>
 
 
 </project>

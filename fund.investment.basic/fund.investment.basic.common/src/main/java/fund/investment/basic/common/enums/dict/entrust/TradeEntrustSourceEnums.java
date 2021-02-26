@@ -1,12 +1,11 @@
 package fund.investment.basic.common.enums.dict.entrust;
 
-import fund.investment.common.bean.dict.TradeDictBaseEnums;
-import fund.investment.common.enums.TradeDictTypeCodeEnums;
+import fund.investment.basic.common.enums.TradeDictTypeCodeEnums;
 
 /**
  * 委托来源
  */
-public enum TradeEntrustSourceEnums implements TradeDictBaseEnums {
+public enum TradeEntrustSourceEnums{
     //skId=71750000000000
     O32("71750000000000", "0", "O32"),
     //skId=71750000000001
@@ -61,7 +60,6 @@ public enum TradeEntrustSourceEnums implements TradeDictBaseEnums {
         return this.name;
     }
 
-    @Override
     public String getDictSkId() {
         return this.skId;
     }

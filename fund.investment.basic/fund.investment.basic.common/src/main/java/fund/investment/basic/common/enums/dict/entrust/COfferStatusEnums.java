@@ -1,12 +1,12 @@
 package fund.investment.basic.common.enums.dict.entrust;
 
-import fund.investment.common.bean.dict.TradeDictBaseEnums;
-import fund.investment.common.enums.TradeDictTypeCodeEnums;
+import fund.investment.basic.common.enums.TradeDictTypeCodeEnums;
+import lombok.Getter;
 
 /**
  * 报价状态
  */
-public enum COfferStatusEnums implements TradeDictBaseEnums {
+public enum COfferStatusEnums{
     //skId=71840000000005
     REJECT("71840000000005", "5", "拒绝"),
     //skId=71840000000016
@@ -21,6 +21,7 @@ public enum COfferStatusEnums implements TradeDictBaseEnums {
     BANK_REPORT_REFUSE("71840000000999", "999", "外汇交易中心拒绝"),
     ;
 
+    @Getter
     private String skId;
     private String code;
     private String name;
@@ -61,7 +62,6 @@ public enum COfferStatusEnums implements TradeDictBaseEnums {
         return this.name;
     }
 
-    @Override
     public String getDictSkId() {
         return this.skId;
     }

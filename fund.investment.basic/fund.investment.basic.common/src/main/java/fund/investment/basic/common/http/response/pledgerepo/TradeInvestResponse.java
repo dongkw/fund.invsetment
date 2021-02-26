@@ -1,6 +1,6 @@
 package fund.investment.basic.common.http.response.pledgerepo;
 
-import fund.investment.common.http.response.risk.RiskResultResponse;
+import fund.investment.basic.common.http.response.risk.RiskResultResponse;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

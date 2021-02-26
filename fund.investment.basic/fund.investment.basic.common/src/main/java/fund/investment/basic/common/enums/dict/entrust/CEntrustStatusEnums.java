@@ -1,12 +1,13 @@
 package fund.investment.basic.common.enums.dict.entrust;
 
-import fund.investment.common.bean.dict.TradeDictBaseEnums;
-import fund.investment.common.enums.TradeDictTypeCodeEnums;
+
+import fund.investment.basic.common.enums.TradeDictTypeCodeEnums;
+import lombok.Getter;
 
 /**
  * 委托状态
  */
-public enum CEntrustStatusEnums implements TradeDictBaseEnums {
+public enum CEntrustStatusEnums {
     //skId=71720000000001
     UNREPORT("71720000000001", "1", "未报"),
     //skId=71720000000002
@@ -59,6 +60,7 @@ public enum CEntrustStatusEnums implements TradeDictBaseEnums {
     DRAFT("71720000000025", "j", "草稿委托状态"),
     ;
 
+    @Getter
     private String skId;
     private String code;
     private String name;
@@ -99,7 +101,6 @@ public enum CEntrustStatusEnums implements TradeDictBaseEnums {
         return this.name;
     }
 
-    @Override
     public String getDictSkId() {
         return this.skId;
     }

@@ -1,13 +1,12 @@
 package fund.investment.basic.common.enums.dict.instruction;
 
-import fund.investment.common.bean.dict.TradeDictBaseEnums;
-import fund.investment.common.enums.TradeDictTypeCodeEnums;
+import fund.investment.basic.common.enums.TradeDictTypeCodeEnums;
 
 /**
  * @author yufengbao
  * @date 2020/8/28 14:13
  */
-public enum InstrIssudeSourceEnums implements TradeDictBaseEnums {
+public enum InstrIssudeSourceEnums{
     pledge("71970000000001", "1", "银行间质押式回购"),
     newbond("71970000000002", "2", "可转债"),
     bondresale("71970000000003", "3", "债券回售"),
@@ -58,7 +57,6 @@ public enum InstrIssudeSourceEnums implements TradeDictBaseEnums {
         return this.name;
     }
 
-    @Override
     public String getDictSkId() {
         return this.skId;
     }

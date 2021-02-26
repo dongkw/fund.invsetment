@@ -1,12 +1,12 @@
 package fund.investment.basic.common.enums.dict.flowstate;
 
-import fund.investment.common.bean.dict.TradeDictBaseEnums;
-import fund.investment.common.enums.TradeDictTypeCodeEnums;
+import fund.investment.basic.common.enums.TradeDictTypeCodeEnums;
+import lombok.Getter;
 
 /**
  * 流程操作状态
  */
-public enum InsFlowStatusEnums implements TradeDictBaseEnums {
+public enum InsFlowStatusEnums{
     //skId=70450000000001
     INPUT("70450000000001", "0", "已参与"),
     //skId=70450000000002
@@ -89,6 +89,7 @@ public enum InsFlowStatusEnums implements TradeDictBaseEnums {
     DELETED("70450000000060", "0000000050", "流程已删除"),
     ;
 
+    @Getter
     private String skId;
     private String code;
     private String name;
@@ -129,7 +130,6 @@ public enum InsFlowStatusEnums implements TradeDictBaseEnums {
         return this.name;
     }
 
-    @Override
     public String getDictSkId() {
         return this.skId;
     }

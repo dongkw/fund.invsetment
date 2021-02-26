@@ -1,6 +1,8 @@
 package fund.investment.basic.common.config;
 
 
+import fund.investment.basic.common.DomainCommand;
+import fund.investment.basic.common.DomainEvent;
 import org.axonframework.messaging.Message;
 
 public final class CorelationHelper {

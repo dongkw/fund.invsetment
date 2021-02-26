@@ -1,12 +1,11 @@
 package fund.investment.basic.common.enums.dict.entrust;
 
-import fund.investment.common.bean.dict.TradeDictBaseEnums;
-import fund.investment.common.enums.TradeDictTypeCodeEnums;
+import fund.investment.basic.common.enums.TradeDictTypeCodeEnums;
 
 /**
  * 委托冻结方式
  */
-public enum TradeEntrustFrozenTypeEnums implements TradeDictBaseEnums {
+public enum TradeEntrustFrozenTypeEnums{
     //skId=71730000000000
     ENUM_0("71730000000000", "0", "T日临时冻结"),
     //skId=71730000000001
@@ -55,7 +54,6 @@ public enum TradeEntrustFrozenTypeEnums implements TradeDictBaseEnums {
         return this.name;
     }
 
-    @Override
     public String getDictSkId() {
         return this.skId;
     }

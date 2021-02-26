@@ -1,12 +1,11 @@
 package fund.investment.basic.common.enums.dict.entrust;
 
-import fund.investment.common.bean.dict.TradeDictBaseEnums;
-import fund.investment.common.enums.TradeDictTypeCodeEnums;
+import fund.investment.basic.common.enums.TradeDictTypeCodeEnums;
 
 /**
  * 撤单标志
  */
-public enum CCancelFlagEnums implements TradeDictBaseEnums {
+public enum CCancelFlagEnums {
     //skId=71700000000000
     UNCANCEL("71700000000000", "0", "否"),
     //skId=71700000000001
@@ -57,7 +56,6 @@ public enum CCancelFlagEnums implements TradeDictBaseEnums {
         return this.name;
     }
 
-    @Override
     public String getDictSkId() {
         return this.skId;
     }

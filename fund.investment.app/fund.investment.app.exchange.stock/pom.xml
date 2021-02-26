@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
 
-    <artifactId>exchange.stock.app</artifactId>
+    <artifactId>fund.investment.app.exchange.stock</artifactId>
     <modules>
         <module>fund.investment.app.exchange.stock.server</module>
         <module>fund.investment.app.exchange.stock.api</module>

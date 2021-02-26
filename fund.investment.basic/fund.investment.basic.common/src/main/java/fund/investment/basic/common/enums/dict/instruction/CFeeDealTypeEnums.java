@@ -1,12 +1,11 @@
 package fund.investment.basic.common.enums.dict.instruction;
 
-import fund.investment.common.bean.dict.TradeDictBaseEnums;
-import fund.investment.common.enums.TradeDictTypeCodeEnums;
+import fund.investment.basic.common.enums.TradeDictTypeCodeEnums;
 
 /**
  * 手续费处理方式
  */
-public enum CFeeDealTypeEnums implements TradeDictBaseEnums {
+public enum CFeeDealTypeEnums {
     FEEDEAL_NO_BACK("22020000000001", "1", "手续费不另返"),
     FEEDEAL_BACK("22020000000002", "2", "手续费另返"),
     NO_FEEDEAL("22020000000003", "3", "不计手续费"),
@@ -52,7 +51,6 @@ public enum CFeeDealTypeEnums implements TradeDictBaseEnums {
         return this.name;
     }
 
-    @Override
     public String getDictSkId() {
         return this.skId;
     }

@@ -1,13 +1,13 @@
 package fund.investment.basic.common.enums.dict.instruction;
 
-import fund.investment.common.bean.dict.TradeDictBaseEnums;
-import fund.investment.common.enums.TradeDictTypeCodeEnums;
+
+import fund.investment.basic.common.enums.TradeDictTypeCodeEnums;
 
 /**
  * @author yufengbao
  * @date 2020/9/17 15:16
  */
-public enum ForeignDirectEnums implements TradeDictBaseEnums {
+public enum ForeignDirectEnums {
     INRMBTOINUSD("71960000000001", "1", "境内RMB-境内USD"),
     INUSDTOINRMB("71960000000002", "2", "境内USD-境内RMB"),
     INUSDTOOUTUSD("71960000000003", "3", "境内USD-境外USD"),
@@ -56,7 +56,6 @@ public enum ForeignDirectEnums implements TradeDictBaseEnums {
         return this.name;
     }
 
-    @Override
     public String getDictSkId() {
         return this.skId;
     }

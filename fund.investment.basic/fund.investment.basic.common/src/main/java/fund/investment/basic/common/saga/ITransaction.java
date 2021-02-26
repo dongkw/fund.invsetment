@@ -1,8 +1,9 @@
 package fund.investment.basic.common.saga;
 
 
-import fund.investment.common.DomainCommand;
-import fund.investment.common.DomainEvent;
+
+import fund.investment.basic.common.DomainCommand;
+import fund.investment.basic.common.DomainEvent;
 
 import java.util.List;
 
