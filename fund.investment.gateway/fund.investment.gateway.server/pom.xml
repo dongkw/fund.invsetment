@@ -12,7 +12,11 @@
     <artifactId>fund.investment.gateway.server</artifactId>
 
     <dependencies>
-
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
         <dependency>
             <groupId>fund.investment</groupId>
             <artifactId>fund.investment.gateway.api</artifactId>

@@ -12,7 +12,12 @@
     <artifactId>fund.investment.app.pledge.repo.server</artifactId>
 
     <dependencies>
-
+        <!-- db implements -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
         <dependency>
             <groupId>fund.investment</groupId>
             <artifactId>fund.investment.app.pledge.repo.api</artifactId>
