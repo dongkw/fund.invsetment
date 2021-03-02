@@ -1,6 +1,7 @@
 package fund.investment.app.pledge.repo.server.service.instruction.saga;
 
 import fund.investment.app.pledge.repo.api.event.instruction.PRIstrCreatedEvt;
+import fund.investment.app.pledge.repo.api.valueobject.instruction.PledgeTradeElement;
 import fund.investment.app.pledge.repo.server.service.instruction.saga.create.PRInstrCreateCmplTranscationImpl;
 import fund.investment.basic.common.DomainCommand;
 import fund.investment.basic.common.saga.CommandGatewayFactory;
@@ -31,22 +32,22 @@ public class PRCreateIstrSaga extends CreateIstrSaga {
     @Autowired
     private transient CommandGateway commandGateway;
 
-    private PRIstrCreatedEvt istrVo;
+    private PRIstrCreatedEvt<PledgeTradeElement> istrVo;
 
     @StartSaga
     @SagaEventHandler(associationProperty = "id")
-    public void handler(PRIstrCreatedEvt evt) {
+    public void handler(PRIstrCreatedEvt<PledgeTradeElement> evt) {
         log.debug("create istr saga start,receive:{}", evt);
         transaction = genCreateIstrTransaction(evt);
         transaction.start();
     }
 
-    public ITransaction genCreateIstrTransaction(PRIstrCreatedEvt evt) {
+    public ITransaction genCreateIstrTransaction(PRIstrCreatedEvt<PledgeTradeElement> evt) {
         istrVo = createInstrVo(evt);
         return new ParallelTransaction(Collections.singletonList(new PRInstrCreateCmplTranscationImpl(istrVo, commandGateway)));
     }
 
-    private PRIstrCreatedEvt createInstrVo(PRIstrCreatedEvt evt) {
+    private PRIstrCreatedEvt<PledgeTradeElement> createInstrVo(PRIstrCreatedEvt<PledgeTradeElement> evt) {
         return evt;
     }
 
@@ -58,7 +59,7 @@ public class PRCreateIstrSaga extends CreateIstrSaga {
             CommandGatewayFactory.getCommandGateway().send(transaction.fillCmd(command));
             log.debug("saga send：{}", command);
             SagaLifecycle.end();
-            log.debug("----------saga end--------：{}", istrVo.getSkInstr());
+            log.debug("----------saga end--------：{}", istrVo.getId());
         }
 
     }
@@ -66,15 +67,12 @@ public class PRCreateIstrSaga extends CreateIstrSaga {
     private DomainCommand createCmd(Status status) {
         if (status == Status.FAILED) {
             CreateFailIstrCmd cmd = new CreateFailIstrCmd();
-            cmd.setId(istrVo.getSkInstr());
-            cmd.setSkId(istrVo.getSkId());
+            cmd.setId(istrVo.getId());
             cmd.setRequestId(istrVo.getRequestId());
             return cmd;
         } else if (status == Status.SUCCEED) {
-            CreateConfirmIstrCmd cmd = new CreateConfirmIstrCmd();
-            cmd.setId(istrVo.getSkInstr());
-            cmd.setSkId(istrVo.getSkId());
-            cmd.setInquiryResultId(istrVo.getInquiryResultId());
+            CreateConfirmIstrCmd<PledgeTradeElement> cmd = new CreateConfirmIstrCmd<>();
+            cmd.setId(istrVo.getId());
             cmd.setRequestId(istrVo.getRequestId());
             return cmd;
         } else {

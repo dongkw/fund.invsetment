@@ -49,7 +49,7 @@ public class PRUpdateIstrSaga extends UpdateIstrSaga {
 
     private IstrVo createIstrVo(PRIstrUpdatedEvt evt) {
         IstrVo istrVo = new IstrVo();
-        istrVo.setIstrId(evt.getId());
+        istrVo.setId(evt.getId());
 //        istrVo.setUnitId(evt.getUnitId());
 //        istrVo.setSecurityCode(evt.getUnitId());
         istrVo.setRequestId(evt.getRequestId());
@@ -66,7 +66,7 @@ public class PRUpdateIstrSaga extends UpdateIstrSaga {
             CommandGatewayFactory.getCommandGateway().send(transaction.fillCmd(command));
             log.debug("saga send：{}", command);
             SagaLifecycle.end();
-            log.debug("----------saga end--------：{}", istrVo.getIstrId());
+            log.debug("----------saga end--------：{}", istrVo.getId());
         }
 
     }
@@ -74,15 +74,13 @@ public class PRUpdateIstrSaga extends UpdateIstrSaga {
     private DomainCommand createCmd(Status status) {
         if (status == Status.SUCCEED) {
             PRUpdateConfirmIstrCmd cmd = new PRUpdateConfirmIstrCmd();
-            BeanUtils.copyProperties(prIstrUpdatedEvt,cmd);
-            cmd.setId(istrVo.getIstrId());
+            BeanUtils.copyProperties(prIstrUpdatedEvt, cmd);
+            cmd.setId(istrVo.getId());
             cmd.setRequestId(istrVo.getRequestId());
             return cmd;
         } else if (status == Status.FAILED) {
             PRUpdateFailIstrCmd cmd = new PRUpdateFailIstrCmd();
-            cmd.setId(istrVo.getIstrId());
-            cmd.setRequestId(istrVo.getRequestId());
-            cmd.setOriginPledgeRepoIstrAggrVO(prIstrUpdatedEvt.getOriginPledgeRepoIstrAggrVO());
+            cmd.setId(istrVo.getId());
             cmd.setRequestId(istrVo.getRequestId());
             return cmd;
         } else {

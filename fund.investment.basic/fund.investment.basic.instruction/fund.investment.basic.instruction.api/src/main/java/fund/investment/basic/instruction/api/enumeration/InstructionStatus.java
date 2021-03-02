@@ -17,7 +17,8 @@ public enum InstructionStatus {
     COMPLETED(7, "已完成"),
     CLOSED(8, "已关闭"),
     FAILED(9, "创建失败"),
-    CANCELLING(10, "撤销中");
+    CANCELLING(10, "撤销中"),
+    UPDATING(11, "修改中");
 
     InstructionStatus(int id, String note) {
         this.id = id;

@@ -18,8 +18,5 @@ public class CapitalCreateEvt extends VerificationEvent {
 
     private BigDecimal amount;
 
-    public CapitalCreateEvt(String id, BigDecimal amount) {
-        super(id);
-        this.amount = amount;
-    }
+
 }

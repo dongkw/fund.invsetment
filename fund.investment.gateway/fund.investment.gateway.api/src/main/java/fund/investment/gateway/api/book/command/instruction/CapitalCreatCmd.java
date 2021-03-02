@@ -18,8 +18,5 @@ public class CapitalCreatCmd extends VerificationCommand {
 
     private BigDecimal amount;
 
-    public CapitalCreatCmd(String id, BigDecimal amount) {
-        super(id);
-        this.amount = amount;
-    }
+
 }

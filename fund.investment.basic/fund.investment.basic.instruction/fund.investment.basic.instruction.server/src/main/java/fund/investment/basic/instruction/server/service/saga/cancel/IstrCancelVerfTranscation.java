@@ -22,7 +22,8 @@ public class IstrCancelVerfTranscation extends TransactionUnit {
 
     @Override
     public void start() {
-        VerificationCommand cmd = new CancelVerfIstrCmd(istrVo.getUnitId(), istrVo.getIstrId());
+        CancelVerfIstrCmd cmd = new CancelVerfIstrCmd();
+        cmd.setId(istrVo.getId());
         CommandGatewayFactory.getCommandGateway().send(cmd);
 }
 

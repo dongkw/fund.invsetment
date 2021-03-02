@@ -52,7 +52,7 @@ public class PRInstructionCommandHandler {
             String cSourceKey = "investResponse.getCSourceKey()";
             String cSourceNo = "investResponse.getCSourceNo()";
 
-            IstrCmplSucceedEvt evt = new IstrCmplSucceedEvt(cmd.getSkId(), cmd.getId(), cInstrSource, cSourceKey, cSourceNo);
+            IstrCmplSucceedEvt evt = new IstrCmplSucceedEvt(cmd.getId(), cmd.getId()+"", cInstrSource, cSourceKey, cSourceNo);
             eventGateway.publish(evt);
             log.debug("风控校验通过返回校验成功event:{}", evt);
         } else {
@@ -61,7 +61,7 @@ public class PRInstructionCommandHandler {
 //            if (!Objects.isNull(data)) {
 //                riskRiskInfos = data.getRiskRiskInfos();
 //            }
-            IstrCmplFailedEvt evt = new IstrCmplFailedEvt(cmd.getSkId(), cmd.getId(), "ajaxResult.getCode()", "ajaxResult.getMessage()", riskRiskInfos);
+            IstrCmplFailedEvt evt = new IstrCmplFailedEvt(cmd.getId(), cmd.getId()+"", "ajaxResult.getCode()", "ajaxResult.getMessage()", riskRiskInfos);
             eventGateway.publish(evt);
             log.debug("风控校验不通过返回校验失败event:{}", evt);
         }
@@ -81,7 +81,7 @@ public class PRInstructionCommandHandler {
             String cInstrSource = "investResponse.getCInstrSource()";
             String cSourceKey = "investResponse.getCSourceKey()";
             String cSourceNo = "investResponse.getCSourceNo()";
-            IstrCmplUpdateSucceedEvt evt = new IstrCmplUpdateSucceedEvt(cmd.getSkId(), cmd.getId());
+            IstrCmplUpdateSucceedEvt evt = new IstrCmplUpdateSucceedEvt(cmd.getId(), cmd.getId()+"");
             evt.setChInstrSource(cInstrSource);
             evt.setChSourceKey(cSourceKey);
             evt.setChSourceNo(cSourceNo);
@@ -93,7 +93,7 @@ public class PRInstructionCommandHandler {
 //            if (!Objects.isNull(data)) {
 //                riskRiskInfos = data.getRiskRiskInfos();
 //            }
-            IstrCmplUpdateFailedEvt evt = new IstrCmplUpdateFailedEvt(cmd.getSkId(), cmd.getId(), "ajaxResult.getCode()", "ajaxResult.getMessage()", riskRiskInfos);
+            IstrCmplUpdateFailedEvt evt = new IstrCmplUpdateFailedEvt(cmd.getId(), cmd.getId()+"", "ajaxResult.getCode()", "ajaxResult.getMessage()", riskRiskInfos);
             eventGateway.publish(evt);
             log.debug("风控校验不通过返回校验失败event:{}", evt);
         }

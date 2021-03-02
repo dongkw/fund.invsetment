@@ -16,7 +16,7 @@ public class RollbackVerfOrderCmd extends VerificationCommand {
 
     private String orderId;
 
-    public RollbackVerfOrderCmd(String id, String orderId) {
+    public RollbackVerfOrderCmd(Long id, String orderId) {
         super(id);
         this.orderId = orderId;
     }

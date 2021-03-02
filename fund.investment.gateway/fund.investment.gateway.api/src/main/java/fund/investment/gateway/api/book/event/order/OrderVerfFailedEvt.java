@@ -16,7 +16,7 @@ public class OrderVerfFailedEvt extends VerificationEvent {
 
     private String orderId;
 
-    public OrderVerfFailedEvt(String id, String orderId) {
+    public OrderVerfFailedEvt(Long id, String orderId) {
         super(id);
         this.orderId = orderId;
     }

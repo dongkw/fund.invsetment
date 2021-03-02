@@ -19,8 +19,4 @@ public class IstrPassedEvt extends InstructionEvent{
 	private String chFlowApproveStatus;
 
 
-	public IstrPassedEvt(String id, Long requestId, TradeType tradeType, String userId, String skId, String skInstr, String cLastModifiedId, Date tLastModifiedTime, String chFlowApproveStatus) {
-		super(id, requestId, tradeType, userId, skId, skInstr, cLastModifiedId, tLastModifiedTime);
-		this.chFlowApproveStatus = chFlowApproveStatus;
-	}
 }

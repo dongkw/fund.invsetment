@@ -21,8 +21,8 @@ public class IstrCmplCancelledEvt extends ComplianceEvent {
     private String chSourceKey;
     private String chSourceNo;
 
-    public IstrCmplCancelledEvt(String id, String istrId) {
-        super(id);
+    public IstrCmplCancelledEvt(Long id, String istrId) {
+        setId(id);
         this.istrId = istrId;
     }
 }

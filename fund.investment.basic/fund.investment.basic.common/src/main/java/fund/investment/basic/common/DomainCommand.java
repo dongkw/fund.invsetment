@@ -1,26 +1,23 @@
 package fund.investment.basic.common;
 
 import fund.investment.basic.common.util.LoggerTemplate;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
+
+import java.util.Date;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class DomainCommand {
 
     @TargetAggregateIdentifier
-    private String id;
+    private Long id;
 
     private Long requestId;
 
-    public DomainCommand(String id) {
-        this.id = id;
-    }
+    private String modifiedId;
+
+    private Date modifiedTime;
 
     @Override
     public String toString() {
@@ -29,5 +26,12 @@ public class DomainCommand {
                 .name(this.getClass().getSimpleName())
                 .build()
                 .toJson();
+    }
+
+    public void copyOf(DomainEvent event) {
+        this.id = event.getId();
+        this.modifiedId = event.getModifiedId();
+        this.requestId = event.getRequestId();
+        this.modifiedTime = event.getModifiedTime();
     }
 }

@@ -18,8 +18,4 @@ public class FrozenAmountEvt extends VerificationEvent {
 
     private BigDecimal amount;
 
-    public FrozenAmountEvt(String id, BigDecimal amount) {
-        super(id);
-        this.amount = amount;
-    }
 }

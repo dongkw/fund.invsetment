@@ -67,15 +67,13 @@ public class PRCancelIstrSaga extends CancelIstrSaga {
 
     private IstrVo createIstrVo(PRIstrCancellingEvt evt) {
         IstrVo istrVo = new IstrVo();
-        istrVo.setIstrId(evt.getId());
+        istrVo.setId(evt.getId());
         istrVo.setRequestId(evt.getRequestId());
-        istrVo.setLastmodifiedId(evt.getChLastModifiedId());
-        istrVo.setLastmodifiedTime(evt.getTsLastModifiedTime());
+        istrVo.setLastmodifiedId(evt.getModifiedId());
+        istrVo.setLastmodifiedTime(evt.getModifiedTime());
         istrVo.setChInstrSource(evt.getChInstrSource());
         istrVo.setChSourceKey(evt.getChSourceKey());
         istrVo.setChSourceNo(evt.getChSourceNo());
-        istrVo.setSkId(evt.getSkId());
-        istrVo.setUserId(evt.getUserId());
         return istrVo;
     }
 
@@ -95,13 +93,11 @@ public class PRCancelIstrSaga extends CancelIstrSaga {
         if (status == Status.SUCCEED) {
             CancelConfIstrCmd cmd = new CancelConfIstrCmd();
             cmd.setId(evt.getId());
-            cmd.setSkId(evt.getSkId());
             cmd.setRequestId(evt.getRequestId());
             return cmd;
         } else {
             RollbackCancelIstrCmd cmd = new RollbackCancelIstrCmd();
             cmd.setId(evt.getId());
-            cmd.setSkId(evt.getSkId());
             cmd.setRequestId(evt.getRequestId());
             return cmd;
         }

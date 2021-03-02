@@ -1,22 +1,25 @@
 package fund.investment.basic.common;
 
 import fund.investment.basic.common.util.LoggerTemplate;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import java.util.Date;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class DomainEvent {
 
-    private String id;
+    private Long id;
     private Long requestId;
+    private String modifiedId;
 
-    public DomainEvent(String id) {
-        this.id = id;
+    private Date modifiedTime;
+
+    public void copyOf(DomainCommand command) {
+        this.id = command.getId();
+        this.modifiedId = command.getModifiedId();
+        this.requestId = command.getRequestId();
+        this.modifiedTime = command.getModifiedTime();
     }
 
     @Override

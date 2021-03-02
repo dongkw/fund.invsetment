@@ -16,8 +16,8 @@ public class OrderCmplSucceedEvt extends ComplianceEvent {
 
     private String orderId;
 
-    public OrderCmplSucceedEvt(String id, String orderId) {
-        super(id);
+    public OrderCmplSucceedEvt(Long id, String orderId) {
+        setId(id);
         this.orderId = orderId;
     }
 }

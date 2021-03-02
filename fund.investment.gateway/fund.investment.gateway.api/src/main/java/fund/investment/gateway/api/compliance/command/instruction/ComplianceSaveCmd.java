@@ -16,7 +16,7 @@ public class ComplianceSaveCmd extends ComplianceCommand {
 
     private String istrId;
 
-    public ComplianceSaveCmd(String id, String istrId) {
+    public ComplianceSaveCmd(Long id, String istrId) {
         super(id);
         this.istrId = istrId;
     }

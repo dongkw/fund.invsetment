@@ -1,16 +1,10 @@
 package fund.investment.basic.instruction.server.aggregate.status;
 
-import fund.investment.basic.instruction.api.command.CancelConfIstrCmd;
-import fund.investment.basic.instruction.api.command.CancelIstrOrderCmd;
-import fund.investment.basic.instruction.api.command.CreateIstrOrderCmd;
-import fund.investment.basic.instruction.api.command.ReceiveIstrFillCmd;
-import fund.investment.basic.instruction.api.entity.IstrTradeElement;
+import fund.investment.basic.instruction.api.command.*;
 import fund.investment.basic.instruction.api.entity.OrderDetail;
 import fund.investment.basic.instruction.api.enumeration.InstructionStatus;
-import fund.investment.basic.instruction.api.event.IstrCancelledEvt;
-import fund.investment.basic.instruction.api.event.IstrCompletedEvt;
-import fund.investment.basic.instruction.api.event.IstrFillReceivedEvt;
-import fund.investment.basic.instruction.api.event.IstrOrderFailedEvt;
+import fund.investment.basic.instruction.api.event.*;
+import fund.investment.basic.instruction.api.valueobject.TradeElement;
 import fund.investment.basic.instruction.server.aggregate.InstructionAggregate;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.modelling.command.AggregateLifecycle;
@@ -18,53 +12,40 @@ import org.axonframework.modelling.command.AggregateLifecycle;
 import java.util.Objects;
 
 @Slf4j
-public class CancellingInstructionState extends InstructionState {
+public class CancellingInstructionState<T extends TradeElement> extends InstructionState<T> {
 
     public CancellingInstructionState() {
-        super(InstructionStatus.CANCELLED);
+        super(InstructionStatus.CANCELLING);
     }
 
     @Override
-    public void cancelConfirm(InstructionAggregate instructionAggregate, CancelConfIstrCmd cmd) {
+    public void cancelConfirm(InstructionAggregate<T> instructionAggregate, CancelConfIstrCmd cmd) {
         IstrCancelledEvt istrCancelledEvt = new IstrCancelledEvt();
-        istrCancelledEvt.setId(cmd.getId());
-        istrCancelledEvt.setRequestId(cmd.getRequestId());
-        istrCancelledEvt.setTradeType(cmd.getTradeType());
-        istrCancelledEvt.setSkId(instructionAggregate.getSkId());
-        istrCancelledEvt.setSkInstr(instructionAggregate.getSkInstr());
+        istrCancelledEvt.copyOf(cmd);
         istrCancelledEvt.setCancelType(cmd.getCancelType());
         istrCancelledEvt.setCancelMsg(cmd.getCancelMsg());
-        istrCancelledEvt.setChLastModifiedId(cmd.getChLastModifiedId());
-        istrCancelledEvt.setTsLastModifiedTime(cmd.getTsLastModifiedTime());
-        istrCancelledEvt.setChInstrSource(cmd.getChInstrSource());
-        istrCancelledEvt.setChSourceKey(cmd.getChSourceKey());
-        istrCancelledEvt.setChSourceNo(cmd.getChSourceNo());
         AggregateLifecycle.apply(istrCancelledEvt);
     }
 
     @Override
-    public void createOrder(InstructionAggregate instructionAggregate, CreateIstrOrderCmd esCreateIstrOrderCmd) {
-        IstrOrderFailedEvt istrOrderFailedEvt = new IstrOrderFailedEvt(
-                esCreateIstrOrderCmd.getId(),
-                null,
-                esCreateIstrOrderCmd.getTradeType(),
-                null,
-                null,
-                null,
-                null,
-                null,
-                esCreateIstrOrderCmd.getOrderId(),
-                "指令撤销中，创建委托失败");
-        istrOrderFailedEvt.setRequestId(esCreateIstrOrderCmd.getRequestId());
+    public void cancelFail(InstructionAggregate<T> instructionAggregate, RollbackCancelIstrCmd cmd) {
+        IstrFailedEvt evt = new IstrFailedEvt();
+        evt.copyOf(cmd);
+        evt.setRiskInfos(cmd.getRiskInfos());
+        AggregateLifecycle.apply(evt);
+    }
+
+    @Override
+    public void createOrder(InstructionAggregate<T> instructionAggregate, CreateIstrOrderCmd esCreateIstrOrderCmd) {
+        IstrOrderFailedEvt istrOrderFailedEvt = new IstrOrderFailedEvt();
+        istrOrderFailedEvt.copyOf(esCreateIstrOrderCmd);
+        istrOrderFailedEvt.setOrderId(esCreateIstrOrderCmd.getOrderId());
+        istrOrderFailedEvt.setFailMsg("指令撤销中，创建委托失败");
         AggregateLifecycle.apply(istrOrderFailedEvt);
     }
 
     @Override
-    public void cancelOrder(CancelIstrOrderCmd cancelIstrOrderCmd) {
-    }
-
-    @Override
-    public void receiveFill(InstructionAggregate instructionAggregate, ReceiveIstrFillCmd cmd) {
+    public void receiveFill(InstructionAggregate<T> instructionAggregate, ReceiveIstrFillCmd cmd) {
         OrderDetail orderDetail = instructionAggregate.getOrderDetail();
         if (Objects.isNull(orderDetail)) {
             orderDetail = new OrderDetail();
@@ -77,8 +58,9 @@ public class CancellingInstructionState extends InstructionState {
         istrFillReceivedEvt.setId(cmd.getId());
         istrFillReceivedEvt.setTradeType(cmd.getTradeType());
         orderDetail.receiveFill(istrFillReceivedEvt);
-        IstrTradeElement istrTradeElement = instructionAggregate.getIstrTradeElement();
-        if (istrTradeElement.getQuantity() - orderDetail.getFillQuantity() == 0) {
+        //todo 字段逻辑
+        if (instructionAggregate.getTradeElement().getFtInstrAmt().doubleValue()
+                - orderDetail.getFillQuantity() == 0) {
             IstrCompletedEvt istrCompletedEvt = new IstrCompletedEvt();
             istrCompletedEvt.setRequestId(cmd.getRequestId());
             istrCompletedEvt.setId(cmd.getId());

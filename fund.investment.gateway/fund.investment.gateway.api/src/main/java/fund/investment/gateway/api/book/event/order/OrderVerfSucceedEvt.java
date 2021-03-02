@@ -16,7 +16,7 @@ public class OrderVerfSucceedEvt extends VerificationEvent {
 
     private String orderId;
 
-    public OrderVerfSucceedEvt(String id, String orderId) {
+    public OrderVerfSucceedEvt(Long id, String orderId) {
         super(id);
         this.orderId = orderId;
     }

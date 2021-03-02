@@ -23,21 +23,21 @@
             <artifactId>fund.investment.app.pledge.repo.api</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-        <dependency>
-            <groupId>fund.investment</groupId>
-            <artifactId>fund.investment.basic.inqresult.server</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>fund.investment</groupId>
-            <artifactId>fund.investment.basic.inquiry.server</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>fund.investment</groupId>
-            <artifactId>fund.investment.basic.trade.server</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>fund.investment</groupId>-->
+<!--            <artifactId>fund.investment.basic.inqresult.server</artifactId>-->
+<!--            <version>1.0-SNAPSHOT</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>fund.investment</groupId>-->
+<!--            <artifactId>fund.investment.basic.inquiry.server</artifactId>-->
+<!--            <version>1.0-SNAPSHOT</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>fund.investment</groupId>-->
+<!--            <artifactId>fund.investment.basic.trade.server</artifactId>-->
+<!--            <version>1.0-SNAPSHOT</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>fund.investment</groupId>
             <artifactId>fund.investment.basic.instruction.server</artifactId>

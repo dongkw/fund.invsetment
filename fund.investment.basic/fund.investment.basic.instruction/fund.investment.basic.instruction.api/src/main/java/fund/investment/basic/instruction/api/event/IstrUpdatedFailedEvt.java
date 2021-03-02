@@ -17,10 +17,5 @@ import java.util.List;
 public class IstrUpdatedFailedEvt extends InstructionEvent {
     private List<RiskResultResponse> riskRiskInfos;
 
-    private InstructionAggregateVO instructionAggregateVO;
 
-    public IstrUpdatedFailedEvt(String id, Long requestId, TradeType tradeType, String userId, String skId, String skInstr, String cLastModifiedId, Date tLastModifiedTime, InstructionAggregateVO instructionAggregateVO) {
-        super(id, requestId, tradeType, userId, skId, skInstr, cLastModifiedId, tLastModifiedTime);
-        this.instructionAggregateVO = instructionAggregateVO;
-    }
 }

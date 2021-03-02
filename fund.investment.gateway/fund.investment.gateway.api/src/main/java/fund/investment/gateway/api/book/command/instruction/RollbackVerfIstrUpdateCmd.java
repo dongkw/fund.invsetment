@@ -19,9 +19,4 @@ public class RollbackVerfIstrUpdateCmd extends VerificationCommand {
 
     private String istrId;
 
-    public RollbackVerfIstrUpdateCmd(String id, BigDecimal amount, String istrId) {
-        super(id);
-        this.amount = amount;
-        this.istrId = istrId;
-    }
 }

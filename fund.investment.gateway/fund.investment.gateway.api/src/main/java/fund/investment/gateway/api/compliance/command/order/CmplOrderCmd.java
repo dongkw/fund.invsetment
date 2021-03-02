@@ -16,8 +16,5 @@ public class CmplOrderCmd extends ComplianceCommand {
 
     private String orderId;
 
-    public CmplOrderCmd(String id, String orderId) {
-        super(id);
-        this.orderId = orderId;
-    }
+
 }

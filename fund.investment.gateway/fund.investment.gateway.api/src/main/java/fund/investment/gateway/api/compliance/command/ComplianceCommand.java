@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class ComplianceCommand extends DomainCommand {
 
     private String userId;
-    public ComplianceCommand(String id) {
-        super(id);
+    public ComplianceCommand(Long id) {
+        setId(id);
     }
 }

@@ -16,8 +16,5 @@ public class CancelVerfIstrCmd extends VerificationCommand {
 
     private String istrId;
 
-    public CancelVerfIstrCmd(String id, String istrId) {
-        super(id);
-        this.istrId = istrId;
-    }
+
 }

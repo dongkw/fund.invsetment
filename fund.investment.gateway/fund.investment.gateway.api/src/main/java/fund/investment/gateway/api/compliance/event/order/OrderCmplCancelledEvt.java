@@ -16,8 +16,8 @@ public class OrderCmplCancelledEvt extends ComplianceEvent {
 
     private String orderId;
 
-    public OrderCmplCancelledEvt(String id, String orderId) {
-        super(id);
+    public OrderCmplCancelledEvt(Long id, String orderId) {
+        setId(id);
         this.orderId = orderId;
     }
 }

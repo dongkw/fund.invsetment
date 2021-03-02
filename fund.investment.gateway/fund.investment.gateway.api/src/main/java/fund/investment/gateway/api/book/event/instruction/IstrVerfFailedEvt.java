@@ -16,8 +16,4 @@ public class IstrVerfFailedEvt extends VerificationEvent {
 
     private String istrId;
 
-    public IstrVerfFailedEvt(String id, String istrId) {
-        super(id);
-        this.istrId = istrId;
-    }
 }

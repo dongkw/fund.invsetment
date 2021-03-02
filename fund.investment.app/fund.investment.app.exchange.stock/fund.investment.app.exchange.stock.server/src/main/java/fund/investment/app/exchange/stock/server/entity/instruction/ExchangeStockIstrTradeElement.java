@@ -1,7 +1,6 @@
 package fund.investment.app.exchange.stock.server.entity.instruction;
 
 import fund.investment.app.exchange.stock.api.command.instruction.ESCreateIstrCmd;
-import fund.investment.basic.instruction.api.entity.IstrTradeElement;
 import fund.investment.basic.instruction.api.enumeration.TradeSide;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

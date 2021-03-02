@@ -16,7 +16,7 @@ public class RollbackCmplIstrUpdateCmd extends ComplianceCommand {
 
     private String istrId;
 
-    public RollbackCmplIstrUpdateCmd(String id, String istrId) {
+    public RollbackCmplIstrUpdateCmd(Long id, String istrId) {
         super(id);
         this.istrId = istrId;
     }

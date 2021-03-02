@@ -2,13 +2,15 @@ package fund.investment.basic.instruction.server.aggregate.status;
 
 import fund.investment.basic.instruction.api.command.*;
 import fund.investment.basic.instruction.api.enumeration.InstructionStatus;
+import fund.investment.basic.instruction.api.valueobject.TradeElement;
 import fund.investment.basic.instruction.server.aggregate.InstructionAggregate;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class InstructionState {
+public class InstructionState<T extends TradeElement> {
+
 
     private InstructionStatus instructionStatus;
 
@@ -16,36 +18,46 @@ public class InstructionState {
         this.instructionStatus = instructionStatus;
     }
 
-    public void createConfirm(InstructionAggregate instructionAggregate, CreateConfirmIstrCmd createConfirmIstrCmd) {
+    public void createConfirm(InstructionAggregate<T> instructionAggregate, CreateConfirmIstrCmd<T> createConfirmIstrCmd) {
     }
 
-    public void createFail(InstructionAggregate instructionAggregate, CreateFailIstrCmd createFailIstrCmd) {
+    public void createFail(InstructionAggregate<T> instructionAggregate, CreateFailIstrCmd createFailIstrCmd) {
     }
 
-    public void aprvPass(InstructionAggregate instructionAggregate, ApproveIstrCmd approveIstrCmd) {
+    public void aprvPass(InstructionAggregate<T> instructionAggregate, ApproveIstrCmd approveIstrCmd) {
     }
 
-    public void aprvReject(ApproveIstrCmd aprvIstrRejectedCmd) {
+    public void distribute(InstructionAggregate<T> instructionAggregate, DistributeIstrCmd distributeIstrCmd) {
     }
 
-    public void distribute(InstructionAggregate instructionAggregate, DistributeIstrCmd distributeIstrCmd) {
+
+    public void cancel(InstructionAggregate<T> instructionAggregate, CancelIstrCmd cancelIstrCmd) {
     }
 
-    public void distReject(DistributeIstrCmd distIstrRejectedCmd) {
+    public void cancelConfirm(InstructionAggregate<T> instructionAggregate, CancelConfIstrCmd cancelConfIstrCmd) {
     }
 
-    public void cancel(InstructionAggregate instructionAggregate, CancelIstrCmd cancelIstrCmd) {
+    public void cancelFail(InstructionAggregate<T> instructionAggregate, RollbackCancelIstrCmd cmd) {
     }
 
-    public void cancelConfirm(InstructionAggregate instructionAggregate, CancelConfIstrCmd cancelConfIstrCmd) {
-    }
-
-    public void createOrder(InstructionAggregate instructionAggregate, CreateIstrOrderCmd createIstrOrderCmd) {
+    public void createOrder(InstructionAggregate<T> instructionAggregate, CreateIstrOrderCmd createIstrOrderCmd) {
     }
 
     public void cancelOrder(CancelIstrOrderCmd cancelIstrOrderCmd) {
     }
 
-    public void receiveFill(InstructionAggregate instructionAggregate, ReceiveIstrFillCmd receiveIstrFillCmd) {
+    public void receiveFill(InstructionAggregate<T> instructionAggregate, ReceiveIstrFillCmd receiveIstrFillCmd) {
+    }
+
+    public void update(InstructionAggregate<T> aggregate, UpdateIstrCmd<T> cmd) {
+
+    }
+
+    public void updateConfirm(InstructionAggregate<T> aggregate, UpdateConfirmIstrCmd<T> cmd) {
+
+    }
+
+    public void updateFail(InstructionAggregate<T> aggregate, UpdateFailIstrCmd cmd) {
+
     }
 }

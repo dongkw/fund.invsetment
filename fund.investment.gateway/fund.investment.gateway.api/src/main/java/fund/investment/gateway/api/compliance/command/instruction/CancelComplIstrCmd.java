@@ -52,7 +52,7 @@ public class CancelComplIstrCmd extends ComplianceCommand {
 
     private String chSourceNo;
 
-    public CancelComplIstrCmd(String id, String userId, String skId, String skInstr, String chLastModifiedId, Date tsLastModifiedTime) {
+    public CancelComplIstrCmd(Long id, String userId, String skId, String skInstr, String chLastModifiedId, Date tsLastModifiedTime) {
         super(id);
         this.userId = userId;
         this.skId = skId;

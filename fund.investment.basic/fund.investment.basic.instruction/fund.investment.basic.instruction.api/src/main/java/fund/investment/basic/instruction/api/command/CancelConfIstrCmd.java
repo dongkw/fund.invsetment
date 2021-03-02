@@ -1,6 +1,5 @@
 package fund.investment.basic.instruction.api.command;
 
-import fund.investment.basic.instruction.api.enumeration.TradeType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,7 +26,5 @@ public class CancelConfIstrCmd extends InstructionCommand {
 
     private String chSourceNo;
 
-    public CancelConfIstrCmd(TradeType tradeType, String id, String skId, String skInstr) {
-        super(tradeType, id, skId, skInstr);
-    }
+
 }

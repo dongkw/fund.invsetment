@@ -15,9 +15,6 @@ public abstract class CreateIstrOrderCmd extends InstructionCommand {
 
     private String orderId;
 
-    public CreateIstrOrderCmd(TradeType tradeType, String id, String skId, String skInstr) {
-        super(tradeType, id, skId, skInstr);
-    }
 
     public abstract OrderTradeElement getOrderTradeElement();
 }

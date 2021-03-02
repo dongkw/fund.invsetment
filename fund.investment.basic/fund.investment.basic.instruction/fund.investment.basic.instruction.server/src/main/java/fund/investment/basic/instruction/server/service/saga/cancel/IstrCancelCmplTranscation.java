@@ -30,9 +30,7 @@ public class IstrCancelCmplTranscation extends TransactionUnit {
     public void start() {
         CancelComplIstrCmd cmd = new CancelComplIstrCmd();
         BeanUtils.copyProperties(istrVo, cmd);
-        cmd.setId(istrVo.getIstrId());
-        cmd.setSkId(istrVo.getSkId());
-        cmd.setSkInstr(istrVo.getIstrId());
+        cmd.setId(istrVo.getId());
         cmd.setUserId(istrVo.getUserId());
         CommandGatewayFactory.getCommandGateway().send(cmd);
     }
@@ -46,14 +44,12 @@ public class IstrCancelCmplTranscation extends TransactionUnit {
         if (event.getClass().isAssignableFrom(IstrCmplCancelledEvt.class)) {
             status = Status.SUCCEED;
             IstrCmplCancelledEvt evt = new IstrCmplCancelledEvt();
-            istrVo.setIstrId(evt.getIstrId());
             istrVo.setChSourceNo(evt.getChSourceNo());
             istrVo.setChSourceKey(evt.getChSourceKey());
             istrVo.setChInstrSource(evt.getChInstrSource());
         } else if (event.getClass().isAssignableFrom(IstrCmplCancelFailedEvt.class)) {
             status = Status.FAILED;
             IstrCmplCancelFailedEvt evt = new IstrCmplCancelFailedEvt();
-            istrVo.setIstrId(evt.getIstrId());
             istrVo.setChSourceNo(evt.getChSourceNo());
             istrVo.setChSourceKey(evt.getChSourceKey());
             istrVo.setChInstrSource(evt.getChInstrSource());

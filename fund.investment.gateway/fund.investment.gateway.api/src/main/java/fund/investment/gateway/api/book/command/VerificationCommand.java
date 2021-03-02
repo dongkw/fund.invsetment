@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class VerificationCommand extends DomainCommand {
 
-    public VerificationCommand(String id) {
-        super(id);
+    public VerificationCommand(Long id) {
+        setId(id);
     }
 }

@@ -1,7 +1,6 @@
 package fund.investment.basic.instruction.api.command;
 
 import fund.investment.basic.common.http.response.risk.RiskResultResponse;
-import fund.investment.basic.instruction.api.enumeration.TradeType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,7 +20,4 @@ public class UpdateFailIstrCmd extends InstructionCommand {
 
     private List<RiskResultResponse> riskRiskInfos;
 
-    public UpdateFailIstrCmd(TradeType tradeType, String id, String skId, String skInstr) {
-        super(tradeType, id, skId, skInstr);
-    }
 }

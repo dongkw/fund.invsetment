@@ -16,8 +16,5 @@ public class RollBackCmplOrderCmd extends ComplianceCommand {
 
     private String orderId;
 
-    public RollBackCmplOrderCmd(String id, String orderId) {
-        super(id);
-        this.orderId = orderId;
-    }
+
 }

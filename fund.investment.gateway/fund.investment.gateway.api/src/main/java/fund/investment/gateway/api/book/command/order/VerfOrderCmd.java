@@ -16,7 +16,7 @@ public class VerfOrderCmd extends VerificationCommand {
 
     private String orderId;
 
-    public VerfOrderCmd(String id,  String orderId) {
+    public VerfOrderCmd(Long id,  String orderId) {
         super(id);
         this.orderId = orderId;
     }

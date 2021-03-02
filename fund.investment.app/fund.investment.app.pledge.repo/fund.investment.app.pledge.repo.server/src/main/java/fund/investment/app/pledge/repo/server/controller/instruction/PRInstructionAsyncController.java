@@ -14,13 +14,10 @@ import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Objects;
 
 @RestController
 @RequestMapping("/async/bank-investment/inner-bank")
@@ -41,11 +38,8 @@ public class PRInstructionAsyncController {
     @ApiOperation(value = "创建指令")
     public ResponseEntity<PRInstructionTransmitResponse> create(@RequestBody PRCreateIstrCmd cmd) {
         try {
-            if(Objects.isNull(cmd) || StringUtils.isEmpty(cmd.getSkInstr())){
-                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-            }
-            cmd.setId(cmd.getSkInstr());
-            commandGateway.sendAndWait(cmd);
+
+            commandGateway.send(cmd);
             PRInstructionTransmitResponse response = new PRInstructionTransmitResponse();
             response.setCommandStatus(Boolean.TRUE);
             TradeInvestResponse invest = new TradeInvestResponse();
@@ -65,7 +59,7 @@ public class PRInstructionAsyncController {
     public ResponseEntity<ResultEntity> confirm(@RequestBody String id) {
         try {
             CreateConfirmIstrCmd instruction = new CreateConfirmIstrCmd();
-            instruction.setId(id);
+            instruction.setId(Long.parseLong(id));
             commandGateway.sendAndWait(instruction);
             return ResponseEntity.ok(new ResultEntity(Boolean.TRUE));
         } catch (Exception e) {
@@ -90,10 +84,7 @@ public class PRInstructionAsyncController {
     @ApiOperation(value = "修改指令")
     public ResponseEntity<ResultEntity> update(@RequestBody PRUpdateIstrCmd cmd) {
         try {
-            if(Objects.isNull(cmd) || StringUtils.isEmpty(cmd.getSkInstr())){
-                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-            }
-            cmd.setId(cmd.getSkInstr());
+
             commandGateway.sendAndWait(cmd);
             PRInstructionTransmitResponse response = new PRInstructionTransmitResponse();
             response.setCommandStatus(Boolean.TRUE);

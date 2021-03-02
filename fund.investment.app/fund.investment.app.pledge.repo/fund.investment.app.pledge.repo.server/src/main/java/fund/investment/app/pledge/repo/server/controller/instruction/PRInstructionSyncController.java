@@ -4,7 +4,6 @@ import fund.investment.app.pledge.repo.api.command.instruction.PRCancelIstrCmd;
 import fund.investment.app.pledge.repo.api.command.instruction.PRCreateIstrCmd;
 import fund.investment.app.pledge.repo.api.command.instruction.PRUpdateIstrCmd;
 import fund.investment.app.pledge.repo.api.event.instruction.PRIstrUpdateConfirmedEvt;
-import fund.investment.app.pledge.repo.api.event.instruction.PRIstrUpdatedFailedEvt;
 import fund.investment.basic.common.http.response.pledgerepo.PRInstructionTransmitResponse;
 import fund.investment.basic.common.http.response.pledgerepo.ResultEntity;
 import fund.investment.basic.common.http.response.pledgerepo.TradeInvestResponse;
@@ -13,7 +12,6 @@ import fund.investment.basic.common.util.uid.UIDGenerator;
 import fund.investment.basic.instruction.api.event.IstrCancelledEvt;
 import fund.investment.basic.instruction.api.event.IstrConfirmedEvt;
 import fund.investment.basic.instruction.api.event.IstrFailedEvt;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.axonframework.eventhandling.EventHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +24,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/sync/bank-investment/inner-bank")
-@Api(tags = "Sync Exchange Instruction")
 public class PRInstructionSyncController extends Async2SyncController {
     @Autowired
     private UIDGenerator uidGenerator;
@@ -38,7 +35,7 @@ public class PRInstructionSyncController extends Async2SyncController {
     public ResponseEntity<ResultEntity> createAndConfirm(@RequestBody PRCreateIstrCmd cmd) {
         try {
             cmd.setRequestId(uidGenerator.nextId());
-
+            cmd.setId(uidGenerator.nextId());
             prInstructionAsyncController.create(cmd);
             return waitResponse(cmd.getRequestId());
         } catch (Exception e) {
@@ -46,6 +43,7 @@ public class PRInstructionSyncController extends Async2SyncController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
     @EventHandler
     public void on(IstrConfirmedEvt evt) {
         PRInstructionTransmitResponse response = new PRInstructionTransmitResponse();
@@ -61,11 +59,9 @@ public class PRInstructionSyncController extends Async2SyncController {
         response.setCommandStatus(Boolean.TRUE);
         response.setComplianceStatus(Boolean.FALSE);
         TradeInvestResponse tradeInvestResponse = new TradeInvestResponse();
-        tradeInvestResponse.setRiskInfos(evt.getRiskRiskInfos());
         response.setInvest(tradeInvestResponse);
         addResponse(evt.getRequestId(), response);
     }
-
 
 
     @RequestMapping(value = "/instruction/modification", method = RequestMethod.POST)
@@ -90,8 +86,6 @@ public class PRInstructionSyncController extends Async2SyncController {
     }
 
 
-
-
     @EventHandler
     public void on(IstrCancelledEvt evt) {
         ResultEntity response = new ResultEntity();
@@ -106,20 +100,6 @@ public class PRInstructionSyncController extends Async2SyncController {
         addResponse(evt.getRequestId(), response);
     }
 
-    @EventHandler
-    public void on(PRIstrUpdatedFailedEvt evt) {
-//        ResultEntity response = new ResultEntity();
-//        setStatus(response);
-//        addResponse(evt.getRequestId(), response);
-        PRInstructionTransmitResponse response = new PRInstructionTransmitResponse();
-        //setStatus(response);
-        response.setCommandStatus(Boolean.TRUE);
-        response.setComplianceStatus(Boolean.FALSE);
-        TradeInvestResponse tradeInvestResponse = new TradeInvestResponse();
-        tradeInvestResponse.setRiskInfos(evt.getRiskRiskInfos());
-        response.setInvest(tradeInvestResponse);
-        addResponse(evt.getRequestId(), response);
-    }
 
     private void setStatus(ResultEntity response) {
         response.setCommandStatus(Boolean.TRUE);

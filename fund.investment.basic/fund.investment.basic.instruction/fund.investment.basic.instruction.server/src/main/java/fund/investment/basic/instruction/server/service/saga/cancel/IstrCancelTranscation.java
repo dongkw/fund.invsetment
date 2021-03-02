@@ -29,12 +29,12 @@ public class IstrCancelTranscation extends TransactionUnit {
     @Override
     public void start() {
         CancelConfIstrCmd cmd = new CancelConfIstrCmd();
-        cmd.setId(istrVo.getIstrId());
+        cmd.setId(istrVo.getId());
         cmd.setRequestId(istrVo.getRequestId());
         cmd.setCancelType(cancelType);
         cmd.setCancelMsg(cancelMsg);
-        cmd.setChLastModifiedId(istrVo.getLastmodifiedId());
-        cmd.setTsLastModifiedTime(istrVo.getLastmodifiedTime());
+        cmd.setModifiedId(istrVo.getLastmodifiedId());
+        cmd.setModifiedTime(istrVo.getLastmodifiedTime());
         cmd.setChInstrSource(istrVo.getChInstrSource());
         cmd.setChSourceKey(istrVo.getChSourceKey());
         cmd.setChSourceNo(istrVo.getChSourceNo());

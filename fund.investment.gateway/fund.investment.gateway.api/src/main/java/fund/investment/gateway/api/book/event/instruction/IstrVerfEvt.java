@@ -18,8 +18,5 @@ public class IstrVerfEvt extends VerificationEvent {
 
     private BigDecimal amount;
 
-    public IstrVerfEvt(String id, BigDecimal amount) {
-        super(id);
-        this.amount = amount;
-    }
+
 }

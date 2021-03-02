@@ -21,9 +21,4 @@ public class IstrFixReceivedEvt extends InstructionEvent {
      */
     private String chRevokeReason;
 
-    public IstrFixReceivedEvt(String id, Long requestId, TradeType tradeType, String userId, String skId, String skInstr, String cLastModifiedId, Date tLastModifiedTime, String chFixStatus, String chRevokeReason) {
-        super(id, requestId, tradeType, userId, skId, skInstr, cLastModifiedId, tLastModifiedTime);
-        this.chFixStatus = chFixStatus;
-        this.chRevokeReason = chRevokeReason;
-    }
 }

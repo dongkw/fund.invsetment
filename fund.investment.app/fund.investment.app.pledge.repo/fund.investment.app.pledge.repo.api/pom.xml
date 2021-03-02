@@ -13,26 +13,26 @@
 
     <dependencies>
 
-        <dependency>
-            <groupId>fund.investment</groupId>
-            <artifactId>fund.investment.basic.inquiry.api</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>fund.investment</groupId>
-            <artifactId>fund.investment.basic.inqresult.api</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>fund.investment</groupId>-->
+<!--            <artifactId>fund.investment.basic.inquiry.api</artifactId>-->
+<!--            <version>1.0-SNAPSHOT</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>fund.investment</groupId>-->
+<!--            <artifactId>fund.investment.basic.inqresult.api</artifactId>-->
+<!--            <version>1.0-SNAPSHOT</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>fund.investment</groupId>
             <artifactId>fund.investment.basic.instruction.api</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-        <dependency>
-            <groupId>fund.investment</groupId>
-            <artifactId>fund.investment.basic.trade.api</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>fund.investment</groupId>-->
+<!--            <artifactId>fund.investment.basic.trade.api</artifactId>-->
+<!--            <version>1.0-SNAPSHOT</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>fund.investment</groupId>
             <artifactId>fund.investment.gateway.api</artifactId>

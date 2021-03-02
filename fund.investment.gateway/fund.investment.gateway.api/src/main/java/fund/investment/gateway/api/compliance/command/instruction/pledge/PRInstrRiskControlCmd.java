@@ -4,13 +4,16 @@ import fund.investment.basic.common.valueobject.InterbankPledgeBond;
 import fund.investment.gateway.api.compliance.command.instruction.InstrRiskControlCmd;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
-@Data
+@Getter
+@Setter
 public class PRInstrRiskControlCmd extends InstrRiskControlCmd {
 
     /**

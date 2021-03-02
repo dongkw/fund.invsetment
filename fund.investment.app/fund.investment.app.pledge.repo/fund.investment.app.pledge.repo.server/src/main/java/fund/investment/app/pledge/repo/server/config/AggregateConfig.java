@@ -1,9 +1,6 @@
 package fund.investment.app.pledge.repo.server.config;
 
-import fund.investment.app.pledge.repo.server.aggregate.inqresult.PledgeRepoInquiryResultAggregate;
-import fund.investment.app.pledge.repo.server.aggregate.inquiry.PledgeRepoInquiryAggregate;
 import fund.investment.app.pledge.repo.server.aggregate.instruction.PledgeRepoIstrAggr;
-import fund.investment.app.pledge.repo.server.aggregate.trade.PledgeRepoOrderAggregate;
 import org.axonframework.common.caching.Cache;
 import org.axonframework.eventhandling.EventBus;
 import org.axonframework.eventsourcing.EventSourcingRepository;
@@ -15,27 +12,27 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class AggregateConfig {
-    @Bean
-    public EventSourcingRepository<PledgeRepoInquiryAggregate> aggregateInquiryRepository(EventStore eventStore, SnapshotTriggerDefinition snapshotTrigger, Cache cache) {
-        configEventBus(eventStore);
-        return EventSourcingRepository
-                .builder(PledgeRepoInquiryAggregate.class)
-                .cache(cache)
-                .snapshotTriggerDefinition(snapshotTrigger)
-                .eventStore(eventStore)
-                .build();
-    }
-
-    @Bean
-    public EventSourcingRepository<PledgeRepoInquiryResultAggregate> aggregateInquiryResultRepository(EventStore eventStore, SnapshotTriggerDefinition snapshotTrigger, Cache cache) {
-        configEventBus(eventStore);
-        return EventSourcingRepository
-                .builder(PledgeRepoInquiryResultAggregate.class)
-                .cache(cache)
-                .snapshotTriggerDefinition(snapshotTrigger)
-                .eventStore(eventStore)
-                .build();
-    }
+//    @Bean
+//    public EventSourcingRepository<PledgeRepoInquiryAggregate> aggregateInquiryRepository(EventStore eventStore, SnapshotTriggerDefinition snapshotTrigger, Cache cache) {
+//        configEventBus(eventStore);
+//        return EventSourcingRepository
+//                .builder(PledgeRepoInquiryAggregate.class)
+//                .cache(cache)
+//                .snapshotTriggerDefinition(snapshotTrigger)
+//                .eventStore(eventStore)
+//                .build();
+//    }
+//
+//    @Bean
+//    public EventSourcingRepository<PledgeRepoInquiryResultAggregate> aggregateInquiryResultRepository(EventStore eventStore, SnapshotTriggerDefinition snapshotTrigger, Cache cache) {
+//        configEventBus(eventStore);
+//        return EventSourcingRepository
+//                .builder(PledgeRepoInquiryResultAggregate.class)
+//                .cache(cache)
+//                .snapshotTriggerDefinition(snapshotTrigger)
+//                .eventStore(eventStore)
+//                .build();
+//    }
 
     @Bean
     public EventSourcingRepository<PledgeRepoIstrAggr> aggregateIstrRepository(EventStore eventStore, SnapshotTriggerDefinition snapshotTrigger, Cache cache) {
@@ -48,16 +45,16 @@ public class AggregateConfig {
                 .build();
     }
 
-    @Bean
-    public EventSourcingRepository<PledgeRepoOrderAggregate> aggregateTradeRepository(EventStore eventStore, SnapshotTriggerDefinition snapshotTrigger, Cache cache) {
-        configEventBus(eventStore);
-        return EventSourcingRepository
-                .builder(PledgeRepoOrderAggregate.class)
-                .cache(cache)
-                .snapshotTriggerDefinition(snapshotTrigger)
-                .eventStore(eventStore)
-                .build();
-    }
+//    @Bean
+//    public EventSourcingRepository<PledgeRepoOrderAggregate> aggregateTradeRepository(EventStore eventStore, SnapshotTriggerDefinition snapshotTrigger, Cache cache) {
+//        configEventBus(eventStore);
+//        return EventSourcingRepository
+//                .builder(PledgeRepoOrderAggregate.class)
+//                .cache(cache)
+//                .snapshotTriggerDefinition(snapshotTrigger)
+//                .eventStore(eventStore)
+//                .build();
+//    }
 
     private void configEventBus(EventBus eventBus) {
 //        eventBus.registerDispatchInterceptor(new EventDispatcherInterceptor());

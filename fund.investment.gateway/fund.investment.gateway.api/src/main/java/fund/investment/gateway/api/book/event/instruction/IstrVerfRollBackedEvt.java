@@ -20,9 +20,5 @@ public class IstrVerfRollBackedEvt extends VerificationEvent {
 
     private String istrId;
 
-    public IstrVerfRollBackedEvt(String id, BigDecimal amount, String istrId) {
-        super(id);
-        this.amount = amount;
-        this.istrId = istrId;
-    }
+
 }

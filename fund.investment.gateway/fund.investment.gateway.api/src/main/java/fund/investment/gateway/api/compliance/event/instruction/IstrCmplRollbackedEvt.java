@@ -16,8 +16,8 @@ public class IstrCmplRollbackedEvt extends ComplianceEvent {
 
     private String istrId;
 
-    public IstrCmplRollbackedEvt(String id, String istrId) {
-        super(id);
+    public IstrCmplRollbackedEvt(Long id, String istrId) {
+        setId(id);
         this.istrId = istrId;
     }
 }

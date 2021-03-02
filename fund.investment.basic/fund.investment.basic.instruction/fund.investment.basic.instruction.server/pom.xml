@@ -23,11 +23,11 @@
             <artifactId>fund.investment.gateway.api</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-        <dependency>
-            <groupId>fund.investment</groupId>
-            <artifactId>fund.investment.basic.trade.api</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>fund.investment</groupId>-->
+<!--            <artifactId>fund.investment.basic.trade.api</artifactId>-->
+<!--            <version>1.0-SNAPSHOT</version>-->
+<!--            <scope>compile</scope>-->
+<!--        </dependency>-->
     </dependencies>
 </project>

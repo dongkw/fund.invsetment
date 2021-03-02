@@ -38,7 +38,7 @@ axon:
   snapshot:
     event:
       count:
-        threshold: 1
+        threshold: 20
   event:
     parallel: 2
   command:

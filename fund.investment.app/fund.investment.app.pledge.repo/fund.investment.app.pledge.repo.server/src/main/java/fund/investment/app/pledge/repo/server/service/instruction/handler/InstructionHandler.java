@@ -19,12 +19,10 @@ public class InstructionHandler {
     public void on(IstrFillReceivedEvt evt) {
         log.info("Recieved Event: {}", evt);
         ReceiveIstrFillCmd receiveIstrFillCmd = new ReceiveIstrFillCmd();
-        receiveIstrFillCmd.setId(evt.getSkInstr());
-        receiveIstrFillCmd.setSkId(evt.getSkId());
-        receiveIstrFillCmd.setSkInstr(evt.getSkInstr());
+        receiveIstrFillCmd.setId(evt.getId());
         receiveIstrFillCmd.setChInsDealStatus(evt.getChInsDealStatus());
-        receiveIstrFillCmd.setChLastModifiedId(evt.getChLastModifiedId());
-        receiveIstrFillCmd.setTsLastModifiedTime(evt.getTsLastModifiedTime());
+        receiveIstrFillCmd.setModifiedId(evt.getModifiedId());
+        receiveIstrFillCmd.setModifiedTime(evt.getModifiedTime());
 //        receiveIstrFillCmd.setOrderId(evt.getFill().getOrderOriginalId());
 //        receiveIstrFillCmd.setFillId(evt.getFill().getId());
         //TODO 设置成交数量

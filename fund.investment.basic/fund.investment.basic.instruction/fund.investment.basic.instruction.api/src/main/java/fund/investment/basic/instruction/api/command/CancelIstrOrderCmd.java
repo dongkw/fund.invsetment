@@ -16,7 +16,4 @@ public class CancelIstrOrderCmd extends InstructionCommand {
 
     private long cancelQuantity;
 
-    public CancelIstrOrderCmd(TradeType tradeType, String id, String skId, String skInstr) {
-        super(tradeType, id, skId, skInstr);
-    }
 }

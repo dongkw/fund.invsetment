@@ -16,8 +16,8 @@ public class OrderCmplRollbackedEvt extends ComplianceEvent {
 
     private String orderId;
 
-    public OrderCmplRollbackedEvt(String id, String orderId) {
-        super(id);
+    public OrderCmplRollbackedEvt(Long id, String orderId) {
+        setId(id);
         this.orderId = orderId;
     }
 }

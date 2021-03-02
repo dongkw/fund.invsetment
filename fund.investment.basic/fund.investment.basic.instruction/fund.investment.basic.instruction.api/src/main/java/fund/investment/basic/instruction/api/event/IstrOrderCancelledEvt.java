@@ -17,9 +17,4 @@ public class IstrOrderCancelledEvt extends InstructionEvent {
 
     private long cancelQuantity;
 
-    public IstrOrderCancelledEvt(String id, Long requestId, TradeType tradeType, String userId, String skId, String skInstr, String cLastModifiedId, Date tLastModifiedTime, String orderId, long cancelQuantity) {
-        super(id, requestId, tradeType, userId, skId, skInstr, cLastModifiedId, tLastModifiedTime);
-        this.orderId = orderId;
-        this.cancelQuantity = cancelQuantity;
-    }
 }

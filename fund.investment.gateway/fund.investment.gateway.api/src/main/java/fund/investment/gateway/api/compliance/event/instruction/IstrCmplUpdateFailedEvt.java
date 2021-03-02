@@ -25,13 +25,13 @@ public class IstrCmplUpdateFailedEvt extends ComplianceEvent {
 
     private List<RiskResultResponse> riskRiskInfos;
 
-    public IstrCmplUpdateFailedEvt(String id, String istrId) {
-        super(id);
+    public IstrCmplUpdateFailedEvt(Long id, String istrId) {
+        setId(id);
         this.istrId = istrId;
     }
 
-    public IstrCmplUpdateFailedEvt(String id, String istrId, String code, String msg, List<RiskResultResponse> riskRiskInfos) {
-        super(id);
+    public IstrCmplUpdateFailedEvt(Long id, String istrId, String code, String msg, List<RiskResultResponse> riskRiskInfos) {
+        setId(id);
         this.istrId = istrId;
         this.code = code;
         this.msg = msg;

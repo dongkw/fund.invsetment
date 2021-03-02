@@ -20,8 +20,8 @@ public class IstrCmplUpdateSucceedEvt extends ComplianceEvent {
     private String chSourceKey;
     private String chSourceNo;
 
-    public IstrCmplUpdateSucceedEvt(String id, String istrId) {
-        super(id);
+    public IstrCmplUpdateSucceedEvt(Long id, String istrId) {
+        setId(id);
         this.istrId = istrId;
     }
 }

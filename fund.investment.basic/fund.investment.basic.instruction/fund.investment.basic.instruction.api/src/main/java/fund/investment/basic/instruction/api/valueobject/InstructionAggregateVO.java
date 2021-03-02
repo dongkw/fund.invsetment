@@ -1,6 +1,5 @@
 package fund.investment.basic.instruction.api.valueobject;
 
-import fund.investment.basic.instruction.api.entity.IstrTradeElement;
 import fund.investment.basic.instruction.api.entity.OrderDetail;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,8 +16,8 @@ import java.util.Date;
 @AllArgsConstructor
 public class InstructionAggregateVO {
 
-    @AggregateMember
-    private IstrTradeElement istrTradeElement;
+//    @AggregateMember
+//    private IstrTradeElement istrTradeElement;
 
     @AggregateMember
     private OrderDetail orderDetail;

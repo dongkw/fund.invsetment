@@ -18,9 +18,4 @@ public class IstrOrderFailedEvt extends InstructionEvent {
 
     private String failMsg;
 
-    public IstrOrderFailedEvt(String id, Long requestId, TradeType tradeType, String userId, String skId, String skInstr, String cLastModifiedId, Date tLastModifiedTime, String orderId, String failMsg) {
-        super(id, requestId, tradeType, userId, skId, skInstr, cLastModifiedId, tLastModifiedTime);
-        this.orderId = orderId;
-        this.failMsg = failMsg;
-    }
 }

@@ -69,9 +69,6 @@ public abstract class IstrUpdateCmplTranscation extends TransactionUnit {
     public DomainCommand fillCmd(DomainCommand domainCommand) {
         if (Objects.equals(status, Status.SUCCEED)) {
             UpdateConfirmIstrCmd cmd = (UpdateConfirmIstrCmd) domainCommand;
-            cmd.setChInstrSource(chInstrSource);
-            cmd.setChSourceKey(chSourceKey);
-            cmd.setChSourceNo(chSourceNo);
             return cmd;
         } else if (Objects.equals(status, Status.FAILED)) {
             UpdateFailIstrCmd cmd = (UpdateFailIstrCmd) domainCommand;

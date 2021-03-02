@@ -1,10 +1,12 @@
 package fund.investment.basic.instruction.api.command;
 
-import fund.investment.basic.instruction.api.enumeration.TradeType;
+import fund.investment.basic.common.http.response.risk.RiskResultResponse;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 /**
  * @Author dongkw
@@ -21,13 +23,7 @@ public class RollbackCancelIstrCmd extends InstructionCommand {
 
     private String cancelMsg;
 
-    private String chInstrSource;
+    private List<RiskResultResponse> riskInfos;
 
-    private String chSourceKey;
 
-    private String chSourceNo;
-
-    public RollbackCancelIstrCmd(TradeType tradeType, String id, String skId, String skInstr) {
-        super(tradeType, id, skId, skInstr);
-    }
 }

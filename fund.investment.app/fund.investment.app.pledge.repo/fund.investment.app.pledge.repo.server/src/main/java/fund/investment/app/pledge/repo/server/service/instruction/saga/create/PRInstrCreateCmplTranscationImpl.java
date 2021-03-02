@@ -23,7 +23,7 @@ public class PRInstrCreateCmplTranscationImpl extends IstrCreateCmplTranscation 
     protected InstrRiskControlCmd buildInstrCmd() {
         PRInstrRiskControlCmd prInstrRiskControlCmd = new PRInstrRiskControlCmd();
         BeanUtils.copyProperties(pledgeInstrBean, prInstrRiskControlCmd);
-        prInstrRiskControlCmd.setId(pledgeInstrBean.getSkInstr());
+        prInstrRiskControlCmd.setId(pledgeInstrBean.getId());
         return prInstrRiskControlCmd;
     }
 

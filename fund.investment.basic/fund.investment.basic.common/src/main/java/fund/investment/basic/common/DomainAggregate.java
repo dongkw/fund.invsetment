@@ -14,14 +14,14 @@ import org.axonframework.modelling.command.AggregateIdentifier;
 public class DomainAggregate {
 
     @AggregateIdentifier
-    private String id;
+    private Long id;
 
     @Override
     public String toString() {
         return LoggerTemplate.builder()
-                             .content(this)
-                             .name(this.getClass().getSimpleName())
-                             .build()
-                             .toJson();
+                .content(this)
+                .name(this.getClass().getSimpleName())
+                .build()
+                .toJson();
     }
 }

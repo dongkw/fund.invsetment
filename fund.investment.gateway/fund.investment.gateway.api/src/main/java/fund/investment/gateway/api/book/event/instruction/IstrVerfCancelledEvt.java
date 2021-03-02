@@ -16,8 +16,5 @@ public class IstrVerfCancelledEvt extends VerificationEvent {
 
     private String istrId;
 
-    public IstrVerfCancelledEvt(String id, String istrId) {
-        super(id);
-        this.istrId = istrId;
-    }
+
 }

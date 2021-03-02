@@ -16,8 +16,8 @@ public class IstrCmplEvt extends ComplianceEvent {
 
     private long total;
 
-    public IstrCmplEvt(String id, long total) {
-        super(id);
+    public IstrCmplEvt(Long id, long total) {
+        setId(id);
         this.total = total;
     }
 }

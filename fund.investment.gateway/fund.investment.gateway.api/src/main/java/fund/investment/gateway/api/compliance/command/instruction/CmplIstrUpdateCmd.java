@@ -20,7 +20,7 @@ public class CmplIstrUpdateCmd extends ComplianceCommand {
 
     private BigDecimal amount;
 
-    public CmplIstrUpdateCmd(String id, String istrId, BigDecimal amount) {
+    public CmplIstrUpdateCmd(Long id, String istrId, BigDecimal amount) {
         super(id);
         this.istrId = istrId;
         this.amount = amount;

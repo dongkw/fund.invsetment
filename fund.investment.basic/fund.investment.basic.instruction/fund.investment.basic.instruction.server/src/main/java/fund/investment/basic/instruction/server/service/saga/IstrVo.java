@@ -14,12 +14,8 @@ import java.util.Date;
  **/
 @Data
 public class IstrVo {
-
+    private Long id;
     private Long requestId;
-
-    private String istrId;
-
-    private String skId;
 
     private InstructionState state;
 

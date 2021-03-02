@@ -16,7 +16,7 @@ public class OrderVerfCancelledEvt extends VerificationEvent {
 
     private String orderId;
 
-    public OrderVerfCancelledEvt(String id, String orderId) {
+    public OrderVerfCancelledEvt(Long id, String orderId) {
         super(id);
         this.orderId = orderId;
     }

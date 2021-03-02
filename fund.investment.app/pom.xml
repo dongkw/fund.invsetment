@@ -12,7 +12,7 @@
 
     <artifactId>fund.investment.app</artifactId>
     <modules>
-        <module>fund.investment.app.exchange.stock</module>
+<!--        <module>fund.investment.app.exchange.stock</module>-->
         <module>fund.investment.app.pledge.repo</module>
     </modules>
 

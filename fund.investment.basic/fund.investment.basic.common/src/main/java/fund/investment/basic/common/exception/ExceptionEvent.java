@@ -9,8 +9,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class ExceptionEvent extends DomainEvent {
-    public ExceptionEvent(String id, String payloadType, Object payload, String errorMsg){
-        super(id);
+    public ExceptionEvent(Long id, String payloadType, Object payload, String errorMsg){
+        this.setId(id);
         this.payload = payload;
         this.payloadType = payloadType;
         this.errorMsg = errorMsg;

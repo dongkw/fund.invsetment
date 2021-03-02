@@ -16,7 +16,7 @@ public class OrderVerfRollbackedEvt extends VerificationEvent {
 
     private String orderId;
 
-    public OrderVerfRollbackedEvt(String id, String orderId) {
+    public OrderVerfRollbackedEvt(Long id, String orderId) {
         super(id);
         this.orderId = orderId;
     }

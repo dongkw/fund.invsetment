@@ -15,13 +15,13 @@ public class IstrCmplSucceedEvt extends ComplianceEvent {
     private String chSourceKey;
     private String chSourceNo;
 
-    public IstrCmplSucceedEvt(String id, String istrId) {
-        super(id);
+    public IstrCmplSucceedEvt(Long id, String istrId) {
+        setId(id);
         this.istrId = istrId;
     }
 
-    public IstrCmplSucceedEvt(String id, String istrId, String chInstrSource, String chSourceKey, String chSourceNo) {
-        super(id);
+    public IstrCmplSucceedEvt(Long id, String istrId, String chInstrSource, String chSourceKey, String chSourceNo) {
+        setId(id);
         this.istrId = istrId;
         this.chInstrSource = chInstrSource;
         this.chSourceKey = chSourceKey;

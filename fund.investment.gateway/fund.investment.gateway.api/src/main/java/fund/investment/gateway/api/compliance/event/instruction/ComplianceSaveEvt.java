@@ -16,8 +16,8 @@ public class ComplianceSaveEvt extends ComplianceEvent {
 
     private String istrId;
 
-    public ComplianceSaveEvt(String id, String istrId) {
-        super(id);
+    public ComplianceSaveEvt(Long id, String istrId) {
+        setId(id);
         this.istrId = istrId;
     }
 }

@@ -16,7 +16,7 @@ public class CancelVerfOrderCmd extends VerificationCommand {
 
     private String orderId;
 
-    public CancelVerfOrderCmd(String id, String orderId) {
+    public CancelVerfOrderCmd(Long id, String orderId) {
         super(id);
         this.orderId = orderId;
     }
