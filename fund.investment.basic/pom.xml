@@ -15,7 +15,7 @@
 <!--        <module>fund.investment.basic.inquiry</module>-->
 <!--        <module>fund.investment.basic.inqresult</module>-->
         <module>fund.investment.basic.instruction</module>
-<!--        <module>fund.investment.basic.trade</module>-->
+        <module>fund.investment.basic.trade</module>
         <module>fund.investment.basic.common</module>
     </modules>
 

@@ -6,9 +6,6 @@ import fund.investment.basic.trade.server.saga.OrderSaga;
 import fund.investment.gateway.api.book.event.order.OrderVerfFailedEvt;
 import fund.investment.gateway.api.book.event.order.OrderVerfRollbackedEvt;
 import fund.investment.gateway.api.book.event.order.OrderVerfSucceedEvt;
-import fund.investment.gateway.api.compliance.event.order.OrderCmplFailedEvt;
-import fund.investment.gateway.api.compliance.event.order.OrderCmplRollbackedEvt;
-import fund.investment.gateway.api.compliance.event.order.OrderCmplSucceedEvt;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.modelling.saga.SagaEventHandler;
 
@@ -17,23 +14,6 @@ public abstract class CreateOrderSaga extends OrderSaga {
 
     protected ITransaction transaction;
 
-    @SagaEventHandler(associationProperty = "orderId", keyName = "id")
-    public void handler(OrderCmplSucceedEvt evt) {
-        log.debug("saga receive:{}", evt);
-        doHandler(evt);
-    }
-
-    @SagaEventHandler(associationProperty = "orderId", keyName = "id")
-    public void handler(OrderCmplFailedEvt evt) {
-        log.debug("saga receive:{}", evt);
-        doHandler(evt);
-    }
-
-    @SagaEventHandler(associationProperty = "orderId", keyName = "id")
-    public void handler(OrderCmplRollbackedEvt evt) {
-        log.debug("saga receive:{}", evt);
-        doHandler(evt);
-    }
 
     @SagaEventHandler(associationProperty = "orderId", keyName = "id")
     public void handler(OrderVerfSucceedEvt evt) {

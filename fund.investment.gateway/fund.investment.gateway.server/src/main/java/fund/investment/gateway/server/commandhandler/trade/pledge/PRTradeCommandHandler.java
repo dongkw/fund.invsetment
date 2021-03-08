@@ -1,64 +1,87 @@
-//package fund.investment.gateway.server.commandhandler.trade.pledge;
-//
-//import fund.investment.basic.common.http.enums.GatewayChannelCodeEnums;
-//import fund.investment.basic.common.util.BeanUtils;
-//import fund.investment.basic.trade.api.command.*;
-//import fund.investment.basic.trade.api.event.FillConfirmingSuccessEvt;
-//import fund.investment.basic.trade.api.event.OrderChangedCancellingEvt;
-//import fund.investment.basic.trade.api.event.OrderChangedPlacingEvt;
-//import fund.investment.basic.trade.api.event.OrderChangedRejectingEvt;
-//import fund.investment.gateway.api.compliance.command.order.pledge.PRModifyingOrderCmd;
-//import fund.investment.gateway.api.compliance.command.order.pledge.PRPlacingOrderCmd;
-//import fund.investment.gateway.api.compliance.event.order.pledge.OrderChangeModifyingEvt;
-//import lombok.extern.slf4j.Slf4j;
-//import org.axonframework.commandhandling.CommandHandler;
-//import org.axonframework.commandhandling.gateway.CommandGateway;
-//import org.axonframework.eventhandling.gateway.EventGateway;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Component;
-//
-//import java.util.ArrayList;
-//import java.util.List;
-//
-//@Slf4j
-//@Component
-//public class PRTradeCommandHandler {
-//    private final CommandGateway commandGateway;
-//    private final EventGateway eventGateway;
-//
-//    @Autowired
-//    public PRTradeCommandHandler(CommandGateway commandGateway,
-//                                 EventGateway eventGateway){
-//        this.commandGateway = commandGateway;
-//        this.eventGateway = eventGateway;
-//    }
-//
-//    @CommandHandler
-//    public void handler(PRPlacingOrderCmd cmd) {
-//        log.debug("接收到质押式委托报价命令：{}", cmd);
-////        PledgeBankOrderReportRequest request = new PledgeBankOrderReportRequest();
-////        request.setTradeEntrust(cmd);
-////        request.getTradeEntrust().setUserId(cmd.getChCreateId());
-////        request.setPayChannelCode(GatewayChannelCodeEnums.FD01.getCode());
-////        AjaxResult<BankOrderReportResponse> ajaxResult = pledgeBankOrderReportService.action(request);
-//        if (true) {
-////            BankOrderReportResponse data = ajaxResult.getData();
-//            String cInstrSource = "data.getCInstrSource()";
-//            String cSourceKey = "data.getCSourceKey()";
-//            String skInstr = "data.getSkInstr()";
-//
-//            OrderChangedPlacingEvt orderChangedPlacingEvt = new OrderChangedPlacingEvt();
-//            orderChangedPlacingEvt.setChInstrSource(cInstrSource);
-//            orderChangedPlacingEvt.setChSourceKey(cSourceKey);
-//            orderChangedPlacingEvt.setSkInstr(skInstr);
-//            orderChangedPlacingEvt.setSkId(cmd.getSkId());
-//            eventGateway.publish(orderChangedPlacingEvt);
-//            log.debug("报价返回成功event:{}", "ajaxResult");
-//        } else {
-//            log.debug("报价返回失败event:{}", "ajaxResult");
-//        }
-//    }
-//
+package fund.investment.gateway.server.commandhandler.trade.pledge;
+
+import fund.investment.app.pledge.repo.api.valueobject.trade.PledgeTradeElement;
+import fund.investment.gateway.api.compliance.command.order.CancelOrderCmplCmd;
+import fund.investment.gateway.api.compliance.command.order.MatchOrderCmplCmd;
+import fund.investment.gateway.api.compliance.command.order.PlacingOrderCmplCmd;
+import fund.investment.gateway.api.compliance.command.order.UpdateOrderCmplCmd;
+import fund.investment.gateway.api.compliance.event.order.OrderCmplCancelEvt;
+import fund.investment.gateway.api.compliance.event.order.OrderCmplMatchEvt;
+import fund.investment.gateway.api.compliance.event.order.OrderCmplPlacingEvt;
+import fund.investment.gateway.api.compliance.event.order.OrderCmplUpdateEvt;
+import lombok.extern.slf4j.Slf4j;
+import org.axonframework.commandhandling.CommandHandler;
+import org.axonframework.commandhandling.gateway.CommandGateway;
+import org.axonframework.eventhandling.gateway.EventGateway;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Slf4j
+@Component
+public class PRTradeCommandHandler {
+    private final CommandGateway commandGateway;
+    private final EventGateway eventGateway;
+
+    @Autowired
+    public PRTradeCommandHandler(CommandGateway commandGateway,
+                                 EventGateway eventGateway) {
+        this.commandGateway = commandGateway;
+        this.eventGateway = eventGateway;
+    }
+
+    @CommandHandler
+    public void handler(PlacingOrderCmplCmd<PledgeTradeElement> cmd) {
+        log.debug("接收到质押式委托报价命令：{}", cmd);
+        if (true) {
+            OrderCmplPlacingEvt<PledgeTradeElement> evt = new OrderCmplPlacingEvt<>();
+            BeanUtils.copyProperties(cmd, evt);
+            eventGateway.publish(evt);
+            log.debug("报价返回成功event:{}", evt);
+        } else {
+            log.debug("报价返回失败cmd:{}", cmd);
+        }
+    }
+
+    @CommandHandler
+    public void handler(CancelOrderCmplCmd<PledgeTradeElement> cmd) {
+        log.debug("接收到质押式委托取消命令：{}", cmd);
+        if (true) {
+            OrderCmplCancelEvt<PledgeTradeElement> evt = new OrderCmplCancelEvt<>();
+            BeanUtils.copyProperties(cmd, evt);
+            eventGateway.publish(evt);
+            log.debug("取消返回成功event:{}", evt);
+        } else {
+            log.debug("取消返回失败cmd:{}", cmd);
+        }
+    }
+
+    @CommandHandler
+    public void handler(UpdateOrderCmplCmd<PledgeTradeElement> cmd) {
+        log.debug("接收到质押式委托修改命令：{}", cmd);
+        if (true) {
+            OrderCmplUpdateEvt<PledgeTradeElement> evt = new OrderCmplUpdateEvt<>();
+            BeanUtils.copyProperties(cmd, evt);
+            eventGateway.publish(evt);
+            log.debug("修改返回成功event:{}", evt);
+        } else {
+            log.debug("修改返回失败cmd:{}", cmd);
+        }
+    }
+
+    @CommandHandler
+    public void handler(MatchOrderCmplCmd<PledgeTradeElement> cmd) {
+        log.debug("接收到质押式委托匹配命令：{}", cmd);
+        if (true) {
+            OrderCmplMatchEvt<PledgeTradeElement> evt = new OrderCmplMatchEvt<>();
+            BeanUtils.copyProperties(cmd, evt);
+            eventGateway.publish(evt);
+            log.debug("匹配返回成功event:{}", evt);
+        } else {
+            log.debug("匹配返回失败cmd:{}", cmd);
+        }
+    }
+
 //    @CommandHandler
 //    public void handler(PRMatchRemoteCmd cmd) {
 //        log.debug("接收手动匹配命令：{}", cmd);
@@ -222,5 +245,5 @@
 //            log.debug("确认命令报价返回失败event:{}", "ajaxResult");
 //        }
 //    }
-//
-//}
+
+}

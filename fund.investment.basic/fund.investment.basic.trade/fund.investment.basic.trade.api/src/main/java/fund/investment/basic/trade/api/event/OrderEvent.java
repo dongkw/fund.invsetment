@@ -14,10 +14,4 @@ public class OrderEvent extends DomainEvent {
 
     private String tradeType;
 
-    public OrderEvent(String id, String tradeType, String instructionId) {
-        super(id);
-        this.instructionId = instructionId;
-        this.tradeType = tradeType;
-    }
-
 }

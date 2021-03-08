@@ -1,17 +1,13 @@
 package fund.investment.basic.trade.api.command;
 
-import fund.investment.basic.trade.api.valueobject.Fill;
-import lombok.AllArgsConstructor;
+import fund.investment.basic.trade.api.valueobject.TradeElement;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-public class FillOrderCmd extends CreateOrderCmd {
+public class FillOrderCmd<T extends TradeElement> extends OrderCommand {
 
-    private Fill fill;
+    private T tradeElement;
 
 }

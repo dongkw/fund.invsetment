@@ -24,7 +24,7 @@ public class OrderCancelVerfTransaction extends TransactionUnit {
 
     @Override
     public void start() {
-        CancelVerfOrderCmd cmd = new CancelVerfOrderCmd(vo.getUnitId(), vo.getOrderId());
+        CancelVerfOrderCmd cmd = new CancelVerfOrderCmd();
         CommandGatewayFactory.getCommandGateway().send(cmd);
     }
 

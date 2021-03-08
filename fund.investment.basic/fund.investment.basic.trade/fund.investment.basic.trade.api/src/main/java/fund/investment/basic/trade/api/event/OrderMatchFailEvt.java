@@ -1,41 +1,18 @@
 package fund.investment.basic.trade.api.event;
 
-import io.swagger.annotations.ApiModelProperty;
+import fund.investment.basic.common.http.response.risk.RiskResultResponse;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
-@NoArgsConstructor
 public class OrderMatchFailEvt extends OrderEvent {
 
-    private String userId;
-    private String skId;
-    private String chLastModifiedId;
-    private Date tsLastModifiedTime;
+    private String failCode;
 
-    @ApiModelProperty(value = "投资指令id", required = true)
-    private String instrSkId;
+    private String failMsg;
 
-    @ApiModelProperty(value = "投资指令序号（非id）", required = true)
-    private String instrSkInstr;
-
-    @ApiModelProperty(value = "投资指令的组合信息", required = true)
-    private String skCombi;
-
-    private String errorMsg;
-
-    public OrderMatchFailEvt(String id, String tradeType, String instructionId, String userId, String skId, String chLastModifiedId, Date tsLastModifiedTime, String instrSkId, String instrSkInstr, String skCombi) {
-        super(id, tradeType, instructionId);
-        this.userId = userId;
-        this.skId = skId;
-        this.chLastModifiedId = chLastModifiedId;
-        this.tsLastModifiedTime = tsLastModifiedTime;
-        this.instrSkId = instrSkId;
-        this.instrSkInstr = instrSkInstr;
-        this.skCombi = skCombi;
-    }
+    private List<RiskResultResponse> riskInfos;
 }

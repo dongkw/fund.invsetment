@@ -20,13 +20,14 @@ public class SwaggerConfig {
     @Bean
     public Docket createRestApi() {
         Predicate<RequestHandler> selector1 = RequestHandlerSelectors.basePackage("fund.investment.app.pledge.repo.server.controller.instruction");
+        Predicate<RequestHandler> selector2 = RequestHandlerSelectors.basePackage("fund.investment.app.pledge.repo.server.controller.trade");
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
                 //为当前包下controller生成API文档 //单个配置controller
                 //.apis(RequestHandlerSelectors.basePackage("com.cnczsq.mall.elephant.v1.controller"))
                 //controller批量配 方式一
-                .apis(Predicates.or(selector1))
+                .apis(Predicates.or(selector1, selector2))
                 // controller批量配方式二    指定所有controller的都实现的一个接口，比如@RestController
 //                .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class))
                 // controller批量配方式三    指定所有controller路径的父级

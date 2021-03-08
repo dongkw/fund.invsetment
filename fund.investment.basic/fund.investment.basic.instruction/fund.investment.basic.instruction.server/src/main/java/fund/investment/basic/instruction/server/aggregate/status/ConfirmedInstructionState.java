@@ -8,13 +8,14 @@ import fund.investment.basic.instruction.api.enumeration.InstructionStatus;
 import fund.investment.basic.instruction.api.event.IstrCancellingEvt;
 import fund.investment.basic.instruction.api.event.IstrPassedEvt;
 import fund.investment.basic.instruction.api.event.IstrUpdatedEvt;
-import fund.investment.basic.instruction.api.valueobject.TradeElement;
+import fund.investment.basic.instruction.api.valueobject.InstructionElement;
 import fund.investment.basic.instruction.server.aggregate.InstructionAggregate;
+import fund.investment.basic.instruction.server.aggregate.InstructionState;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.modelling.command.AggregateLifecycle;
 
 @Slf4j
-public class ConfirmedInstructionState<T extends TradeElement> extends InstructionState<T> {
+public class ConfirmedInstructionState<T extends InstructionElement> extends InstructionState<T> {
 
     public ConfirmedInstructionState() {
         super(InstructionStatus.CONFIRMED);

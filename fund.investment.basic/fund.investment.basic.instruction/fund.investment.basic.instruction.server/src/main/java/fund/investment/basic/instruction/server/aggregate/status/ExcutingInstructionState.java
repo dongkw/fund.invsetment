@@ -7,13 +7,14 @@ import fund.investment.basic.instruction.api.command.ReceiveIstrFillCmd;
 import fund.investment.basic.instruction.api.enumeration.InstructionStatus;
 import fund.investment.basic.instruction.api.enumeration.TradeType;
 import fund.investment.basic.instruction.api.event.*;
-import fund.investment.basic.instruction.api.valueobject.TradeElement;
+import fund.investment.basic.instruction.api.valueobject.InstructionElement;
 import fund.investment.basic.instruction.server.aggregate.InstructionAggregate;
+import fund.investment.basic.instruction.server.aggregate.InstructionState;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.modelling.command.AggregateLifecycle;
 
 @Slf4j
-public class ExcutingInstructionState<T extends TradeElement> extends InstructionState<T> {
+public class ExcutingInstructionState<T extends InstructionElement> extends InstructionState<T> {
 
     public ExcutingInstructionState() {
         super(InstructionStatus.EXECUTING);

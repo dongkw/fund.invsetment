@@ -12,7 +12,7 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan({"fund.investment.basic.common",
 //        "fund.investment.basic.inquiry.server",
 //        "fund.investment.basic.inqresult.server",
-//        "fund.investment.basic.trade.server",
+        "fund.investment.basic.trade.server",
         "fund.investment.basic.instruction.server",
         "fund.investment.app.pledge.repo.server"
 })

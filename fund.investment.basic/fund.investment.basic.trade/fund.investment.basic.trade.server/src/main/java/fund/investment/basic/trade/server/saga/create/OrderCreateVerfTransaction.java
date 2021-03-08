@@ -27,13 +27,13 @@ public class OrderCreateVerfTransaction extends TransactionUnit {
 
     @Override
     public void start() {
-        VerfOrderCmd cmd = new VerfOrderCmd(vo.getUnitId(), vo.getOrderId());
+        VerfOrderCmd cmd = new VerfOrderCmd();
         CommandGatewayFactory.getCommandGateway().send(cmd);
     }
 
     @Override
     public void rollback() {
-        RollbackVerfOrderCmd cmd = new RollbackVerfOrderCmd(vo.getUnitId(), vo.getOrderId());
+        RollbackVerfOrderCmd cmd = new RollbackVerfOrderCmd();
         CommandGatewayFactory.getCommandGateway().send(cmd);
     }
 

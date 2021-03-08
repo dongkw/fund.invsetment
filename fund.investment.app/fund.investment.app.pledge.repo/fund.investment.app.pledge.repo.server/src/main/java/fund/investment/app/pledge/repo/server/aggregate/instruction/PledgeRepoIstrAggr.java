@@ -4,7 +4,11 @@ import fund.investment.app.pledge.repo.api.command.instruction.*;
 import fund.investment.app.pledge.repo.api.event.instruction.PRIstrCreatedEvt;
 import fund.investment.app.pledge.repo.api.event.instruction.PRIstrUpdateConfirmedEvt;
 import fund.investment.app.pledge.repo.api.event.instruction.PRIstrUpdatedEvt;
-import fund.investment.app.pledge.repo.api.valueobject.instruction.PledgeTradeElement;
+import fund.investment.app.pledge.repo.api.valueobject.instruction.PledgeInstructionElement;
+import fund.investment.app.pledge.repo.server.aggregate.instruction.status.PrConfirmState;
+import fund.investment.app.pledge.repo.server.aggregate.instruction.status.PrPassedState;
+import fund.investment.app.pledge.repo.server.aggregate.instruction.status.PrPendingState;
+import fund.investment.app.pledge.repo.server.aggregate.instruction.status.PrUpdateState;
 import fund.investment.basic.common.util.BeanUtils;
 import fund.investment.basic.instruction.api.entity.OrderDetail;
 import fund.investment.basic.instruction.api.event.IstrConfirmedEvt;
@@ -25,7 +29,7 @@ import org.axonframework.spring.stereotype.Aggregate;
 @Slf4j
 @Aggregate(snapshotTriggerDefinition = "snapshotTrigger")
 @NoArgsConstructor
-public class PledgeRepoIstrAggr<T> extends InstructionAggregate<PledgeTradeElement> {
+public class PledgeRepoIstrAggr<T> extends InstructionAggregate<PledgeInstructionElement> {
 
     /**
      * 创建质押式回购
@@ -40,7 +44,7 @@ public class PledgeRepoIstrAggr<T> extends InstructionAggregate<PledgeTradeEleme
     }
 
     @EventSourcingHandler
-    public void handle(IstrConfirmedEvt<PledgeTradeElement> evt) {
+    public void handle(IstrConfirmedEvt<PledgeInstructionElement> evt) {
         log.info("confirm {}", evt);
         this.instructionState = new PrConfirmState<>();
     }

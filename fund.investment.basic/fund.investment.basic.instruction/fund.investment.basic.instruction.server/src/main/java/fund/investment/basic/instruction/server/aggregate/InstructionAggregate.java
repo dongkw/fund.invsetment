@@ -5,7 +5,7 @@ import fund.investment.basic.common.util.BeanUtils;
 import fund.investment.basic.instruction.api.command.*;
 import fund.investment.basic.instruction.api.entity.OrderDetail;
 import fund.investment.basic.instruction.api.event.*;
-import fund.investment.basic.instruction.api.valueobject.TradeElement;
+import fund.investment.basic.instruction.api.valueobject.InstructionElement;
 import fund.investment.basic.instruction.server.aggregate.status.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,7 +21,7 @@ import java.util.Objects;
 @Data
 @Slf4j
 @NoArgsConstructor
-public class InstructionAggregate<T extends TradeElement> extends DomainAggregate {
+public class InstructionAggregate<T extends InstructionElement> extends DomainAggregate {
 
     protected InstructionState<T> instructionState;
     protected InstructionState<T> lastState;
@@ -157,6 +157,16 @@ public class InstructionAggregate<T extends TradeElement> extends DomainAggregat
         this.instructionState = new PendingInstructionState<>();
     }
 
+    @EventSourcingHandler
+    public void handle(IstrCompletedEvt evt) {
+        this.instructionState = new CompletedInstructionState<>();
+    }
+
+    @EventSourcingHandler
+    public void handle(IstrFailedEvt evt) {
+        log.info("fail {}", evt);
+        this.instructionState = new FailedInstructionState<>();
+    }
 
     @EventSourcingHandler
     public void handle(IstrOrderCreatedEvt evt) {
@@ -177,15 +187,5 @@ public class InstructionAggregate<T extends TradeElement> extends DomainAggregat
         }
     }
 
-    @EventSourcingHandler
-    public void handle(IstrCompletedEvt evt) {
-        this.instructionState = new CompletedInstructionState<>();
-    }
-
-    @EventSourcingHandler
-    public void handle(IstrFailedEvt evt) {
-        log.info("fail {}", evt);
-        this.instructionState = new FailedInstructionState<>();
-    }
 
 }

@@ -1,23 +1,16 @@
 package fund.investment.gateway.api.compliance.event.order;
 
-import fund.investment.gateway.api.compliance.event.ComplianceEvent;
+import fund.investment.basic.common.DomainEvent;
+import fund.investment.basic.trade.api.valueobject.TradeElement;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
  * @Author dongkw
- * @Date 2020/10/10、2:22 下午
+ * @Date 2021/3/8、1:48 下午
  **/
 @Getter
 @Setter
-@NoArgsConstructor
-public class OrderCmplCancelledEvt extends ComplianceEvent {
-
-    private String orderId;
-
-    public OrderCmplCancelledEvt(Long id, String orderId) {
-        setId(id);
-        this.orderId = orderId;
-    }
+public class OrderCmplCancelledEvt<T extends TradeElement> extends DomainEvent {
+    private T tradeElement;
 }

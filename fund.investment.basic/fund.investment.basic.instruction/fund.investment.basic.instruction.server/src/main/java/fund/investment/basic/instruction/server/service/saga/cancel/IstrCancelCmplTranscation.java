@@ -66,9 +66,7 @@ public class IstrCancelCmplTranscation extends TransactionUnit {
             return cmd;
         } else {
             RollbackCancelIstrCmd cmd = new RollbackCancelIstrCmd();
-            cmd.setChInstrSource(istrVo.getChInstrSource());
-            cmd.setChSourceKey(istrVo.getChSourceKey());
-            cmd.setChSourceNo(istrVo.getChSourceNo());
+
             return cmd;
         }
     }

@@ -1,7 +1,7 @@
 package fund.investment.app.pledge.repo.server.service.instruction.saga;
 
 import fund.investment.app.pledge.repo.api.event.instruction.PRIstrCreatedEvt;
-import fund.investment.app.pledge.repo.api.valueobject.instruction.PledgeTradeElement;
+import fund.investment.app.pledge.repo.api.valueobject.instruction.PledgeInstructionElement;
 import fund.investment.app.pledge.repo.server.service.instruction.saga.create.PRInstrCreateCmplTranscationImpl;
 import fund.investment.basic.common.DomainCommand;
 import fund.investment.basic.common.saga.CommandGatewayFactory;
@@ -32,22 +32,22 @@ public class PRCreateIstrSaga extends CreateIstrSaga {
     @Autowired
     private transient CommandGateway commandGateway;
 
-    private PRIstrCreatedEvt<PledgeTradeElement> istrVo;
+    private PRIstrCreatedEvt<PledgeInstructionElement> istrVo;
 
     @StartSaga
     @SagaEventHandler(associationProperty = "id")
-    public void handler(PRIstrCreatedEvt<PledgeTradeElement> evt) {
+    public void handler(PRIstrCreatedEvt<PledgeInstructionElement> evt) {
         log.debug("create istr saga start,receive:{}", evt);
         transaction = genCreateIstrTransaction(evt);
         transaction.start();
     }
 
-    public ITransaction genCreateIstrTransaction(PRIstrCreatedEvt<PledgeTradeElement> evt) {
+    public ITransaction genCreateIstrTransaction(PRIstrCreatedEvt<PledgeInstructionElement> evt) {
         istrVo = createInstrVo(evt);
         return new ParallelTransaction(Collections.singletonList(new PRInstrCreateCmplTranscationImpl(istrVo, commandGateway)));
     }
 
-    private PRIstrCreatedEvt<PledgeTradeElement> createInstrVo(PRIstrCreatedEvt<PledgeTradeElement> evt) {
+    private PRIstrCreatedEvt<PledgeInstructionElement> createInstrVo(PRIstrCreatedEvt<PledgeInstructionElement> evt) {
         return evt;
     }
 
@@ -71,7 +71,7 @@ public class PRCreateIstrSaga extends CreateIstrSaga {
             cmd.setRequestId(istrVo.getRequestId());
             return cmd;
         } else if (status == Status.SUCCEED) {
-            CreateConfirmIstrCmd<PledgeTradeElement> cmd = new CreateConfirmIstrCmd<>();
+            CreateConfirmIstrCmd<PledgeInstructionElement> cmd = new CreateConfirmIstrCmd<>();
             cmd.setId(istrVo.getId());
             cmd.setRequestId(istrVo.getRequestId());
             return cmd;

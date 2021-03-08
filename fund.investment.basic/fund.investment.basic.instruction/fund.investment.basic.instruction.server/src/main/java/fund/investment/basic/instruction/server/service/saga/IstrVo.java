@@ -2,7 +2,7 @@ package fund.investment.basic.instruction.server.service.saga;
 
 
 import fund.investment.basic.instruction.api.enumeration.TradeType;
-import fund.investment.basic.instruction.server.aggregate.status.InstructionState;
+import fund.investment.basic.instruction.server.aggregate.InstructionState;
 import lombok.Data;
 
 import java.math.BigDecimal;
