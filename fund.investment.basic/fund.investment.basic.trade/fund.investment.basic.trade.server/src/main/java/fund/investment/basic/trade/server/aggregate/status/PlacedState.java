@@ -15,19 +15,19 @@ import org.axonframework.modelling.command.AggregateLifecycle;
 public class PlacedState<T extends TradeElement> extends OrderState<T> {
 
 
-
+    @Override
     public void handler(OrderAggregate<T> aggregate, CancelOrderCmd cmd) {
         OrderCancelEvt evt = new OrderCancelEvt();
         BeanUtils.copyProperties(cmd, evt);
         AggregateLifecycle.apply(evt);
     }
-
+    @Override
     public void handler(OrderAggregate<T> aggregate, UpdateOrderCmd<T> cmd) {
         OrderUpdateEvt<T> evt = new OrderUpdateEvt<>();
         BeanUtils.copyProperties(cmd, evt);
         AggregateLifecycle.apply(evt);
     }
-
+    @Override
     public void handler(OrderAggregate<T> aggregate, CounterpartyUpdateCmd<T> cmd) {
         OrderCounterpartyUpdateEvt<T> evt = new OrderCounterpartyUpdateEvt<>();
         BeanUtils.copyProperties(cmd, evt);

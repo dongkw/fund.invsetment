@@ -16,13 +16,14 @@ import org.axonframework.modelling.command.AggregateLifecycle;
  **/
 public class UpdateState<T extends TradeElement> extends OrderState<T> {
 
-
+    @Override
     public void handler(OrderAggregate<T> aggregate, UpdateOrderConfirmCmd<T> cmd) {
         OrderUpdateConfirmEvt<T> evt = new OrderUpdateConfirmEvt<>();
         BeanUtils.copyProperties(cmd, evt);
         AggregateLifecycle.apply(evt);
     }
 
+    @Override
     public void handler(OrderAggregate<T> aggregate, UpdateOrderFailCmd cmd) {
         OrderFailedEvt evt = new OrderFailedEvt();
         BeanUtils.copyProperties(cmd, evt);

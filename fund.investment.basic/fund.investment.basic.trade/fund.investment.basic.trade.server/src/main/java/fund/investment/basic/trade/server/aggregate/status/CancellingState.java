@@ -13,6 +13,7 @@ import org.axonframework.modelling.command.AggregateLifecycle;
  * @Date 2021/3/4、9:18 上午
  **/
 public class CancellingState<T extends TradeElement> extends OrderState<T> {
+    @Override
     public void handler(OrderAggregate<T> aggregate, CancelledOrderCmd cmd) {
         OrderCancelledEvt evt = new OrderCancelledEvt();
         BeanUtils.copyProperties(cmd, evt);

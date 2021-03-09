@@ -13,6 +13,7 @@ import org.axonframework.modelling.command.AggregateLifecycle;
  * @Date 2021/3/4、9:16 上午
  **/
 public class FillState<T extends TradeElement> extends OrderState<T> {
+    @Override
     public void handler(OrderAggregate<T> aggregate, FillOrderConfirmCmd cmd) {
         OrderFillConfirmEvt evt = new OrderFillConfirmEvt();
         BeanUtils.copyProperties(cmd, evt);

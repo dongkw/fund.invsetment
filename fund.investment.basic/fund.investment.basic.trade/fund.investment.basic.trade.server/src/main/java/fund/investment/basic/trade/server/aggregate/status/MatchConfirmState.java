@@ -13,7 +13,7 @@ import org.axonframework.modelling.command.AggregateLifecycle;
  **/
 public class MatchConfirmState<T extends TradeElement> extends ReceivePlacedState<T> {
 
-
+    @Override
     public void handler(OrderAggregate<T> aggregate, MatchOrderCancelCmd cmd) {
         OrderCancelMatchEvt evt = new OrderCancelMatchEvt();
         BeanUtils.copyProperties(cmd, evt);

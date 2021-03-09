@@ -14,13 +14,13 @@ import org.axonframework.modelling.command.AggregateLifecycle;
  * @Date 2021/3/4、9:09 上午
  **/
 public class SendPlacedState<T extends TradeElement> extends PlacedState<T> {
-
+    @Override
     public void handler(OrderAggregate<T> aggregate, CounterpartyRejectOrderCmd cmd) {
         OrderRejectConfirmedEvt evt = new OrderRejectConfirmedEvt();
         BeanUtils.copyProperties(cmd, evt);
         AggregateLifecycle.apply(evt);
     }
-
+    @Override
     public void handler(OrderAggregate<T> aggregate, CounterpartyFillOrdeCmd cmd) {
         OrderFillConfirmEvt evt = new OrderFillConfirmEvt();
         BeanUtils.copyProperties(cmd, evt);

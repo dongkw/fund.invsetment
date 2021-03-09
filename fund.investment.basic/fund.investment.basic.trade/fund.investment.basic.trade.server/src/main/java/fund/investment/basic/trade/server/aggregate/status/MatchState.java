@@ -14,7 +14,7 @@ import org.axonframework.modelling.command.AggregateLifecycle;
  **/
 public class MatchState<T extends TradeElement> extends OrderState<T> {
 
-
+    @Override
     public void handler(OrderAggregate<T> aggregate, MatchOrderConfirmCmd cmd) {
         OrderMatchConfirmEvt evt = new OrderMatchConfirmEvt();
         BeanUtils.copyProperties(cmd, evt);

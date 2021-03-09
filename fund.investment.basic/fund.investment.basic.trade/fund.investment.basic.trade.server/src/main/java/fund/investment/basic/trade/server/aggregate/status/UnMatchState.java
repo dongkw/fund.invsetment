@@ -15,12 +15,13 @@ import org.axonframework.modelling.command.AggregateLifecycle;
  * @Date 2021/3/4、9:09 上午
  **/
 public class UnMatchState<T extends TradeElement> extends OrderState<T> {
+    @Override
     public void handler(OrderAggregate<T> aggregate, MatchOrderCmd cmd) {
         OrderMatchEvt evt = new OrderMatchEvt();
         BeanUtils.copyProperties(cmd, evt);
         AggregateLifecycle.apply(evt);
     }
-
+    @Override
     public void handler(OrderAggregate<T> aggregate, AutoMatchOrderCmd cmd) {
         OrderMatchConfirmEvt evt = new OrderMatchConfirmEvt();
         BeanUtils.copyProperties(cmd, evt);
