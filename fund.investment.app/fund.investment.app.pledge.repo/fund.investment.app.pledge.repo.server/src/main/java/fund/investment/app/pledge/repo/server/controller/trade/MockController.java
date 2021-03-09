@@ -37,27 +37,32 @@ public class MockController extends Async2SyncController {
     }
 
     @PostMapping("/placed")
-    public ResponseEntity createOrder(@RequestBody OrderCmplPlacedEvt<PledgeTradeElement> evt) {
+    public ResponseEntity placed(@RequestBody OrderCmplPlacedEvt<PledgeTradeElement> evt) {
         eventGateway.publish(evt);
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/fill")
-    public ResponseEntity createOrder(@RequestBody OrderCmplFillEvt<PledgeTradeElement> evt) {
+    @PostMapping("/counterparty/fill")
+    public ResponseEntity fill(@RequestBody OrderCmplFilledEvt<PledgeTradeElement> evt) {
         eventGateway.publish(evt);
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/reject")
-    public ResponseEntity createOrder(@RequestBody OrderCmplRejectEvt<PledgeTradeElement> evt) {
+    @PostMapping("/counterparty/reject")
+    public ResponseEntity reject(@RequestBody OrderCmplRejectedEvt<PledgeTradeElement> evt) {
         eventGateway.publish(evt);
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/cancelled")
-    public ResponseEntity createOrder(@RequestBody OrderCmplCancelledEvt<PledgeTradeElement> evt) {
+    @PostMapping("/counterparty/cancelled")
+    public ResponseEntity cancelled(@RequestBody OrderCmplCancelledEvt<PledgeTradeElement> evt) {
         eventGateway.publish(evt);
         return ResponseEntity.ok().build();
     }
 
+    @PostMapping("/counterparty/update")
+    public ResponseEntity update(@RequestBody OrderCmplUpdatedEvt<PledgeTradeElement> evt) {
+        eventGateway.publish(evt);
+        return ResponseEntity.ok().build();
+    }
 }

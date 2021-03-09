@@ -1,8 +1,8 @@
 package fund.investment.basic.trade.server.aggregate.status;
 
 import fund.investment.basic.common.util.BeanUtils;
-import fund.investment.basic.trade.api.command.FillOrderConfirmCmd;
-import fund.investment.basic.trade.api.command.RejectOrderConfirmCmd;
+import fund.investment.basic.trade.api.command.CounterpartyFillOrdeCmd;
+import fund.investment.basic.trade.api.command.CounterpartyRejectOrderCmd;
 import fund.investment.basic.trade.api.event.OrderFillConfirmEvt;
 import fund.investment.basic.trade.api.event.OrderRejectConfirmedEvt;
 import fund.investment.basic.trade.api.valueobject.TradeElement;
@@ -15,13 +15,13 @@ import org.axonframework.modelling.command.AggregateLifecycle;
  **/
 public class SendPlacedState<T extends TradeElement> extends PlacedState<T> {
 
-    public void handler(OrderAggregate<T> aggregate, RejectOrderConfirmCmd cmd) {
+    public void handler(OrderAggregate<T> aggregate, CounterpartyRejectOrderCmd cmd) {
         OrderRejectConfirmedEvt evt = new OrderRejectConfirmedEvt();
         BeanUtils.copyProperties(cmd, evt);
         AggregateLifecycle.apply(evt);
     }
 
-    public void handler(OrderAggregate<T> aggregate, FillOrderConfirmCmd cmd) {
+    public void handler(OrderAggregate<T> aggregate, CounterpartyFillOrdeCmd cmd) {
         OrderFillConfirmEvt evt = new OrderFillConfirmEvt();
         BeanUtils.copyProperties(cmd, evt);
         AggregateLifecycle.apply(evt);

@@ -1,16 +1,14 @@
 package fund.investment.app.pledge.repo.server.aggregate.trade;
 
-import fund.investment.app.pledge.repo.api.command.trade.PRCreateOrderCmd;
-import fund.investment.app.pledge.repo.api.command.trade.PRMatchOrderCmd;
-import fund.investment.app.pledge.repo.api.command.trade.PRUpdateOrderCmd;
-import fund.investment.app.pledge.repo.api.event.trade.*;
+import fund.investment.app.pledge.repo.api.command.trade.*;
+import fund.investment.app.pledge.repo.api.event.trade.PROrderCreateCounterpartyEvt;
+import fund.investment.app.pledge.repo.api.event.trade.PROrderCreatedEvt;
+import fund.investment.app.pledge.repo.api.event.trade.PROrderUpdateConfirmEvt;
+import fund.investment.app.pledge.repo.api.event.trade.PROrderUpdateEvt;
 import fund.investment.app.pledge.repo.api.valueobject.trade.PledgeTradeElement;
 import fund.investment.app.pledge.repo.server.aggregate.trade.status.*;
 import fund.investment.basic.common.util.BeanUtils;
-import fund.investment.basic.trade.api.event.OrderCounterpartyUpdateEvt;
-import fund.investment.basic.trade.api.event.OrderCreateConfirmedEvt;
-import fund.investment.basic.trade.api.event.OrderPlacedEvt;
-import fund.investment.basic.trade.api.event.OrderPlacingEvt;
+import fund.investment.basic.trade.api.event.*;
 import fund.investment.basic.trade.api.valueobject.SourceType;
 import fund.investment.basic.trade.server.aggregate.OrderAggregate;
 import lombok.Getter;
@@ -71,6 +69,8 @@ public class PledgeOrderAggregate<T extends PledgeTradeElement> extends OrderAgg
 
     @EventSourcingHandler
     public void on(OrderCounterpartyUpdateEvt<T> evt) {
+        log.info("Counterparty Update {}", evt);
+        BeanUtils.copyPropertiesIgnoreNull(evt.getTradeElement(), this.tradeElement);
         this.orderState = new PrReceivePlacedState<>();
     }
 
@@ -99,5 +99,24 @@ public class PledgeOrderAggregate<T extends PledgeTradeElement> extends OrderAgg
         getOrderState().handler(this, cmd);
     }
 
+    @CommandHandler
+    public void handler(PRFillOrderCmd<T> cmd) {
+        getOrderState().handler(this, cmd);
+    }
 
+    @CommandHandler
+    public void handler(PRRejectOrderCmd cmd) {
+        getOrderState().handler(this, cmd);
+    }
+
+    @CommandHandler
+    public void handler(PRMatchOrderCancelCmd cmd) {
+        getOrderState().handler(this, cmd);
+    }
+
+    @EventSourcingHandler
+    public void on(OrderCancelMatchEvt evt) {
+        log.info("cancel match {}", evt);
+        this.orderState = new PrUnMatchState<>();
+    }
 }

@@ -147,6 +147,15 @@ public class OrderAggregate<T extends TradeElement> extends DomainAggregate {
         getOrderState().handler(this, cmd);
     }
 
+    @CommandHandler
+    public void handler(CounterpartyFillOrdeCmd cmd) {
+        getOrderState().handler(this, cmd);
+    }
+    @CommandHandler
+    public void handler(CounterpartyRejectOrderCmd cmd) {
+        getOrderState().handler(this, cmd);
+    }
+
     //创建
     @EventSourcingHandler
     public void on(OrderCreatedEvt<T> evt) {
@@ -217,19 +226,22 @@ public class OrderAggregate<T extends TradeElement> extends DomainAggregate {
     }
 
     @EventSourcingHandler
-    public void on(OrderMatchSuccessEvt evt) {
+    public void on(OrderMatchConfirmEvt evt) {
         this.orderState = new MatchConfirmState<>();
     }
 
     @EventSourcingHandler
     public void on(OrderRejectConfirmedEvt evt) {
+        log.info("Reject {}", evt);
         this.orderState = new RejectConfirmState<>();
     }
 
     @EventSourcingHandler
     public void on(OrderFillConfirmEvt evt) {
+        log.info("Fill {}", evt);
         this.orderState = new FillConfirmState<>();
     }
+
 
     @EventSourcingHandler
     public void on(OrderCounterpartyUpdateEvt<T> evt) {
@@ -243,6 +255,7 @@ public class OrderAggregate<T extends TradeElement> extends DomainAggregate {
 
     @EventSourcingHandler
     public void on(OrderFillEvt evt) {
+        log.info("fill {}", evt);
         this.orderState = new FillState<>();
     }
 

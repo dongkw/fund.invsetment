@@ -46,8 +46,5 @@ public class PRTradeHandler extends TradeHandler<PledgeTradeElement> {
     //对手方修改
 
 
-    //成交回报
-    //对手方取消
-
 
 }

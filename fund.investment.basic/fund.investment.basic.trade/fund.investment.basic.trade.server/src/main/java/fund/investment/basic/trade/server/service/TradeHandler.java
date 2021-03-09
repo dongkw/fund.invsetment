@@ -37,15 +37,15 @@ public class TradeHandler<T extends TradeElement> {
     }
 
     @EventHandler
-    public void handler(OrderCmplFillEvt<T> evt) {
-        RejectOrderConfirmCmd cmd = new RejectOrderConfirmCmd();
+    public void handler(OrderCmplFilledEvt<T> evt) {
+        CounterpartyFillOrdeCmd cmd = new CounterpartyFillOrdeCmd();
         BeanUtils.copyProperties(evt, cmd);
         commandGateway.send(cmd);
     }
 
     @EventHandler
-    public void handler(OrderCmplRejectEvt<T> evt) {
-        FillOrderConfirmCmd cmd = new FillOrderConfirmCmd();
+    public void handler(OrderCmplRejectedEvt<T> evt) {
+        CounterpartyRejectOrderCmd cmd = new CounterpartyRejectOrderCmd();
         BeanUtils.copyProperties(evt, cmd);
         commandGateway.send(cmd);
     }
@@ -62,5 +62,13 @@ public class TradeHandler<T extends TradeElement> {
         AutoMatchOrderCmd cmd = new AutoMatchOrderCmd();
         BeanUtils.copyProperties(evt, cmd);
         commandGateway.send(cmd);
+    }
+
+    @EventHandler
+    public void handler(OrderCmplUpdatedEvt<T> evt) {
+        CounterpartyUpdateCmd<T> cmd = new CounterpartyUpdateCmd<>();
+        BeanUtils.copyProperties(evt, cmd);
+        commandGateway.send(cmd);
+
     }
 }

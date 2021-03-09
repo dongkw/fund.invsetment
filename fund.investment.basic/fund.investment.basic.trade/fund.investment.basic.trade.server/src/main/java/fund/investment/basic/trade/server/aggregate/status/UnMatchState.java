@@ -4,7 +4,7 @@ import fund.investment.basic.common.util.BeanUtils;
 import fund.investment.basic.trade.api.command.AutoMatchOrderCmd;
 import fund.investment.basic.trade.api.command.MatchOrderCmd;
 import fund.investment.basic.trade.api.event.OrderMatchEvt;
-import fund.investment.basic.trade.api.event.OrderMatchSuccessEvt;
+import fund.investment.basic.trade.api.event.OrderMatchConfirmEvt;
 import fund.investment.basic.trade.api.valueobject.TradeElement;
 import fund.investment.basic.trade.server.aggregate.OrderAggregate;
 import fund.investment.basic.trade.server.aggregate.OrderState;
@@ -22,7 +22,7 @@ public class UnMatchState<T extends TradeElement> extends OrderState<T> {
     }
 
     public void handler(OrderAggregate<T> aggregate, AutoMatchOrderCmd cmd) {
-        OrderMatchSuccessEvt evt = new OrderMatchSuccessEvt();
+        OrderMatchConfirmEvt evt = new OrderMatchConfirmEvt();
         BeanUtils.copyProperties(cmd, evt);
         AggregateLifecycle.apply(evt);
     }

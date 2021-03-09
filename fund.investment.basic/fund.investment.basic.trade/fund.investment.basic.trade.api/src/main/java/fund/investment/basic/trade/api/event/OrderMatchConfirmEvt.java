@@ -7,7 +7,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class OrderCancelMatchConfirmEvt extends OrderEvent {
-
+public class OrderMatchConfirmEvt extends OrderEvent {
 
 }

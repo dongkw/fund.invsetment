@@ -1,16 +1,12 @@
 package fund.investment.app.pledge.repo.server.controller.trade;
 
-import fund.investment.app.pledge.repo.api.command.trade.PRCreateOrderCmd;
-import fund.investment.app.pledge.repo.api.command.trade.PRMatchOrderCmd;
-import fund.investment.app.pledge.repo.api.command.trade.PRUpdateOrderCmd;
+import fund.investment.app.pledge.repo.api.command.trade.*;
 import fund.investment.app.pledge.repo.api.event.trade.PROrderUpdateConfirmEvt;
 import fund.investment.app.pledge.repo.api.valueobject.trade.PledgeTradeElement;
 import fund.investment.basic.common.util.controller.Async2SyncController;
 import fund.investment.basic.common.util.uid.UIDGenerator;
 import fund.investment.basic.trade.api.command.CancelOrderCmd;
-import fund.investment.basic.trade.api.event.OrderCancellingEvt;
-import fund.investment.basic.trade.api.event.OrderCreateConfirmedEvt;
-import fund.investment.basic.trade.api.event.OrderFailedEvt;
+import fund.investment.basic.trade.api.event.*;
 import fund.investment.basic.trade.api.valueobject.SourceType;
 import fund.investment.gateway.api.compliance.command.order.PlacingOrderCmplCmd;
 import org.axonframework.commandhandling.gateway.CommandGateway;
@@ -66,9 +62,6 @@ public class TradeSyncController extends Async2SyncController {
     }
 
     //取消
-
-
-    //提交
     @PostMapping("/cancel")
     public ResponseEntity cancel(@RequestBody CancelOrderCmd cmd) {
         Long requestId = uidGenerator.nextId();
@@ -100,16 +93,59 @@ public class TradeSyncController extends Async2SyncController {
 
     //匹配
     @PostMapping("/match")
-    public ResponseEntity update(@RequestBody PRMatchOrderCmd cmd) {
+    public ResponseEntity match(@RequestBody PRMatchOrderCmd cmd) {
         Long requestId = uidGenerator.nextId();
         cmd.setRequestId(requestId);
         commandGateway.send(cmd);
         return waitResponse(requestId);
     }
 
+    @EventHandler
+    public void handler(OrderMatchConfirmEvt evt) {
+        addResponse(evt.getRequestId(), evt);
+    }
+
+
     //成交
+    @PostMapping("/fill")
+    public ResponseEntity fill(@RequestBody PRFillOrderCmd<PledgeTradeElement> cmd) {
+        Long requestId = uidGenerator.nextId();
+        cmd.setRequestId(requestId);
+        commandGateway.send(cmd);
+        return waitResponse(requestId);
+    }
+    @EventHandler
+    public void handler(OrderFillConfirmEvt evt) {
+        addResponse(evt.getRequestId(), evt);
+    }
+
 
     //拒绝
+    @PostMapping("/reject")
+    public ResponseEntity reject(@RequestBody PRRejectOrderCmd cmd) {
+        Long requestId = uidGenerator.nextId();
+        cmd.setRequestId(requestId);
+        commandGateway.send(cmd);
+        return waitResponse(requestId);
+    }
+    @EventHandler
+    public void handler(OrderRejectConfirmedEvt evt) {
+        addResponse(evt.getRequestId(), evt);
+    }
+
 
     //撤销匹配
+    @PostMapping("/cancel/match")
+    public ResponseEntity cancelMatch(@RequestBody PRMatchOrderCancelCmd cmd) {
+        Long requestId = uidGenerator.nextId();
+        cmd.setRequestId(requestId);
+        commandGateway.send(cmd);
+        return waitResponse(requestId);
+    }
+    @EventHandler
+    public void handler(OrderCancelMatchEvt evt) {
+        addResponse(evt.getRequestId(), evt);
+    }
+
+
 }

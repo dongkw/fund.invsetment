@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.*;
 
 @Slf4j
@@ -33,9 +34,12 @@ public abstract class Async2SyncController {
     }
 
     protected void addResponse(Long requestId, Object obj) {
+
         CyclicBarrier cyclicBarrier = lockMap.get(requestId);
+        if (Objects.isNull(cyclicBarrier)) {
+            return;
+        }
         try {
-            assert cyclicBarrier != null;
             responseMap.put(requestId, obj);
             cyclicBarrier.await();
         } catch (InterruptedException | BrokenBarrierException e) {

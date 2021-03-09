@@ -84,10 +84,18 @@ public class OrderState<T extends TradeElement> {
     public void handler(OrderAggregate<T> aggregate, MatchOrderCancelCmd cmd) {
 
     }
+
     public void handler(OrderAggregate<T> aggregate, CounterpartyUpdateCmd<T> cmd) {
 
     }
-    public void handler(OrderAggregate<T> aggregate, AutoMatchOrderCmd cmd){
 
+    public void handler(OrderAggregate<T> aggregate, AutoMatchOrderCmd cmd) {
+
+    }
+
+    public void handler(OrderAggregate<T> aggregate, CounterpartyFillOrdeCmd cmd) {
+    }
+
+    public void handler(OrderAggregate<T> aggregate, CounterpartyRejectOrderCmd cmd) {
     }
 }
