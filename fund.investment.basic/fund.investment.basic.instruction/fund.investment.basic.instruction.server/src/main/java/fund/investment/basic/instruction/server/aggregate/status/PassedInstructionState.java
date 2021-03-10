@@ -20,7 +20,7 @@ public class PassedInstructionState<T extends InstructionElement> extends Instru
     }
 
     @Override
-    public void distribute(InstructionAggregate<T> instructionAggregate, DistributeIstrCmd distributeIstrCmd) {
+    public void handle(InstructionAggregate<T> instructionAggregate, DistributeIstrCmd distributeIstrCmd) {
         IstrPendingEvt istrPendingEvt = new IstrPendingEvt();
         istrPendingEvt.copyOf(distributeIstrCmd);
         istrPendingEvt.setChInsDispStatus(distributeIstrCmd.getChInsDispStatus());
@@ -28,7 +28,7 @@ public class PassedInstructionState<T extends InstructionElement> extends Instru
     }
 
     @Override
-    public void cancel(InstructionAggregate<T> aggregate, CancelIstrCmd cancelIstrCmd) {
+    public void handle(InstructionAggregate<T> aggregate, CancelIstrCmd cancelIstrCmd) {
         IstrCancellingEvt istrCancellingEvt = new IstrCancellingEvt();
         istrCancellingEvt.copyOf(cancelIstrCmd);
         istrCancellingEvt.setRiskInfos(cancelIstrCmd.getRiskInfos());

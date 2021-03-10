@@ -20,7 +20,7 @@ public class CancellingInstructionState<T extends InstructionElement> extends In
     }
 
     @Override
-    public void cancelConfirm(InstructionAggregate<T> instructionAggregate, CancelConfIstrCmd cmd) {
+    public void handle(InstructionAggregate<T> instructionAggregate, CancelConfIstrCmd cmd) {
         IstrCancelledEvt istrCancelledEvt = new IstrCancelledEvt();
         istrCancelledEvt.copyOf(cmd);
         istrCancelledEvt.setCancelType(cmd.getCancelType());
@@ -29,7 +29,7 @@ public class CancellingInstructionState<T extends InstructionElement> extends In
     }
 
     @Override
-    public void cancelFail(InstructionAggregate<T> instructionAggregate, RollbackCancelIstrCmd cmd) {
+    public void handle(InstructionAggregate<T> instructionAggregate, RollbackCancelIstrCmd cmd) {
         IstrFailedEvt evt = new IstrFailedEvt();
         evt.copyOf(cmd);
         evt.setRiskInfos(cmd.getRiskInfos());
@@ -37,7 +37,7 @@ public class CancellingInstructionState<T extends InstructionElement> extends In
     }
 
     @Override
-    public void createOrder(InstructionAggregate<T> instructionAggregate, CreateIstrOrderCmd esCreateIstrOrderCmd) {
+    public void handle(InstructionAggregate<T> instructionAggregate, CreateIstrOrderCmd esCreateIstrOrderCmd) {
         IstrOrderFailedEvt istrOrderFailedEvt = new IstrOrderFailedEvt();
         istrOrderFailedEvt.copyOf(esCreateIstrOrderCmd);
         istrOrderFailedEvt.setOrderId(esCreateIstrOrderCmd.getOrderId());
@@ -46,7 +46,7 @@ public class CancellingInstructionState<T extends InstructionElement> extends In
     }
 
     @Override
-    public void receiveFill(InstructionAggregate<T> instructionAggregate, ReceiveIstrFillCmd cmd) {
+    public void handle(InstructionAggregate<T> instructionAggregate, ReceiveIstrFillCmd cmd) {
         OrderDetail orderDetail = instructionAggregate.getOrderDetail();
         if (Objects.isNull(orderDetail)) {
             orderDetail = new OrderDetail();

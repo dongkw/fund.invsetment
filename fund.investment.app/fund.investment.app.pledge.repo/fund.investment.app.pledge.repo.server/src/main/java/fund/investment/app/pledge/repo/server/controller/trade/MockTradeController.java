@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
  **/
 @RestController
 @RequestMapping("/mock")
-public class MockController extends Async2SyncController {
+public class MockTradeController extends Async2SyncController {
 
     @Autowired
     private CommandGateway commandGateway;
@@ -31,37 +31,37 @@ public class MockController extends Async2SyncController {
     //创建
 
     @PostMapping("/counterparty/create")
-    public ResponseEntity createOrder(@RequestBody OrderCmplCreateEvt<PledgeTradeElement> evt) {
+    public ResponseEntity<?> createOrder(@RequestBody OrderCmplCreateEvt<PledgeTradeElement> evt) {
         eventGateway.publish(evt);
         return ResponseEntity.ok().build();
     }
 
     @PostMapping("/placed")
-    public ResponseEntity placed(@RequestBody OrderCmplPlacedEvt<PledgeTradeElement> evt) {
+    public ResponseEntity<?> placed(@RequestBody OrderCmplPlacedEvt<PledgeTradeElement> evt) {
         eventGateway.publish(evt);
         return ResponseEntity.ok().build();
     }
 
     @PostMapping("/counterparty/fill")
-    public ResponseEntity fill(@RequestBody OrderCmplFilledEvt<PledgeTradeElement> evt) {
+    public ResponseEntity<?> fill(@RequestBody OrderCmplFilledEvt<PledgeTradeElement> evt) {
         eventGateway.publish(evt);
         return ResponseEntity.ok().build();
     }
 
     @PostMapping("/counterparty/reject")
-    public ResponseEntity reject(@RequestBody OrderCmplRejectedEvt<PledgeTradeElement> evt) {
+    public ResponseEntity<?> reject(@RequestBody OrderCmplRejectedEvt<PledgeTradeElement> evt) {
         eventGateway.publish(evt);
         return ResponseEntity.ok().build();
     }
 
     @PostMapping("/counterparty/cancelled")
-    public ResponseEntity cancelled(@RequestBody OrderCmplCancelledEvt<PledgeTradeElement> evt) {
+    public ResponseEntity<?> cancelled(@RequestBody OrderCmplCancelledEvt<PledgeTradeElement> evt) {
         eventGateway.publish(evt);
         return ResponseEntity.ok().build();
     }
 
     @PostMapping("/counterparty/update")
-    public ResponseEntity update(@RequestBody OrderCmplUpdatedEvt<PledgeTradeElement> evt) {
+    public ResponseEntity<?> update(@RequestBody OrderCmplUpdatedEvt<PledgeTradeElement> evt) {
         eventGateway.publish(evt);
         return ResponseEntity.ok().build();
     }

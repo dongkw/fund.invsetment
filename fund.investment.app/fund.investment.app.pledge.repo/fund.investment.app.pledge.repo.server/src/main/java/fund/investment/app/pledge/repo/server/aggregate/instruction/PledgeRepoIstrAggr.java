@@ -56,17 +56,17 @@ public class PledgeRepoIstrAggr<T> extends InstructionAggregate<PledgeInstructio
      */
     @CommandHandler
     public void handle(PRUpdateIstrCmd cmd) {
-        getInstructionState().update(this, cmd);
+        getInstructionState().handle(this, cmd);
     }
 
     @CommandHandler
     public void handle(PRUpdateConfirmIstrCmd cmd) {
-        getInstructionState().updateConfirm(this, cmd);
+        getInstructionState().handle(this, cmd);
     }
 
     @CommandHandler
     public void handle(PRUpdateFailIstrCmd cmd) {
-        getInstructionState().updateFail(this, cmd);
+        getInstructionState().handle(this, cmd);
     }
 
     @EventSourcingHandler
@@ -87,7 +87,7 @@ public class PledgeRepoIstrAggr<T> extends InstructionAggregate<PledgeInstructio
 
     @CommandHandler
     public void handle(PRCancelIstrCmd cmd) {
-        getInstructionState().cancel(this, cmd);
+        getInstructionState().handle(this, cmd);
     }
 
 

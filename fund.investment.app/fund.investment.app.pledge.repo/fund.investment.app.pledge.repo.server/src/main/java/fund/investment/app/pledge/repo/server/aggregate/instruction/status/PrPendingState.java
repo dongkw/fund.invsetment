@@ -12,7 +12,7 @@ import org.axonframework.modelling.command.AggregateLifecycle;
 public class PrPendingState<T extends InstructionElement> extends PendingInstructionState<T> {
 
     @Override
-    public void cancel(InstructionAggregate<T> aggregate, CancelIstrCmd cancelIstrCmd) {
+    public void handle(InstructionAggregate<T> aggregate, CancelIstrCmd cancelIstrCmd) {
         PRIstrCancellingEvt istrCancellingEvt = new PRIstrCancellingEvt();
         istrCancellingEvt.copyOf(cancelIstrCmd);
         istrCancellingEvt.setRiskInfos(cancelIstrCmd.getRiskInfos());

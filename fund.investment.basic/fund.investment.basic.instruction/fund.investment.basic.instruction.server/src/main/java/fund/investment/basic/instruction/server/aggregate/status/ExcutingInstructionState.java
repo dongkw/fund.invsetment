@@ -21,7 +21,7 @@ public class ExcutingInstructionState<T extends InstructionElement> extends Inst
     }
 
     @Override
-    public void createOrder(InstructionAggregate instructionAggregate, CreateIstrOrderCmd cmd) {
+    public void handle(InstructionAggregate instructionAggregate, CreateIstrOrderCmd cmd) {
         if (!cmd.getTradeType().name().equals(TradeType.UNDEFINED.name())) {
             IstrOrderCreatedEvt istrOrderCreatedEvt = new IstrOrderCreatedEvt();
             istrOrderCreatedEvt.setOrderId(cmd.getOrderId());
@@ -40,7 +40,7 @@ public class ExcutingInstructionState<T extends InstructionElement> extends Inst
     }
 
     @Override
-    public void cancelOrder(CancelIstrOrderCmd cancelIstrOrderCmd) {
+    public void handle(CancelIstrOrderCmd cancelIstrOrderCmd) {
         IstrOrderCancelledEvt istrOrderCancelledEvt = new IstrOrderCancelledEvt();
         istrOrderCancelledEvt.setId(cancelIstrOrderCmd.getId());
         istrOrderCancelledEvt.setOrderId(cancelIstrOrderCmd.getOrderId());
@@ -50,7 +50,7 @@ public class ExcutingInstructionState<T extends InstructionElement> extends Inst
     }
 
     @Override
-    public void receiveFill(InstructionAggregate<T> instructionAggregate, ReceiveIstrFillCmd cmd) {
+    public void handle(InstructionAggregate<T> instructionAggregate, ReceiveIstrFillCmd cmd) {
         IstrCompletedEvt istrCompletedEvt = new IstrCompletedEvt();
         istrCompletedEvt.copyOf(cmd);
         AggregateLifecycle.apply(istrCompletedEvt);
@@ -58,7 +58,7 @@ public class ExcutingInstructionState<T extends InstructionElement> extends Inst
     }
 
     @Override
-    public void cancel(InstructionAggregate<T> aggregate, CancelIstrCmd cancelIstrCmd) {
+    public void handle(InstructionAggregate<T> aggregate, CancelIstrCmd cancelIstrCmd) {
         IstrCancellingEvt istrCancellingEvt = new IstrCancellingEvt();
         istrCancellingEvt.copyOf(cancelIstrCmd);
         istrCancellingEvt.setRiskInfos(cancelIstrCmd.getRiskInfos());

@@ -19,7 +19,7 @@ public class UpdateInstructionState<T extends InstructionElement> extends Instru
     }
 
     @Override
-    public void updateConfirm(InstructionAggregate<T> aggregate, UpdateConfirmIstrCmd<T> cmd) {
+    public void handle(InstructionAggregate<T> aggregate, UpdateConfirmIstrCmd<T> cmd) {
         IstrUpdateConfirmedEvt<T> evt = new IstrUpdateConfirmedEvt<>();
         evt.copyOf(cmd);
         evt.setTradeElement(cmd.getTradeElement());
@@ -27,7 +27,7 @@ public class UpdateInstructionState<T extends InstructionElement> extends Instru
     }
 
     @Override
-    public void updateFail(InstructionAggregate<T> instructionAggregate, UpdateFailIstrCmd cmd) {
+    public void handle(InstructionAggregate<T> instructionAggregate, UpdateFailIstrCmd cmd) {
         IstrFailedEvt evt = new IstrFailedEvt();
         evt.copyOf(cmd);
         evt.setRiskInfos(cmd.getRiskRiskInfos());

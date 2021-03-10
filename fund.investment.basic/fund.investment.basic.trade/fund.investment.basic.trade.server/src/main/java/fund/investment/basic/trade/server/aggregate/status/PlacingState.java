@@ -19,7 +19,7 @@ import org.axonframework.modelling.command.AggregateLifecycle;
 public class PlacingState<T extends TradeElement> extends OrderState<T> {
     @Override
     public void handler(OrderAggregate<T> aggregate, PlacedOrderCmd<T> cmd) {
-        OrderPlacedEvt<T> evt = new OrderPlacedEvt<T>();
+        OrderPlacedEvt<T> evt = new OrderPlacedEvt<>();
         BeanUtils.copyProperties(cmd, evt);
         AggregateLifecycle.apply(evt);
 

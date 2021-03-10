@@ -22,21 +22,21 @@ public class ConfirmedInstructionState<T extends InstructionElement> extends Ins
     }
 
     @Override
-    public void aprvPass(InstructionAggregate<T> instructionAggregate, ApproveIstrCmd approveIstrCmd) {
+    public void handle(InstructionAggregate<T> instructionAggregate, ApproveIstrCmd approveIstrCmd) {
         IstrPassedEvt istrPassedEvt = new IstrPassedEvt();
         istrPassedEvt.copyOf(approveIstrCmd);
         AggregateLifecycle.apply(istrPassedEvt);
     }
 
     @Override
-    public void update(InstructionAggregate<T> aggregate, UpdateIstrCmd<T> cmd) {
+    public void handle(InstructionAggregate<T> aggregate, UpdateIstrCmd<T> cmd) {
         IstrUpdatedEvt<T> evt = new IstrUpdatedEvt<>();
         BeanUtils.copyProperties(cmd, evt);
         AggregateLifecycle.apply(evt);
     }
 
     @Override
-    public void cancel(InstructionAggregate<T> aggregate, CancelIstrCmd cancelIstrCmd) {
+    public void handle(InstructionAggregate<T> aggregate, CancelIstrCmd cancelIstrCmd) {
         IstrCancellingEvt istrCancellingEvt = new IstrCancellingEvt();
         istrCancellingEvt.copyOf(cancelIstrCmd);
         istrCancellingEvt.setRiskInfos(cancelIstrCmd.getRiskInfos());

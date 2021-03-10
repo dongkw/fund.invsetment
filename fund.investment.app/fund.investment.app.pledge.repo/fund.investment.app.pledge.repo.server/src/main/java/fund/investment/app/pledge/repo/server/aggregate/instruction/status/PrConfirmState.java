@@ -17,14 +17,14 @@ import org.axonframework.modelling.command.AggregateLifecycle;
 public class PrConfirmState<T extends PledgeInstructionElement> extends ConfirmedInstructionState<T> {
 
     @Override
-    public void update(InstructionAggregate<T> aggregate, UpdateIstrCmd<T> cmd) {
+    public void handle(InstructionAggregate<T> aggregate, UpdateIstrCmd<T> cmd) {
         PRIstrUpdatedEvt evt = new PRIstrUpdatedEvt();
         BeanUtils.copyProperties(cmd, evt);
         AggregateLifecycle.apply(evt);
     }
 
     @Override
-    public void cancel(InstructionAggregate<T> aggregate, CancelIstrCmd cancelIstrCmd) {
+    public void handle(InstructionAggregate<T> aggregate, CancelIstrCmd cancelIstrCmd) {
         PRIstrCancellingEvt istrCancellingEvt = new PRIstrCancellingEvt();
         istrCancellingEvt.copyOf(cancelIstrCmd);
         istrCancellingEvt.setRiskInfos(cancelIstrCmd.getRiskInfos());

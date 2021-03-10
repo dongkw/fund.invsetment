@@ -44,12 +44,12 @@ public class InstructionAggregate<T extends InstructionElement> extends DomainAg
 
     @CommandHandler
     public void handle(CreateConfirmIstrCmd<T> cmd) {
-        getInstructionState().createConfirm(this, cmd);
+        getInstructionState().handle(this, cmd);
     }
 
     @CommandHandler
     public void handle(CreateFailIstrCmd cmd) {
-        getInstructionState().createFail(this, cmd);
+        getInstructionState().handle(this, cmd);
     }
 
     @EventHandler
@@ -71,17 +71,17 @@ public class InstructionAggregate<T extends InstructionElement> extends DomainAg
      */
     @CommandHandler
     public void handle(UpdateIstrCmd<T> cmd) {
-        getInstructionState().update(this, cmd);
+        getInstructionState().handle(this, cmd);
     }
 
     @CommandHandler
     public void handle(UpdateConfirmIstrCmd<T> cmd) {
-        getInstructionState().updateConfirm(this, cmd);
+        getInstructionState().handle(this, cmd);
     }
 
     @CommandHandler
     public void handler(UpdateFailIstrCmd cmd) {
-        getInstructionState().updateFail(this, cmd);
+        getInstructionState().handle(this, cmd);
     }
 
 
@@ -106,17 +106,17 @@ public class InstructionAggregate<T extends InstructionElement> extends DomainAg
 
     @CommandHandler
     public void handle(CancelIstrCmd cmd) {
-        getInstructionState().cancel(this, cmd);
+        getInstructionState().handle(this, cmd);
     }
 
     @CommandHandler
     public void handle(CancelConfIstrCmd cmd) {
-        getInstructionState().cancelConfirm(this, cmd);
+        getInstructionState().handle(this, cmd);
     }
 
     @CommandHandler
     public void handler(RollbackCancelIstrCmd cmd) {
-        getInstructionState().cancelFail(this, cmd);
+        getInstructionState().handle(this, cmd);
     }
 
     @EventSourcingHandler
@@ -134,17 +134,17 @@ public class InstructionAggregate<T extends InstructionElement> extends DomainAg
 
     @CommandHandler
     public void handle(ApproveIstrCmd cmd) {
-        getInstructionState().aprvPass(this, cmd);
+        getInstructionState().handle(this, cmd);
     }
 
     @CommandHandler
     public void handle(DistributeIstrCmd cmd) {
-        getInstructionState().distribute(this, cmd);
+        getInstructionState().handle(this, cmd);
     }
 
     @CommandHandler
     public void handle(ReceiveIstrFillCmd cmd) {
-        getInstructionState().receiveFill(this, cmd);
+        getInstructionState().handle(this, cmd);
     }
 
     @EventSourcingHandler

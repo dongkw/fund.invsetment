@@ -23,7 +23,6 @@ public class OrderState<T extends TradeElement> {
 
     }
 
-
     //撤销
     public void handler(OrderAggregate<T> aggregate, CancelOrderCmd cmd) {
 
@@ -40,8 +39,8 @@ public class OrderState<T extends TradeElement> {
     public void handler(OrderAggregate<T> aggregate, CancelOrderFailCmd cmd) {
 
     }
-    //修改
 
+    //修改
     public void handler(OrderAggregate<T> aggregate, UpdateOrderCmd<T> cmd) {
 
     }
@@ -94,6 +93,7 @@ public class OrderState<T extends TradeElement> {
     }
 
     public void handler(OrderAggregate<T> aggregate, CounterpartyFillOrdeCmd cmd) {
+
     }
 
     public void handler(OrderAggregate<T> aggregate, CounterpartyRejectOrderCmd cmd) {

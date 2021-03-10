@@ -33,7 +33,7 @@ public class TradeSyncController extends Async2SyncController {
     //创建
 
     @PostMapping("/create")
-    public ResponseEntity createOrder(@RequestBody PRCreateOrderCmd cmd) {
+    public ResponseEntity<?> createOrder(@RequestBody PRCreateOrderCmd cmd) {
         Long requestId = uidGenerator.nextId();
         cmd.setRequestId(requestId);
         cmd.setId(uidGenerator.nextId());
@@ -54,7 +54,7 @@ public class TradeSyncController extends Async2SyncController {
 
     //提交
     @PostMapping("/commit")
-    public ResponseEntity commit(@RequestBody PlacingOrderCmplCmd<PledgeTradeElement> cmd) {
+    public ResponseEntity<?> commit(@RequestBody PlacingOrderCmplCmd<PledgeTradeElement> cmd) {
         Long requestId = uidGenerator.nextId();
         cmd.setRequestId(requestId);
         commandGateway.send(cmd);
@@ -63,7 +63,7 @@ public class TradeSyncController extends Async2SyncController {
 
     //取消
     @PostMapping("/cancel")
-    public ResponseEntity cancel(@RequestBody CancelOrderCmd cmd) {
+    public ResponseEntity<?> cancel(@RequestBody CancelOrderCmd cmd) {
         Long requestId = uidGenerator.nextId();
         cmd.setRequestId(requestId);
         commandGateway.send(cmd);
@@ -78,7 +78,7 @@ public class TradeSyncController extends Async2SyncController {
 
     //修改
     @PostMapping("/update")
-    public ResponseEntity update(@RequestBody PRUpdateOrderCmd<PledgeTradeElement> cmd) {
+    public ResponseEntity<?> update(@RequestBody PRUpdateOrderCmd<PledgeTradeElement> cmd) {
         Long requestId = uidGenerator.nextId();
         cmd.setRequestId(requestId);
         commandGateway.send(cmd);
@@ -93,7 +93,7 @@ public class TradeSyncController extends Async2SyncController {
 
     //匹配
     @PostMapping("/match")
-    public ResponseEntity match(@RequestBody PRMatchOrderCmd cmd) {
+    public ResponseEntity<?> match(@RequestBody PRMatchOrderCmd cmd) {
         Long requestId = uidGenerator.nextId();
         cmd.setRequestId(requestId);
         commandGateway.send(cmd);
@@ -108,7 +108,7 @@ public class TradeSyncController extends Async2SyncController {
 
     //成交
     @PostMapping("/fill")
-    public ResponseEntity fill(@RequestBody PRFillOrderCmd<PledgeTradeElement> cmd) {
+    public ResponseEntity<?> fill(@RequestBody PRFillOrderCmd<PledgeTradeElement> cmd) {
         Long requestId = uidGenerator.nextId();
         cmd.setRequestId(requestId);
         commandGateway.send(cmd);
@@ -122,7 +122,7 @@ public class TradeSyncController extends Async2SyncController {
 
     //拒绝
     @PostMapping("/reject")
-    public ResponseEntity reject(@RequestBody PRRejectOrderCmd cmd) {
+    public ResponseEntity<?> reject(@RequestBody PRRejectOrderCmd cmd) {
         Long requestId = uidGenerator.nextId();
         cmd.setRequestId(requestId);
         commandGateway.send(cmd);
@@ -136,7 +136,7 @@ public class TradeSyncController extends Async2SyncController {
 
     //撤销匹配
     @PostMapping("/cancel/match")
-    public ResponseEntity cancelMatch(@RequestBody PRMatchOrderCancelCmd cmd) {
+    public ResponseEntity<?> cancelMatch(@RequestBody PRMatchOrderCancelCmd cmd) {
         Long requestId = uidGenerator.nextId();
         cmd.setRequestId(requestId);
         commandGateway.send(cmd);

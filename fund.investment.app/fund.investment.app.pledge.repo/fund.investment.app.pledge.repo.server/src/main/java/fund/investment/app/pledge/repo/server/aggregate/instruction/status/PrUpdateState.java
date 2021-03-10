@@ -14,7 +14,7 @@ import org.axonframework.modelling.command.AggregateLifecycle;
 public class PrUpdateState<T extends PledgeInstructionElement> extends UpdateInstructionState<T> {
 
     @Override
-    public void updateConfirm(InstructionAggregate<T> aggregate, UpdateConfirmIstrCmd<T> cmd) {
+    public void handle(InstructionAggregate<T> aggregate, UpdateConfirmIstrCmd<T> cmd) {
         PRIstrUpdateConfirmedEvt evt = new PRIstrUpdateConfirmedEvt();
         evt.copyOf(cmd);
         evt.setTradeElement(cmd.getTradeElement());
