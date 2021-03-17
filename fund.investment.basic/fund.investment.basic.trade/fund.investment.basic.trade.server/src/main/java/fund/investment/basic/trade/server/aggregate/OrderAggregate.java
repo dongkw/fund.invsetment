@@ -263,4 +263,5 @@ public class OrderAggregate<T extends TradeElement> extends DomainAggregate {
     public void on(OrderCancelMatchEvt evt) {
         this.orderState = new UnMatchState<>();
     }
+
 }

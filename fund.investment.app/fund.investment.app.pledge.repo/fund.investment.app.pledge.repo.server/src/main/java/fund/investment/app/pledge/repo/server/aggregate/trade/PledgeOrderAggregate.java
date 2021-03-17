@@ -25,7 +25,6 @@ import org.axonframework.spring.stereotype.Aggregate;
 @Setter
 @Slf4j
 @NoArgsConstructor
-//@AllArgsConstructor
 @Aggregate(snapshotTriggerDefinition = "snapshotTrigger")
 public class PledgeOrderAggregate<T extends PledgeTradeElement> extends OrderAggregate<T> {
 
@@ -92,8 +91,6 @@ public class PledgeOrderAggregate<T extends PledgeTradeElement> extends OrderAgg
         BeanUtils.copyPropertiesIgnoreNull(evt.getTradeElement(), this.tradeElement);
         this.orderState = new PrPlacingState<>();
     }
-
-
     @CommandHandler
     public void handler(PRMatchOrderCmd cmd) {
         getOrderState().handler(this, cmd);
@@ -108,12 +105,10 @@ public class PledgeOrderAggregate<T extends PledgeTradeElement> extends OrderAgg
     public void handler(PRRejectOrderCmd cmd) {
         getOrderState().handler(this, cmd);
     }
-
     @CommandHandler
     public void handler(PRMatchOrderCancelCmd cmd) {
         getOrderState().handler(this, cmd);
     }
-
     @EventSourcingHandler
     public void on(OrderCancelMatchEvt evt) {
         log.info("cancel match {}", evt);

@@ -98,4 +98,6 @@ public class OrderState<T extends TradeElement> {
 
     public void handler(OrderAggregate<T> aggregate, CounterpartyRejectOrderCmd cmd) {
     }
+
+
 }
