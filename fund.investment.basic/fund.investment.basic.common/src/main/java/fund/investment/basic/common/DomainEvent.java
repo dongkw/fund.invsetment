@@ -2,6 +2,7 @@ package fund.investment.basic.common;
 
 import fund.investment.basic.common.util.LoggerTemplate;
 import lombok.*;
+import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
 import java.util.Date;
 
@@ -10,16 +11,21 @@ import java.util.Date;
 public class DomainEvent {
 
     private Long id;
-    private Long requestId;
-    private String modifiedId;
 
-    private Date modifiedTime;
+    private Long aggregateId;
+
+    private Long requestId;
+
+    private String regId;
+
+    private long timestamp;
 
     public void copyOf(DomainCommand command) {
-        this.id = command.getId();
-        this.modifiedId = command.getModifiedId();
+//        this.id = event.getId();
+        this.aggregateId = command.getAggregateId();
+        this.timestamp = System.currentTimeMillis();
         this.requestId = command.getRequestId();
-        this.modifiedTime = command.getModifiedTime();
+        this.regId = command.getRegId();
     }
 
     @Override

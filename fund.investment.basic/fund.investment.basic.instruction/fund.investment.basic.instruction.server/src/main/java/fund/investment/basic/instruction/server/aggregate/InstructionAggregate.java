@@ -52,7 +52,7 @@ public class InstructionAggregate<T extends InstructionElement> extends DomainAg
         getInstructionState().handle(this, cmd);
     }
 
-    @EventHandler
+    @EventSourcingHandler
     public void on(IstrCreatedEvt<T> evt) {
         log.info("create {}", evt);
         BeanUtils.copyProperties(evt, this);

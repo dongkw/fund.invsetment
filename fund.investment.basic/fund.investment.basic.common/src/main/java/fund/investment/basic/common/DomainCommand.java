@@ -4,20 +4,23 @@ import fund.investment.basic.common.util.LoggerTemplate;
 import lombok.*;
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Getter
 @Setter
 public class DomainCommand {
 
-    @TargetAggregateIdentifier
     private Long id;
+    @TargetAggregateIdentifier
+    private Long aggregateId;
 
     private Long requestId;
 
-    private String modifiedId;
+    private String regId;
 
-    private Date modifiedTime;
+    private long timestamp;
+
 
     @Override
     public String toString() {
@@ -29,9 +32,10 @@ public class DomainCommand {
     }
 
     public void copyOf(DomainEvent event) {
-        this.id = event.getId();
-        this.modifiedId = event.getModifiedId();
+//        this.id = event.getId();
+        this.aggregateId = event.getAggregateId();
+        this.timestamp = System.currentTimeMillis();
         this.requestId = event.getRequestId();
-        this.modifiedTime = event.getModifiedTime();
+        this.regId = event.getRegId();
     }
 }

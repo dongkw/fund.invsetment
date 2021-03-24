@@ -27,6 +27,7 @@ public class PRTradeCommandHandler {
     @CommandHandler
     public void handler(PlacingOrderCmplCmd<PledgeTradeElement> cmd) {
         log.debug("接收到质押式委托报价命令：{}", cmd);
+        //todo 调接口
         if (true) {
             OrderCmplPlacingEvt<PledgeTradeElement> evt = new OrderCmplPlacingEvt<>();
             BeanUtils.copyProperties(cmd, evt);

@@ -11,11 +11,9 @@ import fund.investment.app.pledge.repo.server.aggregate.instruction.status.PrPen
 import fund.investment.app.pledge.repo.server.aggregate.instruction.status.PrUpdateState;
 import fund.investment.basic.common.util.BeanUtils;
 import fund.investment.basic.instruction.api.entity.OrderDetail;
-import fund.investment.basic.instruction.api.event.IstrConfirmedEvt;
-import fund.investment.basic.instruction.api.event.IstrOrderCreatedEvt;
-import fund.investment.basic.instruction.api.event.IstrPassedEvt;
-import fund.investment.basic.instruction.api.event.IstrPendingEvt;
+import fund.investment.basic.instruction.api.event.*;
 import fund.investment.basic.instruction.server.aggregate.InstructionAggregate;
+import fund.investment.basic.instruction.server.aggregate.status.CreatedInstructionState;
 import fund.investment.basic.instruction.server.aggregate.status.ExcutingInstructionState;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -42,7 +40,12 @@ public class PledgeRepoIstrAggr<T> extends InstructionAggregate<PledgeInstructio
         BeanUtils.copyProperties(cmd, prIstrCreatedEvt);
         AggregateLifecycle.apply(prIstrCreatedEvt);
     }
-
+    @EventSourcingHandler
+    public void on(PRIstrCreatedEvt<T> evt) {
+        log.info("create {}", evt);
+        BeanUtils.copyProperties(evt, this);
+        this.instructionState = new CreatedInstructionState<>();
+    }
     @EventSourcingHandler
     public void handle(IstrConfirmedEvt<PledgeInstructionElement> evt) {
         log.info("confirm {}", evt);

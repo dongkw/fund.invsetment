@@ -23,11 +23,6 @@ public class ParallelTransaction extends TransactionGroup {
         return domainCommand;
     }
 
-    public void sendCmd(Consumer<DomainCommand> commandConsumer) {
-        DomainCommand command = new DomainCommand();
-        commandConsumer.accept(command);
-        CommandGatewayFactory.getCommandGateway().send(command);
-    }
 
     public ParallelTransaction(List<ITransaction> transactionList) {
         super(transactionList);
